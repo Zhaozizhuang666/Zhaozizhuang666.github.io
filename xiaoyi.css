@@ -1,0 +1,155 @@
+/* The companion follows the site's appearance; its dock stays outside the scaled page. */
+:root {
+  --xy-surface: #fffdfa;
+  --xy-surface-soft: #f2f5f9;
+  --xy-surface-end: #edf2f9;
+  --xy-line: #dce3ee;
+  --xy-ink: #52657e;
+  --xy-muted: #5f6e82;
+  --xy-accent: #728eae;
+  --xy-accent-strong: #4b6d9b;
+  --xy-shadow: #344f7414;
+  --xy-body: #d7e4f6;
+  --xy-body-end: #b4c9e3;
+  --xy-face: #fffaf0;
+  --xy-eye: #657d9e;
+  --xy-cheek: #edcabd80;
+  --xy-spark: #dba573;
+}
+html[data-theme="dark"] {
+  --xy-surface: #172335;
+  --xy-surface-soft: #1c2b40;
+  --xy-surface-end: #202e45;
+  --xy-line: #3a4e69;
+  --xy-ink: #d2deed;
+  --xy-muted: #a4b6cd;
+  --xy-accent: #93afd5;
+  --xy-accent-strong: #b4cef1;
+  --xy-shadow: #00000032;
+  --xy-body: #a0b5d6;
+  --xy-body-end: #6d88af;
+  --xy-face: #edf0f8;
+  --xy-eye: #536a92;
+  --xy-cheek: #c7cfe480;
+  --xy-spark: #e0d9b4;
+}
+.xiaoyi-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.xiaoyi-dock { position: fixed; right: 0; top: 92px; width: 28px; height: 48px; z-index: 31; touch-action: none; }
+.xiaoyi-dock-toggle { display: grid; place-items: center; width: 28px; height: 48px; padding: 0; border: 1px solid var(--xy-line); border-right: 0; border-radius: 14px 0 0 14px; background: linear-gradient(145deg,var(--xy-surface),var(--xy-surface-end)); color: var(--xy-accent); box-shadow: 0 3px 18px var(--xy-shadow); cursor: grab; touch-action: none; font: 18px/1 sans-serif; transition: background .2s,color .2s; }
+.xiaoyi-preview { position: absolute; top: var(--preview-offset,0px); right: 36px; width: min(216px,calc(100vw - 52px)); opacity: 0; visibility: hidden; transform: translateX(10px); pointer-events: none; transition: opacity .2s,visibility .2s,transform .2s; }
+.xiaoyi-preview::after { content: ''; position: absolute; top: 0; right: -8px; width: 8px; height: 100%; }
+.xiaoyi-launcher { position: relative; width: 100%; display: flex; align-items: center; gap: 11px; padding: 17px 17px 78px; border: 1px solid var(--xy-line); border-radius: 23px 10px 23px 23px; background: linear-gradient(140deg,var(--xy-surface),var(--xy-surface-end)); color: var(--xy-ink); box-shadow: 0 8px 32px var(--xy-shadow); font: 500 16px/1.2 'Outfit','PingFang SC',sans-serif; cursor: pointer; text-align: left; }
+.xiaoyi-invite { position: absolute; left: 17px; right: 17px; bottom: 16px; padding-top: 12px; border-top: 1px solid var(--xy-line); color: var(--xy-muted); font-size: 12px; font-weight: 400; line-height: 1.6; pointer-events: none; }
+.xiaoyi-dock:is(:hover,:focus-within,.is-pinned) .xiaoyi-preview { opacity: 1; visibility: visible; transform: translateX(0); pointer-events: auto; }
+.xiaoyi-dock.is-open { visibility: hidden; }
+.xiaoyi-dock.is-open .xiaoyi-preview { opacity: 0; visibility: hidden; pointer-events: none; }
+.xiaoyi-dock.is-left { left: 0; right: auto; }
+.xiaoyi-dock.is-left .xiaoyi-dock-toggle { border-left: 0; border-right: 1px solid var(--xy-line); border-radius: 0 14px 14px 0; }
+.xiaoyi-dock.is-left .xiaoyi-preview { left: 36px; right: auto; transform: translateX(-10px); }
+.xiaoyi-dock.is-left .xiaoyi-preview::after { left: -8px; right: auto; }
+.xiaoyi-dock.is-left .xiaoyi-launcher { border-radius: 10px 23px 23px 23px; }
+.xiaoyi-dock.is-left:is(:hover,:focus-within,.is-pinned) .xiaoyi-preview { transform: translateX(0); }
+.xiaoyi-dock.is-dragging .xiaoyi-preview { opacity: 0; visibility: hidden; pointer-events: none; }
+.xiaoyi-dock.is-dragging .xiaoyi-dock-toggle { cursor: grabbing; }
+.xiaoyi-dragging { user-select: none; cursor: grabbing; }
+.xiaoyi-dock-toggle:focus-visible { outline: 2px solid var(--xy-accent); outline-offset: 3px; }
+
+/* The same small mascot appears as a quiet watermark in the conversation. */
+.xiaoyi-mascot { position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; width: 48px; height: 45px; flex-shrink: 0; border-radius: 19px 19px 16px 16px; background: linear-gradient(150deg,var(--xy-body),var(--xy-body-end)); border: 1px solid color-mix(in srgb,var(--xy-accent) 40%,transparent); box-shadow: inset 0 3px 4px #ffffff99,0 4px 8px var(--xy-shadow); transform-origin: 50% 80%; }
+.xiaoyi-mascot::before { content: ''; position: absolute; inset: 9px 7px 11px; border-radius: 12px; background: var(--xy-face); }
+.xiaoyi-mascot::after { content: ''; position: absolute; width: 8px; height: 4px; left: 19px; bottom: 13px; border-radius: 0 0 7px 7px; border-bottom: 2px solid var(--xy-eye); }
+.xiaoyi-mascot .eye { position: relative; z-index: 1; display: block; width: 4px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--xy-eye); box-shadow: -3px 7px 0 1px var(--xy-cheek); }
+.xiaoyi-mascot .spark { position: absolute; right: -5px; top: -7px; font-style: normal; font-size: 16px; color: var(--xy-spark); }
+.xiaoyi-launcher .xiaoyi-mascot { animation: xiaoyi-greet .8s ease-out; }
+.xiaoyi-launcher .eye { animation: xiaoyi-blink 7s ease-in-out 1s infinite; }
+html[data-theme-preference="light"] .xiaoyi-launcher .xiaoyi-mascot { animation: xiaoyi-day-hop 7s ease-in-out infinite; }
+html[data-theme-preference="light"] .xiaoyi-launcher .xiaoyi-mascot::after { animation: xiaoyi-smile 7s ease-in-out infinite; }
+html[data-theme-preference="light"] .xiaoyi-launcher .spark { animation: xiaoyi-twinkle 5s ease-in-out infinite; }
+html[data-theme-preference="dark"] .xiaoyi-mascot .eye { width: 6px; height: 4px; border-radius: 0 0 6px 6px; border-bottom: 2px solid var(--xy-eye); background: transparent; box-shadow: none; transform: translateY(-1px); animation: none; }
+html[data-theme-preference="dark"] .xiaoyi-mascot::after { width: 5px; height: 3px; left: 21px; bottom: 13px; border: solid var(--xy-eye); border-width: 0 0 1.5px; border-radius: 0 0 4px 4px; }
+html[data-theme-preference="dark"] .xiaoyi-launcher .xiaoyi-mascot { animation: xiaoyi-sleep 5.6s ease-in-out infinite; }
+html[data-theme-preference="dark"] .xiaoyi-launcher .xiaoyi-mascot::after { animation: xiaoyi-yawn 12s ease-in-out infinite; }
+html[data-theme-preference="dark"] .xiaoyi-mascot .spark { font-size: 0; }
+html[data-theme-preference="dark"] .xiaoyi-launcher .spark { animation: none; }
+html[data-theme-preference="dark"] .xiaoyi-mascot .spark::before { content: 'z z'; position: absolute; top: -5px; right: 12px; color: var(--xy-muted); font: 500 7px/1 'Outfit',sans-serif; letter-spacing: 2px; white-space: nowrap; opacity: .65; }
+html[data-theme-preference="dark"] .xiaoyi-launcher .spark::before { animation: xiaoyi-dream 5.6s ease-in-out infinite; }
+html[data-theme-preference="dark"] .xiaoyi-mascot .spark::after { content: '☾'; font-size: 19px; }
+
+.xiaoyi-drawer[hidden] { display: none !important; }
+.xiaoyi-drawer { position: fixed; inset: 0 0 0 auto; width: clamp(360px,30vw,440px); height: 100vh; height: 100dvh; z-index: 40; display: flex; flex-direction: column; overflow: hidden; border-left: 1px solid var(--xy-line); background: var(--xy-surface); color: var(--body); box-shadow: -8px 0 35px var(--xy-shadow); font-family: 'Outfit','PingFang SC','Microsoft YaHei',sans-serif; }
+.xiaoyi-drawer[data-side="left"] { inset-inline: 0 auto; border-left: 0; border-right: 1px solid var(--xy-line); box-shadow: 8px 0 35px var(--xy-shadow); }
+.xiaoyi-drawer-top { min-height: 78px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 17px 22px; background: linear-gradient(125deg,var(--xy-surface),var(--xy-surface-soft)); border-bottom: 1px solid var(--xy-line); }
+.xiaoyi-heading strong { font-size: 23px; font-weight: 500; line-height: 1.2; }
+.xiaoyi-heading strong span { font-size: 14px; color: var(--xy-accent); vertical-align: 3px; }
+.xiaoyi-heading small { display: block; margin-top: 7px; font-size: 8px; letter-spacing: .07em; color: var(--xy-muted); }
+.xiaoyi-close { width: 33px; height: 33px; display: grid; place-items: center; padding: 0; border: 1px solid var(--xy-line); border-radius: 50%; background: var(--xy-surface); color: var(--xy-ink); font: 400 22px/1 Arial; cursor: pointer; }
+.xiaoyi-close:hover { background: var(--xy-surface-end); }
+.xiaoyi-model-bar { display: grid; grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 7px 12px; padding: 17px 20px 0; }
+.xiaoyi-model-bar label { font-size: 9px; color: var(--xy-muted); }
+.xiaoyi-model-bar select { width: 100%; min-width: 0; padding: 9px 12px; border: 1px solid var(--xy-line); border-radius: 13px; background: var(--xy-surface-soft); color: var(--xy-ink); font: inherit; font-size: 12px; }
+.xiaoyi-status { grid-column: 2; font-size: 8px; letter-spacing: .07em; color: var(--xy-muted); }
+.xiaoyi-status::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: 5px; border-radius: 50%; background: var(--xy-accent); }
+.xiaoyi-model-hint { flex-shrink: 0; margin: 8px 20px 0; padding-bottom: 13px; border-bottom: 1px solid var(--xy-line); color: var(--xy-muted); font-size: 10px; line-height: 1.6; }
+.xiaoyi-conversation { position: relative; flex: 1 1 0; min-height: 60px; overflow: hidden; }
+.xiaoyi-watermark { position: absolute; z-index: 0; left: 20px; right: 20px; top: 56%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--xy-ink); opacity: .14; pointer-events: none; }
+.xiaoyi-drawer.has-conversation .xiaoyi-watermark { top: auto; bottom: 24px; transform: none; opacity: .055; }
+.xiaoyi-watermark .xiaoyi-mascot { transform: scale(1.8); margin-bottom: 23px; animation: none; }
+.xiaoyi-watermark .eye { animation: none; }
+.xiaoyi-watermark strong { color: inherit; font-size: 19px; font-weight: 500; }
+.xiaoyi-watermark>span:last-child { font-size: 11px; }
+.xiaoyi-watermark>strong,.xiaoyi-watermark>span:last-child { display: none; }
+.xiaoyi-messages { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; gap: 17px; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 20px 18px; }
+.xiaoyi-message { flex-shrink: 0; max-width: 95%; padding: 13px 15px; border-radius: 19px; background: color-mix(in srgb,var(--xy-surface-soft) 92%,transparent); color: var(--body); font-size: 13px; line-height: 1.85; white-space: pre-wrap; overflow-wrap: anywhere; }
+.xiaoyi-message.assistant { align-self: flex-start; border-bottom-left-radius: 6px; }
+.xiaoyi-message.user { align-self: flex-end; border-bottom-right-radius: 6px; background: var(--xy-surface-end); color: var(--xy-ink); }
+.xiaoyi-message a { color: var(--blue); text-decoration: underline; }
+.xiaoyi-references { display: flex; flex-direction: column; gap: 7px; margin-top: 13px; padding-top: 10px; border-top: 1px solid var(--xy-line); white-space: normal; }
+.xiaoyi-references>span { color: var(--xy-muted); font-size: 8px; letter-spacing: .06em; }
+.xiaoyi-references a { font-size: 11px; line-height: 1.6; text-decoration: none; }
+.xiaoyi-suggestions { flex-shrink: 0; display: flex; flex-wrap: wrap; gap: 7px; padding: 10px 18px; }
+.xiaoyi-suggestion { padding: 7px 10px; border: 1px solid var(--xy-line); border-radius: 999px; background: transparent; color: var(--xy-muted); font: inherit; font-size: 10px; cursor: pointer; }
+.xiaoyi-suggestion:hover { border-color: var(--xy-accent); background: var(--xy-surface-soft); color: var(--xy-ink); }
+.xiaoyi-tools { flex-shrink: 0; display: flex; justify-content: space-between; padding: 6px 21px 12px; font-size: 10px; }
+.xiaoyi-clear { padding: 0; border: 0; background: transparent; color: var(--xy-muted); font: inherit; font-size: 10px; cursor: pointer; }
+.xiaoyi-clear:hover { color: var(--xy-accent-strong); }
+.xiaoyi-form { flex-shrink: 0; display: flex; align-items: flex-end; gap: 9px; margin: 0 18px; padding: 13px; border: 1px solid var(--xy-line); border-radius: 21px; background: var(--xy-surface-soft); box-shadow: 0 3px 14px var(--xy-shadow); }
+.xiaoyi-form textarea { flex: 1; resize: none; min-height: 43px; max-height: 95px; width: 0; padding: 0; border: 0; outline: none; background: transparent; color: var(--body); font: inherit; font-size: 13px; line-height: 1.7; }
+.xiaoyi-form textarea::placeholder { color: var(--xy-muted); }
+.xiaoyi-form button { display: grid; place-items: center; width: 33px; height: 33px; flex-shrink: 0; padding: 0; border: 0; border-radius: 50%; background: var(--xy-accent-strong); color: var(--xy-surface); font: 500 21px/1 'Outfit',sans-serif; cursor: pointer; }
+.xiaoyi-form button:disabled,.xiaoyi-clear:disabled { opacity: .5; cursor: wait; }
+.xiaoyi-privacy { flex-shrink: 0; margin: 10px 21px max(clamp(28px,5dvh,52px),env(safe-area-inset-bottom)); color: var(--xy-muted); font-size: 9px; line-height: 1.6; }
+.xiaoyi-drawer button:focus-visible,.xiaoyi-launcher:focus-visible,.xiaoyi-drawer select:focus-visible { outline: 2px solid var(--xy-accent); outline-offset: 3px; }
+.xiaoyi-form:focus-within { outline: 2px solid color-mix(in srgb,var(--xy-accent) 40%,transparent); outline-offset: 1px; }
+.xiaoyi-mobile-open { overflow: hidden; }
+@media(min-width:761px) { .topbar .nav-inner { gap: 16px; } .topbar nav { gap: 15px; } .topbar nav a { font-size: 13px; } }
+@media(max-width:760px) {
+  .xiaoyi-drawer { width: 100%; border-left: 0; }
+  .xiaoyi-drawer[data-side="left"] { border-right: 0; }
+  .xiaoyi-is-open .site-frame { visibility: hidden; }
+  .xiaoyi-drawer-top { min-height: 69px; padding: 14px 18px; }
+  .xiaoyi-messages { padding: 16px; gap: 13px; }
+  .xiaoyi-message { font-size: 13px; max-width: 96%; }
+  .xiaoyi-model-bar { padding: 13px 16px 0; }
+  .xiaoyi-form { margin-inline: 14px; }
+  .xiaoyi-privacy { margin: 10px 16px max(22px,env(safe-area-inset-bottom)); }
+  .xiaoyi-suggestions { padding-inline: 14px; }
+  .xiaoyi-tools { padding-inline: 16px; }
+}
+@media(max-height:560px) {
+  .xiaoyi-drawer-top { min-height: 52px; padding-block: 8px; }
+  .xiaoyi-model-hint,.xiaoyi-suggestions,.xiaoyi-privacy { display: none; }
+  .xiaoyi-model-bar { padding-top: 9px; }
+  .xiaoyi-conversation { min-height: 40px; }
+  .xiaoyi-messages { padding-block: 10px; }
+  .xiaoyi-form { margin-bottom: max(18px,env(safe-area-inset-bottom)); }
+  .xiaoyi-watermark { top: 55%; }
+}
+@keyframes xiaoyi-greet { 0%,100% { transform: rotate(0); } 35% { transform: rotate(-5deg); } 65% { transform: rotate(3deg); } }
+@keyframes xiaoyi-day-hop { 0%,13%,36%,100% { transform: translateY(0) rotate(0); } 19% { transform: translateY(-3px) rotate(-4deg); } 25% { transform: translateY(0) rotate(3deg); } 30% { transform: translateY(-1px) rotate(-2deg); } }
+@keyframes xiaoyi-smile { 0%,13%,36%,100% { transform: scale(1); } 19%,27% { transform: scale(1.2,1.1); } }
+@keyframes xiaoyi-blink { 0%,43%,47%,100% { transform: scaleY(1); } 45% { transform: scaleY(.12); } }
+@keyframes xiaoyi-twinkle { 0%,36%,70%,100% { opacity: .8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.12) rotate(8deg); } }
+@keyframes xiaoyi-sleep { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(1.5px) rotate(1deg); } }
+@keyframes xiaoyi-yawn { 0%,62%,92%,100% { width: 5px; height: 3px; left: 21px; bottom: 13px; border-width: 0 0 1.5px; border-radius: 0 0 4px 4px; } 73%,82% { width: 6px; height: 8px; left: 20px; bottom: 11px; border-width: 1.5px; border-radius: 50%; } }
+@keyframes xiaoyi-dream { 0%,100% { opacity: .4; transform: translateY(0); } 55% { opacity: .8; transform: translateY(-3px); } }
+@media(prefers-reduced-motion:reduce) { .xiaoyi-preview,.xiaoyi-dock-toggle { transition: none; } .xiaoyi-mascot,.xiaoyi-mascot *,.xiaoyi-mascot::after,.xiaoyi-mascot .spark::before { animation: none !important; } }

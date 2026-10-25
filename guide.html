@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A practical guide to using Zizhuang Zhao's personal site, Xiaoyi, and curated knowledge library.">
+  <meta name="theme-color" content="#ffffff">
+  <script src="scroll-init.js"></script>
+  <script src="theme-init.js"></script>
+  <script src="language-init.js"></script>
+  <title>Site Handbook · Zizhuang Zhao</title>
+  <link rel="icon" href="favicon.ico?v=rounded-3" sizes="any">
+  <link rel="icon" type="image/png" href="assets/favicon.png?v=rounded-3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20261026-ui2">
+  <link rel="stylesheet" href="xiaoyi.css">
+  <script src="theme.js" defer></script>
+  <script src="xiaoyi-config.js" defer></script>
+  <script src="xiaoyi-engine.js" defer></script>
+  <script src="xiaoyi.js" defer></script>
+  <script src="entrance.js" defer></script>
+  <script src="language-copy.js" defer></script>
+  <script src="language.js" defer></script>
+  <style>
+    .handbook-main { padding-block: 64px 82px; }
+    .handbook-hero { max-width: 800px; padding-bottom: 42px; border-bottom: 1px solid var(--line); }
+    .handbook-hero h1 { white-space: normal; margin-bottom: 18px; }
+    .handbook-hero h1 span { display: block; font-size: .56em; margin-top: 7px; }
+    .handbook-lead { max-width: 690px; font-size: 17px; line-height: 1.75; }
+    .handbook-zh { max-width: 700px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .handbook-layout { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 62px; align-items: start; padding-top: 44px; }
+    .handbook-nav { display: block; position: sticky; top: 86px; margin-left: 0; border-left: 1px solid var(--line); padding-left: 18px; }
+    .handbook-nav a { display: block; padding: 5px 0; color: var(--muted); font-size: 12px; }
+    .handbook-nav a:hover { color: var(--blue); text-decoration: none; }
+    .handbook-section { scroll-margin-top: 86px; padding-bottom: 48px; }
+    .handbook-section + .handbook-section { border-top: 1px solid var(--line); padding-top: 42px; }
+    .handbook-section h2 { margin-bottom: 12px; font-size: 29px; }
+    .handbook-section h2 span { color: var(--muted); font-size: .52em; font-weight: 400; letter-spacing: 0; }
+    .handbook-section h3 { margin-top: 25px; font-size: 17px; }
+    .handbook-section p, .handbook-section li { max-width: 720px; line-height: 1.8; }
+    .handbook-section ul, .handbook-section ol { padding-left: 21px; }
+    .handbook-section li { margin-bottom: 7px; }
+    .handbook-note { margin: 18px 0; padding: 16px 18px; border-left: 2px solid #8da4bf; background: var(--soft); color: var(--body); font-size: 13px; }
+    .handbook-kicker { margin-bottom: 7px; color: var(--muted); font-size: 10px; letter-spacing: .13em; }
+    .handbook-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+    .handbook-link { display: block; padding: 16px 17px; border: 1px solid var(--line); border-radius: 13px; background: var(--soft); }
+    .handbook-link strong { display: block; margin-bottom: 2px; }
+    .handbook-link small { color: var(--muted); font-size: 11px; }
+    .handbook-code { overflow-x: auto; margin: 16px 0; padding: 15px 17px; border: 1px solid var(--line); border-radius: 11px; background: var(--soft); color: var(--body); font: 12px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .handbook-footer { display: flex; justify-content: space-between; gap: 20px; padding-block: 22px 50px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    html[data-theme="dark"] .handbook-note, html[data-theme="dark"] .handbook-link, html[data-theme="dark"] .handbook-code { background: #172331; }
+    @media (max-width: 760px) {
+      .handbook-main { padding-block: 38px 52px; }
+      .handbook-hero h1 { font-size: 43px; }
+      .handbook-layout { display: block; padding-top: 30px; }
+      .handbook-nav { position: static; display: flex; flex-wrap: wrap; gap: 3px 16px; margin-bottom: 34px; padding: 0 0 12px; border-left: 0; border-bottom: 1px solid var(--line); }
+      .handbook-nav a { padding: 3px 0; }
+      .handbook-links { grid-template-columns: 1fr; }
+      .handbook-section h2 { font-size: 26px; }
+      .handbook-footer { display: block; }
+      .handbook-footer a { display: block; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-frame" id="site-frame">
+    <a class="skip-link" href="#usage">Skip to handbook</a>
+    <header class="topbar"><div class="page nav-inner">
+      <a class="brand" href="index.html">Zizhuang Zhao <span lang="zh-CN">(赵子状)</span></a>
+      <nav aria-label="Handbook navigation"><a href="index.html">Home ↗</a><a href="knowledge.html">Library</a><a href="#xiaoyi-guide">Xiaoyi</a></nav>
+      <div class="nav-tools"><button class="language-toggle" id="language-toggle" type="button" aria-label="Switch site language to Chinese" title="切换为中文">中文</button><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Theme: Auto. Activate to switch to Light.">Auto</button></div>
+    </div></header>
+    <main class="page handbook-main">
+      <section class="handbook-hero">
+        <p class="overline">SITE HANDBOOK · A PRACTICAL STARTING POINT</p>
+        <h1>Use the site with intention.<span>阅读、提问、核对，然后继续探索。</span></h1>
+        <p class="handbook-lead">This handbook explains the personal site, its Xiaoyi companion, and the curated library. It is written for visitors who want to find a source, ask a focused question, or understand how the site is maintained.</p>
+        <p class="handbook-zh" lang="zh-CN">这是一份简明使用说明：介绍网页的主题、Xiaoyi、知识库和维护流程。资料用于定位方向，关键事实仍应回到原始来源核对。</p>
+      </section>
+      <div class="handbook-layout">
+        <nav class="handbook-nav" aria-label="Handbook sections">
+          <a href="#usage">01 · Usage</a><a href="#theme">02 · Theme</a><a href="#xiaoyi-guide">03 · Xiaoyi</a><a href="#library">04 · Library</a><a href="#models">05 · Models</a><a href="#maintenance">06 · Maintenance</a>
+        </nav>
+        <div>
+          <section id="usage" class="handbook-section">
+            <p class="handbook-kicker">01 · GETTING AROUND</p>
+            <h2>Usage <span>如何开始</span></h2>
+            <p>Start at <a href="index.html">Home</a> for the personal profile, current robotics evaluation work, projects, learning, research, community work, and public reports. Open <a href="knowledge.html">Library</a> when you need a competition or journal directory. The site is English-first, with concise Chinese context where it helps.</p>
+            <ol>
+              <li>Choose a section from the top navigation or use the skip link for keyboard access.</li>
+              <li>Follow the source link attached to a project, report, paper, patent, competition, or journal entry.</li>
+              <li>Use Xiaoyi for a first explanation, then inspect the returned reference before relying on a detail.</li>
+            </ol>
+            <div class="handbook-note">The site is a curated personal workspace. It does not claim to be a complete directory, a live deadline tracker, or a replacement for an official announcement.</div>
+          </section>
+
+          <section id="theme" class="handbook-section">
+            <p class="handbook-kicker">02 · APPEARANCE</p>
+            <h2>Theme <span>外观与阅读状态</span></h2>
+            <p>Use the compact EN/中文 control beside the theme button to switch site copy. Your choice is remembered across Home, Library, Guide, and reloads. Source titles, names, and Xiaoyi conversation messages remain unchanged; no external translation service is called.</p>
+            <p>The header control cycles through <strong>Auto</strong>, <strong>Light</strong>, and <strong>Dark</strong>. Auto follows the visitor's operating-system appearance. An explicit Light or Dark choice is saved locally and remains consistent when moving between Home and Library or refreshing either page.</p>
+            <p>Choosing Auto removes the explicit override. Xiaoyi follows the selected appearance: its Auto outfit stays normal, explicit Light is lively, and explicit Dark is sleepy. A reduced-motion preference disables entrance motion while keeping every section available.</p>
+            <p>On desktop, opening Xiaoyi gives the page the remaining space and scales it toward the opposite side. The drawer can dock left or right; a fresh page visit starts on the right. Dragging changes the position for the current visit and the matching drawer side.</p>
+          </section>
+
+          <section id="xiaoyi-guide" class="handbook-section">
+            <p class="handbook-kicker">03 · COMPANION</p>
+            <h2>Xiaoyi <span>Website Knowledge Entry · 小艺智能体</span></h2>
+            <p>Xiaoyi is the collapsible companion in the page edge. Hover or focus the small edge control to preview it, then open the conversation. On a desktop drawer, the page remains visible in the available space; on a phone, the conversation behaves as a modal and keeps focus inside the panel.</p>
+            <h3>How to ask well</h3>
+            <ul>
+              <li>Start with one subject: “What is VLN?” or “How should I compare SR and SPL?”</li>
+              <li>Use a follow-up such as “好的，把链接给我” to request sources for the current subject.</li>
+              <li>Change topic explicitly when needed: “Now leave VLN and explain VLA.”</li>
+              <li>Use New chat when you want a clean context.</li>
+            </ul>
+            <div class="handbook-note">Local Xiaoyi uses the checked-in knowledge files and retrieval logic. It does not train itself, browse the web in real time, or guarantee that a current rule, deadline, model capability, or result is correct. Treat its answer as a sourced starting point and verify important claims.</div>
+            <h3>One useful path</h3>
+            <p>Ask about <strong>VLN</strong> → open the cited paper on visually grounded navigation → ask about <strong>SR and SPL</strong> → compare the metric definitions with the task protocol before using them in an evaluation. A link is evidence to inspect, not a substitute for the protocol.</p>
+          </section>
+
+          <section id="library" class="handbook-section">
+            <p class="handbook-kicker">04 · REFERENCE</p>
+            <h2>Library <span>知识库</span></h2>
+            <p>The Library has two searchable directories:</p>
+            <div class="handbook-links">
+              <a class="handbook-link" href="knowledge.html#competitions"><strong>Competitions</strong><small>86 indexed entries · school-level A, B1, and B2 labels</small></a>
+              <a class="handbook-link" href="knowledge.html#journals"><strong>Journals</strong><small>6,430 indexed entries · first- and second-batch lists</small></a>
+            </div>
+            <p>Search by name, organizer, or keyword; use the available filters; then open the source or search entry on each card. The competition labels come from the supplied Shanxi Institute of Technology directory and should not be read as a universal national ranking. Journal batches are directory classifications, not a judgment of article quality.</p>
+            <p>The technical collection behind Xiaoyi changes as it is curated. Its entries retain source type and links; they are not a hardcoded count or a claim of complete coverage.</p>
+          </section>
+
+          <section id="models" class="handbook-section">
+            <p class="handbook-kicker">05 · OPTIONAL ONLINE MODE</p>
+            <h2>Models <span>模型接入</span></h2>
+            <p>The checked-in site has no live model endpoint configured. Knowledge mode remains available without a server. The interface can list DeepSeek, Qwen, Kimi, GLM, or a server-registered compatible provider only after an operator deploys the optional Worker and configures a server-side secret.</p>
+            <p>GitHub Pages serves the static frontend; it does not run the Worker. Provider keys must stay in Wrangler secrets, never in this repository or in browser code. The server validates allowed origins, providers, models, message size, and request limits, and returns clear unavailable or upstream-error states.</p>
+            <div class="handbook-note">A model appearing in a server response means that a configuration exists. It does not prove account balance, model permission, current uptime, or answer quality.</div>
+          </section>
+
+          <section id="maintenance" class="handbook-section">
+            <p class="handbook-kicker">06 · KEEPING IT RELIABLE</p>
+            <h2>Maintenance <span>维护与发布</span></h2>
+            <p>For a local preview, run a static server from the repository root:</p>
+            <pre class="handbook-code">python3 -m http.server 8000
+# open http://localhost:8000/</pre>
+            <p>Before a release, run the behavior contracts and then complete the three QA rounds in <a href="QA.md">QA.md</a>:</p>
+            <pre class="handbook-code">node --test tests/*.test.mjs</pre>
+            <p>Review source links, theme persistence, Xiaoyi open/close and left/right docking, mobile layout, library filters, reduced motion, and the absence of broken assets. Commit the release, push the intended branch, wait for GitHub Pages to deploy, then verify both public pages in a fresh browser. A successful local test does not prove that a public deployment or optional model service is live.</p>
+            <p>The free Pages address uses the repository owner name, currently <code>zhaozizhuang666.github.io</code>. “zizhuang.zhao” is a display name; it cannot replace the GitHub Pages hostname without a separately owned custom domain and DNS configuration.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="page handbook-footer"><span>© Chuangxiang Yiyuan · Zizhuang Zhao</span><a href="index.html">Return to homepage ↗</a></footer>
+  </div>
+</body>
+</html>
