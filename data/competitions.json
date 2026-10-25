@@ -1,0 +1,1290 @@
+{
+  "sourceTitle": "山西工学院学科竞赛分级",
+  "sourceNote": "依据用户提供的《山西工学院学科竞赛分级.xlsx》Sheet1 整理。A、B1、B2 均为该校表格中的“竞赛类别”原文，不是全国统一赛事分级。原表未注明发布年份或版本，赛事名称与主办单位保留原文，可能含历史名称；简介仅按赛事名称概括方向。原表未提供官网链接，其中 10 项补充了已核验的官方入口并记录链接来源，其余 76 项仍为明确标注的 Bing 搜索入口，搜索入口不能当作已核验官网。报名资格、时间、费用、赛道与评审等细则以当届官方公告为准。",
+  "entries": [
+    {
+      "id": "sxit-competition-001",
+      "name": "中国国际大学生创新大赛",
+      "level": "A",
+      "organizer": "中华人民共和国教育部、中国共产党中央委员会统一战线工作部、中央网信办、国家发展和改革委员会、中华人民共和国工业和信息化部、中华人民共和国人力资源和社会保障部、中华人民共和国农业农村部、中国科学院、中国工程院、国家知识产权局、国家乡村振兴局、共青团中央",
+      "summary": "围绕大学生创新与创业项目开展交流和竞赛，适合先从真实需求、价值表达与项目验证切入。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E5%9B%BD%E9%99%85%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A2:D2（序号 1）",
+      "aliases": [
+        "大学生创新大赛",
+        "互联网+大学生创新创业大赛",
+        "互联网+"
+      ],
+      "details": "山西工学院校内竞赛类别原文：A，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-002",
+      "name": "“挑战杯”全国大学生课外学术科技作品竞赛",
+      "level": "A",
+      "organizer": "共青团中央、中国科协、教育部、全国学联",
+      "summary": "围绕大学生课外学术研究与科技作品开展竞赛，关注研究问题、方法和作品价值。",
+      "website": "https://www.bing.com/search?q=%E2%80%9C%E6%8C%91%E6%88%98%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%AF%BE%E5%A4%96%E5%AD%A6%E6%9C%AF%E7%A7%91%E6%8A%80%E4%BD%9C%E5%93%81%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A3:D3（序号 2）",
+      "aliases": [
+        "挑战杯课外学术科技作品竞赛",
+        "挑战杯大挑",
+        "大挑"
+      ],
+      "details": "山西工学院校内竞赛类别原文：A，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-003",
+      "name": "“挑战杯”中国大学生创业计划大赛",
+      "level": "B1",
+      "organizer": "共青团中央、中国科协、教育部、全国学联",
+      "summary": "围绕大学生创业计划与项目方案开展竞赛，需区分社会价值、实施条件和商业可行性。",
+      "website": "https://www.bing.com/search?q=%E2%80%9C%E6%8C%91%E6%88%98%E6%9D%AF%E2%80%9D%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%88%9B%E4%B8%9A%E8%AE%A1%E5%88%92%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A4:D4（序号 3）",
+      "aliases": [
+        "挑战杯创业计划大赛",
+        "挑战杯小挑",
+        "小挑"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-004",
+      "name": "ACM-ICPC国际大学生程序设计竞赛",
+      "level": "B1",
+      "organizer": "国际计算机协会(ACM)",
+      "summary": "以程序设计与算法问题求解为主要方向，适合积累算法、编码与团队协作能力。",
+      "website": "https://icpc.global/",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A5:D5（序号 4）",
+      "aliases": [
+        "ACM-ICPC",
+        "ICPC",
+        "ACM",
+        "国际大学生程序设计竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://icpc.pku.edu.cn/index.htm",
+      "sourceNotes": "官方 ICPC 北京总部页面链接至 ICPC 全球站点；不同区域的赛程与报名入口以当届公告为准。"
+    },
+    {
+      "id": "sxit-competition-005",
+      "name": "全国大学生数学建模竞赛",
+      "level": "B1",
+      "organizer": "中国工业与应用数学学会",
+      "summary": "围绕现实问题建立数学模型并形成分析报告，涉及建模、计算与结果解释。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A6:D6（序号 5）",
+      "aliases": [
+        "数学建模国赛",
+        "CUMCM",
+        "数模国赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-006",
+      "name": "全国大学生电子设计竞赛",
+      "level": "B1",
+      "organizer": "教育部高等教育司和信息产业部人事司",
+      "summary": "围绕电子系统设计与实现开展竞赛，涉及电路、嵌入式系统与工程验证。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A7:D7（序号 6）",
+      "aliases": [
+        "电赛",
+        "全国大学生电赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-007",
+      "name": "中国大学生医学技术技能大赛",
+      "level": "B1",
+      "organizer": "教育部",
+      "summary": "聚焦医学技术技能的实践与应用，具体参赛专业和项目设置需查阅当届通知。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%8C%BB%E5%AD%A6%E6%8A%80%E6%9C%AF%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A8:D8（序号 7）",
+      "aliases": [],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-008",
+      "name": "全国大学生机械创新设计大赛",
+      "level": "B1",
+      "organizer": "教育部高等学校机械学科教学指导委员会",
+      "summary": "围绕机械创新设计开展竞赛，关注机械方案、结构设计与应用场景。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%9C%BA%E6%A2%B0%E5%88%9B%E6%96%B0%E8%AE%BE%E8%AE%A1%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A9:D9（序号 8）",
+      "aliases": [
+        "机械创新设计大赛",
+        "机械创新"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-009",
+      "name": "全国大学生结构设计竞赛",
+      "level": "B1",
+      "organizer": "中国高等教育学会工程教育专业委员会、高等学校土木工程学科专业指导委员会、中国土木工程学会教育工作委员会和教育部科学技术委员会环境与土木水利学部",
+      "summary": "围绕结构设计与工程实践开展竞赛，涉及结构方案、模型制作与验证。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A10:D10（序号 9）",
+      "aliases": [
+        "结构设计竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-010",
+      "name": "全国大学生广告艺术大赛",
+      "level": "B1",
+      "organizer": "全国大学生广告艺术大赛组委会、中国传媒大学、大广赛文化传播（北京）有限公司",
+      "summary": "围绕广告创意与艺术表达开展竞赛，关注传播主题、受众与作品呈现。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%B9%BF%E5%91%8A%E8%89%BA%E6%9C%AF%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A11:D11（序号 10）",
+      "aliases": [
+        "大广赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-011",
+      "name": "全国大学生智能汽车竞赛",
+      "level": "B1",
+      "organizer": "高等学校自动化类教学指导委员会",
+      "summary": "围绕智能汽车系统设计与运行开展竞赛，涉及感知、控制与工程实践。",
+      "website": "https://www.smartcar.zone/",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A12:D12（序号 11）",
+      "aliases": [
+        "智能汽车竞赛",
+        "智能车竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://www.smartcar.zone/",
+      "sourceNotes": "智能车官网提供大赛介绍、赛事公告、赛事规则、赛事资料与证书查询入口。"
+    },
+    {
+      "id": "sxit-competition-012",
+      "name": "全国大学生电子商务“创新、创意及创业”挑战赛",
+      "level": "B1",
+      "organizer": "教育部高等学校电子商务专业教学指导委员会",
+      "summary": "围绕电子商务的创新、创意及创业开展竞赛，关注需求、模式与实施路径。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E2%80%9C%E5%88%9B%E6%96%B0%E3%80%81%E5%88%9B%E6%84%8F%E5%8F%8A%E5%88%9B%E4%B8%9A%E2%80%9D%E6%8C%91%E6%88%98%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A13:D13（序号 12）",
+      "aliases": [
+        "三创赛",
+        "电子商务三创赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-013",
+      "name": "中国大学生工程实践与创新能力大赛",
+      "level": "B1",
+      "organizer": "教育部高等学校工程训练教学指导委员会",
+      "summary": "围绕工程实践与创新能力开展竞赛，关注工程问题分析、方案设计与实践。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5%E4%B8%8E%E5%88%9B%E6%96%B0%E8%83%BD%E5%8A%9B%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A14:D14（序号 13）",
+      "aliases": [
+        "工创赛",
+        "工程实践与创新能力大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-014",
+      "name": "全国大学生物流设计大赛",
+      "level": "B1",
+      "organizer": "教育部高等学校物流类专业教学指导委员会、中国物流与采购联合会",
+      "summary": "围绕物流问题与系统设计开展竞赛，关注流程、资源配置与方案可行性。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E6%B5%81%E8%AE%BE%E8%AE%A1%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A15:D15（序号 14）",
+      "aliases": [],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-015",
+      "name": "外研社全国大学生英语系列赛-①英语演讲、②英语辩论、③英语写作、④英语阅读",
+      "level": "B1",
+      "organizer": "外语教学与研究出版社和中国外语与教育研究中心",
+      "summary": "包含英语演讲、辩论、写作与阅读等方向，具体分赛设置以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%A4%96%E7%A0%94%E7%A4%BE%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%8B%B1%E8%AF%AD%E7%B3%BB%E5%88%97%E8%B5%9B-%E2%91%A0%E8%8B%B1%E8%AF%AD%E6%BC%94%E8%AE%B2%E3%80%81%E2%91%A1%E8%8B%B1%E8%AF%AD%E8%BE%A9%E8%AE%BA%E3%80%81%E2%91%A2%E8%8B%B1%E8%AF%AD%E5%86%99%E4%BD%9C%E3%80%81%E2%91%A3%E8%8B%B1%E8%AF%AD%E9%98%85%E8%AF%BB+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A16:D16（序号 15）",
+      "aliases": [
+        "外研社杯",
+        "英语演讲",
+        "英语辩论",
+        "英语写作",
+        "英语阅读"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-016",
+      "name": "两岸新锐设计竞赛·华灿奖",
+      "level": "B1",
+      "organizer": "中国高等教育学会、中华中山文化交流协会‌北京歌华文化发展集团",
+      "summary": "围绕设计创意与作品表达开展竞赛，关注设计问题、审美表达与应用价值。",
+      "website": "https://www.bing.com/search?q=%E4%B8%A4%E5%B2%B8%E6%96%B0%E9%94%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B%C2%B7%E5%8D%8E%E7%81%BF%E5%A5%96+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A17:D17（序号 16）",
+      "aliases": [
+        "华灿奖"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-017",
+      "name": "全国大学生创新创业训练计划年会展示",
+      "level": "B1",
+      "organizer": "教育部高等教育司",
+      "summary": "围绕大学生创新创业训练计划项目开展年会展示与交流，具体项目推荐和展示要求以当届通知为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E8%AE%AD%E7%BB%83%E8%AE%A1%E5%88%92%E5%B9%B4%E4%BC%9A%E5%B1%95%E7%A4%BA+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A18:D18（序号 17）",
+      "aliases": [
+        "大创年会展示",
+        "创新创业训练计划年会展示"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-018",
+      "name": "全国大学生化工设计竞赛",
+      "level": "B1",
+      "organizer": "中国化工学会化学工程专业委员会、教育部和中国化工教育协会",
+      "summary": "围绕化工过程与工程设计开展竞赛，涉及工艺方案、设计分析与技术表达。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%8C%96%E5%B7%A5%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A19:D19（序号 18）",
+      "aliases": [],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-019",
+      "name": "全国大学生机器人大赛-①RoboMaster、②RoboCon",
+      "level": "B1",
+      "organizer": "共青团中央和全国学联",
+      "summary": "原表合并列示 RoboMaster 与 RoboCon 两个方向，关注机器人系统与工程实践，各分赛规则需分别核实。",
+      "website": "https://www.robomaster.com/zh-CN",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A20:D20（序号 19）",
+      "aliases": [
+        "RoboMaster",
+        "RoboCon",
+        "全国大学生机器人大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://www.robomaster.com/zh-CN",
+      "sourceNotes": "官方 RoboMaster 页面；源表将 RoboMaster 与 RoboCon 合并列示，此链接仅核验 RoboMaster 部分。"
+    },
+    {
+      "id": "sxit-competition-020",
+      "name": "全国大学生市场调查与分析大赛",
+      "level": "B1",
+      "organizer": "中国商业统计学会",
+      "summary": "围绕市场调查与数据分析开展竞赛，关注问题设计、调研方法与结论解释。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%B8%82%E5%9C%BA%E8%B0%83%E6%9F%A5%E4%B8%8E%E5%88%86%E6%9E%90%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A21:D21（序号 20）",
+      "aliases": [
+        "市场调查与分析大赛",
+        "市调大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-021",
+      "name": "全国大学生先进成图技术与产品信息建模创新大赛",
+      "level": "B1",
+      "organizer": "中国图学学会制图技术专业委员会、中国图学学会产品信息建模专业委员会、全国大学生先进成图技术与产品信息建模创新大赛组委会",
+      "summary": "围绕工程图学、成图技术与产品信息建模开展竞赛，关注规范表达与建模能力。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%85%88%E8%BF%9B%E6%88%90%E5%9B%BE%E6%8A%80%E6%9C%AF%E4%B8%8E%E4%BA%A7%E5%93%81%E4%BF%A1%E6%81%AF%E5%BB%BA%E6%A8%A1%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A22:D22（序号 21）",
+      "aliases": [
+        "成图大赛",
+        "先进成图大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-022",
+      "name": "“西门子杯”中国智能制造挑战赛",
+      "level": "B1",
+      "organizer": "教育部高等学校自动化类专业教学指导委员会、西门子(中国)有限公司和中国仿真学会",
+      "summary": "围绕智能制造与工业自动化开展竞赛，关注系统方案与工程实践。",
+      "website": "https://www.bing.com/search?q=%E2%80%9C%E8%A5%BF%E9%97%A8%E5%AD%90%E6%9D%AF%E2%80%9D%E4%B8%AD%E5%9B%BD%E6%99%BA%E8%83%BD%E5%88%B6%E9%80%A0%E6%8C%91%E6%88%98%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A23:D23（序号 22）",
+      "aliases": [
+        "西门子杯",
+        "智能制造挑战赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-023",
+      "name": "中国大学生服务外包创新创业大赛",
+      "level": "B1",
+      "organizer": "中华人民共和国教育部、中华人民共和国商务部、无锡市人民政府",
+      "summary": "围绕服务外包相关项目的创新与创业开展竞赛，关注需求分析与解决方案。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%9C%8D%E5%8A%A1%E5%A4%96%E5%8C%85%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A24:D24（序号 23）",
+      "aliases": [
+        "服创大赛",
+        "服务外包创新创业大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-024",
+      "name": "中国大学生计算机设计大赛",
+      "level": "B1",
+      "organizer": "教育部高等学校计算机类专业教学指导委员会、教育部高等学校软件工程专业教学指导委员会、教育部高等学校大学计算机课程教学指导委员会、教育部高等学校文科计算机基础教学指导分委员会、中国教育电视台",
+      "summary": "围绕计算机应用与数字作品设计开展竞赛，具体作品类别及规则以当届公告为准。",
+      "website": "https://jsjds.blcu.edu.cn/index.htm",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A25:D25（序号 24）",
+      "aliases": [
+        "计算机设计大赛",
+        "计设大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://jsjds.blcu.edu.cn/index.htm",
+      "sourceNotes": "中国大学生计算机设计大赛组织委员会官方网站，由北京语言大学信息科学学院建设维护。"
+    },
+    {
+      "id": "sxit-competition-025",
+      "name": "中国高校计算机大赛-①大数据挑战赛、②团体程序设计天梯赛、③移动应用创新赛、④网络技术挑战赛、⑤人工智能创意赛",
+      "level": "B1",
+      "organizer": "教育部高等学校计算机类专业教学指导委员会、教育部高等学校软件工程专业教学指导委员会、教育部高等学校大学计算机课程教学指导委员会及全国高等学校计算机教育研究会",
+      "summary": "原表合并列示大数据、团体程序设计、移动应用、网络技术和人工智能创意等分赛，各分赛需分别核实规则。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E9%AB%98%E6%A0%A1%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%A4%A7%E8%B5%9B-%E2%91%A0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8C%91%E6%88%98%E8%B5%9B%E3%80%81%E2%91%A1%E5%9B%A2%E4%BD%93%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%A9%E6%A2%AF%E8%B5%9B%E3%80%81%E2%91%A2%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E5%88%9B%E6%96%B0%E8%B5%9B%E3%80%81%E2%91%A3%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF%E6%8C%91%E6%88%98%E8%B5%9B%E3%80%81%E2%91%A4%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%88%9B%E6%84%8F%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A26:D26（序号 25）",
+      "aliases": [
+        "中国高校计算机大赛",
+        "大数据挑战赛",
+        "团体程序设计天梯赛",
+        "天梯赛",
+        "移动应用创新赛",
+        "网络技术挑战赛",
+        "人工智能创意赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-026",
+      "name": "米兰设计周--中国高校设计学科师生优秀作品展",
+      "level": "B1",
+      "organizer": "中国教育国际交流协会和中国高等教育学会",
+      "summary": "围绕高校设计学科师生作品开展展示，关注设计主题、创意表达与作品呈现。",
+      "website": "https://www.bing.com/search?q=%E7%B1%B3%E5%85%B0%E8%AE%BE%E8%AE%A1%E5%91%A8--%E4%B8%AD%E5%9B%BD%E9%AB%98%E6%A0%A1%E8%AE%BE%E8%AE%A1%E5%AD%A6%E7%A7%91%E5%B8%88%E7%94%9F%E4%BC%98%E7%A7%80%E4%BD%9C%E5%93%81%E5%B1%95+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A27:D27（序号 26）",
+      "aliases": [
+        "米兰设计周"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-027",
+      "name": "全国大学生地质技能竞赛",
+      "level": "B1",
+      "organizer": "中国地质学会",
+      "summary": "围绕地质学科技能与实践开展竞赛，具体项目及参赛要求以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%9C%B0%E8%B4%A8%E6%8A%80%E8%83%BD%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A28:D28（序号 27）",
+      "aliases": [],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-028",
+      "name": "全国大学生光电设计竞赛",
+      "level": "B1",
+      "organizer": "中国光学学会",
+      "summary": "围绕光电系统与应用设计开展竞赛，涉及光学、电子与工程实践。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%85%89%E7%94%B5%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A29:D29（序号 28）",
+      "aliases": [
+        "光电设计竞赛",
+        "光电竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-029",
+      "name": "全国大学生金相技能大赛",
+      "level": "B1",
+      "organizer": "教育部高等学校材料类专业教学指导委员会",
+      "summary": "围绕金相相关实验与操作技能开展竞赛，关注材料表征与实践能力。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E9%87%91%E7%9B%B8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A30:D30（序号 29）",
+      "aliases": [
+        "金相技能大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-030",
+      "name": "全国大学生信息安全竞赛",
+      "level": "B1",
+      "organizer": "教育部高等学校信息安全类专业教学指导委员会",
+      "summary": "围绕信息安全方向开展竞赛，具体赛道、作品或技能要求以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A31:D31（序号 30）",
+      "aliases": [
+        "信息安全竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-031",
+      "name": "全国周培源大学生力学竞赛",
+      "level": "B1",
+      "organizer": "教育部高等教育司、中国力学学会、周培源基金会",
+      "summary": "围绕大学生力学知识与问题求解开展竞赛，具体竞赛内容以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%91%A8%E5%9F%B9%E6%BA%90%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%8A%9B%E5%AD%A6%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A32:D32（序号 31）",
+      "aliases": [
+        "周培源力学竞赛",
+        "周培源"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-032",
+      "name": "中国大学生机械工程创新创意大赛",
+      "level": "B1",
+      "organizer": "中国机械工程学会",
+      "summary": "围绕机械工程的创新与创意开展竞赛，关注工程设计、应用问题与实现路径。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%9C%BA%E6%A2%B0%E5%B7%A5%E7%A8%8B%E5%88%9B%E6%96%B0%E5%88%9B%E6%84%8F%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A33:D33（序号 32）",
+      "aliases": [
+        "机械工程创新创意大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-033",
+      "name": "中国机器人大赛暨RoboCup机器人世界杯中国赛",
+      "level": "B1",
+      "organizer": "中国自动化学会、RoboCup中国委员会、晋江市人民政府、泉州市科学技术局",
+      "summary": "围绕机器人技术与应用开展竞赛，包含的组别与任务设置以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%B5%9B%E6%9A%A8RoboCup%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%96%E7%95%8C%E6%9D%AF%E4%B8%AD%E5%9B%BD%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A34:D34（序号 33）",
+      "aliases": [
+        "RoboCup",
+        "机器人世界杯中国赛",
+        "中国机器人大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-034",
+      "name": "“中国软件杯”大学生软件设计大赛",
+      "level": "B1",
+      "organizer": "工业和信息化部、教育部、江苏省人民政府",
+      "summary": "围绕软件设计与工程应用开展竞赛，关注需求分析、软件方案与实践。",
+      "website": "https://www.cnsoftbei.com/",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A35:D35（序号 34）",
+      "aliases": [
+        "中国软件杯",
+        "软件杯"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://cs.bit.edu.cn/tzgg/1fb9910569024049b16c790437a49e49.htm",
+      "sourceNotes": "中国软件杯官网域名由北京理工大学官方通知明确列出；赛事站点当前访问可能受限，具体公告以官方渠道为准。"
+    },
+    {
+      "id": "sxit-competition-035",
+      "name": "中美青年创客大赛",
+      "level": "B1",
+      "organizer": "中华人民共和国教育部",
+      "summary": "围绕创客项目与创新实践开展竞赛，关注真实需求、原型与项目表达。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E7%BE%8E%E9%9D%92%E5%B9%B4%E5%88%9B%E5%AE%A2%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A36:D36（序号 35）",
+      "aliases": [
+        "中美创客大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-036",
+      "name": "华为ICT大赛",
+      "level": "B1",
+      "organizer": "华为技术有限公司",
+      "summary": "围绕信息与通信技术能力开展竞赛，具体实践或创新赛道需查阅当届规则。",
+      "website": "https://www.bing.com/search?q=%E5%8D%8E%E4%B8%BAICT%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A37:D37（序号 36）",
+      "aliases": [
+        "华为ICT",
+        "ICT大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-037",
+      "name": "全国大学生嵌入式芯片与系统设计竞赛",
+      "level": "B1",
+      "organizer": "中国电子学会",
+      "summary": "围绕嵌入式芯片与系统设计开展竞赛，涉及软硬件协同与工程实践。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%8A%AF%E7%89%87%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A38:D38（序号 37）",
+      "aliases": [
+        "嵌入式芯片与系统设计竞赛",
+        "嵌入式竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-038",
+      "name": "全国大学生物理实验竞赛",
+      "level": "B1",
+      "organizer": "教育部高等学校大学物理课程教学指导委员会；教育部高等学校物理学类专业教学指导委员会；中国物理学会物理教学委员会；高等学校国家级实验教学示范中心联席会",
+      "summary": "围绕物理实验与实验创新开展竞赛，关注实验设计、测量与结果分析。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A39:D39（序号 38）",
+      "aliases": [
+        "物理实验竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-039",
+      "name": "中国高校智能机器人创意大赛",
+      "level": "B1",
+      "organizer": "中国高等教育学会、教育部工程图学课程教学指导委员会、中国高校智能机器人创意大赛组委会",
+      "summary": "围绕智能机器人创意与作品开展竞赛，关注场景、方案与机器人实践。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E9%AB%98%E6%A0%A1%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%88%9B%E6%84%8F%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A40:D40（序号 39）",
+      "aliases": [
+        "智能机器人创意大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-040",
+      "name": "中国机器人及人工智能大赛",
+      "level": "B1",
+      "organizer": "中国人工智能学会",
+      "summary": "围绕机器人与人工智能方向开展竞赛，具体技术任务和赛道以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8F%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A41:D41（序号 40）",
+      "aliases": [
+        "机器人及人工智能大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-041",
+      "name": "全国大学生化学实验创新设计大赛",
+      "level": "B1",
+      "organizer": "中国化学会、教育部高等学校国家级实验教学示范中心联席会",
+      "summary": "围绕化学实验的创新设计开展竞赛，关注实验问题、设计思路与规范表达。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%8C%96%E5%AD%A6%E5%AE%9E%E9%AA%8C%E5%88%9B%E6%96%B0%E8%AE%BE%E8%AE%A1%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A42:D42（序号 41）",
+      "aliases": [
+        "化学实验创新设计大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-042",
+      "name": "中华经典诵写讲大赛",
+      "level": "B1",
+      "organizer": "教育部、国家语委",
+      "summary": "围绕中华经典的诵读、书写和讲解开展赛事活动，具体分赛要求以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%8D%8E%E7%BB%8F%E5%85%B8%E8%AF%B5%E5%86%99%E8%AE%B2%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A43:D43（序号 42）",
+      "aliases": [
+        "经典诵写讲大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-043",
+      "name": "全国大学生统计建模大赛",
+      "level": "B1",
+      "organizer": "中国统计教育学会",
+      "summary": "围绕统计建模与数据分析开展竞赛，关注研究问题、模型选择与结果解释。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BB%9F%E8%AE%A1%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A44:D44（序号 43）",
+      "aliases": [
+        "统计建模大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-044",
+      "name": "世界技能大赛",
+      "level": "B1",
+      "organizer": "中华人民共和国人力资源和社会保障部",
+      "summary": "围绕职业技能开展国际竞赛，具体项目、参赛资格与选拔路径需查阅当届官方规则。",
+      "website": "https://www.bing.com/search?q=%E4%B8%96%E7%95%8C%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A45:D45（序号 44）",
+      "aliases": [
+        "世界技能大赛",
+        "世赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-045",
+      "name": "世界技能大赛中国选拔赛",
+      "level": "B1",
+      "organizer": "人力资源社会保障部",
+      "summary": "围绕世界技能大赛相关项目开展中国选拔，具体项目和选拔要求以当届通知为准。",
+      "website": "https://www.bing.com/search?q=%E4%B8%96%E7%95%8C%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B%E4%B8%AD%E5%9B%BD%E9%80%89%E6%8B%94%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A46:D46（序号 45）",
+      "aliases": [
+        "世赛中国选拔赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-046",
+      "name": "中国大学生方程式汽车大赛",
+      "level": "B1",
+      "organizer": "中国汽车工程学会",
+      "summary": "围绕大学生方程式汽车设计与工程实践开展竞赛，关注整车方案与系统协作。",
+      "website": "https://www.bing.com/search?q=%E4%B8%AD%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%96%B9%E7%A8%8B%E5%BC%8F%E6%B1%BD%E8%BD%A6%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A47:D47（序号 46）",
+      "aliases": [
+        "大学生方程式汽车大赛",
+        "方程式汽车大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B1，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-047",
+      "name": "全国三维数字化创新设计大赛",
+      "level": "B2",
+      "organizer": "国家制造业信息化培训中心、全国三维数字化技术推广服务与教育培训联盟（3D动力）、光华设计发展基金会",
+      "summary": "围绕三维数字化设计与创新应用开展竞赛，关注建模、设计表达与应用价值。",
+      "website": "https://ds.3ddl.net/",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A48:D48（序号 47）",
+      "aliases": [
+        "3D大赛",
+        "全国3D大赛",
+        "三维数字化创新设计大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://ds.3ddl.net/index.php?ctl=Informationlist&met=newsdetails&id=424",
+      "sourceNotes": "全国三维数字化创新设计大赛组委会官方站点，页面列出指导单位、主办单位及赛事公告。"
+    },
+    {
+      "id": "sxit-competition-048",
+      "name": "蓝桥杯全国软件和信息技术专业人才大赛",
+      "level": "B2",
+      "organizer": "工业和信息化部人才交流中心",
+      "summary": "围绕软件与信息技术相关能力开展竞赛，具体程序设计或其他组别以当届公告为准。",
+      "website": "https://dasai.lanqiao.cn/pages/v7/dasai/competition/individual_competition.html",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A49:D49（序号 48）",
+      "aliases": [
+        "蓝桥杯",
+        "蓝桥杯大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://dasai.lanqiao.cn/pages/v7/dasai/competition/individual_competition.html",
+      "sourceNotes": "蓝桥杯大赛官方页面，列出比赛组别、参赛对象、规则和组织单位。"
+    },
+    {
+      "id": "sxit-competition-049",
+      "name": "全国大学生集成电路创新创业大赛",
+      "level": "B2",
+      "organizer": "工业和信息化部人才交流中心",
+      "summary": "围绕集成电路领域的创新与创业开展竞赛，具体技术方向和参赛要求以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A50:D50（序号 49）",
+      "aliases": [
+        "集成电路创新创业大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-050",
+      "name": "未来设计师·全国高校数字艺术设计大赛",
+      "level": "B2",
+      "organizer": "工业和信息化部人才交流中心",
+      "summary": "围绕高校数字艺术与设计作品开展竞赛，关注创意、审美和数字表达。",
+      "website": "https://www.ncda.org.cn/",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A51:D51（序号 50）",
+      "aliases": [
+        "未来设计师",
+        "NCDA",
+        "全国高校数字艺术设计大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://www.ncda.org.cn/",
+      "sourceNotes": "未来设计师 NCDA 官方站点，页面提供大赛简介、赛道、赛事动态和证书查询入口。"
+    },
+    {
+      "id": "sxit-competition-051",
+      "name": "睿抗机器人开发者大赛（RAICOM）",
+      "level": "B2",
+      "organizer": "工业和信息化部人才交流中心和RoboCom国际公开赛组委会",
+      "summary": "围绕机器人开发与实践开展竞赛，具体赛项与任务要求以当届公告为准。",
+      "website": "https://raicom.com.cn/",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A52:D52（序号 51）",
+      "aliases": [
+        "睿抗",
+        "RAICOM",
+        "睿抗机器人开发者大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://raicom.com.cn/",
+      "sourceNotes": "RAICOM 官方国际公开赛站点，页面包含赛事资讯、参赛查询、证书查询及组委会信息。"
+    },
+    {
+      "id": "sxit-competition-052",
+      "name": "“大唐杯”全国大学生新一代信息通信技术大赛",
+      "level": "B2",
+      "organizer": "工业和信息化部人才交流中心和中国通信企业协会",
+      "summary": "围绕新一代信息通信技术开展竞赛，具体技术范围与组别以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E2%80%9C%E5%A4%A7%E5%94%90%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%96%B0%E4%B8%80%E4%BB%A3%E4%BF%A1%E6%81%AF%E9%80%9A%E4%BF%A1%E6%8A%80%E6%9C%AF%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A53:D53（序号 52）",
+      "aliases": [
+        "大唐杯"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-053",
+      "name": "全国大学生生命科学竞赛（CULSC）",
+      "level": "B2",
+      "organizer": "全国大学生生命科学竞赛委员会",
+      "summary": "围绕生命科学领域开展竞赛，具体研究或实践类别与参赛要求以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%94%9F%E5%91%BD%E7%A7%91%E5%AD%A6%E7%AB%9E%E8%B5%9B%EF%BC%88CULSC%EF%BC%89+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A54:D54（序号 53）",
+      "aliases": [
+        "CULSC",
+        "生命科学竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-054",
+      "name": "全国高校BIM毕业设计创新大赛",
+      "level": "B2",
+      "organizer": "中国土木工程学会建筑市场与招标投标研究分会、广联达科技股份有限公司",
+      "summary": "围绕 BIM 毕业设计与创新应用开展竞赛，关注建筑信息模型与设计表达。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1BIM%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A55:D55（序号 54）",
+      "aliases": [
+        "BIM毕业设计创新大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-055",
+      "name": "全国高校商业精英挑战赛-①品牌策划竞赛、②会展专业创新创业实践竞赛、③国际贸易竞赛、④创新创业竞赛、⑤会计与商业管理案例竞赛",
+      "level": "B2",
+      "organizer": "中国国际贸易促进委员会商业行业委员会",
+      "summary": "原表合并列示品牌策划、会展、国际贸易、创新创业及会计与商业管理案例等分赛，各分赛规则需分别核实。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E5%95%86%E4%B8%9A%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B-%E2%91%A0%E5%93%81%E7%89%8C%E7%AD%96%E5%88%92%E7%AB%9E%E8%B5%9B%E3%80%81%E2%91%A1%E4%BC%9A%E5%B1%95%E4%B8%93%E4%B8%9A%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E5%AE%9E%E8%B7%B5%E7%AB%9E%E8%B5%9B%E3%80%81%E2%91%A2%E5%9B%BD%E9%99%85%E8%B4%B8%E6%98%93%E7%AB%9E%E8%B5%9B%E3%80%81%E2%91%A3%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E7%AB%9E%E8%B5%9B%E3%80%81%E2%91%A4%E4%BC%9A%E8%AE%A1%E4%B8%8E%E5%95%86%E4%B8%9A%E7%AE%A1%E7%90%86%E6%A1%88%E4%BE%8B%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A56:D56（序号 55）",
+      "aliases": [
+        "商业精英挑战赛",
+        "品牌策划竞赛",
+        "会展专业创新创业实践竞赛",
+        "国际贸易竞赛",
+        "会计与商业管理案例竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-056",
+      "name": "“学创杯”全国大学生创业综合模拟大赛",
+      "level": "B2",
+      "organizer": "高等学校国家级实验教学示范中心联席会经济与管理学科组和中国陶行知研究会",
+      "summary": "围绕创业综合模拟开展竞赛，关注经营决策、资源配置与团队协作。",
+      "website": "https://www.bing.com/search?q=%E2%80%9C%E5%AD%A6%E5%88%9B%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%88%9B%E4%B8%9A%E7%BB%BC%E5%90%88%E6%A8%A1%E6%8B%9F%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A57:D57（序号 56）",
+      "aliases": [
+        "学创杯",
+        "创业综合模拟大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-057",
+      "name": "中国好创意暨全国数字艺术设计大赛",
+      "level": "B2",
+      "organizer": "中国电子视像行业协会与大赛组委会",
+      "summary": "围绕创意与数字艺术设计开展竞赛，关注作品主题、艺术表达与数字呈现。",
+      "website": "https://cdec.org.cn/",
+      "urlType": "official",
+      "sourceLocation": "Sheet1!A58:D58（序号 57）",
+      "aliases": [
+        "中国好创意",
+        "全国数字艺术设计大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。当前链接为已核验的赛事官方入口；参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。",
+      "linkSource": "https://cdec.org.cn/",
+      "sourceNotes": "好创意暨数字艺术设计大赛官方站点，页面提供大赛详情、新闻、证书查询和资料下载。"
+    },
+    {
+      "id": "sxit-competition-058",
+      "name": "全国大学生节能减排社会实践与科技竞赛",
+      "level": "B2",
+      "organizer": "全国大学生节能减排社会实践与科技竞赛委员会",
+      "summary": "围绕节能减排相关社会实践与科技项目开展竞赛，关注现实问题、社会价值与验证。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%8A%82%E8%83%BD%E5%87%8F%E6%8E%92%E7%A4%BE%E4%BC%9A%E5%AE%9E%E8%B7%B5%E4%B8%8E%E7%A7%91%E6%8A%80%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A59:D59（序号 58）",
+      "aliases": [
+        "节能减排竞赛",
+        "节能减排大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-059",
+      "name": "“21世纪杯”全国英语演讲比赛",
+      "level": "B2",
+      "organizer": "中国日报社",
+      "summary": "围绕英语演讲开展竞赛，关注主题表达与语言沟通，具体要求以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E2%80%9C21%E4%B8%96%E7%BA%AA%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E8%8B%B1%E8%AF%AD%E6%BC%94%E8%AE%B2%E6%AF%94%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A60:D60（序号 59）",
+      "aliases": [
+        "21世纪杯",
+        "英语演讲比赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-060",
+      "name": "iCAN大学生创新创业大赛",
+      "level": "B2",
+      "organizer": "中国信息协会",
+      "summary": "围绕大学生创新创业项目开展竞赛，关注创意、需求与原型验证。",
+      "website": "https://www.bing.com/search?q=iCAN%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A61:D61（序号 60）",
+      "aliases": [
+        "iCAN",
+        "iCAN创新创业大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-061",
+      "name": "“工行杯”全国大学生金融科技创新大赛",
+      "level": "B2",
+      "organizer": "中国工商银行",
+      "summary": "围绕金融科技创新开展竞赛，关注金融服务场景与技术方案的应用价值。",
+      "website": "https://www.bing.com/search?q=%E2%80%9C%E5%B7%A5%E8%A1%8C%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E9%87%91%E8%9E%8D%E7%A7%91%E6%8A%80%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A62:D62（序号 61）",
+      "aliases": [
+        "工行杯",
+        "金融科技创新大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-062",
+      "name": "“外教社杯”全国高校学生跨文化能力大赛",
+      "level": "B2",
+      "organizer": "上海外国语大学",
+      "summary": "围绕跨文化理解与沟通能力开展竞赛，具体任务和表达形式以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E2%80%9C%E5%A4%96%E6%95%99%E7%A4%BE%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E9%AB%98%E6%A0%A1%E5%AD%A6%E7%94%9F%E8%B7%A8%E6%96%87%E5%8C%96%E8%83%BD%E5%8A%9B%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A63:D63（序号 62）",
+      "aliases": [
+        "外教社杯",
+        "跨文化能力大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-063",
+      "name": "百度之星·程序设计大赛",
+      "level": "B2",
+      "organizer": "百度在线网络技术（北京）有限公司",
+      "summary": "围绕程序设计与算法问题求解开展竞赛，关注算法思维与编码实践。",
+      "website": "https://www.bing.com/search?q=%E7%99%BE%E5%BA%A6%E4%B9%8B%E6%98%9F%C2%B7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A64:D64（序号 63）",
+      "aliases": [
+        "百度之星"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-064",
+      "name": "全国大学生工业设计大赛",
+      "level": "B2",
+      "organizer": "教育部高等教育司、全国工业设计一流专业建设协同创新平台、广东省教育厅、广东省本科高校工业设计专业教学指导委员会",
+      "summary": "围绕工业设计开展竞赛，关注用户需求、产品方案与设计表达。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%B7%A5%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A65:D65（序号 64）",
+      "aliases": [
+        "工业设计大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-065",
+      "name": "全国大学生水利创新设计大赛",
+      "level": "B2",
+      "organizer": "中国水利教育协会",
+      "summary": "围绕水利领域的创新设计开展竞赛，关注工程问题与方案可行性。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B0%B4%E5%88%A9%E5%88%9B%E6%96%B0%E8%AE%BE%E8%AE%A1%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A66:D66（序号 65）",
+      "aliases": [
+        "水利创新设计大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-066",
+      "name": "全国大学生化工实验大赛",
+      "level": "B2",
+      "organizer": "中国化工教育协会",
+      "summary": "围绕化工实验与实践能力开展竞赛，具体实验项目和规则以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%8C%96%E5%B7%A5%E5%AE%9E%E9%AA%8C%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A67:D67（序号 66）",
+      "aliases": [
+        "化工实验大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-067",
+      "name": "全国大学生计算机系统能力大赛",
+      "level": "B2",
+      "organizer": "全国高等学校计算机教育研究会、系统能力培养研究专家组、系统能力培养研究项目发起高校",
+      "summary": "围绕计算机系统能力开展竞赛，具体系统方向与赛道设置以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E8%83%BD%E5%8A%9B%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A68:D68（序号 67）",
+      "aliases": [
+        "计算机系统能力大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-068",
+      "name": "全国大学生花园设计建造竞赛",
+      "level": "B2",
+      "organizer": "北京林业大学、成都市公园城市建设管理局、中国风景园林学会教育工作委员会",
+      "summary": "围绕花园设计与建造实践开展竞赛，关注场地、景观设计与实际建造。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%8A%B1%E5%9B%AD%E8%AE%BE%E8%AE%A1%E5%BB%BA%E9%80%A0%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A69:D69（序号 68）",
+      "aliases": [
+        "花园设计建造竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-069",
+      "name": "全国大学生物联网设计竞赛",
+      "level": "B2",
+      "organizer": "全国高等学校计算机教育研究会",
+      "summary": "围绕物联网系统与应用设计开展竞赛，关注场景需求与软硬件协同。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%89%A9%E8%81%94%E7%BD%91%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A70:D70（序号 69）",
+      "aliases": [
+        "物联网设计竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-070",
+      "name": "全国大学生信息安全与对抗技术竞赛",
+      "level": "B2",
+      "organizer": "中国兵工学会、中国兵工学会信息安全与对抗专业委员会",
+      "summary": "围绕信息安全与对抗技术开展竞赛，具体赛项与合规边界以当届官方规则为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E4%B8%8E%E5%AF%B9%E6%8A%97%E6%8A%80%E6%9C%AF%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A71:D71（序号 70）",
+      "aliases": [
+        "信息安全与对抗技术竞赛",
+        "ISCC"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-071",
+      "name": "全国大学生测绘学科创新创业智能大赛",
+      "level": "B2",
+      "organizer": "中国测绘学会教育工作委员会",
+      "summary": "围绕测绘学科、创新创业与智能应用开展竞赛，具体赛项以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B5%8B%E7%BB%98%E5%AD%A6%E7%A7%91%E5%88%9B%E6%96%B0%E5%88%9B%E4%B8%9A%E6%99%BA%E8%83%BD%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A72:D72（序号 71）",
+      "aliases": [
+        "测绘学科创新创业智能大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-072",
+      "name": "全国大学生能源经济学术创意大赛",
+      "level": "B2",
+      "organizer": "中国优选法统筹法与经济数学研究会",
+      "summary": "围绕能源经济问题开展学术研究与创意竞赛，关注研究问题、分析方法与价值。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%83%BD%E6%BA%90%E7%BB%8F%E6%B5%8E%E5%AD%A6%E6%9C%AF%E5%88%9B%E6%84%8F%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A73:D73（序号 72）",
+      "aliases": [
+        "能源经济学术创意大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-073",
+      "name": "全国大学生基础医学创新研究暨实验设计论坛（大赛）",
+      "level": "B2",
+      "organizer": "高等学校国家级实验教学示范中心联席会(基础医学组)",
+      "summary": "围绕基础医学的创新研究与实验设计开展交流和竞赛，具体项目要求以当届通知为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%9F%BA%E7%A1%80%E5%8C%BB%E5%AD%A6%E5%88%9B%E6%96%B0%E7%A0%94%E7%A9%B6%E6%9A%A8%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E8%AE%BA%E5%9D%9B%EF%BC%88%E5%A4%A7%E8%B5%9B%EF%BC%89+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A74:D74（序号 73）",
+      "aliases": [
+        "基础医学创新研究暨实验设计论坛",
+        "基础医学创新研究暨实验设计大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-074",
+      "name": "全国大学生数字媒体科技作品及创意竞赛",
+      "level": "B2",
+      "organizer": "中国人工智能学会、全国大学生数字媒体科技作品及创意竞赛组织委员会",
+      "summary": "围绕数字媒体科技作品与创意开展竞赛，关注技术应用、内容与作品表达。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%95%B0%E5%AD%97%E5%AA%92%E4%BD%93%E7%A7%91%E6%8A%80%E4%BD%9C%E5%93%81%E5%8F%8A%E5%88%9B%E6%84%8F%E7%AB%9E%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A75:D75（序号 74）",
+      "aliases": [
+        "数字媒体科技作品及创意竞赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-075",
+      "name": "全国本科院校税收风险管控案例大赛",
+      "level": "B2",
+      "organizer": "全国本科院校税收风险管控案例大赛组委会",
+      "summary": "围绕税收风险管控案例开展竞赛，关注案例分析、风险识别与方案表达。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E6%9C%AC%E7%A7%91%E9%99%A2%E6%A0%A1%E7%A8%8E%E6%94%B6%E9%A3%8E%E9%99%A9%E7%AE%A1%E6%8E%A7%E6%A1%88%E4%BE%8B%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A76:D76（序号 75）",
+      "aliases": [
+        "税收风险管控案例大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-076",
+      "name": "全国企业竞争模拟大赛",
+      "level": "B2",
+      "organizer": "中国管理现代化研究会决策模拟专业委员会",
+      "summary": "围绕企业竞争与经营决策模拟开展竞赛，关注资源配置与决策分析。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E4%BC%81%E4%B8%9A%E7%AB%9E%E4%BA%89%E6%A8%A1%E6%8B%9F%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A77:D77（序号 76）",
+      "aliases": [
+        "企业竞争模拟大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-077",
+      "name": "全国高等院校数智化企业经营沙盘大赛",
+      "level": "B2",
+      "organizer": "中国商业联合会、新道科技股份有限公司",
+      "summary": "围绕数智化企业经营沙盘开展竞赛，关注经营决策、业务协同与实践。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E9%AB%98%E7%AD%89%E9%99%A2%E6%A0%A1%E6%95%B0%E6%99%BA%E5%8C%96%E4%BC%81%E4%B8%9A%E7%BB%8F%E8%90%A5%E6%B2%99%E7%9B%98%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A78:D78（序号 77）",
+      "aliases": [
+        "数智化企业经营沙盘大赛",
+        "企业经营沙盘大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-078",
+      "name": "全国数字建筑创新应用大赛",
+      "level": "B2",
+      "organizer": "中国建设教育协会",
+      "summary": "围绕数字建筑技术与创新应用开展竞赛，具体工具、赛道与作品要求以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E6%95%B0%E5%AD%97%E5%BB%BA%E7%AD%91%E5%88%9B%E6%96%B0%E5%BA%94%E7%94%A8%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A79:D79（序号 78）",
+      "aliases": [
+        "数字建筑创新应用大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-079",
+      "name": "全球校园人工智能算法精英大赛",
+      "level": "B2",
+      "organizer": "江苏省人工智能学会",
+      "summary": "围绕人工智能算法开展竞赛，具体数据、任务与评测方法以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E7%90%83%E6%A0%A1%E5%9B%AD%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95%E7%B2%BE%E8%8B%B1%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A80:D80（序号 79）",
+      "aliases": [
+        "全球校园人工智能算法精英大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-080",
+      "name": "国际大学生智能农业装备创新大赛",
+      "level": "B2",
+      "organizer": "国际农业和生物系统工程委员会、中国农业机械学会、中国农业工程学会、省部共建现代农业装备与技术协同创新中心（江苏大学）、农业工程大学国际联盟",
+      "summary": "围绕智能农业装备的创新设计开展竞赛，关注农业场景与装备方案。",
+      "website": "https://www.bing.com/search?q=%E5%9B%BD%E9%99%85%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%99%BA%E8%83%BD%E5%86%9C%E4%B8%9A%E8%A3%85%E5%A4%87%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A81:D81（序号 80）",
+      "aliases": [
+        "智能农业装备创新大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-081",
+      "name": "“科云杯”全国大学生财会职业能力大赛",
+      "level": "B2",
+      "organizer": "中国商业会计学会",
+      "summary": "围绕财会职业能力开展竞赛，具体业务任务与参赛范围以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E2%80%9C%E7%A7%91%E4%BA%91%E6%9D%AF%E2%80%9D%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%B4%A2%E4%BC%9A%E8%81%8C%E4%B8%9A%E8%83%BD%E5%8A%9B%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A82:D82（序号 81）",
+      "aliases": [
+        "科云杯",
+        "财会职业能力大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-082",
+      "name": "全国职业院校技能大赛",
+      "level": "B2",
+      "organizer": "全国职业院校技能大赛执委会",
+      "summary": "围绕职业院校相关技能开展竞赛，具体赛项、资格与选拔规则以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E8%81%8C%E4%B8%9A%E9%99%A2%E6%A0%A1%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A83:D83（序号 82）",
+      "aliases": [
+        "职业院校技能大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-083",
+      "name": "全国大学生机器人大赛-RoboTac",
+      "level": "B2",
+      "organizer": "全国大学生机器人大赛组委会",
+      "summary": "原表列示 RoboTac 机器人方向，具体任务、组别与参赛条件需查阅当届公告。",
+      "website": "https://www.bing.com/search?q=%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%B5%9B-RoboTac+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A84:D84（序号 83）",
+      "aliases": [
+        "RoboTac"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-084",
+      "name": "一带一路暨金砖国家技能发展与技术创新大赛",
+      "level": "B2",
+      "organizer": "教育部中外人文交流中心",
+      "summary": "围绕技能发展与技术创新开展竞赛，具体赛项、参赛对象与规则需分别核实。",
+      "website": "https://www.bing.com/search?q=%E4%B8%80%E5%B8%A6%E4%B8%80%E8%B7%AF%E6%9A%A8%E9%87%91%E7%A0%96%E5%9B%BD%E5%AE%B6%E6%8A%80%E8%83%BD%E5%8F%91%E5%B1%95%E4%B8%8E%E6%8A%80%E6%9C%AF%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A85:D85（序号 84）",
+      "aliases": [
+        "金砖国家技能发展与技术创新大赛",
+        "一带一路暨金砖大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-085",
+      "name": "码蹄杯全国职业院校程序设计大赛",
+      "level": "B2",
+      "organizer": "全国高等学校计算机教育研究会",
+      "summary": "围绕职业院校程序设计能力开展竞赛，具体参赛组别与题目形式以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E7%A0%81%E8%B9%84%E6%9D%AF%E5%85%A8%E5%9B%BD%E8%81%8C%E4%B8%9A%E9%99%A2%E6%A0%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A86:D86（序号 85）",
+      "aliases": [
+        "码蹄杯"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    },
+    {
+      "id": "sxit-competition-086",
+      "name": "华北五省（市、自治区）大学生机器人大赛",
+      "level": "B2",
+      "organizer": "北京市教育委员会、天津市教育委员会、河北省教育厅、山西省教育厅、内蒙古自治区教育厅",
+      "summary": "围绕华北五省（市、自治区）大学生机器人项目开展竞赛，具体赛项与参赛要求以当届公告为准。",
+      "website": "https://www.bing.com/search?q=%E5%8D%8E%E5%8C%97%E4%BA%94%E7%9C%81%EF%BC%88%E5%B8%82%E3%80%81%E8%87%AA%E6%B2%BB%E5%8C%BA%EF%BC%89%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%A4%A7%E8%B5%9B+%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99",
+      "urlType": "search",
+      "sourceLocation": "Sheet1!A87:D87（序号 86）",
+      "aliases": [
+        "华北五省机器人大赛",
+        "华北机器人大赛"
+      ],
+      "details": "山西工学院校内竞赛类别原文：B2，不代表全国统一赛事等级。主办单位为源表记录，可能含历史名称。参赛资格、赛道、报名时间、费用及评审条件以当届官方公告为准。当前链接为“搜索入口”，不是已核验的赛事官网。"
+    }
+  ]
+}
