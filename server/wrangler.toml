@@ -1,0 +1,19 @@
+name = "chuangxiang-xiaoyi"
+main = "agent-worker.mjs"
+compatibility_date = "2026-10-25"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGIN = "https://zhaozizhuang666.github.io"
+MODEL_PROVIDER = "deepseek"
+MODEL_NAME = "deepseek-flash"
+MAX_TOKENS = "2048"
+REQUEST_TIMEOUT_MS = "30000"
+
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+
+[ratelimits.simple]
+limit = 10
+period = 60
