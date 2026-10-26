@@ -6,10 +6,15 @@ workers_dev = true
 
 [vars]
 ALLOWED_ORIGIN = "https://your-name.github.io"
-MODEL_PROVIDER = "deepseek"
-MODEL_NAME = "deepseek-flash"
+MODEL_PROVIDER = "glm"
+MODEL_NAME = "glm-5.3"
 MAX_TOKENS = "2048"
 REQUEST_TIMEOUT_MS = "30000"
+# Only verified text-chat IDs are accepted. An empty/invalid list hides this provider.
+CLOUDFLARE_MODELS = '["@cf/zai-org/glm-4.7-flash","@cf/qwen/qwen3-30b-a3b-fp8","@cf/meta/llama-3.1-8b-instruct-fp8"]'
+
+[ai]
+binding = "AI"
 
 [[ratelimits]]
 name = "RATE_LIMITER"

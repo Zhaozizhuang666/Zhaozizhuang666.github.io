@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Chuangxiang Yiyuan knowledge library: discipline competitions and academic journal directories, with source notes and search links.">
+  <meta name="description" content="Chuangxiang Yiyuan knowledge library: competitions, journal directories, VLA learning and AI network resources, with source notes and links.">
   <meta name="theme-color" content="#ffffff">
   <script src="scroll-init.js"></script>
   <script src="theme-init.js"></script>
@@ -14,16 +14,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261026-ui2">
-  <link rel="stylesheet" href="xiaoyi.css">
+  <link rel="stylesheet" href="style.css?v=20261026-copy3">
+  <link rel="stylesheet" href="xiaoyi.css?v=20261026-copy3">
   <link rel="stylesheet" href="knowledge.css">
   <script src="theme.js" defer></script>
   <script src="xiaoyi-config.js" defer></script>
-  <script src="xiaoyi-engine.js" defer></script>
-  <script src="xiaoyi.js" defer></script>
-  <script src="knowledge.js" defer></script>
+  <script src="xiaoyi-engine.js?v=20261026-copy3" defer></script>
+  <script src="xiaoyi.js?v=20261026-copy3" defer></script>
+  <script src="knowledge.js?v=20261026-learning" defer></script>
   <script src="entrance.js" defer></script>
-  <script src="language-copy.js" defer></script>
+  <script src="language-copy.js?v=20261026-copy3" defer></script>
   <script src="language.js" defer></script>
 </head>
 <body class="knowledge-body">
@@ -36,12 +36,12 @@
   </div></header>
   <main>
     <section class="library-hero page">
-      <div><p class="overline">CHUANGXIANG YIYUAN · CURATED KNOWLEDGE</p><h1>Find a direction.<br><span>Follow the source.</span></h1><p class="library-lead">A working reference for student projects and academic exploration.</p><p class="library-zh" lang="zh-CN">创享艺苑专属知识库。整理学科竞赛与学术期刊目录，让想法有方向，让信息有出处。</p></div>
-      <aside class="library-index" aria-label="Library contents"><div><span>01</span><strong>Competitions</strong><small>学科竞赛 · 校内分级</small></div><div><span>02</span><strong>Journals</strong><small>第一批 · 第二批目录</small></div><a href="#xiaoyi-panel" data-open-xiaoyi>Ask Xiaoyi for a starting point ↗</a></aside>
+      <div><p class="overline">CHUANGXIANG YIYUAN · CURATED KNOWLEDGE</p><h1>Find a direction.<br><span>Follow the source.</span></h1><p class="library-lead">A curated reference for student projects, academic exploration, and technical learning.</p><p class="library-zh" lang="zh-CN">创享艺苑专属知识库。整理竞赛、期刊目录，以及 VLA 与 AI 算力网络学习资源，保留来源与使用范围。</p></div>
+      <aside class="library-index" aria-label="Library contents"><div><span>01</span><strong>Competitions</strong><small>学科竞赛 · 校内分级</small></div><div><span>02</span><strong>Journals</strong><small>第一批 · 第二批目录</small></div><div><span>03</span><strong>Learning</strong><small>VLA · AI Network</small></div><a href="#xiaoyi-panel" data-open-xiaoyi>Open Xiaoyi ↗</a></aside>
     </section>
     <section id="library" class="library-section page" aria-labelledby="library-heading">
       <div class="section-heading"><div><p class="overline">BROWSE THE COLLECTION</p><h2 id="library-heading">Knowledge Library</h2></div><span class="section-note">Sources, context & search links</span></div>
-      <div class="library-tabs" role="tablist" aria-label="Choose a directory"><button id="competitions-tab" type="button" role="tab" aria-selected="true" aria-controls="directory-panel" data-tab="competitions">Competitions <span>竞赛</span></button><button id="journals-tab" type="button" role="tab" aria-selected="false" aria-controls="directory-panel" data-tab="journals" tabindex="-1">Journals <span>期刊</span></button></div>
+      <div class="library-tabs" role="tablist" aria-label="Choose a collection" style="flex-wrap:wrap;row-gap:12px"><button id="competitions-tab" type="button" role="tab" aria-selected="true" aria-controls="directory-panel" data-tab="competitions">Competitions <span>竞赛</span></button><button id="journals-tab" type="button" role="tab" aria-selected="false" aria-controls="directory-panel" data-tab="journals" tabindex="-1">Journals <span>期刊</span></button><button id="learning-tab" type="button" role="tab" aria-selected="false" aria-controls="directory-panel" data-tab="learning" tabindex="-1">Learning <span>学习</span></button></div>
       <div id="directory-panel" role="tabpanel" aria-labelledby="competitions-tab">
         <div class="library-controls"><label class="search-label"><span>SEARCH / 检索</span><input id="library-search" type="search" placeholder="Search competitions, organizers, or keywords…" autocomplete="off"></label><label class="filter-label"><span>FILTER / 筛选</span><select id="library-filter" aria-label="Filter directory"><option value="">All levels / 全部级别</option><option value="A">A</option><option value="B1">B1</option><option value="B2">B2</option></select></label></div>
         <div class="library-context"><p id="library-description" lang="zh-CN">来自《山西工学院学科竞赛分级》原表。A、B1、B2 为该校目录分类，具体赛制与参赛条件以当届公告为准。</p><details><summary>Source & scope / 来源说明</summary><p id="library-source" lang="zh-CN">Loading source notes…</p></details></div>
@@ -49,7 +49,7 @@
         <div id="library-results" class="library-grid" aria-live="polite"></div>
         <div class="library-pagination"><button id="previous-page" type="button" disabled>← Previous</button><span id="page-status">Page 1</span><button id="next-page" type="button" disabled>Next →</button></div>
       </div>
-      <noscript><p lang="zh-CN">目录检索需要 JavaScript。可直接查看 <a href="data/competitions.json">竞赛结构化目录</a> 与 <a href="data/journals.json">期刊结构化目录</a>。</p></noscript>
+      <noscript><p lang="zh-CN">目录检索需要 JavaScript。可直接查看 <a href="data/competitions.json">竞赛结构化目录</a>、<a href="data/journals.json">期刊结构化目录</a>、<a href="resources/vla-guide/">VLA Guide</a> 与 <a href="resources/ai-network-learning.html">AI Network Learning</a>。</p></noscript>
     </section>
   </main>
   <footer class="page"><span>© Chuangxiang Yiyuan · Zizhuang Zhao</span><a href="index.html">Return to homepage ↗</a></footer>

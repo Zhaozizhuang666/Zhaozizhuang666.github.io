@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="AI 算力网络学习导航：GPU 互联、RDMA、RoCE、NCCL 与集群容量规划。">
+<script src="../theme-init.js"></script>
+<title>AI 算力中心网络架构 · 学习资源合集</title>
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --panel:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --primary:#0e7490;       /* cyan-700 */
+    --primary-soft:#ecfeff;
+    --accent:#0369a1;        /* sky-700 */
+    --video:#dc2626;         /* bilibili 粉 */
+    --video-bg:#fef2f2;
+    --repo:#111827;
+    --repo-bg:#f3f4f6;
+    --paper:#6d28d9;         /* 论文用深紫，少量 */
+    --paper-bg:#f5f3ff;
+    --doc:#047857;           /* 白皮书/文档 绿 */
+    --doc-bg:#ecfdf5;
+    --blog:#b45309;          /* 博客 琥珀 */
+    --blog-bg:#fffbeb;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.7;
+  }
+  /* Hero */
+  .hero{
+    background:linear-gradient(135deg,#0e7490 0%,#0369a1 100%);
+    color:#fff; padding:48px 24px 56px;
+  }
+  .hero-inner{max-width:1100px;margin:0 auto}
+  .hero h1{margin:0 0 12px;font-size:30px;letter-spacing:.5px}
+  .hero p{margin:6px 0;opacity:.92;font-size:15px}
+  .hero .tag-row{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .hero .tag{
+    background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25);
+    padding:4px 12px; border-radius:999px; font-size:13px;
+  }
+  /* Layout */
+  .wrap{max-width:1100px;margin:0 auto;padding:32px 24px 80px;display:grid;grid-template-columns:220px 1fr;gap:32px}
+  @media(max-width:900px){.wrap{grid-template-columns:1fr}.toc{position:static!important}}
+  /* TOC */
+  .toc{
+    position:sticky; top:20px; align-self:start;
+    background:var(--panel); border:1px solid var(--border); border-radius:12px;
+    padding:16px; font-size:14px; max-height:calc(100vh - 40px); overflow:auto;
+  }
+  .toc h4{margin:0 0 10px;font-size:13px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+  .toc a{display:block;color:var(--text);text-decoration:none;padding:5px 8px;border-radius:6px}
+  .toc a:hover{background:var(--primary-soft);color:var(--primary)}
+  .toc .lvl2{padding-left:18px;font-size:13px;color:var(--muted)}
+  /* Section */
+  section{
+    background:var(--panel); border:1px solid var(--border); border-radius:14px;
+    padding:28px 32px; margin-bottom:24px;
+  }
+  section h2{
+    margin:0 0 6px; font-size:22px; color:var(--primary);
+    border-left:4px solid var(--primary); padding-left:12px;
+  }
+  section h3{margin:24px 0 10px;font-size:16px;color:var(--accent)}
+  section .goal{
+    background:var(--primary-soft); border-left:3px solid var(--primary);
+    padding:10px 14px; border-radius:0 8px 8px 0; font-size:14px; color:#155e75; margin:10px 0 18px;
+  }
+  /* Resource items */
+  .res{
+    display:flex; gap:12px; padding:12px 0; border-bottom:1px dashed var(--border);
+  }
+  .res:last-child{border-bottom:none}
+  .badge{
+    flex-shrink:0; align-self:flex-start;
+    font-size:12px; padding:2px 10px; border-radius:999px; font-weight:600; margin-top:3px;
+  }
+  .b-video{background:var(--video-bg);color:var(--video)}
+  .b-repo{background:var(--repo-bg);color:var(--repo)}
+  .b-paper{background:var(--paper-bg);color:var(--paper)}
+  .b-doc{background:var(--doc-bg);color:var(--doc)}
+  .b-blog{background:var(--blog-bg);color:var(--blog)}
+  .res-body{flex:1;min-width:0}
+  .res-body .title{font-weight:600;font-size:15px}
+  .res-body .desc{color:var(--muted);font-size:13.5px;margin-top:2px}
+  .res-body a.link{color:var(--accent);word-break:break-all;font-size:13px;text-decoration:none}
+  .res-body a.link:hover{text-decoration:underline}
+  code{
+    background:#f1f5f9; padding:1px 6px; border-radius:4px; font-size:13px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  pre{
+    background:#0f172a; color:#e2e8f0; padding:14px 16px; border-radius:8px;
+    overflow:auto; font-size:13px; line-height:1.55;
+  }
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+  th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9}
+  /* Roadmap */
+  .roadmap td:first-child{white-space:nowrap;color:var(--primary);font-weight:600}
+  /* Footer */
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:20px}
+
+/* Personal-site integration: shared appearance and neutral resource accents. */
+:root{--primary:#555581;--primary-soft:#efeff7;--accent:#535583;--doc:#635b83;--doc-bg:#f2eff8}
+:root[data-theme=dark]{--bg:#0d1118;--panel:#171d27;--text:#e6e8ef;--muted:#abb3c2;--border:#303a4a;--primary:#b6b4e5;--primary-soft:#25293d;--accent:#b8c0ef;--video:#f2a8ae;--video-bg:#35252c;--repo:#d5dae5;--repo-bg:#252d3b;--paper:#c9b6ed;--paper-bg:#302741;--doc:#c9b9e5;--doc-bg:#2c263d;--blog:#e8c18d;--blog-bg:#372d24}
+.hero{background:linear-gradient(135deg,#4a4a68 0%,#626081 100%)}
+:root[data-theme=dark] .hero{background:linear-gradient(135deg,#1b2032,#34334e)}
+.resource-nav{display:flex;align-items:center;gap:22px;max-width:1100px;margin:auto;padding:12px 24px;font-size:12px}
+.resource-nav a{color:var(--text);text-decoration:none}.resource-nav a:hover{text-decoration:underline}
+.resource-nav button{margin-left:auto;background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:999px;padding:6px 13px;min-width:54px;font:inherit;cursor:pointer}
+.resource-nav a:focus-visible,.resource-nav button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+section .goal{color:var(--text)}.resource-notice{grid-column:1/-1;background:var(--primary-soft);border:1px solid var(--border);color:var(--text);padding:12px 18px;border-radius:10px;font-size:14px}
+.resource-caption{max-width:1052px;margin:18px auto 0;padding:0 24px;color:var(--muted);font-size:12px}.resource-caption a{color:var(--accent)}
+main{min-width:0}table{display:block;overflow-x:auto}td,th{overflow-wrap:anywhere}
+@media(max-width:600px){.hero{padding:32px 20px}.hero h1{font-size:25px}.wrap{padding:22px 16px 48px;gap:20px}section{padding:22px 18px}.res{gap:8px}.badge{padding:2px 7px}.resource-nav{padding:10px 18px}}
+@media print{.resource-nav{display:none}:root,:root[data-theme=dark]{--bg:#fff;--panel:#fff;--text:#111;--muted:#444;--border:#ccc;--primary:#333;--accent:#333}.hero{background:#fff!important;color:#111}.wrap{display:block;padding:0}.toc{display:none}section{break-inside:avoid}table{display:table}}
+</style>
+<script src="../theme.js" defer></script>
+</head>
+<body>
+<nav class="resource-nav" aria-label="Personal website"><a href="../index.html">← Personal site</a><a href="../knowledge.html">Library</a><button id="theme-toggle" type="button" aria-label="Theme: Auto">Auto</button></nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>AI 算力中心网络架构 · 学习资源合集</h1>
+    <p>配套课程：《AI 算力中心网络架构 · 系统课 v2.0》</p>
+    <p>教学主线：沿真实数据路径拆解 <b>GPU → PCIe → NIC → RDMA → RoCEv2</b></p>
+    <div class="tag-row">
+      <span class="tag">7 章主题</span>
+      <span class="tag">B 站视频</span>
+      <span class="tag">GitHub 仓库</span>
+      <span class="tag">必读论文</span>
+      <span class="tag">官方白皮书</span>
+      <span class="tag">两周学习路径</span>
+    </div>
+  </div>
+</header>
+
+<p class="resource-caption">资源导航整理，第三方课程、论文与代码的版权归原权利人。课程、数值和外链以原始资料为准；本站未对全部外链进行可达性或技术结论认证。</p>
+<div class="wrap">
+
+<div class="resource-notice">
+  💡 <b>访问 B 站链接提示：</b>所有 bilibili.com 链接首次打开若弹出「错误号 412 / 触发安全风控」，是 B 站对未登录访问的拦截。请先在浏览器登录 B 站账号，再刷新即可正常观看；也可以直接在 B 站 App / 网页搜索对应 UP 主名进入。
+</div>
+
+<nav class="toc">
+  <h4>目录</h4>
+  <a href="#overview">总览速查表</a>
+  <a href="#ch1">01 · AI 算力网络架构</a>
+  <a href="#ch2">02 · GPU 与系统总线</a>
+  <a href="#ch3">03 · RDMA 通信原理</a>
+  <a href="#ch4">04 · RoCE vs InfiniBand</a>
+  <a href="#ch5">05 · 无损以太网 PFC/ECN/DCQCN</a>
+  <a href="#ch6">06 · NCCL / AllReduce</a>
+  <a href="#ch7">07 · 集群拓扑与容量规划</a>
+  <a href="#prereq">打底：数通基础</a>
+  <a href="#roadmap">两周学习路径</a>
+  <a href="#glossary">术语速查表</a>
+</nav>
+
+<main>
+
+<!-- 总览 -->
+<section id="overview">
+  <h2>总览：7 章 × 资源类型</h2>
+  <table>
+    <thead><tr><th>章</th><th>主题</th><th>核心资源</th></tr></thead>
+    <tbody>
+      <tr><td>01</td><td>AI 算力网络架构</td><td>ZOMI 酱万卡组网合集 · NVIDIA Spectrum-X 中文白皮书</td></tr>
+      <tr><td>02</td><td>GPU 与 PCIe / NVLink</td><td>A100 节点实战 · Alex Smola 硬件课</td></tr>
+      <tr><td>03</td><td>RDMA 原理</td><td>大白话 RDMA · ns-3 RDMA 仿真</td></tr>
+      <tr><td>04</td><td>RoCE vs InfiniBand</td><td>InfiniBand VS RoCE 专栏 · Mellanox RoCEv2 配置</td></tr>
+      <tr><td>05</td><td>PFC / ECN / DCQCN</td><td><b>DCQCN SIGCOMM'15 论文</b> · Arista/Broadcom/NVIDIA/Intel 部署指南</td></tr>
+      <tr><td>06</td><td>NCCL / AllReduce</td><td><b>NVIDIA/nccl-tests</b> · Ring AllReduce 原论文 · Horovod · Demystifying NCCL</td></tr>
+      <tr><td>07</td><td>集群拓扑 / 容量规划</td><td>ZOMI 酱万卡组网 · Spectrum-X 白皮书</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Ch1 -->
+<section id="ch1">
+  <h2>01 · AI 算力网络架构（架构全景 / 数据流）</h2>
+  <div class="goal">目标：讲清 AI DC 与传统 DC 的差别（服务对象从"人"变成"卡"，流量从南北向变成东西向）；看懂 Spine-Leaf / 三层 Clos 为什么是默认形态。</div>
+
+  <h3>B 站视频</h3>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">ZOMI 酱《万卡集群组网基础》合集（最对口）</div>
+      <div class="desc">含：多层/单层/收敛比/拓扑、框式 vs 盒式、单轨 vs 多轨、HPC 超算组网、GPU 万卡集群交付实践。<br><i>提示：合集深链未登录可能报 B 站 412 风控，请先登录 B 站再点；或走下方备用入口。</i></div>
+      <a class="link" href="https://space.bilibili.com/517221395/video" target="_blank" rel="noopener noreferrer">备用入口：UP 主主页（点"合集"标签）</a><br>
+      <a class="link" href="https://space.bilibili.com/517221395/channel/collectiondetail?sid=4275739" target="_blank" rel="noopener noreferrer">合集直链（需登录 B 站）</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">新华三网络官方《智算网络技术》合集（厂商视角）</div>
+      <a class="link" href="https://space.bilibili.com/250065213/channel/series" target="_blank" rel="noopener noreferrer">space.bilibili.com/250065213/channel/series</a>
+    </div>
+  </div>
+
+  <h3>官方白皮书（中文 PDF，强烈推荐先读）</h3>
+  <div class="res">
+    <span class="badge b-doc">白皮书</span>
+    <div class="res-body">
+      <div class="title">NVIDIA《Spectrum-X 网络平台架构：首个专为加速 AI 工作负载设计的以太网网络》</div>
+      <div class="desc">4 个 HGX 系统单元 + B3140 SuperNIC + 三层 SN5600 交换机参考设计，可直接作为容量规划模板。</div>
+      <a class="link" href="https://images.nvidia.cn/aem-dam/zh_cn/Solutions/networking/products/supernic/nvidia-spectrum-x-whitepaper-2959968-zhCN.pdf" target="_blank" rel="noopener noreferrer">images.nvidia.cn/.../nvidia-spectrum-x-whitepaper-2959968-zhCN.pdf</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-blog">博客</span>
+    <div class="res-body">
+      <div class="title">NVIDIA 技术博客《Giga-Scale AI and the Ethernet Evolution: How Spectrum-X Rewrites the Rules》</div>
+      <a class="link" href="https://developer.nvidia.com/blog/giga-scale-ai-ethernet-evolution-spectrum-x-ethernet-rewrites-rules" target="_blank" rel="noopener noreferrer">developer.nvidia.com/blog/giga-scale-ai-ethernet-evolution-spectrum-x-ethernet-rewrites-rules</a>
+    </div>
+  </div>
+
+  <h3>中文系统文档站</h3>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">AI Infrastructure 中文文档站（ZOMI 维护，比零散视频系统）</div>
+      <a class="link" href="https://infrasys-ai.github.io/aiinfra-docs/" target="_blank" rel="noopener noreferrer">infrasys-ai.github.io/aiinfra-docs/</a>
+    </div>
+  </div>
+</section>
+
+<!-- Ch2 -->
+<section id="ch2">
+  <h2>02 · GPU 与系统总线（PCIe / NVLink / NVSwitch）</h2>
+  <div class="goal">目标：分清 SXM / PCIe / HGX；记住带宽量级（PCIe Gen4 x16 ≈ 32 GB/s，NVLink 3 ≈ 300 GB/s，NVLink 4 ≈ 900 GB/s，NVLink 5 ≈ 1.8 TB/s）；理解节点内走 NVLink、节点间走 IB/RoCE。</div>
+
+  <h3>B 站视频</h3>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">[A100 Training] 01 熟悉一台 A100 SXM GPU 计算节点</div>
+      <div class="desc">SXM/PCIe/HGX、CPU 与 GPU 带宽及内存带宽实测。</div>
+      <a class="link" href="https://www.bilibili.com/video/BV1CGN26EEeT/" target="_blank" rel="noopener noreferrer">bilibili.com/video/BV1CGN26EEeT/</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">2026 Alex Smola: Efficiency in LLMs — Part 2: Hardware</div>
+      <div class="desc">03:57 起专讲 NVLink vs PCIe 带宽差；06:41 讲 HBM/NVLink/DDR 带宽墙。</div>
+      <a class="link" href="https://www.bilibili.com/video/BV1BHMg67EwQ/" target="_blank" rel="noopener noreferrer">bilibili.com/video/BV1BHMg67EwQ/</a>
+    </div>
+  </div>
+
+  <h3>官方资料</h3>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">NVIDIA NVLink / NVSwitch 产品页（各代带宽数字以官方为准）</div>
+      <a class="link" href="https://www.nvidia.com/en-us/data-center/nvlink/" target="_blank" rel="noopener noreferrer">nvidia.com/en-us/data-center/nvlink/</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-blog">专栏</span>
+    <div class="res-body">
+      <div class="title">AI 时代大家都要了解的 GPU 互联相关总线技术（PCIe 各代速率表）</div>
+      <a class="link" href="https://www.bilibili.com/opus/1151655043312648199" target="_blank" rel="noopener noreferrer">bilibili.com/opus/1151655043312648199</a>
+    </div>
+  </div>
+
+  <h3>动手实验</h3>
+  <div class="res">
+    <span class="badge b-repo">实验</span>
+    <div class="res-body">
+      <div class="title">在 GPU 服务器上识别拓扑 + 实测带宽</div>
+      <div class="desc">跑 <code>nvidia-smi topo -m</code> 看 GPU 之间是 NV# / PIX / PHB / NUMA；跑 <code>nvbandwidth</code> 量 NVLink / PCIe P2P 实测带宽。</div>
+    </div>
+  </div>
+</section>
+
+<!-- Ch3 -->
+<section id="ch3">
+  <h2>03 · RDMA 通信原理（协议深度 · 零拷贝）</h2>
+  <div class="goal">目标：说清传统 TCP/IP 的多次拷贝与上下文切换开销；理解 RDMA 三大特性——零拷贝、内核旁路、字节序不可知；认识 QP（SQ/RQ）、CQ、WQE、Verbs API。</div>
+
+  <h3>B 站视频</h3>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">大白话解读 RDMA 技术原理 —— 泡澡的龙（前阿里云高级产品专家）</div>
+      <div class="desc">入门最快的一集。</div>
+      <a class="link" href="https://www.bilibili.com/video/BV1ibiweEENp/" target="_blank" rel="noopener noreferrer">bilibili.com/video/BV1ibiweEENp/</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">UP 主"专注与守望"RDMA / NVMe-oF 系列（工程向）</div>
+      <div class="desc">讲 QP / WQE / CQ / Verbs。</div>
+      <a class="link" href="https://space.bilibili.com/585132944/upload/video" target="_blank" rel="noopener noreferrer">space.bilibili.com/585132944/upload/video</a>
+    </div>
+  </div>
+
+  <h3>开源仿真（没真机也能跑）</h3>
+  <div class="res">
+    <span class="badge b-repo">仓库</span>
+    <div class="res-body">
+      <div class="title">ns-3 RDMA 仿真模型</div>
+      <div class="desc">已实现 RoCEv2 + DCQCN + TIMELY + PFC + ECN + Broadcom shared buffer switch；基于 ns-3.17。可用来对比第 05 章的拥塞控制算法。</div>
+      <a class="link" href="https://gitee.com/zm643/ns3-rdma" target="_blank" rel="noopener noreferrer">gitee.com/zm643/ns3-rdma</a>
+    </div>
+  </div>
+
+  <h3>入门图文</h3>
+  <div class="res">
+    <span class="badge b-blog">专栏</span>
+    <div class="res-body">
+      <div class="title">RDMA 技术浅析（传统网络 vs RDMA 协议栈对比图）</div>
+      <a class="link" href="https://www.bilibili.com/opus/529536873095083354" target="_blank" rel="noopener noreferrer">bilibili.com/opus/529536873095083354</a>
+    </div>
+  </div>
+</section>
+
+<!-- Ch4 -->
+<section id="ch4">
+  <h2>04 · RoCE 与 InfiniBand（双网络体系对比）</h2>
+  <div class="goal">目标：说清 RoCEv1（链路层）、RoCEv2（UDP/IP，端口 4791）、InfiniBand（原生 RDMA）三者差别；认识 HCA、Subnet Manager、Quantum / Spectrum 交换机；能按成本/性能/运维做选型。</div>
+
+  <h3>B 站资源</h3>
+  <div class="res">
+    <span class="badge b-blog">专栏</span>
+    <div class="res-body">
+      <div class="title">智算"网络协议"的较量：InfiniBand VS RoCE</div>
+      <div class="desc">HCA、SM、IB 架构讲得清楚。</div>
+      <a class="link" href="https://www.bilibili.com/opus/954666398366302232" target="_blank" rel="noopener noreferrer">bilibili.com/opus/954666398366302232</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">纯干货：Mellanox 网卡 RDMA 配置（RoCEv2）</div>
+      <a class="link" href="https://www.bilibili.com/video/BV1hc41187aa/" target="_blank" rel="noopener noreferrer">bilibili.com/video/BV1hc41187aa/</a>
+    </div>
+  </div>
+
+  <h3>官方资料</h3>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">NVIDIA Quantum-2 InfiniBand 平台（ConnectX-7 NDR 400G HCA、Quantum-2 交换机、SHARP 在网计算）</div>
+      <a class="link" href="https://www.nvidia.com/en-us/networking/quantum2/" target="_blank" rel="noopener noreferrer">nvidia.com/en-us/networking/quantum2/</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">NVIDIA Spectrum-X 以太网平台</div>
+      <a class="link" href="https://www.nvidia.com/en-us/networking/spectrumx/" target="_blank" rel="noopener noreferrer">nvidia.com/en-us/networking/spectrumx/</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-blog">博客</span>
+    <div class="res-body">
+      <div class="title">GPU Networking for AI Clusters: InfiniBand vs RoCE vs Spectrum-X Decision Guide</div>
+      <a class="link" href="https://www.spheron.network/blog/gpu-networking-infiniband-roce-spectrum-x-guide/" target="_blank" rel="noopener noreferrer">spheron.network/blog/gpu-networking-infiniband-roce-spectrum-x-guide/</a>
+    </div>
+  </div>
+
+  <h3>选型速记</h3>
+  <table>
+    <thead><tr><th>维度</th><th>InfiniBand</th><th>RoCEv2</th></tr></thead>
+    <tbody>
+      <tr><td>性能</td><td>最优（原生 RDMA，SHARP 在网计算）</td><td>接近 IB（需精细调优 PFC/ECN）</td></tr>
+      <tr><td>成本</td><td>交换机/HCA 昂贵</td><td>可复用以太网交换机，成本低</td></tr>
+      <tr><td>运维</td><td>封闭生态，SM 管理</td><td>开放，但 PFC 调参复杂</td></tr>
+      <tr><td>代表</td><td>NVIDIA Quantum / ConnectX</td><td>NVIDIA Spectrum-X / 华为 / 华三</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Ch5 -->
+<section id="ch5">
+  <h2>05 · 无损以太网设计（PFC / ECN / DCQCN）</h2>
+  <div class="goal">本章是 B 站免费视频最薄弱的一环，主要靠论文 + 厂商部署文档。PFC 解决 0 丢包但会引发拥塞扩散和 PFC 风暴；ECN 在 IP 头标记拥塞；DCQCN 是 RoCEv2 事实标准的端到端速率控制算法。</div>
+
+  <h3>必读论文</h3>
+  <div class="res">
+    <span class="badge b-paper">论文</span>
+    <div class="res-body">
+      <div class="title">Y. Zhu et al., "Congestion Control for Large-Scale RDMA Deployments", ACM SIGCOMM 2015（DCQCN 开山之作）</div>
+      <div class="desc">含 fluid model 和水线调优指南。</div>
+      <a class="link" href="https://courses.cs.duke.edu/cps214/compsci514/cps214/current/readings/dcqcn.pdf" target="_blank" rel="noopener noreferrer">Duke 课程镜像 PDF</a> ·
+      <a class="link" href="http://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p523.pdf" target="_blank" rel="noopener noreferrer">SIGCOMM 官方 PDF</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-paper">论文</span>
+    <div class="res-body">
+      <div class="title">延伸：Sliding Window Kalman Filter-Based DCQCN for RDMA Congestion Control</div>
+      <a class="link" href="https://dl.acm.org/doi/pdf/10.1145/3616480.3616481" target="_blank" rel="noopener noreferrer">dl.acm.org/doi/pdf/10.1145/3616480.3616481</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-paper">论文</span>
+    <div class="res-body">
+      <div class="title">TOD: Trend-Oriented Delay-Based Congestion Control in Lossless DCN（APNet'23）</div>
+      <a class="link" href="https://conferences.sigcomm.org/events/apnet2023/papers/sec4-tod.pdf" target="_blank" rel="noopener noreferrer">conferences.sigcomm.org/events/apnet2023/papers/sec4-tod.pdf</a>
+    </div>
+  </div>
+
+  <h3>开源仿真</h3>
+  <div class="res">
+    <span class="badge b-repo">仓库</span>
+    <div class="res-body">
+      <div class="title">ns-3 RDMA 模型（自带 DCQCN / TIMELY / PFC / ECN）</div>
+      <a class="link" href="https://gitee.com/zm643/ns3-rdma" target="_blank" rel="noopener noreferrer">gitee.com/zm643/ns3-rdma</a>
+    </div>
+  </div>
+
+  <h3>厂商部署指南（命令直接照抄）</h3>
+  <div class="res">
+    <span class="badge b-doc">指南</span>
+    <div class="res-body">
+      <div class="title">Arista + Broadcom《Lossless Network for AI/ML/Storage/HPC with RDMA》v2</div>
+      <div class="desc">PFC 命令、缓冲水线、ECN 阈值全套。</div>
+      <a class="link" href="https://www.arista.com/assets/data/pdf/Broadcom-RoCE-Deployment-Guide.pdf" target="_blank" rel="noopener noreferrer">arista.com/.../Broadcom-RoCE-Deployment-Guide.pdf</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">NVIDIA Cumulus Linux 官方 RoCE 指南（v5.1）</div>
+      <a class="link" href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-51/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" target="_blank" rel="noopener noreferrer">docs.nvidia.com/.../RDMA-over-Converged-Ethernet-RoCE/</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">Intel Ethernet 800 Series Linux Flow Control Configuration Guide for RDMA（DCQCN 参数逐项解释）</div>
+      <a class="link" href="https://cdrdv2-public.intel.com/635330/635330_800%20Series%20Linux%20Flow%20Control%20Guide%20for%20RDMA_Rev1.1.pdf" target="_blank" rel="noopener noreferrer">cdrdv2-public.intel.com/.../RDMA_Rev1.1.pdf</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">VAST Data Cumulus RoCEv2 配置指南（MTU 9216、PFC 优先级 3、CNP 端口 4791）</div>
+      <a class="link" href="https://kb.vastdata.com/docs/cumulus-rocev2-configuration-guide" target="_blank" rel="noopener noreferrer">kb.vastdata.com/docs/cumulus-rocev2-configuration-guide</a>
+    </div>
+  </div>
+
+  <h3>中文调优实战</h3>
+  <div class="res">
+    <span class="badge b-blog">博客</span>
+    <div class="res-body">
+      <div class="title">PFC、ECN、DCQCN 怎么配：RoCE 网络调优的端到端方法</div>
+      <a class="link" href="https://zhongkexy.com/deployment-acceptance/roce-pfc-ecn-dcqcn-tuning.html" target="_blank" rel="noopener noreferrer">zhongkexy.com/.../roce-pfc-ecn-dcqcn-tuning.html</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-blog">博客</span>
+    <div class="res-body">
+      <div class="title">无损网络理论和实践（PFC/ECN/DCQCN 概念入门）</div>
+      <a class="link" href="https://blog.csdn.net/qq_37207042/article/details/131195591" target="_blank" rel="noopener noreferrer">blog.csdn.net/qq_37207042/article/details/131195591</a>
+    </div>
+  </div>
+</section>
+
+<!-- Ch6 -->
+<section id="ch6">
+  <h2>06 · AI 训练通信（NCCL / AllReduce）</h2>
+  <div class="goal">目标：分清 AllReduce / Broadcast / Reduce / AllGather / ReduceScatter；理解 Ring（带宽最优，大消息）vs Tree / Double Binary Tree（延迟最优，小消息）vs 分层 Ring（跨节点）；会用 nccl-tests 验证集群网络，会读 busbw。</div>
+
+  <h3>B 站视频 / 课程</h3>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">[PyTorch 分布式] ring-allreduce 算法（scatter-reduce、allgather）以及 FSDP</div>
+      <div class="desc">配 GitHub 代码：chunhuizhang/pytorch_distribute_tutorials。</div>
+      <a class="link" href="https://www.bilibili.com/video/BV1biLHzAEzv/" target="_blank" rel="noopener noreferrer">bilibili.com/video/BV1biLHzAEzv/</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-video">课程</span>
+    <div class="res-body">
+      <div class="title">B 站付费课《NCCL 集合通信源码解读、任务调度、拓扑》</div>
+      <a class="link" href="https://www.bilibili.com/cheese/play/ep1485571" target="_blank" rel="noopener noreferrer">bilibili.com/cheese/play/ep1485571</a>
+    </div>
+  </div>
+
+  <h3>GitHub 开源（动手必跑）</h3>
+  <div class="res">
+    <span class="badge b-repo">仓库</span>
+    <div class="res-body">
+      <div class="title">NVIDIA/nccl-tests（官方测试套件）</div>
+      <div class="desc">提供 all_reduce_perf / all_gather_perf / broadcast_perf / sendrecv_perf。</div>
+      <a class="link" href="https://github.com/NVIDIA/nccl-tests" target="_blank" rel="noopener noreferrer">github.com/NVIDIA/nccl-tests</a>
+<pre>git clone https://github.com/NVIDIA/nccl-tests.git
+cd nccl-tests && make MPI=1
+# 单机 8 卡测 NVLink
+./build/all_reduce_perf -b 8 -e 128M -f 2 -g 8
+# 多机（mpirun，每节点 8 卡）
+mpirun -np 16 --bind-to socket ./build/all_reduce_perf -b 8 -e 8G -f 2 -g 8</pre>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-repo">仓库</span>
+    <div class="res-body">
+      <div class="title">baidu-research/baidu-allreduce（Ring AllReduce 最早开源参考实现）</div>
+      <a class="link" href="https://github.com/baidu-research/baidu-allreduce" target="_blank" rel="noopener noreferrer">github.com/baidu-research/baidu-allreduce</a>
+    </div>
+  </div>
+
+  <h3>必读论文（按顺序读）</h3>
+  <div class="res">
+    <span class="badge b-paper">论文</span>
+    <div class="res-body">
+      <div class="title">① Baidu《Bringing HPC Techniques to Deep Learning》(2016) — Ring AllReduce 开山之作</div>
+      <a class="link" href="https://www.cse.iitd.ac.in/~rijurekha/col730_2022/baidu_allreduce_oct6.pdf" target="_blank" rel="noopener noreferrer">cse.iitd.ac.in/.../baidu_allreduce_oct6.pdf</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-paper">论文</span>
+    <div class="res-body">
+      <div class="title">② Horovod: fast and easy distributed deep learning in TensorFlow (2018) — 工业落地</div>
+      <a class="link" href="https://ar5iv.labs.arxiv.org/html/1802.05799" target="_blank" rel="noopener noreferrer">ar5iv.labs.arxiv.org/html/1802.05799</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-paper">论文</span>
+    <div class="res-body">
+      <div class="title">③ Demystifying NCCL: An In-depth Analysis of GPU Communication Protocols and Algorithms (arXiv 2507.04786, 2025)</div>
+      <div class="desc">最新、最系统的 NCCL 协议/算法综述，含 Ring / Tree / Double Binary Tree 对比。</div>
+      <a class="link" href="https://arxiv.org/html/2507.04786" target="_blank" rel="noopener noreferrer">arxiv.org/html/2507.04786</a>
+    </div>
+  </div>
+
+  <h3>官方文档</h3>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">NCCL User Guide · Environment Variables 全表</div>
+      <div class="desc">NCCL_ALGO / NCCL_PROTO / NCCL_IB_HCA / NCCL_TOPO_FILE 都在这。</div>
+      <a class="link" href="https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html" target="_blank" rel="noopener noreferrer">docs.nvidia.com/deeplearning/nccl/user-guide/docs/env.html</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">NCCL Developer Guide PDF</div>
+      <a class="link" href="https://docs.nvidia.com/deeplearning/nccl/archives/nccl_2115/pdf/NCCL-Developer-Guide.pdf" target="_blank" rel="noopener noreferrer">docs.nvidia.com/.../NCCL-Developer-Guide.pdf</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-blog">博客</span>
+    <div class="res-body">
+      <div class="title">NVIDIA 开发者博客《Massively Scale Your Deep Learning Training with NCCL 2.4》</div>
+      <div class="desc">讲分层 Ring / 2D Ring。</div>
+      <a class="link" href="https://developer.nvidia.com/blog/massively-scale-deep-learning-training-nccl-2-4/" target="_blank" rel="noopener noreferrer">developer.nvidia.com/blog/massively-scale-deep-learning-training-nccl-2-4/</a>
+    </div>
+  </div>
+
+  <h3>调优指南</h3>
+  <div class="res">
+    <span class="badge b-blog">博客</span>
+    <div class="res-body">
+      <div class="title">NCCL Tuning for Multi-GPU LLM Training: Env Vars, Topology, Cloud Guide</div>
+      <a class="link" href="https://www.spheron.network/blog/nccl-tuning-multi-gpu-llm-training-2026/" target="_blank" rel="noopener noreferrer">spheron.network/blog/nccl-tuning-multi-gpu-llm-training-2026/</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-blog">博客</span>
+    <div class="res-body">
+      <div class="title">NCCL Algorithms & How It Achieves 900 GB/s（Ring/Tree 选型表、NCCL_ALGO 手动覆盖）</div>
+      <a class="link" href="https://jared-hpc.com/ai-hardware-engineer-roadmap/Phase%205%20-%20Advanced%20Topics%20and%20Specialization/Track%20A%20-%20GPU%20Infrastructure/Nvidia%20GPU/HPC%20Setup/NCCL-Deep-Dive/02-Algorithms-and-Bandwidth/" target="_blank" rel="noopener noreferrer">jared-hpc.com/.../02-Algorithms-and-Bandwidth/</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-doc">文档</span>
+    <div class="res-body">
+      <div class="title">NVIDIA nccl-tests · 官方测试工具与参数说明</div>
+      <div class="desc">官方仓库说明测试命令、消息大小与 GPU 数量等参数，并提供 algbw / busbw 指标的解释。</div>
+      <a class="link" href="https://github.com/NVIDIA/nccl-tests#readme" target="_blank" rel="noopener noreferrer">github.com/NVIDIA/nccl-tests#readme</a>
+    </div>
+  </div>
+</section>
+
+<!-- Ch7 -->
+<section id="ch7">
+  <h2>07 · AI 算力网络架构设计（集群拓扑 · 容量规划）</h2>
+  <div class="goal">目标：会算收敛比（AI 训练要求 1:1）；区分两层 Spine-Leaf（中小集群）vs 三层 Fat-Tree（万卡以上）；会根据 GPU 数量、网卡数、单卡带宽反推 Leaf/Spine 端口数。</div>
+
+  <h3>B 站视频</h3>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">ZOMI 酱万卡组网合集（多层/单层收敛比、框式盒式、单轨多轨、万卡交付）</div>
+      <a class="link" href="https://space.bilibili.com/517221395/video" target="_blank" rel="noopener noreferrer">UP 主主页（进"合集"标签，需登录 B 站）</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">沐曦官方《基于 AI-Infra 之上的 AIGC 实战》（含 GPU 集群建设设计与部署）</div>
+      <a class="link" href="https://www.bilibili.com/video/BV1o3Y4zvEMY/" target="_blank" rel="noopener noreferrer">bilibili.com/video/BV1o3Y4zvEMY/</a>
+    </div>
+  </div>
+
+  <h3>白皮书</h3>
+  <div class="res">
+    <span class="badge b-doc">白皮书</span>
+    <div class="res-body">
+      <div class="title">NVIDIA Spectrum-X 中文白皮书（三层 SN5600 参考设计、POD 划分、带宽规划模板）</div>
+      <a class="link" href="https://images.nvidia.cn/aem-dam/zh_cn/Solutions/networking/products/supernic/nvidia-spectrum-x-whitepaper-2959968-zhCN.pdf" target="_blank" rel="noopener noreferrer">images.nvidia.cn/.../nvidia-spectrum-x-whitepaper-2959968-zhCN.pdf</a>
+    </div>
+  </div>
+
+  <h3>容量规划速算</h3>
+  <table>
+    <tbody>
+      <tr><td>每 GPU 配 1 张 400G 网卡</td><td>8 卡服务器需 8×400G = 3.2T 接入带宽</td></tr>
+      <tr><td>Leaf 下行</td><td>每服务器 8×400G；上行若 1:1 收敛，需同样 3.2T 上行 = 8×400G 上行口</td></tr>
+      <tr><td>Spine 数量</td><td>N 个 Leaf，每个 Leaf 接全部 Spine；Spine 数决定无阻塞程度</td></tr>
+      <tr><td>万卡粗算</td><td>8 卡/服务器 → 1250 台；每 Leaf 接 16 台 → ~78 台 Leaf；Spine 按上联带宽反推</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Prereq -->
+<section id="prereq">
+  <h2>打底必备：数据中心网络基础</h2>
+  <div class="goal">原课程假设 HCIA/HCIP 数通基础。如果 VXLAN/EVPN/Spine-Leaf 不熟，先补下面两个再看 AI 网络。</div>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">数据中心网络 VXLAN 与 EVPN 原理与部署 —— 众元网络</div>
+      <a class="link" href="https://m.bilibili.com/video/BV1CnLEz1Ems" target="_blank" rel="noopener noreferrer">m.bilibili.com/video/BV1CnLEz1Ems</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-video">视频</span>
+    <div class="res-body">
+      <div class="title">心跳线网络实验室 VXLAN/EVPN 合集（EVPN 双归接入、手工 Overlay、控制平面剖析）</div>
+      <a class="link" href="https://space.bilibili.com/612369008/video" target="_blank" rel="noopener noreferrer">UP 主主页（进"合集"标签，需登录 B 站）</a>
+    </div>
+  </div>
+  <div class="res">
+    <span class="badge b-blog">文档</span>
+    <div class="res-body">
+      <div class="title">华为社区技术干货：CLOS 架构在数据中心的应用（Spine-Leaf）</div>
+      <a class="link" href="https://forum.huawei.com/enterprise/en/Technical-Dry-Goods-Application-of-the-CLOS-Architecture-in-Data-Centers-Spine-Leaf-and-Spine-Network-Spine-Leaf/thread/667265944218648576-667213883565289474" target="_blank" rel="noopener noreferrer">forum.huawei.com/.../667213883565289474</a>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section id="roadmap">
+  <h2>建议学习路径（两周）</h2>
+  <table class="roadmap">
+    <thead><tr><th>时间</th><th>内容</th><th>产出</th></tr></thead>
+    <tbody>
+      <tr><td>Day 1–2</td><td>看 ZOMI 酱万卡组网合集 + 读 Spectrum-X 中文白皮书</td><td>能画出一张 1024 卡集群的 Spine-Leaf 拓扑图</td></tr>
+      <tr><td>Day 3–4</td><td>泡澡的龙 RDMA 视频 + 跑通 ns-3 RDMA 仿真</td><td>说清零拷贝 / 内核旁路 / QP 是什么</td></tr>
+      <tr><td>Day 5–7</td><td>精读 DCQCN SIGCOMM'15 + 对照 Arista/Broadcom 部署指南</td><td>列出 PFC/ECN/DCQCN 在交换机和网卡上分别配什么</td></tr>
+      <tr><td>Day 8–10</td><td>Ring AllReduce 原论文 + Horovod + Demystifying NCCL；跑通 nccl-tests</td><td>能解释 Ring vs Tree 何时用，会读 busbw</td></tr>
+      <tr><td>Day 11–12</td><td>NCCL User Guide 环境变量表 + 调优指南</td><td>列一份 NCCL 排障 checklist</td></tr>
+      <tr><td>Day 13–14</td><td>用容量规划公式，自己算一遍 10000 卡集群需要多少 Leaf/Spine</td><td>完成一份容量规划草稿</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Glossary -->
+<section id="glossary">
+  <h2>术语速查表</h2>
+  <table>
+    <thead><tr><th>缩写</th><th>全称</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td>PCIe</td><td>Peripheral Component Interconnect Express</td><td>通用高速串行总线，GPU 与 CPU/内存相连</td></tr>
+      <tr><td>NVLink</td><td>NVIDIA Link</td><td>NVIDIA 私有 GPU 间高速互联，节点内使用</td></tr>
+      <tr><td>NVSwitch</td><td>—</td><td>NVLink 的交叉交换芯片，支持多 GPU full-mesh</td></tr>
+      <tr><td>SXM</td><td>Server Module</td><td>GPU 直插主板的高功率形态（vs PCIe 插卡）</td></tr>
+      <tr><td>HGX</td><td>—</td><td>NVIDIA 8-GPU 服务器模组</td></tr>
+      <tr><td>RDMA</td><td>Remote Direct Memory Access</td><td>远程直接内存访问，零拷贝、内核旁路</td></tr>
+      <tr><td>RNIC</td><td>RDMA NIC</td><td>支持 RDMA 的网卡（如 Mellanox ConnectX）</td></tr>
+      <tr><td>HCA</td><td>Host Channel Adapter</td><td>InfiniBand 主机通道适配器（即 IB 网卡）</td></tr>
+      <tr><td>RoCE</td><td>RDMA over Converged Ethernet</td><td>以太网上跑 RDMA；v1 二层、v2 三层（UDP/4791）</td></tr>
+      <tr><td>IB</td><td>InfiniBand</td><td>原生 RDMA 网络，由 SM 管理</td></tr>
+      <tr><td>PFC</td><td>Priority-based Flow Control</td><td>基于优先级的以太网逐跳流控（802.1Qbb）</td></tr>
+      <tr><td>ECN</td><td>Explicit Congestion Notification</td><td>IP 头显式拥塞通知（RFC 3168）</td></tr>
+      <tr><td>CNP</td><td>Congestion Notification Packet</td><td>RoCEv2 中接收端返回给发送端的拥塞通知包</td></tr>
+      <tr><td>DCQCN</td><td>Data Center QCN</td><td>RoCEv2 事实标准端到端拥塞控制算法</td></tr>
+      <tr><td>TIMELY</td><td>—</td><td>基于时延的 RDMA 拥塞控制算法</td></tr>
+      <tr><td>NCCL</td><td>NVIDIA Collective Communications Library</td><td>NVIDIA 多 GPU 集合通信库</td></tr>
+      <tr><td>AllReduce</td><td>—</td><td>所有 GPU 对同一张量做归约后再分发给所有 GPU</td></tr>
+      <tr><td>Ring AllReduce</td><td>—</td><td>环形全归约，带宽最优，大消息首选</td></tr>
+      <tr><td>DBT</td><td>Double Binary Tree</td><td>树形全归约，延迟最优，小消息首选</td></tr>
+      <tr><td>Spine-Leaf</td><td>—</td><td>现代数据中心两层 Clos 拓扑</td></tr>
+      <tr><td>POD</td><td>Point of Delivery</td><td>集群内的一个故障/管理域</td></tr>
+      <tr><td>Rail</td><td>—</td><td>一张网卡对应一条水平轨道（Rail-optimized 拓扑）</td></tr>
+      <tr><td>SHARP</td><td>Scalable Hierarchical Aggregation and Reduction Protocol</td><td>NVIDIA IB 交换机上的在网计算</td></tr>
+      <tr><td>SuperNIC</td><td>—</td><td>NVIDIA 支持 GPUDirect RDMA 的高性能网卡</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--muted);font-size:13px;margin-top:16px">
+    备注：原课程中的 24 个真机实验（GPUDirect、PFC/ECN 对比、NCCL 性能压测等）需要 Mellanox 网卡 + 无损交换机硬件环境，B 站免费资源无法覆盖；可通过云厂商（AWS HyperPod、GCP A3、阿里云 PAI、火山引擎）租 GPU 实例跑 nccl-tests 替代。
+  </p>
+</section>
+
+</main>
+</div>
+
+<footer>
+  AI 算力中心网络架构 · 学习资源合集 &nbsp;|&nbsp; 整理于 2026-09-29
+</footer>
+
+</body>
+</html>

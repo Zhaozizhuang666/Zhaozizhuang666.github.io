@@ -20,7 +20,14 @@ function entryNames(entry) {
   return [entry.name, ...(entry.aliases || [])].map(normalize).filter(name => name.length >= 2);
 }
 
+function personalResourceIds(text) {
+  if (/6g.*(?:报道|文章|story)|研修报道|研修文章/i.test(text)) return ['profile-6g-training-story'];
+  if (/6g|6G时代数据要素|secure data flows/i.test(text)) return ['profile-6g-course-paper'];
+  return [];
+}
+
 function directoryIntent(text) {
+  if (personalResourceIds(text).length) return '';
   const query = normalize(text);
   if (/期刊|学术刊物|刊名|第一批|第二批|投稿|journal|issn|cnki/.test(query)) return 'journal';
   if (/竞赛|比赛|大赛|赛事|挑战杯|蓝桥杯|电赛|大挑|小挑|互联网|competition/.test(query)) return 'competition';
@@ -104,11 +111,13 @@ export function retrieveKnowledge(messages, limit = 6) {
   const terms = kind ? directoryTerms(queryText) : '';
   const batch = /第二批/.test(queryText) ? '第二批' : /第一批/.test(queryText) ? '第一批' : '';
   const candidates = [];
+  const personalIds = personalResourceIds(queryText);
   for (const dataset of datasets) {
     if (kind ? dataset.kind !== kind : dataset.kind !== 'technical') continue;
     for (const entry of dataset.entries) {
       if (batch && entry.batch !== batch) continue;
-      const score = scoreEntry(entry, query, terms);
+      if (personalIds.length && !personalIds.includes(entry.id)) continue;
+      const score = personalIds.includes(entry.id) ? 1000 : scoreEntry(entry, query, terms);
       if (score) candidates.push({ score, kind: dataset.kind, sourceTitle: dataset.sourceTitle, sourceNote: dataset.sourceNote, entry });
     }
     // A directory overview should provide real sample records and matching source links.

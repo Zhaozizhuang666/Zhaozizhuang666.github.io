@@ -1,404 +1,1415 @@
 {
-  "sourceTitle": "小艺技术学习资料 · VLA, VLN, AI Training & AI Infrastructure",
-  "sourceNote": "本资料将创享艺苑 VLA Guide、草帽路飞 AIInfraGuide、Lossless Network 的已阅读页面与标注的原始论文整理为简短、改写的学习索引。个人学习指南和教育教程不应替代原始论文、官方实现或实测证据；论文条目也只用于概念与方法定位，不代表完整复现或最新综述。每条保留具体来源页；不表示已完整抓取来源网站、完成模型训练或复现，也不把教程的类比与示例参数视为通用结论。涉及模型能力、许可、硬件配置与性能的实际决策仍须查验原始材料。 本站使用说明标记为 first-party-site-guide，仅描述此网站功能与配置，不作为外部技术结论的研究证据。",
+  "sourceTitle": "小艺学习资料 · VLA, VLN, AI Training, AI Infrastructure & Site Resources",
+  "sourceNote": "本资料将创享艺苑 VLA Guide、草帽路飞 AIInfraGuide、Lossless Network 的已阅读页面与标注的原始论文整理为简短、改写的学习索引。个人学习指南和教育教程不应替代原始论文、官方实现或实测证据；论文条目也只用于概念与方法定位，不代表完整复现或最新综述。每条保留具体来源页；不表示已完整抓取来源网站、完成模型训练或复现，也不把教程的类比与示例参数视为通用结论。涉及模型能力、许可、硬件配置与性能的实际决策仍须查验原始材料。 本站使用说明标记为 first-party-site-guide，仅描述此网站功能与配置，不作为外部技术结论的研究证据。 商业方向记录标记为 owner-provided-business-plan，来自所有者提供并公开的商业计划材料，既有实践与计划应用分开描述。 本站学习资源条目标记为静态副本或导航，只说明已发布范围；不会据此声称 Xiaoyi 已完整读取全部章节、完成模型训练或核验所有外链。 研修论文标记为 owner-provided-course-paper，仅说明本人提供的材料，不把研修当作发表或获证，也不把计划数据当作既有业绩。",
   "entries": [
     {
       "id": "tech-vlm-bridge",
       "name": "VLM · Vision–Language Connection",
-      "aliases": ["VLM", "Vision Language Model", "视觉语言模型", "视觉语言连接", "多模态连接", "Q-Former", "视觉投影"],
+      "aliases": [
+        "VLM",
+        "Vision Language Model",
+        "视觉语言模型",
+        "视觉语言连接",
+        "多模态连接",
+        "Q-Former",
+        "视觉投影"
+      ],
       "summary": "VLM 通过连接模块让语言模型使用图像特征。",
       "details": "视觉编码器提取图像特征，连接模块将其转换为语言模型可使用的视觉 token 或交叉注意力条件。线性投影、Q-Former 与交叉注意力并非可直接互换的接口；视觉 token 数量、训练阶段与输入要求都会影响成本和集成方式。",
-      "website": "https://zhaozizhuang666.github.io/vla-guide/docs/m3-02/",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/docs/m3-02/",
       "urlType": "source",
       "sourceLocation": "VLA Guide · M3-02 · 视觉到语言的连接机制",
       "sourceType": "personal-learning-guide",
-      "topics": ["VLM", "multimodal", "vision-language", "model-interface"]
+      "topics": [
+        "VLM",
+        "multimodal",
+        "vision-language",
+        "model-interface"
+      ],
+      "upstreamWebsite": "https://zhaozizhuang666.github.io/vla-guide/docs/m3-02/"
     },
     {
       "id": "tech-vla-foundation",
       "name": "VLA · Vision–Language–Action",
-      "aliases": ["VLA", "Vision Language Action", "视觉语言动作", "RT-1", "RT-2", "具身智能模型"],
+      "aliases": [
+        "VLA",
+        "Vision Language Action",
+        "视觉语言动作",
+        "RT-1",
+        "RT-2",
+        "具身智能模型"
+      ],
       "summary": "VLA 将视觉、语言指令与机器人动作连接为可执行策略。",
       "details": "该指南用 RT 系列介绍从机器人序列建模到视觉语言预训练迁移的路线，其中 RT-2 将动作表示为 token。动作序列的生成概率不能直接解释为真实任务成功率，仍需通过机器人执行和任务级评测检验。",
-      "website": "https://zhaozizhuang666.github.io/vla-guide/docs/m5-01/",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/docs/m5-01/",
       "urlType": "source",
       "sourceLocation": "VLA Guide · M5-01 · VLA 基础与 RT 系列",
       "sourceType": "personal-learning-guide",
-      "topics": ["VLA", "robot-policy", "embodied-intelligence", "evaluation"]
+      "topics": [
+        "VLA",
+        "robot-policy",
+        "embodied-intelligence",
+        "evaluation"
+      ],
+      "upstreamWebsite": "https://zhaozizhuang666.github.io/vla-guide/docs/m5-01/"
     },
     {
       "id": "tech-vln-foundation",
       "name": "VLN · Vision-and-Language Navigation",
-      "aliases": ["VLN", "Vision-and-Language Navigation", "Vision Language Navigation", "视觉语言导航", "语言导航", "导航智能体"],
+      "aliases": [
+        "VLN",
+        "Vision-and-Language Navigation",
+        "Vision Language Navigation",
+        "视觉语言导航",
+        "语言导航",
+        "导航智能体"
+      ],
       "summary": "VLN 让智能体根据自然语言指令和视觉观察，在环境中选择动作并到达目标。",
       "details": "VLN（Vision-and-Language Navigation，视觉语言导航）关注语言指令与环境视觉之间的 grounding：智能体需要结合当前观察、历史轨迹和指令，逐步选择前进、转向或停止等导航动作。它的任务输出通常是导航轨迹或离散动作，不能直接等同于 VLA 的关节控制，也不能由到达一次目标推断出通用具身智能。",
       "website": "https://arxiv.org/abs/1711.07280",
       "urlType": "source",
       "sourceLocation": "Anderson et al. · Vision-and-Language Navigation: Interpreting visually-grounded navigation instructions in real environments",
       "sourceType": "primary-paper",
-      "topics": ["VLN", "vision-language", "navigation", "embodied-intelligence"]
+      "topics": [
+        "VLN",
+        "vision-language",
+        "navigation",
+        "embodied-intelligence"
+      ]
     },
     {
       "id": "tech-vln-evaluation",
       "name": "VLN Evaluation · SR & SPL",
-      "aliases": ["VLN评测", "导航评测", "Success Rate", "Success weighted by Path Length", "SPL", "SR", "导航成功率"],
+      "aliases": [
+        "VLN评测",
+        "导航评测",
+        "Success Rate",
+        "Success weighted by Path Length",
+        "SPL",
+        "SR",
+        "导航成功率"
+      ],
       "summary": "VLN 常用 SR 衡量是否到达目标，SPL 同时考虑成功与路径效率。",
       "details": "在约定的导航任务、目标判定阈值和轨迹记录下，SR（Success Rate）统计按停止规则与目标阈值判定成功的回合比例；SPL（Success weighted by Path Length）在成功条件上进一步按实际路径相对最短路径的效率加权。指标必须和环境、起点、指令、停止规则及评测协议一起解释，不能跨协议直接比较，也不能把 SR/SPL 当作语言理解或真实机器人可靠性的完整替代。",
       "website": "https://arxiv.org/abs/1807.06757",
       "urlType": "source",
       "sourceLocation": "Anderson et al. · On Evaluation of Embodied Navigation Agents",
       "sourceType": "primary-paper",
-      "topics": ["VLN", "evaluation", "SR", "SPL", "navigation"]
+      "topics": [
+        "VLN",
+        "evaluation",
+        "SR",
+        "SPL",
+        "navigation"
+      ]
     },
     {
       "id": "tech-retrieval-augmented-generation",
       "name": "RAG · Retrieval-Augmented Generation",
-      "aliases": ["RAG", "检索增强生成", "retrieval augmented generation", "检索增强", "知识库问答"],
+      "aliases": [
+        "RAG",
+        "检索增强生成",
+        "retrieval augmented generation",
+        "检索增强",
+        "知识库问答"
+      ],
       "summary": "RAG 先从外部资料检索相关内容，再把检索结果提供给生成模型作答。",
       "details": "RAG 将检索器与生成器组合：检索器从给定语料中找出相关证据，生成器基于问题和证据组织回答。它可以把知识更新与模型参数分开，但检索遗漏、切分、排序和证据质量仍会影响答案；引用检索结果也不等于自动证明事实。",
       "website": "https://arxiv.org/abs/2005.11401",
       "urlType": "source",
       "sourceLocation": "Lewis et al. · Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
       "sourceType": "primary-paper",
-      "topics": ["RAG", "retrieval", "generation", "knowledge-base"]
+      "topics": [
+        "RAG",
+        "retrieval",
+        "generation",
+        "knowledge-base"
+      ]
     },
     {
       "id": "tech-tool-agent",
       "name": "Tool-using Agent · Reasoning & Acting",
-      "aliases": ["工具调用 Agent", "tool calling", "tool use", "function calling", "ReAct", "Agent工具调用", "行动工具"],
+      "aliases": [
+        "工具调用 Agent",
+        "tool calling",
+        "tool use",
+        "function calling",
+        "ReAct",
+        "Agent工具调用",
+        "行动工具"
+      ],
       "summary": "工具型 Agent 把语言模型的推理步骤与外部工具的观察、调用和反馈连接起来。",
       "details": "工具型 Agent 通常需要明确工具描述、参数校验、调用结果与下一步观察，并在必要时继续行动。ReAct 论文将 reasoning traces 与 actions 交替组织；实际系统还应把权限限制、失败与超时处理、结果校验和调用审计作为工程约束。能调用工具不代表规划正确或任务一定完成。",
       "website": "https://arxiv.org/abs/2210.03629",
       "urlType": "source",
       "sourceLocation": "Yao et al. · ReAct: Synergizing Reasoning and Acting in Language Models",
       "sourceType": "primary-paper",
-      "topics": ["agent", "tool-use", "reasoning", "action", "evaluation"]
+      "topics": [
+        "agent",
+        "tool-use",
+        "reasoning",
+        "action",
+        "evaluation"
+      ]
     },
     {
       "id": "tech-imitation-learning",
       "name": "Imitation Learning · Behavior Cloning & DAgger",
-      "aliases": ["模仿学习", "imitation learning", "行为克隆", "behavior cloning", "DAgger", "专家示范"],
+      "aliases": [
+        "模仿学习",
+        "imitation learning",
+        "行为克隆",
+        "behavior cloning",
+        "DAgger",
+        "专家示范"
+      ],
       "summary": "模仿学习从专家示范中学习策略，数据分布偏移是需要单独处理的风险。",
       "details": "行为克隆把示范中的观察与动作作为监督样本，但策略一旦偏离专家轨迹，后续观察可能落到训练数据之外，误差会累积。DAgger 通过让当前策略产生状态、再由专家提供动作标签来逐步收集数据；真实项目还要考虑专家成本、数据质量、权限和安全。",
       "website": "https://arxiv.org/abs/1011.0686",
       "urlType": "source",
       "sourceLocation": "Ross, Gordon & Bagnell · A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
       "sourceType": "primary-paper",
-      "topics": ["imitation-learning", "behavior-cloning", "robotics", "policy-learning"]
+      "topics": [
+        "imitation-learning",
+        "behavior-cloning",
+        "robotics",
+        "policy-learning"
+      ]
     },
     {
       "id": "tech-reinforcement-learning",
       "name": "Reinforcement Learning · Reward & Policy",
-      "aliases": ["强化学习", "reinforcement learning", "reward", "奖励函数", "policy gradient", "Q-learning", "DQN"],
+      "aliases": [
+        "强化学习",
+        "reinforcement learning",
+        "reward",
+        "奖励函数",
+        "policy gradient",
+        "Q-learning",
+        "DQN"
+      ],
       "summary": "以 DQN 为例，强化学习通过环境反馈的奖励信号学习策略或价值估计。",
       "details": "强化学习把交互过程表示为状态、动作、奖励和后续状态，目标是在约定回报定义下改进策略或价值估计。该来源以 Atari 游戏中的 DQN 为例，不能直接当作机器人控制、RLHF 或通用安全策略的证据；奖励设计、探索、样本效率和安全约束仍需按具体任务单独评估。",
       "website": "https://arxiv.org/abs/1312.5602",
       "urlType": "source",
       "sourceLocation": "Mnih et al. · Playing Atari with Deep Reinforcement Learning",
       "sourceType": "primary-paper",
-      "topics": ["reinforcement-learning", "reward", "policy", "robotics"]
+      "topics": [
+        "reinforcement-learning",
+        "reward",
+        "policy",
+        "robotics"
+      ]
     },
     {
       "id": "tech-diffusion-policy",
       "name": "Diffusion Policy · Visuomotor Action Generation",
-      "aliases": ["Diffusion Policy", "扩散策略", "动作扩散", "视觉运动策略"],
+      "aliases": [
+        "Diffusion Policy",
+        "扩散策略",
+        "动作扩散",
+        "视觉运动策略"
+      ],
       "summary": "Diffusion Policy 用扩散生成过程表示条件动作分布，常用于视觉运动控制研究。",
       "details": "扩散策略把动作序列作为需要逐步去噪的生成对象，并以观察等条件约束生成过程。它适合表达多模态动作分布，但推理步数、控制频率、动作窗口、数据覆盖和执行接口都会影响实际表现；论文中的结果不能脱离任务协议直接外推。",
       "website": "https://arxiv.org/abs/2303.04137",
       "urlType": "source",
       "sourceLocation": "Chi et al. · Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
       "sourceType": "primary-paper",
-      "topics": ["diffusion", "robot-policy", "visuomotor-control", "action-generation"]
+      "topics": [
+        "diffusion",
+        "robot-policy",
+        "visuomotor-control",
+        "action-generation"
+      ]
     },
     {
       "id": "tech-sim-to-real",
       "name": "Sim-to-Real · Domain Randomization",
-      "aliases": ["Sim-to-Real", "sim2real", "仿真到现实", "域随机化", "domain randomization", "simulation transfer"],
+      "aliases": [
+        "Sim-to-Real",
+        "sim2real",
+        "仿真到现实",
+        "域随机化",
+        "domain randomization",
+        "simulation transfer"
+      ],
       "summary": "Sim-to-real 通过缩小仿真与现实的差异，把仿真中学习或验证的策略迁移到真实环境。",
       "details": "域随机化在训练时改变仿真中的外观、材质或其他渲染因素，使策略面对一组可能环境而不是单一模拟条件；该论文主要讨论视觉域随机化。机器人项目还需要另查动力学随机化等方法，并检查传感器、延迟、控制频率、碰撞与安全约束，用真实小规模验证仿真结论。随机化本身不保证现实成功。",
       "website": "https://arxiv.org/abs/1703.06907",
       "urlType": "source",
       "sourceLocation": "Tobin et al. · Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World",
       "sourceType": "primary-paper",
-      "topics": ["sim-to-real", "simulation", "domain-randomization", "robotics"]
+      "topics": [
+        "sim-to-real",
+        "simulation",
+        "domain-randomization",
+        "robotics"
+      ]
     },
     {
       "id": "tech-vla-pretraining-finetuning",
       "name": "VLA Pretraining & Fine-tuning",
-      "aliases": ["预训练", "pretraining", "fine-tuning", "finetuning", "机器人微调", "VLA微调", "跨本体数据", "Open X-Embodiment"],
+      "aliases": [
+        "预训练",
+        "pretraining",
+        "fine-tuning",
+        "finetuning",
+        "机器人微调",
+        "VLA微调",
+        "跨本体数据",
+        "Open X-Embodiment"
+      ],
       "summary": "视觉语言预训练提供基础表征，机器人数据用于适配动作与任务。",
       "details": "视觉语言知识的迁移不等于已经具备适配目标机器人的控制接口。使用跨本体机器人数据时，应核对坐标系、动作维度、夹爪编码与控制频率；微调和评测必须沿用一致的数据与动作约定。",
-      "website": "https://zhaozizhuang666.github.io/vla-guide/docs/m5-01/",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/docs/m5-01/",
       "urlType": "source",
       "sourceLocation": "VLA Guide · M5-01 · 视觉语言预训练迁移与跨本体数据",
       "sourceType": "personal-learning-guide",
-      "topics": ["VLA", "pretraining", "fine-tuning", "robot-data"]
+      "topics": [
+        "VLA",
+        "pretraining",
+        "fine-tuning",
+        "robot-data"
+      ],
+      "upstreamWebsite": "https://zhaozizhuang666.github.io/vla-guide/docs/m5-01/"
     },
     {
       "id": "tech-vla-action-interface",
       "name": "Action Interface & Normalization",
-      "aliases": ["OpenVLA", "Octo", "LoRA", "动作归一化", "反归一化", "action normalization", "action unnormalization", "动作接口"],
+      "aliases": [
+        "OpenVLA",
+        "Octo",
+        "LoRA",
+        "动作归一化",
+        "反归一化",
+        "action normalization",
+        "action unnormalization",
+        "动作接口"
+      ],
       "summary": "机器人动作必须按目标 checkpoint 和数据集的实际语义解析。",
       "details": "开源 VLA 的条件输入、动作表示与预训练方式可能不同。动作反归一化必须匹配 checkpoint 对应的数据统计量与实现，不能默认全部使用 z-score；采用 LoRA 等微调方式也应先核查资源预算与可运行接口。",
-      "website": "https://zhaozizhuang666.github.io/vla-guide/docs/m5-02/",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/docs/m5-02/",
       "urlType": "source",
       "sourceLocation": "VLA Guide · M5-02 · 开源 VLA：Octo 与 OpenVLA",
       "sourceType": "personal-learning-guide",
-      "topics": ["VLA", "OpenVLA", "Octo", "action-interface", "fine-tuning"]
+      "topics": [
+        "VLA",
+        "OpenVLA",
+        "Octo",
+        "action-interface",
+        "fine-tuning"
+      ],
+      "upstreamWebsite": "https://zhaozizhuang666.github.io/vla-guide/docs/m5-02/"
     },
     {
       "id": "tech-embodied-agent",
       "name": "Embodied Agent · Planning, Action & Feedback",
-      "aliases": ["Embodied Agent", "具身Agent", "具身智能Agent", "具身智能", "分层Agent", "分层智能体", "感知推理行动", "长程任务", "hierarchical agent"],
+      "aliases": [
+        "Embodied Agent",
+        "具身Agent",
+        "具身智能Agent",
+        "具身智能",
+        "分层Agent",
+        "分层智能体",
+        "感知推理行动",
+        "长程任务",
+        "hierarchical agent"
+      ],
       "summary": "分层具身 Agent 用目标规划、短时动作和执行反馈连接不同决策层。",
       "details": "高层可负责目标或计划，低层负责短时动作输出，并通过完成、失败或状态过期等信号更新计划。不同时间尺度是一种常见设计，但分层也引入接口不一致和误差传播，不能据此推定系统已经具备可靠的长程任务能力。",
-      "website": "https://zhaozizhuang666.github.io/vla-guide/docs/m5-04/",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/docs/m5-04/",
       "urlType": "source",
       "sourceLocation": "VLA Guide · M5-04 · 分层具身 Agent",
       "sourceType": "personal-learning-guide",
-      "topics": ["agent", "embodied-intelligence", "planning", "feedback", "VLA"],
-      "sourceNotes": "本条仅概括该页支持的具身分层系统，不将其外推为所有通用工具型 Agent 的完整架构。"
+      "topics": [
+        "agent",
+        "embodied-intelligence",
+        "planning",
+        "feedback",
+        "VLA"
+      ],
+      "sourceNotes": "本条仅概括该页支持的具身分层系统，不将其外推为所有通用工具型 Agent 的完整架构。",
+      "upstreamWebsite": "https://zhaozizhuang666.github.io/vla-guide/docs/m5-04/"
     },
     {
       "id": "tech-vla-model-selection",
       "name": "VLA Model Selection & Action Representation",
-      "aliases": ["模型选型", "VLA选型", "model selection", "动作表示", "离散动作", "连续动作", "diffusion action", "flow action"],
+      "aliases": [
+        "模型选型",
+        "VLA选型",
+        "model selection",
+        "动作表示",
+        "离散动作",
+        "连续动作",
+        "diffusion action",
+        "flow action"
+      ],
       "summary": "先固定机器人与评测条件，再比较模型和动作生成方式。",
       "details": "选型应先明确本体、动作维度、相机、控制频率、任务长度、数据与资源预算，并检查许可和可运行的预处理、评测代码。离散 token 与连续 diffusion/flow 是动作表示或生成维度，分层是另一设计维度；不同论文的成功率不能脱离协议直接排名。",
-      "website": "https://zhaozizhuang666.github.io/vla-guide/docs/model-selection/",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/docs/model-selection/",
       "urlType": "source",
       "sourceLocation": "VLA Guide · VLA 模型选型指南",
       "sourceType": "personal-learning-guide",
-      "topics": ["VLA", "model-selection", "action-representation", "evaluation"]
+      "topics": [
+        "VLA",
+        "model-selection",
+        "action-representation",
+        "evaluation"
+      ],
+      "upstreamWebsite": "https://zhaozizhuang666.github.io/vla-guide/docs/model-selection/"
     },
     {
       "id": "tech-robot-e2e-evaluation",
       "name": "Robot End-to-End Evaluation",
-      "aliases": ["机器人评测", "端到端评测", "E2E评测", "VLA评测", "评测协议", "成功率", "robot evaluation", "rollout", "OpenVLA评测"],
+      "aliases": [
+        "机器人评测",
+        "端到端评测",
+        "E2E评测",
+        "VLA评测",
+        "评测协议",
+        "成功率",
+        "robot evaluation",
+        "rollout",
+        "OpenVLA评测"
+      ],
       "summary": "端到端评测需要固定执行协议，并保留任务级失败证据。",
       "details": "比较策略时应对齐任务套件、初始状态、顺序、随机种子、rollout 预算和成功判据，并保存任务级日志与视频。先核对版本、checkpoint 推理和动作语义，再做小数据微调与固定协议评测；反复使用测试集挑选 checkpoint 会污染结果。",
-      "website": "https://zhaozizhuang666.github.io/vla-guide/docs/openvla-lab/",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/docs/openvla-lab/",
       "urlType": "source",
       "sourceLocation": "VLA Guide · OpenVLA 实验与评测工作表",
       "sourceType": "personal-learning-guide",
-      "topics": ["VLA", "evaluation", "robotics", "reproducibility"],
-      "sourceNotes": "来源是一份实验工作表与方法指南，本条不声称该工作表已经完成真实复现或产生实验结论。"
+      "topics": [
+        "VLA",
+        "evaluation",
+        "robotics",
+        "reproducibility"
+      ],
+      "sourceNotes": "来源是一份实验工作表与方法指南，本条不声称该工作表已经完成真实复现或产生实验结论。",
+      "upstreamWebsite": "https://zhaozizhuang666.github.io/vla-guide/docs/openvla-lab/"
     },
     {
       "id": "tech-training-loop",
       "name": "Training Loop & Small-batch Debugging",
-      "aliases": ["训练循环", "training loop", "forward", "backward", "反向传播", "过拟合小批次", "训练调试", "训练不收敛"],
+      "aliases": [
+        "训练循环",
+        "training loop",
+        "forward",
+        "backward",
+        "反向传播",
+        "过拟合小批次",
+        "训练调试",
+        "训练不收敛"
+      ],
       "summary": "扩展训练前，先用最小闭环验证数据、损失和梯度。",
       "details": "基本闭环包括前向计算、损失、反向传播、优化器更新、验证与可恢复的 checkpoint。先核查张量形状、坐标轴、标签、mask、归一化和梯度，并尝试拟合一个固定小批次；验证时正确切换评估模式并关闭梯度图。",
-      "website": "https://zhaozizhuang666.github.io/vla-guide/docs/training-loop/",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/docs/training-loop/",
       "urlType": "source",
       "sourceLocation": "VLA Guide · 最小训练循环与调试",
       "sourceType": "personal-learning-guide",
-      "topics": ["training", "debugging", "validation", "PyTorch"]
+      "topics": [
+        "training",
+        "debugging",
+        "validation",
+        "PyTorch"
+      ],
+      "upstreamWebsite": "https://zhaozizhuang666.github.io/vla-guide/docs/training-loop/"
     },
     {
       "id": "tech-training-reproducibility",
       "name": "Reproducibility & Recoverable Checkpoints",
-      "aliases": ["断点续训", "checkpoint", "检查点", "可复现", "reproducibility", "optimizer state", "随机状态"],
+      "aliases": [
+        "断点续训",
+        "checkpoint",
+        "检查点",
+        "可复现",
+        "reproducibility",
+        "optimizer state",
+        "随机状态"
+      ],
       "summary": "保存模型权重还不足以保证训练能按原状态继续。",
       "details": "恢复训练应按实际实现保存和恢复模型、优化器、学习率调度器、混合精度 scaler（如使用）、全局步数及随机数与采样器状态。记录软件与 checkpoint 版本，使续训偏差和实验差异可以追查。",
-      "website": "https://zhaozizhuang666.github.io/vla-guide/docs/training-loop/",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/docs/training-loop/",
       "urlType": "source",
       "sourceLocation": "VLA Guide · 最小训练循环 · checkpoint 与恢复",
       "sourceType": "personal-learning-guide",
-      "topics": ["training", "checkpointing", "reproducibility"]
+      "topics": [
+        "training",
+        "checkpointing",
+        "reproducibility"
+      ],
+      "upstreamWebsite": "https://zhaozizhuang666.github.io/vla-guide/docs/training-loop/"
     },
     {
       "id": "tech-cuda-operators",
       "name": "CUDA & Operator Optimization",
-      "aliases": ["CUDA", "算子优化", "operator optimization", "GEMM", "Softmax", "Warp", "Grid Block Thread"],
+      "aliases": [
+        "CUDA",
+        "算子优化",
+        "operator optimization",
+        "GEMM",
+        "Softmax",
+        "Warp",
+        "Grid Block Thread"
+      ],
       "summary": "CUDA 优化要结合线程组织、访存与具体算子的执行特征。",
       "details": "该学习模块按 Grid/Block/Thread、GPU 内存模型、Warp 执行和同步等基础组织内容，再进入 Reduce、GEMM、Softmax 与 Attention 等算子。优化时应结合硬件与 profiler 观察实际瓶颈，不能仅凭算子名称判断性能。",
       "website": "https://caomaolufei.github.io/AIInfraGuide/cuda",
       "urlType": "source",
       "sourceLocation": "AIInfraGuide · CUDA 与算子优化模块",
       "sourceType": "personal-learning-guide",
-      "topics": ["AIInfra", "CUDA", "GPU", "operators", "profiling"]
+      "topics": [
+        "AIInfra",
+        "CUDA",
+        "GPU",
+        "operators",
+        "profiling"
+      ]
     },
     {
       "id": "tech-distributed-strategy",
       "name": "Distributed Training Strategy",
-      "aliases": ["分布式训练", "distributed training", "DDP", "FSDP", "ZeRO", "张量并行", "流水线并行", "数据并行", "tensor parallel", "pipeline parallel"],
+      "aliases": [
+        "分布式训练",
+        "distributed training",
+        "DDP",
+        "FSDP",
+        "ZeRO",
+        "张量并行",
+        "流水线并行",
+        "数据并行",
+        "tensor parallel",
+        "pipeline parallel"
+      ],
       "summary": "分布式训练要分别判断容量限制与训练时间限制，再选择并行策略。",
       "details": "数据并行划分数据并同步梯度，FSDP/ZeRO 分片训练状态，张量并行拆分层内计算，流水线并行拆分模型阶段，序列或上下文并行则拆分序列维度。它们在显存、通信与实现复杂度之间取舍，宜先使用满足需求的简单策略，再根据瓶颈调整。",
       "website": "https://caomaolufei.github.io/AIInfraGuide/distributed/模块三-分布式训练/11-分布式训练总论",
       "urlType": "source",
       "sourceLocation": "AIInfraGuide · 分布式训练总论",
       "sourceType": "personal-learning-guide",
-      "topics": ["AIInfra", "training", "distributed", "parallelism"]
+      "topics": [
+        "AIInfra",
+        "training",
+        "distributed",
+        "parallelism"
+      ]
     },
     {
       "id": "tech-training-memory",
       "name": "Training Memory Budget",
-      "aliases": ["训练显存", "显存预算", "训练内存", "training memory", "optimizer states", "激活检查点", "activation checkpointing", "梯度累积"],
+      "aliases": [
+        "训练显存",
+        "显存预算",
+        "训练内存",
+        "training memory",
+        "optimizer states",
+        "激活检查点",
+        "activation checkpointing",
+        "梯度累积"
+      ],
       "summary": "估算训练显存时要同时考虑权重、梯度、优化器状态与激活。",
       "details": "所需字节数取决于参数精度、优化器、激活保存方式及具体实现，不能把单一的每参数估算当作通用常数。混合精度、状态分片、梯度累积和激活检查点分别改变不同资源开销，使用前需要明确目标瓶颈。",
       "website": "https://caomaolufei.github.io/AIInfraGuide/distributed/模块三-分布式训练/11-分布式训练总论",
       "urlType": "source",
       "sourceLocation": "AIInfraGuide · 分布式训练总论 · 训练资源构成",
       "sourceType": "personal-learning-guide",
-      "topics": ["AIInfra", "GPU-memory", "training", "optimization"]
+      "topics": [
+        "AIInfra",
+        "GPU-memory",
+        "training",
+        "optimization"
+      ]
     },
     {
       "id": "tech-gpu-resources",
       "name": "GPU Compute, Memory & Interconnect",
-      "aliases": ["GPU", "GPU基础", "GPU选型", "显存", "显存带宽", "互联带宽", "Tensor Core", "SM", "GPU memory"],
+      "aliases": [
+        "GPU",
+        "GPU基础",
+        "GPU选型",
+        "显存",
+        "显存带宽",
+        "互联带宽",
+        "Tensor Core",
+        "SM",
+        "GPU memory"
+      ],
       "summary": "GPU 算力、显存容量、显存带宽与设备互联是不同约束。",
       "details": "GPU 面向高吞吐并行计算，矩阵和逐元素运算会利用不同的执行资源与访存路径。判断训练或推理能否高效运行时，要分别检查计算吞吐、可容纳的数据、数据搬运速度和设备间通信，不能用一个峰值算力数字代替完整评估。",
       "website": "https://caomaolufei.github.io/AIInfraGuide/prerequisites/模块一-前置知识/gpu/gpu-basics",
       "urlType": "source",
       "sourceLocation": "AIInfraGuide · GPU 基础知识",
       "sourceType": "personal-learning-guide",
-      "topics": ["AIInfra", "GPU", "hardware", "memory", "interconnect"]
+      "topics": [
+        "AIInfra",
+        "GPU",
+        "hardware",
+        "memory",
+        "interconnect"
+      ]
     },
     {
       "id": "tech-gpu-profiling",
       "name": "Roofline & Profile-first Optimization",
-      "aliases": ["Roofline", "算术强度", "arithmetic intensity", "性能分析", "profiling", "计算瓶颈", "带宽瓶颈"],
+      "aliases": [
+        "Roofline",
+        "算术强度",
+        "arithmetic intensity",
+        "性能分析",
+        "profiling",
+        "计算瓶颈",
+        "带宽瓶颈"
+      ],
       "summary": "用计算量与数据搬运量帮助定位瓶颈，再通过实际测量验证。",
       "details": "Roofline 用算术强度连接计算上限与带宽上限，是理解性能限制的分析工具。实际表现还可能受 CPU–GPU 传输、同步、寄存器压力与访存行为影响，因此结论必须结合目标硬件和真实工作负载。",
       "website": "https://caomaolufei.github.io/AIInfraGuide/prerequisites/模块一-前置知识/gpu/gpu-basics",
       "urlType": "source",
       "sourceLocation": "AIInfraGuide · GPU 基础知识 · Roofline 与性能限制",
       "sourceType": "personal-learning-guide",
-      "topics": ["AIInfra", "GPU", "profiling", "performance"]
+      "topics": [
+        "AIInfra",
+        "GPU",
+        "profiling",
+        "performance"
+      ]
     },
     {
       "id": "tech-prefill-decode",
       "name": "LLM Inference · Prefill & Decode",
-      "aliases": ["Prefill", "Decode", "预填充", "解码", "LLM推理", "大模型推理", "自回归生成"],
+      "aliases": [
+        "Prefill",
+        "Decode",
+        "预填充",
+        "解码",
+        "LLM推理",
+        "大模型推理",
+        "自回归生成"
+      ],
       "summary": "自回归 LLM 推理通常包括处理提示词的 prefill 与逐步生成的 decode。",
       "details": "Prefill 处理已知输入，decode 在历史上下文基础上逐步生成 token。Prefill 常呈计算密集特征，低并发 decode 常受内存带宽影响，但实际瓶颈会随输入形状、批处理与硬件改变，需要测量确认。",
       "website": "https://caomaolufei.github.io/AIInfraGuide/inference/模块四-推理优化/第1章-llm推理基础/11-llm推理基础",
       "urlType": "source",
       "sourceLocation": "AIInfraGuide · LLM 推理基础 · Prefill 与 Decode",
       "sourceType": "personal-learning-guide",
-      "topics": ["AIInfra", "inference", "LLM", "prefill", "decode"]
+      "topics": [
+        "AIInfra",
+        "inference",
+        "LLM",
+        "prefill",
+        "decode"
+      ]
     },
     {
       "id": "tech-kv-cache",
       "name": "KV Cache & Serving Memory",
-      "aliases": ["KV Cache", "KV缓存", "键值缓存", "推理显存", "上下文缓存", "长上下文显存"],
+      "aliases": [
+        "KV Cache",
+        "KV缓存",
+        "键值缓存",
+        "推理显存",
+        "上下文缓存",
+        "长上下文显存"
+      ],
       "summary": "KV Cache 用显存换取对历史 attention 键和值的复用。",
       "details": "缓存避免在后续生成步骤中重复计算历史 keys 和 values，但会消耗随上下文和并发增长的内存。估算大小应考虑层数、KV heads、head 维度、精度、序列长度和并发数，不能仅用模型参数量判断服务容量。",
       "website": "https://caomaolufei.github.io/AIInfraGuide/inference/模块四-推理优化/第1章-llm推理基础/11-llm推理基础",
       "urlType": "source",
       "sourceLocation": "AIInfraGuide · LLM 推理基础 · KV Cache",
       "sourceType": "personal-learning-guide",
-      "topics": ["AIInfra", "inference", "KV-cache", "memory", "serving"]
+      "topics": [
+        "AIInfra",
+        "inference",
+        "KV-cache",
+        "memory",
+        "serving"
+      ]
     },
     {
       "id": "tech-inference-metrics",
       "name": "Inference Metrics & Service Objectives",
-      "aliases": ["推理指标", "TTFT", "TPOT", "ITL", "首token延迟", "首字延迟", "吞吐量", "尾延迟", "goodput", "SLO"],
+      "aliases": [
+        "推理指标",
+        "TTFT",
+        "TPOT",
+        "ITL",
+        "首token延迟",
+        "首字延迟",
+        "吞吐量",
+        "尾延迟",
+        "goodput",
+        "SLO"
+      ],
       "summary": "服务评估应同时衡量首响应、生成速度、总时延与满足目标的吞吐。",
       "details": "TTFT 描述初始响应等待，TPOT/ITL 描述生成节奏，端到端时延反映完整请求，吞吐量描述整体容量。只比较平均 tokens/s 容易忽略尾延迟与用户体验，应结合工作负载和服务目标评估满足要求的有效吞吐。",
       "website": "https://caomaolufei.github.io/AIInfraGuide/inference/模块四-推理优化/第1章-llm推理基础/11-llm推理基础",
       "urlType": "source",
       "sourceLocation": "AIInfraGuide · LLM 推理基础 · 延迟、吞吐与 Goodput",
       "sourceType": "personal-learning-guide",
-      "topics": ["AIInfra", "inference", "metrics", "latency", "serving"]
+      "topics": [
+        "AIInfra",
+        "inference",
+        "metrics",
+        "latency",
+        "serving"
+      ]
     },
     {
       "id": "tech-inference-optimization",
       "name": "Inference Optimization Trade-offs",
-      "aliases": ["推理优化", "inference optimization", "量化", "quantization", "batching", "批处理", "prefix cache", "推测解码", "speculative decoding"],
+      "aliases": [
+        "推理优化",
+        "inference optimization",
+        "量化",
+        "quantization",
+        "batching",
+        "批处理",
+        "prefix cache",
+        "推测解码",
+        "speculative decoding"
+      ],
       "summary": "推理优化要围绕真实输入、并发、硬件与服务目标权衡。",
       "details": "该模块覆盖 KV 管理、批处理、前缀缓存、量化与推测解码等优化方向，它们会改变内存、延迟、吞吐或精度的取舍。端侧部署还应在目标设备上检查内存、功耗、时延和任务质量，不能预设某项优化必然提速。",
       "website": "https://caomaolufei.github.io/AIInfraGuide/inference",
       "urlType": "source",
       "sourceLocation": "AIInfraGuide · 推理优化模块",
       "sourceType": "personal-learning-guide",
-      "topics": ["AIInfra", "inference", "optimization", "deployment"]
+      "topics": [
+        "AIInfra",
+        "inference",
+        "optimization",
+        "deployment"
+      ]
     },
     {
       "id": "tech-training-vs-inference",
       "name": "AI Training vs Inference",
-      "aliases": ["AI训练", "什么是训练", "what is AI training", "训练和推理", "training vs inference", "parameters", "loss", "梯度", "学习率", "epoch", "batch", "optimizer"],
+      "aliases": [
+        "AI训练",
+        "什么是训练",
+        "what is AI training",
+        "训练和推理",
+        "training vs inference",
+        "parameters",
+        "loss",
+        "梯度",
+        "学习率",
+        "epoch",
+        "batch",
+        "optimizer"
+      ],
       "summary": "训练通过损失与梯度更新参数，推理使用学得的参数处理输入。",
       "details": "训练的基本步骤是前向计算、计算损失、反向求梯度与优化器更新；batch、step、epoch 和学习率描述不同的训练组织或更新设置。Lossless 教程从网络工程视角解释这些术语，其硬件与经济示例不应当作所有训练任务的固定配置。",
       "website": "https://losslessnetwork.com/learn/ai-training-basics/what-is-ai-training/",
       "urlType": "source",
       "sourceLocation": "Lossless Network · What AI Does to Your Network · 训练基本术语",
       "sourceType": "educational-tutorial",
-      "topics": ["training", "inference", "gradients", "optimization"]
+      "topics": [
+        "training",
+        "inference",
+        "gradients",
+        "optimization"
+      ]
     },
     {
       "id": "tech-training-network",
       "name": "Gradient Synchronization & Network Topology",
-      "aliases": ["梯度同步", "gradient synchronization", "AllReduce", "集合通信", "collective communication", "训练网络", "慢节点", "网络拓扑", "GPU通信"],
+      "aliases": [
+        "梯度同步",
+        "gradient synchronization",
+        "AllReduce",
+        "集合通信",
+        "collective communication",
+        "训练网络",
+        "慢节点",
+        "网络拓扑",
+        "GPU通信"
+      ],
       "summary": "同步分布式训练的效率受集合通信、慢工作进程与设备放置影响。",
       "details": "在同步数据并行等训练方式中，梯度等数据需要通过集合通信在工作进程间协同。GPU 位于同一服务器或跨网络部署会改变通信路径，实际瓶颈取决于并行方式、模型、拓扑和实现；不能将这一视角外推为所有训练都完整复制模型或产生相同流量。",
       "website": "https://losslessnetwork.com/learn/ai-training-basics/what-is-ai-training/",
       "urlType": "source",
       "sourceLocation": "Lossless Network · What AI Does to Your Network · 分布式训练与网络通信",
       "sourceType": "educational-tutorial",
-      "topics": ["training", "distributed", "network", "collectives", "topology"]
+      "topics": [
+        "training",
+        "distributed",
+        "network",
+        "collectives",
+        "topology"
+      ]
     },
     {
       "id": "site-guide-usage",
       "name": "Personal Website · Usage Guide",
-      "aliases": ["网站怎么使用", "网站怎么用", "个人网站使用", "网站操作手册", "使用说明", "配置说明"],
-      "summary": "个人网站可以按工作、项目、学习、报道和资料库浏览，Xiaoyi 作为侧边对话入口使用。",
-      "details": "首页顶部导航用于跳转到各内容模块；知识库入口打开竞赛和期刊目录，技术学习资料可通过 Xiaoyi 查询。顶部主题按钮可以在 Auto、Light 和 Dark 之间切换；右侧的 Xiaoyi 标签支持展开对话，也可拖到左侧。",
+      "aliases": [
+        "网站怎么使用",
+        "网站怎么用",
+        "个人网站使用",
+        "网站操作手册",
+        "使用说明",
+        "配置说明"
+      ],
+      "summary": "网站按工作、项目、学习、报道与资料库组织内容，Xiaoyi 提供侧边知识问答。",
+      "details": "首页顶部导航可跳转至各内容模块。知识库提供竞赛目录、期刊目录与 Learning 学习资源，其中 Learning 包含本站 VLA Guide 和 AI Network Learning。顶部主题按钮用于切换 Auto、Light 与 Dark；Xiaoyi 标签默认位于右侧，支持展开对话及拖动至左侧。",
       "website": "https://zhaozizhuang666.github.io/guide.html#usage",
       "urlType": "source",
       "sourceLocation": "个人网站配置与使用说明 #usage",
       "sourceType": "first-party-site-guide",
-      "topics": ["site-guide", "website-usage"]
+      "topics": [
+        "site-guide",
+        "website-usage"
+      ]
     },
     {
       "id": "site-guide-theme",
       "name": "Personal Website · Theme Preference",
-      "aliases": ["怎么切换主题", "主题怎么切换", "深色模式", "浅色模式", "白天黑夜", "Light模式", "Dark模式", "Auto模式", "主题锁定"],
-      "summary": "Auto 跟随系统主题；手动选择 Light 或 Dark 后会保存偏好并在本站页面之间保持一致。",
-      "details": "主题按钮依次切换 Auto、Light、Dark。明确选择 Light/Dark 后，本机浏览器会保存这一偏好，进入本站知识库和刷新页面继续沿用；切回 Auto 后重新跟随系统深浅色。外部链接属于其他网站，不受本站主题设置控制。",
+      "aliases": [
+        "怎么切换主题",
+        "主题怎么切换",
+        "深色模式",
+        "浅色模式",
+        "白天黑夜",
+        "Light模式",
+        "Dark模式",
+        "Auto模式",
+        "主题锁定"
+      ],
+      "summary": "Auto 跟随系统主题；手动选择 Light 或 Dark 后，主题偏好在本站页面间保持一致。",
+      "details": "主题按钮依次切换 Auto、Light、Dark。手动选择 Light 或 Dark 后，本机浏览器保存该偏好，刷新页面或进入本站知识库后继续生效；切回 Auto 后恢复跟随系统主题。外部网站使用各自的主题设置。",
       "website": "https://zhaozizhuang666.github.io/guide.html#theme",
       "urlType": "source",
       "sourceLocation": "个人网站配置与使用说明 #theme",
       "sourceType": "first-party-site-guide",
-      "topics": ["site-guide", "theme", "preference"]
+      "topics": [
+        "site-guide",
+        "theme",
+        "preference"
+      ]
     },
     {
       "id": "site-guide-xiaoyi",
       "name": "Xiaoyi · Side Panel Guide",
-      "aliases": ["小艺怎么用", "小艺怎么使用", "Xiaoyi怎么用", "Xiaoyi使用", "小艺拖动", "小艺侧边栏", "小艺打不开", "对话框怎么关闭"],
-      "summary": "Xiaoyi 是网站里的知识入口，默认从右侧窄标签展开；拖动入口可吸附到左侧或右侧，对话框跟随所在侧。",
-      "details": "鼠标移到侧边标签可展开预览，点击入口打开对话，右上角关闭按钮收起；支持键盘聚焦与操作。桌面上打开面板会给正文留出空间，手机上使用紧凑面板。已打开时入口会隐藏并退出键盘导航，先关闭对话框再调整入口位置。每次重新进入页面时默认回到右侧。",
+      "aliases": [
+        "小艺怎么用",
+        "小艺怎么使用",
+        "Xiaoyi怎么用",
+        "Xiaoyi使用",
+        "小艺拖动",
+        "小艺侧边栏",
+        "小艺打不开",
+        "对话框怎么关闭"
+      ],
+      "summary": "Xiaoyi 是网站里的知识入口，默认从右侧窄标签展开；入口支持左右吸附，对话框跟随所在侧。",
+      "details": "悬停侧边标签可展开预览，点击入口可打开对话，右上角关闭按钮用于收起面板；同时支持键盘聚焦与操作。桌面面板展开时为正文保留空间，移动端采用紧凑布局。面板打开后，入口隐藏并退出键盘导航；调整入口位置需先关闭面板。每次重新进入页面时，入口默认位于右侧。",
       "website": "https://zhaozizhuang666.github.io/guide.html#xiaoyi-guide",
       "urlType": "source",
       "sourceLocation": "个人网站配置与使用说明 #xiaoyi-guide",
       "sourceType": "first-party-site-guide",
-      "topics": ["site-guide", "xiaoyi", "panel", "drag"]
+      "topics": [
+        "site-guide",
+        "xiaoyi",
+        "panel",
+        "drag"
+      ]
+    },
+    {
+      "id": "site-guide-xiaoyi-memory",
+      "name": "Xiaoyi · Memory Stream",
+      "aliases": [
+        "记忆流",
+        "小艺记忆",
+        "Xiaoyi记忆",
+        "memory stream",
+        "Memory怎么用",
+        "保存对话",
+        "恢复对话",
+        "清空记忆",
+        "删除记忆",
+        "新对话和记忆",
+        "New chat和Clear all"
+      ],
+      "summary": "记忆流保留当前标签页的近期对话；New chat 开始新上下文，Continue 恢复所选历史会话。",
+      "details": "记忆默认存于当前标签页的 sessionStorage，同一标签页刷新或进入本站其他页面后可恢复；旧版 localStorage 记录不读取、不迁移。普通新标签页与独立浏览器会话分别保存记录，但复制标签页或浏览器会话恢复可能延续原会话。本站未设置账号登录，无法区分共用同一未关闭标签页的使用者；交由他人使用前应执行 Clear all。New chat 仅重置上下文，历史记录仍可在 Memory 查看。Memory · N 显示近期记录，Continue 恢复所选会话；Memory off 停止保存，保留已有记录，关闭状态下刷新不恢复。Delete 删除一轮，Clear all 删除全部已存记忆并清空当前对话。最多保留最近 24 个完整轮次，并按字符与字节上限裁剪；存储不可用时仅在当前页面内存保留，刷新或跳转后结束。记忆不跨设备同步，不参与模型训练，也不作为经核验的公共知识。当前仅启用本地知识模式，对话不自动发送至外部模型；大模型官网入口仅打开外部网页，不携带本地记忆。",
+      "website": "https://zhaozizhuang666.github.io/guide.html#xiaoyi-guide",
+      "urlType": "source",
+      "sourceLocation": "个人网站使用说明 · Memory stream",
+      "sourceType": "first-party-site-guide",
+      "topics": [
+        "site-guide",
+        "xiaoyi",
+        "memory-stream",
+        "session-storage",
+        "conversation-context",
+        "visitor-privacy"
+      ]
     },
     {
       "id": "site-guide-library",
       "name": "Knowledge Library · Search & Sources",
-      "aliases": ["知识库怎么用", "知识库怎么使用", "知识库搜索", "知识库检索", "资料库怎么用", "竞赛目录使用", "期刊目录使用"],
-      "summary": "资料库页面支持竞赛与期刊目录检索，技术资料可向 Xiaoyi 提问；目录记录与来源链接需要分别判断。",
-      "details": "可在知识库按类别、关键词与批次检索，翻页查看结果。竞赛 A/B1/B2 是源学校校内分级；期刊第一批/第二批来自所提供目录，不等同核心期刊或现行出版许可。搜索入口不冒充官网，当届报名、投稿要求和模型能力应回到原始来源核对。",
+      "aliases": [
+        "知识库怎么用",
+        "知识库怎么使用",
+        "知识库搜索",
+        "知识库检索",
+        "资料库怎么用",
+        "竞赛目录使用",
+        "期刊目录使用"
+      ],
+      "summary": "Library 提供竞赛目录、期刊目录与 Learning 学习资源，并标明目录记录、检索入口和静态副本。",
+      "details": "Competitions 支持按关键词与校内级别筛选；Journals 支持按关键词与批次检索并翻页；Learning 支持按 VLA 或 AI Network 筛选并打开本站静态资源。竞赛 A/B1/B2 为源学校校内分级；期刊第一批、第二批来自所提供目录，不代表核心期刊认定或现行出版许可。检索入口与官网分别标注；当届报名、投稿要求及模型能力以原始来源为准。",
       "website": "https://zhaozizhuang666.github.io/guide.html#library",
       "urlType": "source",
       "sourceLocation": "个人网站配置与使用说明 #library",
       "sourceType": "first-party-site-guide",
-      "topics": ["site-guide", "knowledge-library", "source-limits"]
+      "topics": [
+        "site-guide",
+        "knowledge-library",
+        "source-limits"
+      ]
     },
     {
       "id": "site-guide-models",
       "name": "Xiaoyi · Online Model Configuration",
-      "aliases": ["怎么接入模型", "怎么配置模型", "接入DeepSeek", "接入通义千问", "在线模型配置", "模型切换", "在线模型不能用", "为什么只有Knowledge", "配置API"],
-      "summary": "本地 Knowledge 模式可直接使用；在线大模型需要先配置并部署服务端接口。",
-      "details": "网站预留国内供应商与兼容 API 的接入方式，只有服务端实际配置的模型才会开放选择。当前页面若显示“在线模型尚未启用”，说明尚没有可用的在线服务。API 密钥只存服务端环境变量，不能填入公开网页、源码或聊天消息；配置后要验证模型列表、跨域来源、限流和实际问答。",
+      "aliases": [
+        "怎么接入模型",
+        "怎么配置模型",
+        "接入DeepSeek",
+        "接入通义千问",
+        "在线模型配置",
+        "模型切换",
+        "在线模型不能用",
+        "为什么只有Knowledge",
+        "配置API",
+        "小艺接入GLM",
+        "小艺接入Kimi",
+        "小艺接入豆包",
+        "接入豆包",
+        "配置豆包",
+        "豆包怎么接入",
+        "豆包如何接入",
+        "接入火山方舟",
+        "火山方舟怎么接入",
+        "接入GLM",
+        "GLM怎么配置",
+        "接入Kimi K3",
+        "接入TokenHub",
+        "TokenHub怎么接入",
+        "接入Cloudflare",
+        "配置Workers AI",
+        "Cloudflare模型配置",
+        "connect to Doubao",
+        "connect Xiaoyi to GLM",
+        "connect Xiaoyi to Cloudflare"
+      ],
+      "summary": "当前仅启用本地 Knowledge 模式，并提供国内大模型官网入口；在线 API 保留为未来扩展。",
+      "details": "公开前端未配置在线模型端点，DeepSeek、通义千问、Kimi、豆包、智谱清言与腾讯元宝均以外部网站入口提供，不属于 Xiaoyi 当前可调用的模型。未来启用在线适配时，需独立部署 Worker（例如登记的 glm / glm-5.3 适配），在服务端环境变量或 secret 中配置供应商密钥，或配置 Workers AI 绑定，并将部署后的端点写入前端。API 密钥仅应存于服务端，不应写入公开网页、源码或聊天消息。",
       "website": "https://zhaozizhuang666.github.io/guide.html#models",
       "urlType": "source",
       "sourceLocation": "个人网站配置与使用说明 #models",
       "sourceType": "first-party-site-guide",
-      "topics": ["site-guide", "model-configuration", "online-service"]
+      "topics": [
+        "site-guide",
+        "model-configuration",
+        "online-service"
+      ]
+    },
+    {
+      "id": "site-guide-model-providers",
+      "name": "Xiaoyi · Provider Selection",
+      "aliases": [
+        "小艺支持哪些模型",
+        "小艺模型选择",
+        "Tencent TokenHub",
+        "腾讯TokenHub",
+        "TokenHub",
+        "Kimi K3",
+        "Kimi-K3",
+        "TokenHub Kimi K3",
+        "Kimi K3接入",
+        "Moonshot Kimi",
+        "火山方舟",
+        "豆包",
+        "Doubao",
+        "Doubao Responses",
+        "豆包Responses",
+        "GLM",
+        "glm-5.3",
+        "Cloudflare Workers AI",
+        "Workers AI模型选择"
+      ],
+      "summary": "当前未启用在线模型；供应商适配代码保留，待服务端部署与验证后再开放。",
+      "details": "当前前端仅提供 Knowledge 模式。腾讯 TokenHub、Moonshot Kimi、火山方舟 Doubao、GLM 与 Cloudflare Workers AI 均未在公开站点启用。登记的 tencent / kimi-k3、kimi / kimi-k3.1-pro、ark / doubao-seed-evolving 与 Workers AI 模型属于服务端适配记录，账号权限、余额、连通性与回答质量尚需部署后验证。未来启用时，各平台的凭据与模型允许列表应独立配置。",
+      "website": "https://zhaozizhuang666.github.io/guide.html#models",
+      "urlType": "source",
+      "sourceLocation": "个人网站使用说明 · 可选模型与供应商",
+      "sourceType": "first-party-site-guide",
+      "topics": [
+        "site-guide",
+        "model-configuration",
+        "model-providers",
+        "online-service"
+      ]
+    },
+    {
+      "id": "site-guide-domestic-model-web-links",
+      "name": "Xiaoyi · Domestic Model Website Links",
+      "aliases": [
+        "国内大模型网站",
+        "国内模型官网",
+        "大模型官网入口",
+        "模型网站跳转",
+        "DeepSeek官网",
+        "通义千问官网",
+        "Kimi官网",
+        "豆包官网",
+        "智谱清言官网",
+        "腾讯元宝官网",
+        "DeepSeek website",
+        "Qwen website",
+        "Kimi website",
+        "Doubao website",
+        "GLM website",
+        "Yuanbao website"
+      ],
+      "summary": "Xiaoyi 保留本地知识模式，同时提供国内大模型官网入口。",
+      "details": "外部网站入口：[DeepSeek](https://chat.deepseek.com/)、[通义千问](https://www.tongyi.com/)、[Kimi](https://www.kimi.com/)、[豆包](https://www.doubao.com/chat/)、[智谱清言](https://chatglm.cn/)、[腾讯元宝](https://yuanbao.tencent.com/)。这些链接不调用平台 API，也不自动传递 Xiaoyi 对话。外部服务的可用功能、账号权限、隐私条款与使用规则以各平台当前页面为准。",
+      "website": "https://chat.deepseek.com/",
+      "urlType": "external-links",
+      "sourceLocation": "个人网站 · Xiaoyi 国内大模型官网入口",
+      "sourceType": "first-party-site-guide",
+      "externalLinks": [
+        {
+          "name": "DeepSeek",
+          "url": "https://chat.deepseek.com/"
+        },
+        {
+          "name": "通义千问",
+          "url": "https://www.tongyi.com/"
+        },
+        {
+          "name": "Kimi",
+          "url": "https://www.kimi.com/"
+        },
+        {
+          "name": "豆包",
+          "url": "https://www.doubao.com/chat/"
+        },
+        {
+          "name": "智谱清言",
+          "url": "https://chatglm.cn/"
+        },
+        {
+          "name": "腾讯元宝",
+          "url": "https://yuanbao.tencent.com/"
+        }
+      ],
+      "topics": [
+        "site-guide",
+        "xiaoyi",
+        "external-links",
+        "domestic-models"
+      ]
+    },
+    {
+      "id": "site-guide-model-workers-ai",
+      "name": "Xiaoyi · Cloudflare Workers AI",
+      "aliases": [
+        "Cloudflare",
+        "Workers AI",
+        "Cloudflare Workers AI",
+        "Cloudflare模型",
+        "Workers AI模型",
+        "Workers AI接入",
+        "Workers AI配置",
+        "Cloudflare模型怎么选",
+        "GLM-4.7-Flash",
+        "glm-4.7",
+        "Qwen3 30B A3B",
+        "Llama 3.1 8B",
+        "DeepSeek V4.1-Flash-1017",
+        "CLOUDFLARE_MODELS",
+        "AI binding"
+      ],
+      "summary": "Workers AI 当前未启用；保留的适配配置包含 GLM-4.7-Flash、Qwen3 30B A3B FP8、Llama 3.1 8B Instruct FP8 三个文本模型。",
+      "details": "以下为未来部署配置：独立部署 Worker，配置 AI 绑定及 CLOUDFLARE_MODELS 允许列表，再连接前端端点；Workers AI 密钥不置于浏览器。默认模型 ID 为 @cf/zai-org/glm-4.7-flash、@cf/qwen/qwen3-30b-a3b-fp8、@cf/meta/llama-3.1-8b-instruct-fp8。可选的 @cf/deepseek-ai/deepseek-v4.1-flash-1017 要求 Workers 付费计划或符合条件的 AI Gateway 额度，因此未列入默认配置。Workers AI GLM-4.7 与直连 GLM-5.3 属于不同服务。仅允许列表中的已核验文本聊天模型可开放选择，完整模型目录不自动启用。当前未部署 Worker 或公开启用在线模型；账号权限、费用和真实请求需部署后验证，调用额度以平台规则为准。模型选型应结合权限、成本和任务进行小规模对比测试。",
+      "website": "https://zhaozizhuang666.github.io/guide.html#models",
+      "urlType": "source",
+      "sourceLocation": "个人网站使用说明 · Cloudflare Workers AI；绑定与模型限制依据 Cloudflare 官方文档，详见 server/CLOUDFLARE-WORKERS-AI.md",
+      "sourceType": "first-party-site-guide",
+      "sourceDocuments": [
+        {
+          "title": "Cloudflare Workers AI binding",
+          "url": "https://developers.cloudflare.com/workers-ai/configuration/bindings/"
+        },
+        {
+          "title": "Cloudflare Workers AI model catalog",
+          "url": "https://developers.cloudflare.com/workers-ai/models/"
+        },
+        {
+          "title": "DeepSeek V4.1 Flash 1017 access requirements",
+          "url": "https://developers.cloudflare.com/workers-ai/models/deepseek-v4.1-flash-1017/"
+        }
+      ],
+      "topics": [
+        "site-guide",
+        "model-configuration",
+        "model-providers",
+        "cloudflare",
+        "workers-ai",
+        "online-service"
+      ]
+    },
+    {
+      "id": "site-guide-model-inputs",
+      "name": "Xiaoyi · Text and Image API Limits",
+      "aliases": [
+        "小艺能上传图片吗",
+        "小艺能看图吗",
+        "豆包图片输入",
+        "Doubao图片",
+        "小艺多模态",
+        "小艺支持音频吗",
+        "小艺支持视频吗",
+        "API图片输入"
+      ],
+      "summary": "聊天界面目前仅支持文本；Doubao Responses 图片适配保留为未来扩展，尚未启用。",
+      "details": "当前仅 Knowledge 模式可用，网页没有图片上传控件。保留的 API messages 使用纯文本；ark / Doubao Responses 可通过独立 images 字段传入最多一个公开 HTTPS 图片 URL，服务端校验并拒绝带凭据、本地地址与 IP 地址。不支持本地图片文件、base64、音频或视频，其他供应商不接受该图片字段。以上仅为接口适配范围，实际在线服务、模型权限与多模态支持需另行部署验证。",
+      "website": "https://zhaozizhuang666.github.io/guide.html#models",
+      "urlType": "source",
+      "sourceLocation": "个人网站使用说明 · 文本与受限图片输入",
+      "sourceType": "first-party-site-guide",
+      "topics": [
+        "site-guide",
+        "model-configuration",
+        "image-input",
+        "api-limits"
+      ]
+    },
+    {
+      "id": "venture-platform-direction",
+      "name": "创享艺苑 · Embodied Intelligence & AI Agent Direction",
+      "aliases": [
+        "创享艺苑商业模式",
+        "创享艺苑商业计划",
+        "创享艺苑AI Agent方向",
+        "创享艺苑的AI Agent方向",
+        "创享艺苑具身智能方向",
+        "创享艺苑平台方向",
+        "创享艺苑业务方向",
+        "创享艺苑未来方向",
+        "venture direction"
+      ],
+      "summary": "创享艺苑以大学生创业者联盟为基础，公开计划聚焦具身智能与 AI Agent 场景应用。",
+      "details": "创享艺苑是由大学生自发成立的创业者联盟，赵子状为创始人，平台由多位伙伴共同参与。公开计划面向科技、文创、志愿公益、教育研学与产业场景，围绕具身智能与 AI Agent 开展技术阐释、需求对接和应用设计。商业计划说明未来方向；已公开的个人能力、知识库和项目经历与计划服务分别列示。OPC 描述赵子状本人的创业实践，不概括联盟的组织构成。",
+      "website": "https://zhaozizhuang666.github.io/#community",
+      "urlType": "source",
+      "sourceLocation": "创享艺苑商业计划书与商业模式 · 平台方向",
+      "sourceType": "owner-provided-business-plan",
+      "sourceDocuments": [
+        {
+          "title": "创享艺苑商业计划书",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-plan.docx",
+          "format": "docx"
+        },
+        {
+          "title": "创享艺苑商业模式",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pptx",
+          "format": "pptx"
+        },
+        {
+          "title": "创享艺苑商业模式 · PDF",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pdf",
+          "format": "pdf"
+        }
+      ],
+      "topics": [
+        "venture",
+        "创享艺苑",
+        "AI Agent",
+        "具身智能",
+        "business-direction"
+      ]
+    },
+    {
+      "id": "venture-embodied-knowledge-applications",
+      "name": "创享艺苑 · Embodied Knowledge & Applications",
+      "aliases": [
+        "创享艺苑具身智能应用",
+        "创享艺苑知识库应用",
+        "具身智能知识服务",
+        "创享艺苑VLA应用",
+        "创享艺苑工作坊",
+        "机器人讲解员规划"
+      ],
+      "summary": "已搭建的 VLA 知识库与社区实践构成基础；课程、工作坊、研究助手和场馆方案属于规划中的应用方向。",
+      "details": "当前实践基础包括赵子状搭建的具身智能 VLA 知识库与社区实践。公开计划提出科普内容、分层课程、研学与工作坊、科创叙事、具身智能研究助手、低成本机械臂演示及场馆讲解等应用方向。这些应用仍处于规划与验证阶段，尚无材料证明已形成上线课程、机器人产品、研究助手或客户交付；具体合作与部署情况需另行核实。",
+      "website": "https://zhaozizhuang666.github.io/#community",
+      "urlType": "source",
+      "sourceLocation": "创享艺苑商业计划书与商业模式 · 具身智能主线",
+      "sourceType": "owner-provided-business-plan",
+      "sourceDocuments": [
+        {
+          "title": "创享艺苑商业计划书",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-plan.docx",
+          "format": "docx"
+        },
+        {
+          "title": "创享艺苑商业模式",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pptx",
+          "format": "pptx"
+        },
+        {
+          "title": "创享艺苑商业模式 · PDF",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pdf",
+          "format": "pdf"
+        }
+      ],
+      "topics": [
+        "venture",
+        "VLA",
+        "具身智能",
+        "knowledge-service",
+        "planned-application"
+      ]
+    },
+    {
+      "id": "venture-agent-skills",
+      "name": "创享艺苑 · Agent & Skill Applications",
+      "aliases": [
+        "创享艺苑Agent",
+        "创享艺苑智能体方向",
+        "创享艺苑Skill",
+        "创享艺苑技能库",
+        "场景化Agent",
+        "Agent工具包",
+        "创享艺苑RAG"
+      ],
+      "summary": "计划围绕场景化 Agent、Skill、知识库与工作流开展应用服务；当前公开实践包括 Xiaoyi 与个人网站知识库。",
+      "details": "公开计划将 Agent 与 Skill 分为任务编排、领域能力和工具接入等层次，拟应用于具身智能研究、文博讲解、公益申报、志愿服务、教育研学和科创叙事。Xiaoyi、VLA 知识库与相关开发能力属于可查看的个人实践；机构定制、研究助手、培训、工作流产品及多 Agent 协作仍为规划内容。数据权限、人工审核、国内模型配置与本地部署应按项目分别确认。",
+      "website": "https://zhaozizhuang666.github.io/#community",
+      "urlType": "source",
+      "sourceLocation": "创享艺苑商业计划书与商业模式 · Agent 与 Skill",
+      "sourceType": "owner-provided-business-plan",
+      "sourceDocuments": [
+        {
+          "title": "创享艺苑商业计划书",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-plan.docx",
+          "format": "docx"
+        },
+        {
+          "title": "创享艺苑商业模式",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pptx",
+          "format": "pptx"
+        },
+        {
+          "title": "创享艺苑商业模式 · PDF",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pdf",
+          "format": "pdf"
+        }
+      ],
+      "topics": [
+        "venture",
+        "Agent",
+        "Skill",
+        "RAG",
+        "workflow",
+        "planned-application"
+      ]
+    },
+    {
+      "id": "venture-foundations-status",
+      "name": "创享艺苑 · Current Foundations & Planned Applications",
+      "aliases": [
+        "创享艺苑现有基础",
+        "创享艺苑已完成什么",
+        "创享艺苑规划项目",
+        "创享艺苑已有项目",
+        "创享艺苑基础与规划",
+        "创享艺苑做过什么"
+      ],
+      "summary": "公开基础来自联盟运营、志愿与科创实践和 VLA 知识库；商业计划中的扩展服务仍处于规划和验证阶段。",
+      "details": "公开基础包括创享艺苑大学生创业者联盟及其内容与实践活动、赵子状的计算机专业背景和机器人端到端评测工作、科研竞赛参与经历与 VLA 知识库。具身智能科普、Agent 定制、场馆数字讲解、公益数字化和产业调研属于后续规划；落地情况、交付主体与合作关系以具体项目和公开证据为准。学校科研团队、合作平台和其他伙伴的成果归属各自主体。",
+      "website": "https://zhaozizhuang666.github.io/#community",
+      "urlType": "source",
+      "sourceLocation": "创享艺苑商业计划书与商业模式 · 基础与规划边界",
+      "sourceType": "owner-provided-business-plan",
+      "sourceDocuments": [
+        {
+          "title": "创享艺苑商业计划书",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-plan.docx",
+          "format": "docx"
+        },
+        {
+          "title": "创享艺苑商业模式",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pptx",
+          "format": "pptx"
+        },
+        {
+          "title": "创享艺苑商业模式 · PDF",
+          "url": "https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pdf",
+          "format": "pdf"
+        }
+      ],
+      "topics": [
+        "venture",
+        "foundations",
+        "planned-application",
+        "partnerships"
+      ]
+    },
+    {
+      "id": "learning-vla-guide",
+      "name": "VLA Guide · Embodied Intelligence Learning",
+      "aliases": [
+        "VLA Guide",
+        "VLA学习资源",
+        "VLA学习知识库",
+        "本站VLA",
+        "本地VLA知识库",
+        "具身智能学习路线",
+        "VLA教程入口"
+      ],
+      "summary": "本站 VLA Guide 静态学习副本，整理 VLA 与具身智能的基础、模型实践、评测部署与分阶段学习路线。",
+      "librarySummary": "A learning guide to VLA and embodied intelligence, with staged routes, practical worksheets, role exploration and original interview exercises. / VLA 与具身智能学习资料，包含阶段路线、实践工作单、岗位探索和原创面试练习。",
+      "details": "该副本包含 11 个模块、63 篇学习章节、24 类岗位简介与 80 道原创面试练习，提供全文检索、章节进度和收藏。章节中的实验步骤是学习工作单，不代表已实测或复现；岗位与题目用于学习和准备，不冒充招聘要求或企业真题。学习进度与收藏保存在当前浏览器，可手动导出，不跨设备同步。代码遵循 MIT，原创教程遵循 CC BY 4.0，第三方资源按原许可；原作归属与修改说明保留在页面。可在 Library → Learning 打开本站副本，副本与主站共享主题偏好。",
+      "website": "https://zhaozizhuang666.github.io/resources/vla-guide/",
+      "urlType": "source",
+      "sourceLocation": "VLA Guide · 本站静态副本；复制范围与哈希见 resources/manifest.json",
+      "sourceType": "personal-learning-guide",
+      "upstreamWebsite": "https://github.com/Zhaozizhuang666/vla-guide",
+      "libraryCategory": "learning",
+      "libraryGroup": "VLA",
+      "libraryHref": "resources/vla-guide/",
+      "libraryNote": "Static copy · Code MIT · Content CC BY 4.0",
+      "topics": [
+        "VLA",
+        "embodied-intelligence",
+        "robotics",
+        "learning-resource",
+        "learning-roadmap",
+        "evaluation",
+        "interview-practice"
+      ]
+    },
+    {
+      "id": "learning-ai-network",
+      "name": "AI Network Learning · Compute & Interconnect",
+      "aliases": [
+        "AI Network Learning",
+        "AI网络学习资源",
+        "AI算力网络合集",
+        "AI算力中心网络架构",
+        "算力网络学习合集",
+        "网络学习资源合集",
+        "RDMA学习资源",
+        "RoCE学习资源",
+        "NCCL学习资源",
+        "AI算力网络学习"
+      ],
+      "summary": "AI 算力中心网络学习导航，按 GPU 互联、RDMA / RoCE、集合通信与容量规划组织公开学习入口。",
+      "librarySummary": "A resource index for GPU interconnects, RDMA / RoCE, collective communication and cluster planning, linking to courses, papers and code. / 按 GPU 互联、RDMA / RoCE、集合通信与集群规划整理课程、论文和代码入口。",
+      "details": "这是用户提供的单页学习资源合集在本站的静态副本，可在 Library → Learning 打开。内容按算力网络相关主题组织外部课程、论文、代码与阅读入口，包含 GPU 互联、RDMA / RoCE 和 NCCL 等主题。它是学习导航，不是完整网络设计规范、部署方案或性能结论；选型、配置、版本、示例数值和外链状态须回原始资料验证。原文件未声明明确许可证，不套用 VLA 的 MIT 或 CC BY 许可，第三方材料仍归原权利人。本站副本使用主站主题偏好，没有账号或学习进度同步。",
+      "website": "https://zhaozizhuang666.github.io/resources/ai-network-learning.html",
+      "urlType": "source",
+      "sourceLocation": "用户提供的《AI 算力中心网络架构・学习资源合集》· 本站静态副本",
+      "sourceType": "user-provided-learning-index",
+      "libraryCategory": "learning",
+      "libraryGroup": "AI Network",
+      "libraryHref": "resources/ai-network-learning.html",
+      "libraryNote": "Static index · Linked materials retain original rights",
+      "topics": [
+        "AI-network",
+        "GPU",
+        "interconnect",
+        "RDMA",
+        "RoCE",
+        "NCCL",
+        "collective-communication",
+        "cluster-planning",
+        "learning-resource"
+      ]
+    },
+    {
+      "id": "site-guide-learning-resources",
+      "name": "Learning Resources · Reading & Progress Guide",
+      "aliases": [
+        "学习资源怎么用",
+        "学习资源如何使用",
+        "学习资料入口",
+        "学习资源入口",
+        "本站学习资源",
+        "Learning分类",
+        "learning resources",
+        "VLA进度怎么保存",
+        "资料副本和小艺的关系"
+      ],
+      "summary": "Library → Learning 提供 VLA 与 AI Network 本站副本；Xiaoyi 提供资源入口及简要索引。",
+      "details": "Learning 支持按关键词和主题筛选。VLA Guide 提供章节全文搜索、学习进度、岗位探索与面试练习收藏；进度和收藏仅保存在当前浏览器，可通过导出功能备份。AI Network Learning 为按主题组织的外部资源导航，不包含进度功能。手动选择 Light 或 Dark 后，主站与本站资源页面保持相同偏好；外部网站使用各自的主题设置。resources/manifest.json 记录本站副本范围、文件大小和哈希。Xiaoyi 仅检索已整理条目与入口，未声明全文处理全部资料，访客记忆也不写入公共知识。重要结论仍应核对原始论文、官方实现与实测证据。",
+      "website": "https://zhaozizhuang666.github.io/knowledge.html#learning",
+      "urlType": "source",
+      "sourceLocation": "Knowledge Library · Learning · 本站资源使用说明",
+      "sourceType": "first-party-site-guide",
+      "topics": [
+        "site-guide",
+        "learning-resources",
+        "knowledge-library",
+        "reading",
+        "progress",
+        "source-limits"
+      ]
+    },
+    {
+      "id": "profile-6g-course-paper",
+      "name": "6G & Secure Data Flows · 研修论文",
+      "aliases": [
+        "6G研修",
+        "6G高级研修",
+        "6G研修论文",
+        "6G时代数据要素安全流通赋能具身智能",
+        "6G与数据要素安全跨境流动高级研修班",
+        "6G course paper",
+        "6G training",
+        "6G & Secure Data Flows"
+      ],
+      "summary": "赵子状参加 6G 与数据要素安全跨境流动高级研修班，并撰写《6G时代数据要素安全流通赋能具身智能》研修论文。",
+      "details": "论文结合机器人模型评测，梳理测试数据分级分类、全生命周期治理与隐私保护联合评测，讨论数据质量、安全与受控流通的关系。该材料为研修期间的方法探索，未作为已发表期刊论文或结业证书展示；材料未提供大样本实证或经验证的性能提升与部署结果。",
+      "website": "https://zhaozizhuang666.github.io/assets/documents/6g-data-flows-embodied-ai-course-paper.pdf",
+      "urlType": "source",
+      "sourceLocation": "本人提供的研修论文 · 封面、研究框架与局限性",
+      "sourceType": "owner-provided-course-paper",
+      "topics": [
+        "6G研修",
+        "6G course paper",
+        "secure data flows"
+      ],
+      "sourceDocuments": [
+        {
+          "title": "6G研修报道（本人提供链接）",
+          "url": "https://mp.weixin.qq.com/s/E-2veNzXsiRZpJQ-XQ2a4g",
+          "format": "web"
+        }
+      ]
+    },
+    {
+      "id": "profile-6g-training-story",
+      "name": "6G研修报道",
+      "aliases": [
+        "6G研修报道",
+        "6G研修文章",
+        "6G报道",
+        "6G training story"
+      ],
+      "summary": "本次 6G 高级研修的相关文章，作为研修经历的相关阅读入口，与研修论文分别展示。",
+      "details": "报道内容以原文为准。该链接仅用于补充研修经历，不作为结业、任命、研究成果或部署成效的证明。",
+      "website": "https://mp.weixin.qq.com/s/E-2veNzXsiRZpJQ-XQ2a4g",
+      "urlType": "source",
+      "sourceLocation": "本人提供的微信公众号文章链接",
+      "sourceType": "owner-provided-training-story",
+      "topics": [
+        "6G研修报道"
+      ]
     }
-  ]
+  ],
+  "learningSourceTitle": "Personal-site learning resources / 本站学习资源",
+  "learningSourceNote": "VLA Guide 与 AI 算力网络合集为用户提供资料的公开静态副本，保留来源与权利说明。VLA 代码 MIT、教程 CC BY 4.0；网络合集未声明明确许可证，不套用 VLA 的许可。第三方材料保留原权利；本站清单验证复制范围、文件哈希与站内链接，不认证全部外链、技术结论或实验结果。"
 }

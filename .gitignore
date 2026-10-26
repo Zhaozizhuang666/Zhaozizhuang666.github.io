@@ -2,7 +2,10 @@ zizhuang.jpg
 zizhuang01.jpg
 创享艺苑/
 *.docx
+!assets/documents/chuangxiang-business-plan.docx
 *.pdf
+!assets/documents/chuangxiang-business-model.pdf
+!assets/documents/6g-data-flows-embodied-ai-course-paper.pdf
 preview*.jpg
 .DS_Store
 Work_experience/

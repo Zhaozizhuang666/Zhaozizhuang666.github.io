@@ -14,14 +14,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261026-ui2">
-  <link rel="stylesheet" href="xiaoyi.css">
+  <link rel="stylesheet" href="style.css?v=20261026-copy3">
+  <link rel="stylesheet" href="xiaoyi.css?v=20261026-copy3">
   <script src="theme.js" defer></script>
   <script src="xiaoyi-config.js" defer></script>
-  <script src="xiaoyi-engine.js" defer></script>
-  <script src="xiaoyi.js" defer></script>
+  <script src="xiaoyi-engine.js?v=20261026-copy3" defer></script>
+  <script src="xiaoyi.js?v=20261026-copy3" defer></script>
   <script src="entrance.js" defer></script>
-  <script src="language-copy.js" defer></script>
+  <script src="language-copy.js?v=20261026-copy3" defer></script>
   <script src="language.js" defer></script>
   <style>
     .handbook-main { padding-block: 64px 82px; }
@@ -75,7 +75,7 @@
     <main class="page handbook-main">
       <section class="handbook-hero">
         <p class="overline">SITE HANDBOOK · A PRACTICAL STARTING POINT</p>
-        <h1>Use the site with intention.<span>阅读、提问、核对，然后继续探索。</span></h1>
+        <h1>Site handbook.<span>阅读、提问、核对。</span></h1>
         <p class="handbook-lead">This handbook explains the personal site, its Xiaoyi companion, and the curated library. It is written for visitors who want to find a source, ask a focused question, or understand how the site is maintained.</p>
         <p class="handbook-zh" lang="zh-CN">这是一份简明使用说明：介绍网页的主题、Xiaoyi、知识库和维护流程。资料用于定位方向，关键事实仍应回到原始来源核对。</p>
       </section>
@@ -87,20 +87,27 @@
           <section id="usage" class="handbook-section">
             <p class="handbook-kicker">01 · GETTING AROUND</p>
             <h2>Usage <span>如何开始</span></h2>
-            <p>Start at <a href="index.html">Home</a> for the personal profile, current robotics evaluation work, projects, learning, research, community work, and public reports. Open <a href="knowledge.html">Library</a> when you need a competition or journal directory. The site is English-first, with concise Chinese context where it helps.</p>
+            <p>Start at <a href="index.html">Home</a> for the profile, robotics evaluation work, projects, learning, research, community work, and public reports. Open <a href="knowledge.html">Library</a> for competitions, journals, or technical learning resources. The site is English-first, with concise Chinese context.</p>
             <ol>
               <li>Choose a section from the top navigation or use the skip link for keyboard access.</li>
               <li>Follow the source link attached to a project, report, paper, patent, competition, or journal entry.</li>
-              <li>Use Xiaoyi for a first explanation, then inspect the returned reference before relying on a detail.</li>
+              <li>Use Xiaoyi as a first-pass reference, then inspect the returned source before relying on a detail.</li>
             </ol>
-            <div class="handbook-note">The site is a curated personal workspace. It does not claim to be a complete directory, a live deadline tracker, or a replacement for an official announcement.</div>
+            <div class="handbook-note">This personal site provides selected references. Competition rules, deadlines, and eligibility remain subject to official announcements.</div>
+            <h3>Public documents</h3>
+            <p>Four documents are available across Learning and Community:</p>
+            <ul>
+              <li>Business materials: <a href="assets/documents/chuangxiang-business-plan.docx" download>Business Plan · DOCX</a>, <a href="assets/documents/chuangxiang-business-model.pptx" download>Business Model · PPTX</a>, and <a href="assets/documents/chuangxiang-business-model.pdf" target="_blank" rel="noopener noreferrer">Business Model · PDF</a>.</li>
+              <li>Training material: <a href="assets/documents/6g-data-flows-embodied-ai-course-paper.pdf" target="_blank" rel="noopener noreferrer">6G Course Paper · PDF</a>, <span lang="zh-CN">《6G时代数据要素安全流通赋能具身智能》</span>.</li>
+            </ul>
+            <p>The 6G document is a training course paper, not a published journal article or completion certificate; its proposed framework does not establish validated deployment.</p>
           </section>
 
           <section id="theme" class="handbook-section">
             <p class="handbook-kicker">02 · APPEARANCE</p>
             <h2>Theme <span>外观与阅读状态</span></h2>
             <p>Use the compact EN/中文 control beside the theme button to switch site copy. Your choice is remembered across Home, Library, Guide, and reloads. Source titles, names, and Xiaoyi conversation messages remain unchanged; no external translation service is called.</p>
-            <p>The header control cycles through <strong>Auto</strong>, <strong>Light</strong>, and <strong>Dark</strong>. Auto follows the visitor's operating-system appearance. An explicit Light or Dark choice is saved locally and remains consistent when moving between Home and Library or refreshing either page.</p>
+            <p>The header control cycles through <strong>Auto</strong>, <strong>Light</strong>, and <strong>Dark</strong>. Auto follows the visitor's operating-system appearance. An explicit Light or Dark choice is saved locally across Home, Library, Guide, local learning-resource pages, and reloads.</p>
             <p>Choosing Auto removes the explicit override. Xiaoyi follows the selected appearance: its Auto outfit stays normal, explicit Light is lively, and explicit Dark is sleepy. A reduced-motion preference disables entrance motion while keeping every section available.</p>
             <p>On desktop, opening Xiaoyi gives the page the remaining space and scales it toward the opposite side. The drawer can dock left or right; a fresh page visit starts on the right. Dragging changes the position for the current visit and the matching drawer side.</p>
           </section>
@@ -109,36 +116,52 @@
             <p class="handbook-kicker">03 · COMPANION</p>
             <h2>Xiaoyi <span>Website Knowledge Entry · 小艺智能体</span></h2>
             <p>Xiaoyi is the collapsible companion in the page edge. Hover or focus the small edge control to preview it, then open the conversation. On a desktop drawer, the page remains visible in the available space; on a phone, the conversation behaves as a modal and keeps focus inside the panel.</p>
-            <h3>How to ask well</h3>
+            <h3>Question guidelines</h3>
             <ul>
               <li>Start with one subject: “What is VLN?” or “How should I compare SR and SPL?”</li>
-              <li>Use a follow-up such as “好的，把链接给我” to request sources for the current subject.</li>
+              <li>Use a follow-up such as “Please provide the reference link for this topic.” to request sources for the current subject.</li>
               <li>Change topic explicitly when needed: “Now leave VLN and explain VLA.”</li>
-              <li>Use New chat when you want a clean context.</li>
+              <li>Use New chat for a clean context; older saved exchanges remain in Memory.</li>
             </ul>
+            <h3>Memory stream</h3>
+            <p>With Memory on, Xiaoyi keeps a bounded conversation history in the current tab session. The active conversation returns after a reload or when you move between Home, Library, and Guide in the same tab. Open <strong>Memory · N</strong> to review recent exchanges. Choose <strong>Continue</strong> to restore the entire selected conversation session into the active context; starting a new chat does not automatically mix in older sessions.</p>
+            <p><strong>Memory off</strong> keeps existing records but stops future saves; the current chat continues until reload or New chat, and a reload does not restore it while memory is off. Use <strong>Delete</strong> to remove one saved turn, or <strong>Clear all</strong> to erase the stored stream and clear the active messages. The stream keeps up to 24 completed exchanges and trims older content to stay within its storage limits. If session storage is unavailable, memory lasts only until navigation or reload.</p>
+            <p>Memory stays in the current tab session and site origin, without training a model or syncing across devices. Ordinary new tabs and independent browser sessions have separate streams; duplicating or restoring a tab may retain its session. The static site cannot identify people sharing one open tab. Use Clear all before handing that tab to another person; New chat keeps older records visible. Past replies remain unverified conversation records. The current site uses local knowledge mode only. Opening an AI website does not send it your Xiaoyi conversation or memory.</p>
             <div class="handbook-note">Local Xiaoyi uses the checked-in knowledge files and retrieval logic. It does not train itself, browse the web in real time, or guarantee that a current rule, deadline, model capability, or result is correct. Treat its answer as a sourced starting point and verify important claims.</div>
-            <h3>One useful path</h3>
-            <p>Ask about <strong>VLN</strong> → open the cited paper on visually grounded navigation → ask about <strong>SR and SPL</strong> → compare the metric definitions with the task protocol before using them in an evaluation. A link is evidence to inspect, not a substitute for the protocol.</p>
+            <h3>Example workflow</h3>
+            <p>Ask about <strong>VLN</strong> → open the cited paper on visually grounded navigation → ask about <strong>SR and SPL</strong> → compare the metric definitions with the task protocol before using them in an evaluation. A link is a reference to verify, not a substitute for the protocol.</p>
           </section>
 
           <section id="library" class="handbook-section">
             <p class="handbook-kicker">04 · REFERENCE</p>
             <h2>Library <span>知识库</span></h2>
-            <p>The Library has two searchable directories:</p>
+            <p>The Library has three categories: Competitions, Journals, and Learning.</p>
             <div class="handbook-links">
               <a class="handbook-link" href="knowledge.html#competitions"><strong>Competitions</strong><small>86 indexed entries · school-level A, B1, and B2 labels</small></a>
               <a class="handbook-link" href="knowledge.html#journals"><strong>Journals</strong><small>6,430 indexed entries · first- and second-batch lists</small></a>
+              <a class="handbook-link" href="resources/vla-guide/"><strong>VLA Guide</strong><small>Staged chapters, search, browser-local progress and interview practice</small></a>
+              <a class="handbook-link" href="resources/ai-network-learning.html"><strong>AI Network Learning</strong><small>GPU interconnects, RDMA / RoCE, collective communication and cluster planning</small></a>
             </div>
             <p>Search by name, organizer, or keyword; use the available filters; then open the source or search entry on each card. The competition labels come from the supplied Shanxi Institute of Technology directory and should not be read as a universal national ranking. Journal batches are directory classifications, not a judgment of article quality.</p>
             <p>The technical collection behind Xiaoyi changes as it is curated. Its entries retain source type and links; they are not a hardcoded count or a claim of complete coverage.</p>
+            <p>Open <a href="knowledge.html#learning">Learning</a> to search these two resource copies by topic. VLA Guide saves progress and favorites in the current browser and offers exports; AI Network Learning is a resource index without progress tracking. These are static learning copies. Xiaoyi uses curated summaries and entry points, without claiming full-page absorption or reproduced experiments.</p>
+            <p>VLA code is MIT and original tutorial content is CC BY 4.0 with attribution. The network index has no explicit license declaration; linked materials retain their own rights. See the <a href="resources/README.md">resource notes</a> and <a href="resources/manifest.json">snapshot manifest</a> for scope and limitations.</p>
           </section>
 
           <section id="models" class="handbook-section">
-            <p class="handbook-kicker">05 · OPTIONAL ONLINE MODE</p>
-            <h2>Models <span>模型接入</span></h2>
-            <p>The checked-in site has no live model endpoint configured. Knowledge mode remains available without a server. The interface can list DeepSeek, Qwen, Kimi, GLM, or a server-registered compatible provider only after an operator deploys the optional Worker and configures a server-side secret.</p>
-            <p>GitHub Pages serves the static frontend; it does not run the Worker. Provider keys must stay in Wrangler secrets, never in this repository or in browser code. The server validates allowed origins, providers, models, message size, and request limits, and returns clear unavailable or upstream-error states.</p>
-            <div class="handbook-note">A model appearing in a server response means that a configuration exists. It does not prove account balance, model permission, current uptime, or answer quality.</div>
+            <p class="handbook-kicker">05 · EXTERNAL AI WEBSITES</p>
+            <h2>AI Websites <span>大模型网站</span></h2>
+            <p>Xiaoyi currently uses local knowledge mode only. Expand AI Websites in its drawer to open a model website in the current page, or use the links below.</p>
+            <div class="handbook-links">
+              <a class="handbook-link" href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer"><strong>DeepSeek ↗</strong></a>
+              <a class="handbook-link" href="https://www.tongyi.com/" target="_blank" rel="noopener noreferrer"><strong>Tongyi Qianwen ↗</strong></a>
+              <a class="handbook-link" href="https://www.kimi.com/" target="_blank" rel="noopener noreferrer"><strong>Kimi ↗</strong></a>
+              <a class="handbook-link" href="https://www.doubao.com/chat/" target="_blank" rel="noopener noreferrer"><strong>Doubao ↗</strong></a>
+              <a class="handbook-link" href="https://chatglm.cn/" target="_blank" rel="noopener noreferrer"><strong>Zhipu Qingyan ↗</strong></a>
+              <a class="handbook-link" href="https://yuanbao.tencent.com/" target="_blank" rel="noopener noreferrer"><strong>Tencent Yuanbao ↗</strong></a>
+            </div>
+            <p>These are external links, not model connections inside Xiaoyi. Your conversation and memory stay on this site. Each service manages its own account, privacy settings, and availability.</p>
+            <div class="handbook-note">The server adapters remain in the repository for future extensions. No online endpoint or Worker is enabled in the current site. See server/README.md for the optional backend; API keys must stay out of frontend files.</div>
           </section>
 
           <section id="maintenance" class="handbook-section">
@@ -149,6 +172,10 @@
 # open http://localhost:8000/</pre>
             <p>Before a release, run the behavior contracts and then complete the three QA rounds in <a href="QA.md">QA.md</a>:</p>
             <pre class="handbook-code">node --test tests/*.test.mjs</pre>
+            <p>Before publishing document updates, sync and check the four allowlisted attachments. Original files remain unchanged:</p>
+            <pre class="handbook-code">python3 scripts/sync-public-documents.py sync
+python3 scripts/sync-public-documents.py --check</pre>
+            <p>Refresh the separate learning-resource copies with their sync script, then run the resource checker. The <a href="resources/README.md">resource notes</a> list the source arguments and checks; GitHub Pages cannot watch local folders.</p>
             <p>Review source links, theme persistence, Xiaoyi open/close and left/right docking, mobile layout, library filters, reduced motion, and the absence of broken assets. Commit the release, push the intended branch, wait for GitHub Pages to deploy, then verify both public pages in a fresh browser. A successful local test does not prove that a public deployment or optional model service is live.</p>
             <p>The free Pages address uses the repository owner name, currently <code>zhaozizhuang666.github.io</code>. “zizhuang.zhao” is a display name; it cannot replace the GitHub Pages hostname without a separately owned custom domain and DNS configuration.</p>
           </section>

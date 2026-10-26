@@ -9,6 +9,18 @@ export const PROVIDERS = Object.freeze({
   qwen: {label: 'Qwen · 通义千问', key: 'DASHSCOPE_API_KEY', endpoint: 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions', models: ['qwen-plus']},
   kimi: {label: 'Kimi · 月之暗面', key: 'MOONSHOT_API_KEY', endpoint: 'https://api.moonshot.cn/v1/chat/completions', models: ['kimi-k3.1-pro']},
   glm: {label: 'GLM · 智谱', key: 'ZHIPU_API_KEY', endpoint: 'https://open.bigmodel.cn/api/paas/v4/chat/completions', models: ['glm-4.7-flash', 'glm-5.3']},
+  tencent: {label: 'Tencent TokenHub · Kimi', key: 'TENCENT_TOKENHUB_API_KEY', endpoint: 'https://tokenhub-intl.tencentmaas.com/v1/chat/completions', models: ['kimi-k3']},
+  ark: {label: 'Volcengine Ark · Doubao', key: 'ARK_API_KEY', endpoint: 'https://ark.cn-beijing.volces.com/api/v3/responses', models: ['doubao-seed-evolving'], protocol: 'openai-responses'},
+  cloudflare: {label: 'Cloudflare Workers AI', models: [], protocol: 'cloudflare-workers-ai'},
+});
+// Each binding model has a verified text-conversation contract. The full Workers
+// AI catalog also includes audio, images, embeddings and task-specific models.
+// Adding one here requires checking its official input/output schemas.
+export const CLOUDFLARE_CHAT_MODELS = Object.freeze({
+  '@cf/zai-org/glm-4.7-flash': {label: 'GLM-4.7-Flash', output: 'chat-completions', tokens: 'max_completion_tokens', input: {store: false, chat_template_kwargs: {enable_thinking: false}}},
+  '@cf/qwen/qwen3-30b-a3b-fp8': {label: 'Qwen3 30B A3B', output: 'chat-completions', tokens: 'max_tokens'},
+  '@cf/meta/llama-3.1-8b-instruct-fp8': {label: 'Llama 3.1 8B Instruct', output: 'response', tokens: 'max_tokens'},
+  '@cf/deepseek-ai/deepseek-v4.1-flash-1017': {label: 'DeepSeek-V4.1-Flash-1017', output: 'chat-completions', tokens: 'max_completion_tokens', input: {store: false, reasoning_effort: 'none'}},
 });
 const CUSTOM_PROVIDER_ID = 'custom';
 const ENV_NAME = /^[A-Z][A-Z0-9_]{2,63}$/;
@@ -60,6 +72,18 @@ function safeProviderUrl(value, protocol) {
   return `${url.origin}${pathname.endsWith(suffix) ? pathname : `${pathname}${suffix}`}`;
 }
 
+function safeImageUrl(value) {
+  if (typeof value !== 'string' || value.length > 2000 || /[\u0000-\u0020\u007f]/.test(value)) return null;
+  let url;
+  try { url = new URL(value); } catch { return null; }
+  if (url.protocol !== 'https:' || url.username || url.password) return null;
+  const hostname = url.hostname.toLowerCase().replace(/^\[|\]$/g, '');
+  if (!hostname.includes('.') || hostname.includes(':') || /^[\d.]+$/.test(hostname) || !/^[a-z0-9.-]+$/.test(hostname)) return null;
+  if (['localhost', 'local', 'internal', 'lan', 'home', 'invalid', 'test', 'onion'].some(suffix => hostname === suffix || hostname.endsWith(`.${suffix}`))) return null;
+  if (hostname.endsWith('.') || hostname.split('.').some(label => !label || label.length > 63 || label.startsWith('-') || label.endsWith('-'))) return null;
+  return url.href.length <= 2000 ? url.href : null;
+}
+
 function normalizeCustomDefinition(raw) {
   if (!plainObject(raw) || typeof raw.id !== 'string' || !PROVIDER_ID.test(raw.id) || Object.hasOwn(PROVIDERS, raw.id)) return null;
   if (['constructor', 'prototype'].includes(raw.id) || Object.keys(raw).some(key => !['id', 'label', 'baseUrl', 'endpoint', 'secretEnv', 'models', 'protocol'].includes(key))) return null;
@@ -102,12 +126,29 @@ export function parseCustomProviders(env = {}) {
 }
 
 function providerDefinitions(env) {
-  return {...PROVIDERS, ...Object.fromEntries(parseCustomProviders(env).map(provider => [provider.id, provider]))};
+  return {...PROVIDERS, cloudflare: {...PROVIDERS.cloudflare, models: parseCloudflareModels(env.CLOUDFLARE_MODELS)}, ...Object.fromEntries(parseCustomProviders(env).map(provider => [provider.id, provider]))};
+}
+
+/** Strict server-owned JSON allow-list; invalid/unknown/duplicate rows fail closed. */
+export function parseCloudflareModels(value) {
+  if (typeof value !== 'string' || !value.trim() || byteLength(value) > 8192) return [];
+  try {
+    const models = JSON.parse(value);
+    if (!Array.isArray(models) || !models.length || models.length > 40 || new Set(models).size !== models.length) return [];
+    if (models.some(model => typeof model !== 'string' || !Object.hasOwn(CLOUDFLARE_CHAT_MODELS, model))) return [];
+    return models;
+  } catch { return []; }
+}
+
+function providerAvailable(env, provider) {
+  return provider.protocol === 'cloudflare-workers-ai'
+    ? typeof env.AI?.run === 'function' && provider.models.length > 0
+    : validSecret(env[provider.key]);
 }
 
 export function configuredModels(env) {
   const definitions = providerDefinitions(env);
-  const providers = Object.entries(definitions).filter(([, provider]) => validSecret(env[provider.key])).map(([id, provider]) => ({id, label: provider.label, models: provider.models.map(model => ({id: model, label: model}))}));
+  const providers = Object.entries(definitions).filter(([, provider]) => providerAvailable(env, provider)).map(([id, provider]) => ({id, label: provider.label, models: provider.models.map(model => ({id: model, label: id === 'cloudflare' ? CLOUDFLARE_CHAT_MODELS[model].label : model}))}));
   const desired = providers.find(provider => provider.id === env.MODEL_PROVIDER) || providers[0];
   const model = desired?.models.find(model => model.id === env.MODEL_NAME)?.id || desired?.models[0].id;
   return {providers, default: desired ? {provider: desired.id, model} : null};
@@ -115,7 +156,7 @@ export function configuredModels(env) {
 
 export function validatePayload(payload, knownProviders = PROVIDERS) {
   if (!plainObject(payload)) fail(400, 'invalid_payload', '请求必须是 JSON 对象。');
-  const allowedFields = new Set(['messages', 'provider', 'model', 'mode', 'context']);
+  const allowedFields = new Set(['messages', 'provider', 'model', 'mode', 'context', 'images']);
   if (Object.keys(payload).some(key => !allowedFields.has(key))) fail(400, 'invalid_payload', '请求包含不支持的字段。');
   if (!Array.isArray(payload.messages) || payload.messages.length < 1 || payload.messages.length > LIMITS.messages) fail(400, 'invalid_messages', `对话需包含 1–${LIMITS.messages} 条消息。`);
   let total = 0;
@@ -150,7 +191,13 @@ export function validatePayload(payload, knownProviders = PROVIDERS) {
     inspect(payload.context);
     context = payload.context;
   }
-  return {messages, mode, context, provider: payload.provider, model: payload.model};
+  let images = [];
+  if (payload.images !== undefined) {
+    if (!Array.isArray(payload.images) || payload.images.length > 1) fail(400, 'invalid_images', '图片最多提供 1 个公开 HTTPS 地址。');
+    images = payload.images.map(safeImageUrl);
+    if (images.some(image => !image)) fail(400, 'invalid_images', '图片必须是公开 HTTPS 图片地址，不能包含凭据、本地地址或 IP 地址。');
+  }
+  return {messages, mode, context, provider: payload.provider, model: payload.model, images};
 }
 
 export function resolveProvider(env, requestedProvider, requestedModel) {
@@ -159,9 +206,10 @@ export function resolveProvider(env, requestedProvider, requestedModel) {
   const id = requestedProvider || listing.default.provider;
   const definition = providerDefinitions(env)[id];
   if (!definition) fail(400, 'invalid_provider', '不支持的模型服务。');
-  if (!validSecret(env[definition.key])) fail(503, 'provider_not_configured', '所选模型服务尚未配置，请切换其他模型或使用本地知识库。');
+  if (!providerAvailable(env, definition)) fail(503, 'provider_not_configured', '所选模型服务尚未配置，请切换其他模型或使用本地知识库。');
   const model = requestedModel || (id === listing.default.provider ? listing.default.model : definition.models[0]);
   if (!definition.models.includes(model)) fail(400, 'invalid_model', '模型不在服务端允许列表中。');
+  if (definition.protocol === 'cloudflare-workers-ai') return {id, model, protocol: definition.protocol, custom: false};
   let endpoint = definition.endpoint;
   if (id === 'qwen' && env.DASHSCOPE_WORKSPACE_ID) {
     if (!/^[A-Za-z0-9-]{1,80}$/.test(env.DASHSCOPE_WORKSPACE_ID)) fail(503, 'invalid_configuration', '模型服务配置需要维护者检查。');
@@ -182,8 +230,30 @@ function conversationTurns(messages) {
   return turns;
 }
 
-function upstreamRequest(provider, messages, maxTokens) {
+function responsesInput(messages, images) {
+  const input = messages.filter(message => message.role !== 'system').map(message => ({
+    role: message.role,
+    // Ark EasyInputMessage accepts prior assistant replies as plain strings;
+    // output_text arrays are reserved for complete output-message items.
+    content: message.role === 'assistant' ? message.content : [{type: 'input_text', text: message.content}],
+  }));
+  if (images.length) input.at(-1).content.push({type: 'input_image', image_url: images[0]});
+  return input;
+}
+
+function upstreamRequest(provider, messages, maxTokens, images = []) {
   const headers = {'Content-Type': 'application/json'};
+  if (provider.protocol === 'openai-responses') {
+    headers.Authorization = `Bearer ${provider.apiKey}`;
+    return {headers, body: {
+      model: provider.model,
+      instructions: messages.filter(message => message.role === 'system').map(message => message.content).join('\n\n'),
+      input: responsesInput(messages, images),
+      max_output_tokens: maxTokens,
+      stream: false,
+      store: false,
+    }};
+  }
   if (provider.protocol === 'anthropic-messages') {
     headers['x-api-key'] = provider.apiKey;
     headers['anthropic-version'] = '2023-06-01';
@@ -206,6 +276,26 @@ function upstreamRequest(provider, messages, maxTokens) {
 
 function upstreamAnswer(provider, result) {
   if (result?.error) return undefined;
+  if (provider.protocol === 'cloudflare-workers-ai') {
+    if (!plainObject(result) || result.errors?.length || result.tool_calls?.length || result.function_call || result.refusal) return undefined;
+    if (CLOUDFLARE_CHAT_MODELS[provider.model].output === 'response') return result.response;
+    // Only expose completed assistant text, never internal reasoning or tool calls.
+    if (!Array.isArray(result.choices) || result.choices.length !== 1) return undefined;
+    const choice = result.choices[0];
+    if (choice?.finish_reason !== 'stop' || choice?.message?.role !== 'assistant' || choice.message.tool_calls?.length || choice.message.function_call || choice.message.refusal) return undefined;
+    return choice.message.content;
+  }
+  if (provider.protocol === 'openai-responses') {
+    if (result?.status !== 'completed' || result.incomplete_details) return undefined;
+    if (!Array.isArray(result.output)) return undefined;
+    if (result.output.some(item => !['message', 'reasoning'].includes(item?.type) || (item?.status !== undefined && item.status !== 'completed'))) return undefined;
+    const messages = result.output.filter(item => item?.type === 'message');
+    if (!messages.length || messages.some(item => item.role !== 'assistant' || item.status !== 'completed' || !Array.isArray(item.content))) return undefined;
+    const content = messages.flatMap(item => item.content);
+    if (content.some(item => item?.type !== 'output_text' || typeof item.text !== 'string')) return undefined;
+    const text = content.map(item => item.text).join('\n\n');
+    return text || undefined;
+  }
   if (provider.protocol === 'anthropic-messages') {
     if (!Array.isArray(result?.content) || result.stop_reason === 'tool_use' || result.content.some(block => block?.type === 'tool_use' || block?.type === 'server_tool_use')) return undefined;
     return result.content.filter(block => block?.type === 'text' && typeof block.text === 'string').map(block => block.text).join('\n\n');
@@ -217,7 +307,9 @@ function upstreamAnswer(provider, result) {
     if (Array.isArray(parts) && parts.some(part => part?.functionCall)) return undefined;
     return Array.isArray(parts) ? parts.filter(part => part && part.thought !== true && typeof part.text === 'string').map(part => part.text).join('\n\n') : undefined;
   }
-  return result?.choices?.[0]?.message?.content;
+  const choice = result?.choices?.[0];
+  if (['tool_calls', 'function_call', 'content_filter'].includes(choice?.finish_reason) || choice?.message?.tool_calls?.length || choice?.message?.function_call || choice?.message?.refusal) return undefined;
+  return choice?.message?.content;
 }
 
 export function createMemoryLimiter({limit = 10, periodMs = 60000, maxKeys = 2000, now = Date.now} = {}) {
@@ -322,6 +414,7 @@ export function createHandler({fetchImpl = fetch, fallbackLimiter = memoryLimit,
       const definitions = providerDefinitions(env);
       const payload = validatePayload(raw, definitions);
       const provider = resolveProvider(env, payload.provider, payload.model);
+      if (payload.images.length && provider.id !== 'ark') fail(400, 'images_unsupported', '图片输入目前只支持火山方舟模型。');
       const retrieved = retrieveKnowledge(payload.messages);
       const evidence = buildEvidenceMessage(retrieved, payload.context);
       const messages = [{role: 'system', content: buildSystemPrompt(payload.mode)}, ...(evidence ? [evidence] : []), ...payload.messages];
@@ -331,13 +424,23 @@ export function createHandler({fetchImpl = fetch, fallbackLimiter = memoryLimit,
       let timer;
       try {
         const task = async () => {
-          const outgoing = upstreamRequest(provider, messages, maxTokens);
-          const upstream = await fetchImpl(provider.endpoint, {
-            method: 'POST', redirect: 'error', signal: controller.signal,
-            headers: outgoing.headers, body: JSON.stringify(outgoing.body),
-          });
-          if (!upstream.ok) { await upstream.body?.cancel(); fail(502, 'provider_error', '模型服务暂时不可用，请稍后重试或切换模型。'); }
-          const result = JSON.parse(await readBoundedText(upstream, LIMITS.responseBytes, 502));
+          let result;
+          if (provider.protocol === 'cloudflare-workers-ai') {
+            const definition = CLOUDFLARE_CHAT_MODELS[provider.model];
+            // Binding input is assembled here; the client cannot supply options,
+            // a model outside the allow-list, a URL, credentials or stored history.
+            result = await env.AI.run(provider.model, {messages, stream: false, [definition.tokens]: maxTokens, ...(definition.input ? structuredClone(definition.input) : {})}, {signal: controller.signal});
+            const encoded = JSON.stringify(result);
+            if (typeof encoded !== 'string' || byteLength(encoded) > LIMITS.responseBytes) fail(502, 'invalid_provider_response', '模型未返回有效回复，请稍后重试。');
+          } else {
+            const outgoing = upstreamRequest(provider, messages, maxTokens, payload.images);
+            const upstream = await fetchImpl(provider.endpoint, {
+              method: 'POST', redirect: 'error', signal: controller.signal,
+              headers: outgoing.headers, body: JSON.stringify(outgoing.body),
+            });
+            if (!upstream.ok) { await upstream.body?.cancel(); fail(502, 'provider_error', '模型服务暂时不可用，请稍后重试或切换模型。'); }
+            result = JSON.parse(await readBoundedText(upstream, LIMITS.responseBytes, 502));
+          }
           const answer = upstreamAnswer(provider, result);
           if (typeof answer !== 'string' || !answer.trim() || answer.length > LIMITS.answerChars) fail(502, 'invalid_provider_response', '模型未返回有效回复，请稍后重试。');
           return jsonResponse({answer: answer.trim(), reply: answer.trim(), provider: provider.id, model: provider.model, sources: retrieved.sources}, 200, origin);

@@ -6,6 +6,7 @@
   const norm = value => canonical(value).toLowerCase().replace(/[\s“”‘’「」《》【】（）()·\-—–，,。？?！!：:]/g, '');
   const unique = entries => [...new Map(entries.filter(Boolean).map(entry => [entry.id, entry])).values()];
   const ROUTES = [
+    [/记忆流.*(?:怎么|如何|使用)|(?:怎么|如何|使用).*记忆流|(?:小艺|xiaoyi).*(?:记忆|保存对话|恢复对话)|清空记忆|删除记忆/i, ['site-guide-xiaoyi-memory']],
     [/网站.*(?:怎么|如何|使用|操作|配置)|(?:使用|配置)(?:说明|手册)/i, ['site-guide-usage']],
     [/主题|深色模式|浅色模式|白天黑夜|(?:light|dark|auto)模式/i, ['site-guide-theme']],
     [/(?:小艺|xiaoyi).*(?:怎么用|怎么使用|使用|拖动|侧边|打不开)|对话框怎么关闭/i, ['site-guide-xiaoyi']],
@@ -104,11 +105,34 @@
     function source(entry, kind) {
       return {...entry, kind, sourceTitle: data[kind]?.sourceTitle, sourceNote: data[kind]?.sourceNote};
     }
+    function venture(text) {
+      if (!/创享艺苑/.test(text) || !/商业|业务|发展|成长|未来|主线|规划|已有|现有|基础|完成|做过|具身|VLA|Agent|智能体|Skill|技能|RAG|工作坊|研究助手|机器人|应用|服务|项目|方向|OPC|一人公司|伙伴|团队|合作/i.test(text)) return null;
+      const ids = [];
+      if (/商业|业务|发展|成长|未来|主线|方向|OPC|一人公司|伙伴|团队/i.test(text)) ids.push('venture-platform-direction');
+      if (/具身|VLA|机器人|知识服务|知识库应用|课程|工作坊|场馆|讲解|演示/i.test(text)) ids.push('venture-embodied-knowledge-applications');
+      if (/Agent|智能体|Skill|技能|RAG|工具|工作流|研究助手/i.test(text)) ids.push('venture-agent-skills');
+      if (/商业|已有|现有|基础|完成|做过|成果|状态|落地|合作|伙伴|团队|OPC|一人公司/i.test(text)) ids.push('venture-foundations-status');
+      return unique((ids.length ? ids : ['venture-platform-direction', 'venture-foundations-status']).map(byId)).slice(0, 4);
+    }
     function technical(text) {
+      if (/6g.*(?:报道|文章|story)|研修报道|研修文章/i.test(text)) return unique(['profile-6g-training-story'].map(byId));
+      if (/6g|6G时代数据要素|secure data flows/i.test(text)) return unique(['profile-6g-course-paper'].map(byId));
+      // Resource navigation is distinct from an explanation of the VLA concept.
+      if (/学习资源.*(?:怎么|如何|使用)|(?:怎么|如何).*学习资源|learning resources.*(?:use|help)/i.test(text)) return unique(['site-guide-learning-resources'].map(byId));
+      if (/(?:vla[\s-]*guide|本地VLA知识库)/i.test(text) && /入口|在哪|哪里|链接|浏览|打开|\b(?:where|link|open|find|access)\b/i.test(text)) return unique(['learning-vla-guide'].map(byId));
+      if (/算力.*网络.*(?:合集|资源|入口|学习)|(?:rdma|roce).*(?:学习资源|学习合集)|AI Network Learning/i.test(text)) return unique(['learning-ai-network'].map(byId));
+      const initiative = venture(text);
+      if (initiative !== null) return initiative;
+      // Provider names and setup verbs need not be adjacent (for example,
+      // “Xiaoyi 如何接入豆包？”). Resolve that intent before broad “使用” routes.
+      const provider = /cloudflare|workers\s*ai|豆包|doubao|火山方舟|volcengine|\bark\b|\bglm(?:[\s-]*\d[\w.-]*)?\b|智谱|kimi|tokenhub|moonshot|deepseek|qwen|通义千问/i.test(text);
+      const setup = /接入|配置|切换|启用|连接|部署|(?:小艺|xiaoyi).*(?:使用|支持|选择)|\b(?:connect|configure|integrate|enable|switch|setup|set up)\b/i.test(text);
+      const media = /图片|图像|上传|多模态|音频|视频|\b(?:images?|uploads?|multimodal|audio|video)\b/i.test(text);
+      if (provider && setup) return unique(['site-guide-models', /cloudflare|workers\s*ai/i.test(text) ? 'site-guide-model-workers-ai' : 'site-guide-model-providers', ...(media ? ['site-guide-model-inputs'] : [])].map(byId));
       const routed = unique(ROUTES.filter(([pattern]) => pattern.test(text)).flatMap(([, ids]) => ids.map(byId)));
       if (routed.length) return routed.slice(0, 5);
       const query = norm(text);
-      return entries('technical-knowledge').map(entry => {
+      return entries('technical-knowledge').filter(entry => entry.sourceType !== 'owner-provided-business-plan').map(entry => {
         const score = Math.max(0, ...[entry.name, ...(entry.aliases || [])].map(name => norm(name)).filter(name => name.length > 2).map(name => query.includes(name) ? name.length : 0));
         return {entry, score};
       }).filter(row => row.score).sort((a, b) => b.score - a.score).slice(0, 4).map(row => row.entry);
@@ -186,8 +210,14 @@
     }
     function sourceAnswer(text, messages) {
       const sources = activeEvidence(text, messages).slice(0, 4);
-      if (!sources.length) return {text: '这次提到的主题还没有可核实的来源链接。告诉我概念、赛事或刊名，我会提供对应的已收录来源。', sources: []};
-      return {text: `可以，下面是对应来源：\n\n${sources.map(entry => `[${entry.name}](${entry.website})${entry.urlType === 'search' ? '（检索入口，尚未核验为官网）' : ''}`).join('\n\n')}\n\n${sources.some(entry => entry.sourceType === 'primary-paper') ? '原始论文链接用于核查概念与方法，不能据此推定已复现其结果。' : '来源类型与具体位置同时保留在下方资料卡片中。'}`, sources};
+      const domestic = sources.find(entry => entry.id === 'site-guide-domestic-model-web-links');
+      if (domestic) {
+        const links = (domestic.externalLinks || []).filter(link => link && /^https?:\/\//.test(link.url || ''));
+        const websiteSources = links.map(link => ({...link, website: link.url, urlType: 'external-links', kind: domestic.kind, sourceTitle: domestic.sourceTitle, sourceNote: domestic.sourceNote}));
+        return {text: `国内大模型网站入口（在新标签页打开）：\n\n${websiteSources.map(entry => `[${entry.name}](${entry.website})`).join('\n\n')}\n\n以上为外部网站。Xiaoyi 当前仅使用本地知识模式，未接入上述平台的 API。`, sources: websiteSources};
+      }
+      if (!sources.length) return {text: '当前主题未检索到可核实的来源。请提供具体概念、赛事或刊名，以便匹配已收录资料。', sources: []};
+      return {text: `相关来源：\n\n${sources.map(entry => `[${entry.name}](${entry.website})${entry.urlType === 'search' ? '（检索入口，尚未核验为官网）' : ''}`).join('\n\n')}\n\n${sources.some(entry => entry.sourceType === 'primary-paper') ? '原始论文可用于核查概念与方法；本站未声明复现其研究结果。' : '来源类型与具体位置见下方资料卡片。'}`, sources};
     }
     function directoryChoice(selected, text) {
       const choice = text.match(/第\s*([一二三四1234])\s*(?:个|条|项|种)?/);
@@ -233,35 +263,35 @@
       return history;
     }
     function directoryLink(entry) {
-      if (!/^https?:\/\//.test(entry.website || '')) return '当前记录没有可用的链接。';
+      if (!/^https?:\/\//.test(entry.website || '')) return '当前记录暂无可用链接。';
       return entry.urlType === 'official' ? `[查看官网与当届通知](${entry.website})` : `[检索当届官方公告](${entry.website})（检索入口，尚未核验为官网）`;
     }
     function directory(text, request) {
       const {kind, selected, followup} = request;
-      if (!selected.length) return {text: `没有找到与“${text}”明确匹配的${kind === 'journals' ? '期刊' : '赛事'}记录。可提供更短的刊名或赛事名称；未收录不代表不存在。`, sources: []};
+      if (!selected.length) return {text: `未检索到与“${text}”明确匹配的${kind === 'journals' ? '期刊' : '赛事'}记录。可尝试刊名或赛事简称；检索范围限于本站目录。`, sources: []};
       const sources = selected.map(entry => source(entry, kind));
       const preparation = preparationIntent(text);
       const action = preparation || /报名|截止|资格|费用|赛道|规则|主办|官网|适合我|我能参加|我可以参加/.test(text);
-      if (selected.length > 1 && followup && action) return {text: `刚才列出了多项${kind === 'journals' ? '期刊' : '赛事'}。你想继续了解哪一项？可以说名称或“第几个”。`, sources};
+      if (selected.length > 1 && followup && action) return {text: `当前结果包含多项${kind === 'journals' ? '期刊' : '赛事'}。请指定名称或序号。`, sources};
       if (kind === 'competitions' && selected.length === 1) {
         const entry = selected[0];
         const title = entry.name;
         const link = directoryLink(entry);
         if (preparation) {
           const steps = entry.id === 'sxit-competition-001'
-            ? '先核对当届赛道与资格，再用一个真实问题梳理用户、解决方案和验证证据，准备能展示进展的原型与项目说明。'
+            ? '核对当届赛道与资格，围绕真实问题梳理用户、解决方案和验证证据，准备原型与项目说明。'
             : entry.id === 'sxit-competition-024'
-              ? '先核对当届作品类别和参赛条件，再选一个能完成的小作品，整理需求、可运行演示、测试记录与说明材料。'
-              : '先核对当届赛题或作品方向、资格与时间，再做一个范围明确的原型，用测试记录说明完成了什么、还存在哪些问题。';
-          return {text: `准备“${title}”，可以先这样做：\n${steps}\n\n这是准备建议，不是已核验的提交清单；具体材料和评审要求以当届公告为准。\n${link}`, sources};
+              ? '核对当届作品类别和参赛条件，选择范围可控的作品，整理需求、可运行演示、测试记录与说明材料。'
+              : '核对当届赛题或作品方向、资格与时间，制作范围明确的原型，并以测试记录说明完成情况与待解决问题。';
+          return {text: `“${title}”准备建议：\n${steps}\n\n以上为准备建议；已核验的提交清单尚未收录，具体材料和评审要求以当届公告为准。\n${link}`, sources};
         }
         if (/适合我|我能参加|我可以参加/.test(text)) {
-          const background = memory.background.length ? `你提到：${memory.background.slice(-2).join('；')}。\n` : '';
-          return {text: `关于“${title}”：\n${background}${entry.summary}\n\n可以从兴趣方向、已有技能和能投入的时间判断是否值得准备；目前资料不足以确认你符合当届参赛资格。告诉我你的年级、专业和已有作品，我可以继续帮你缩小范围。\n${link}`, sources};
+          const background = memory.background.length ? `已提供条件：${memory.background.slice(-2).join('；')}。\n` : '';
+          return {text: `关于“${title}”：\n${background}${entry.summary}\n\n参赛适配度可结合兴趣、技能、时间投入与已有作品评估。当前资料不足以确认当届参赛资格；补充年级、专业和作品信息后，可进一步分析准备方向。\n${link}`, sources};
         }
-        if (/报名|截止|资格|费用|赛道|规则|时间/.test(text)) return {text: `“${title}”的当届报名时间、资格、费用与赛道细则尚未完整收录，不能由目录补全。先通过下方入口核对当届通知，再确认所在学校的报名安排；我不会推测截止时间或保证可以报名。\n\n${link}`, sources};
-        if (/主办/.test(text)) return {text: `“${title}”的源目录记录了主办单位，但未注明版本，可能包含历史信息。当前组织机构请核对当届官网通知。\n\n${link}`, sources};
-        return {text: `${title}\n${entry.summary}\n\n目录记录：山西工学院校内竞赛类别 ${entry.level}，不是全国统一赛事分级。\n${link}\n报名资格、赛道、时间与评审要求以当届官方公告为准。`, sources};
+        if (/报名|截止|资格|费用|赛道|规则|时间/.test(text)) return {text: `“${title}”的当届报名时间、资格、费用与赛道细则尚未完整收录。请通过下方入口核对当届通知及所在学校的报名安排。\n\n${link}`, sources};
+        if (/主办/.test(text)) return {text: `“${title}”源目录中的主办单位信息未标注版本，可能为历史记录。当前组织机构以当届官网通知为准。\n\n${link}`, sources};
+        return {text: `${title}\n${entry.summary}\n\n校内分级：山西工学院 ${entry.level} 类；该分类仅适用于源学校目录。\n${link}\n报名资格、赛道、时间与评审要求以当届官方公告为准。`, sources};
       }
       const textRows = selected.map((entry, index) => `${selected.length > 1 ? `${index + 1}. ` : ''}${entry.name}${kind === 'journals' ? ` · ${entry.batch}` : ` · 校内 ${entry.level}`}\n${entry.summary}`).join('\n\n');
       return {text: `${textRows}\n\n${kind === 'journals' ? '批次依源 PDF 顺序和编号推定；此目录不等同核心期刊、SCI 或现行出版许可。' : 'A / B1 / B2 为山西工学院校内分级，报名与评审请核对当届公告。'}${selected.some(entry => entry.urlType === 'search') ? ' 检索入口尚未核验为官网。' : ''}`, sources};
@@ -269,12 +299,15 @@
     function explain(text, records) {
       const ids = records.map(entry => entry.id);
       const comparison = /区别|比较|对比|关系|不同|vs\.?|versus|相比/i.test(text);
-      if (comparison && !ids.includes('tech-vla-foundation') && !ids.includes('tech-vlm-bridge') && /它们|二者|两者|这两个/.test(text)) records = unique([...memory.technical.map(byId), ...records]);
+      const business = records.length && records.every(entry => entry.sourceType === 'owner-provided-business-plan');
+      if (!business && comparison && !ids.includes('tech-vla-foundation') && !ids.includes('tech-vlm-bridge') && /它们|二者|两者|这两个/.test(text)) records = unique([...memory.technical.map(byId), ...records]);
       let body;
       const allIds = records.map(entry => entry.id);
-      if (allIds.includes('tech-vln-foundation') && /评测|评价|指标|sr|spl|如何测|怎么测/i.test(text)) {
+      if (business) {
+        body = records.slice(0, 3).map(entry => `${entry.name}\n${entry.summary}\n${entry.details}`).join('\n\n');
+      } else if (allIds.includes('tech-vln-foundation') && /评测|评价|指标|sr|spl|如何测|怎么测/i.test(text)) {
         records = [byId('tech-vln-evaluation'), byId('tech-vln-foundation')].filter(Boolean);
-        body = `${records[0]?.summary || ''}\n${records[0]?.details || ''}\n\n例如，两条轨迹都到达目标，绕路更多的一条可能得到更低的 SPL。解释结果时还要明确智能体是否在正确位置停止，而不能只看它曾经路过目标。`;
+        body = `${records[0]?.summary || ''}\n${records[0]?.details || ''}\n\n例如，两条轨迹均到达目标时，路径更长的一条可能得到更低的 SPL。成功判定还需核对停止位置，经过目标位置本身不足以判定成功。`;
       } else if (comparison && allIds.includes('tech-vln-foundation') && (allIds.includes('tech-vla-foundation') || allIds.includes('tech-vlm-bridge'))) {
         records = ['tech-vln-foundation', 'tech-vlm-bridge', 'tech-vla-foundation'].map(byId).filter(Boolean);
         body = 'VLN（Vision-and-Language Navigation）是根据视觉观察和语言指令完成导航的任务，重点是走到哪里、怎样走、何时停止。VLM（Vision–Language Model）连接视觉与语言，通常用于理解或生成；VLA（Vision–Language–Action）把视觉、语言与动作连接为策略。\n\n它们处在不同描述层次：VLN 是任务方向，VLM/VLA 更偏模型或策略范式。VLN 系统可以使用 VLM 或动作策略，但导航到达率不能直接代表机械臂操作成功率。';
@@ -282,14 +315,21 @@
         records = ['tech-vlm-bridge', 'tech-vla-foundation'].map(byId).filter(Boolean);
         body = 'VLM（Vision–Language Model）把视觉特征连接到语言模型，用于图像与语言的理解和生成。VLA（Vision–Language–Action）进一步把视觉观察、语言任务与动作相连，用于机器人策略。\n\n两者的关键区别是输出与验证方式：VLM 的回答质量不等于机器人执行成功；VLA 还要核对动作接口、数据约定，并在固定任务协议下检验真实行为。VLA 可以利用 VLM 的预训练能力，但并非所有 VLM 都能直接控制机器人。';
       } else if (/机器人.*(是什么|是啥)|什么是机器人/.test(text)) {
-        body = '机器人是通过机械或其他物理执行机构感知环境并完成动作的系统；它可以采用预设控制，也可以使用学习策略。现有资料重点讨论学习型机器人：VLA 连接视觉、语言与动作，具身 Agent 则关注目标规划、短时动作和执行反馈。\n\n“有机器人载体”“使用 VLA”和“具备可靠智能”是不同判断，不能仅凭演示或流畅回答划等号。';
+        body = '机器人是通过机械或其他物理执行机构感知环境并完成动作的系统；它可以采用预设控制，也可以使用学习策略。现有资料重点讨论学习型机器人：VLA 连接视觉、语言与动作，具身 Agent 则关注目标规划、短时动作和执行反馈。\n\n机器人载体、VLA 应用与系统可靠性分别需要相应证据；演示效果或回答流畅度不足以证明可靠性。';
       } else if (/具身.*(是什么|是啥)|什么是具身/.test(text)) {
-        body = '具身智能关注智能系统如何通过身体或机器人载体与环境形成感知、决策、行动和反馈的闭环。这里的学习资料重点是具身 Agent：高层组织目标或计划，低层输出短时动作，再用完成、失败或状态过期等反馈调整计划。\n\nVLA 是连接视觉、语言与动作的一类策略路线；分层 Agent 是系统组织方式，两者可以组合。分层本身不保证长程任务可靠，仍需检查接口一致性与执行失败。';
+        body = '具身智能关注智能系统如何通过身体或机器人载体与环境形成感知、决策、行动和反馈的闭环。本站学习资料重点讨论具身 Agent：高层组织目标或计划，低层输出短时动作，再用完成、失败或状态过期等反馈调整计划。\n\nVLA 是连接视觉、语言与动作的一类策略路线；分层 Agent 是系统组织方式，两者可以组合。分层本身不保证长程任务可靠，仍需检查接口一致性与执行失败。';
       } else {
         body = records.slice(0, 3).map(entry => `${entry.name}\n${entry.summary}\n${entry.details}`).join('\n\n');
       }
-      if (!records.length) return {text: '本地已整理资料暂时没有足够条目支持这个概念。可以具体到 VLA、VLM、VLN、RAG、Agent、训练评测或 AI Infra；我不会把相近刊名或赛事名称当作技术定义。', sources: []};
-      return {text: `${body}\n\n${records.every(entry => entry.sourceType === 'first-party-site-guide') ? '更完整的操作步骤与配置说明见下方本站手册。' : '可通过下方来源核查概念与方法；模型能力、许可和性能仍应结合原始实现与实际实验判断。'}`, sources: records.slice(0, 4).map(entry => source(entry, 'technical-knowledge'))};
+      if (!records.length) return {text: '本地资料暂未收录足以解释该概念的条目。当前覆盖 VLA、VLM、VLN、RAG、Agent、训练评测与 AI Infra，可围绕这些主题进一步查询。', sources: []};
+      const note = records.every(entry => entry.sourceType === 'first-party-site-guide')
+        ? '操作步骤与配置说明见下方本站手册。'
+        : records.every(entry => /^owner-provided-(?:course-paper|project-material|training-story)$/.test(entry.sourceType))
+          ? '下方链接提供原始材料，并区分研修、方案探索与已验证成果。'
+        : records.every(entry => entry.sourceType === 'owner-provided-business-plan')
+          ? '商业计划材料见下方来源，已开展基础与计划应用分别列示。'
+          : '可通过下方来源核查概念与方法；模型能力、许可和性能仍应结合原始实现与实际实验判断。';
+      return {text: `${body}\n\n${note}`, sources: records.slice(0, 4).map(entry => source(entry, 'technical-knowledge'))};
     }
     function project(text) {
       const explicitDomain = domain(text);
@@ -298,19 +338,19 @@
       const choices = IDEAS[memory.idea.domain];
       const selection = text.match(/(?:第\s*([一二三123])\s*(?:个|条|项|种)?|([一二三123])\s*(?:号|方案|方向))/);
       if (selection) memory.idea.selected = {'一': 0, '二': 1, '三': 2, '1': 0, '2': 1, '3': 2}[selection[1] || selection[2]];
-      const background = memory.background.length ? `沿用你提供的条件：${memory.background.slice(-3).join('；')}。\n\n` : '';
+      const background = memory.background.length ? `已提供条件：${memory.background.slice(-3).join('；')}。\n\n` : '';
       const lowResource = memory.background.some(item => /没.{0,3}硬件|无硬件|零基础|初学|预算.{0,4}(低|少)|一人/.test(item));
       if (memory.idea.selected < 0) {
-        return {text: `${background}可以先比较这三个范围较小的方向：\n\n${choices.map((choice, index) => `${index + 1}. ${choice.name}：${choice.problem}。最小原型是${choice.prototype}。`).join('\n\n')}\n\n${lowResource ? '按目前条件，优先使用公开授权资料或仿真，不把购置设备作为起点。' : '先选择一个方向，再确定最小原型与验证办法。'}这些是待验证的项目建议，不是已获奖案例。`, sources: []};
+        return {text: `${background}以下三个方向适合开展小范围验证：\n\n${choices.map((choice, index) => `${index + 1}. ${choice.name}：${choice.problem}。建议原型：${choice.prototype}。`).join('\n\n')}\n\n${lowResource ? '结合当前条件，建议优先使用公开授权资料或仿真。' : '选定方向后，可明确原型范围与验证方法。'}以上为待验证的项目构想，未作为获奖案例引用。`, sources: []};
       }
       const choice = choices[memory.idea.selected];
       memory.idea.stage += 1;
       const next = memory.idea.stage === 1
-        ? `第一步：明确使用者与问题——${choice.problem}。\n第二步：只做${choice.prototype}。\n第三步：${choice.test}。`
+        ? `第一步：明确使用者与问题——${choice.problem}。\n第二步：实现${choice.prototype}。\n第三步：${choice.test}。`
         : memory.idea.stage === 2
-          ? `继续细化“${choice.name}”：\n1. 写下一个使用情境和一项可观察目标。\n2. 整理原型需要的输入、输出与资料授权，先排除无法取得的资源。\n3. 按“${choice.test}”制作测试清单，保留失败记录。`
-          : `下一轮迭代仍围绕“${choice.name}”：先检查上一轮最主要的一个失败，再只修改一个因素，用相同任务重测。把观察、改动和证据记在一页记录中，避免在没有反馈时继续扩大功能。`;
-      return {text: `${background}当前选择：${memory.idea.selected + 1}. ${choice.name}。\n\n${next}${lowResource ? '\n\n实施边界：先采用可获得的授权资料与低成本软件原型；确需硬件时再评估设备与安全条件。' : ''}\n\n这是项目推演，尚需真实用户和实验反馈验证。`, sources: []};
+          ? `“${choice.name}”实施要点：\n1. 明确使用情境和可观察目标。\n2. 整理原型的输入、输出与资料授权，确认资源可获得。\n3. 按“${choice.test}”制作测试清单，保留失败记录。`
+          : `“${choice.name}”下一轮迭代：定位上一轮的主要失败因素，单独修改该因素，并使用相同任务复测。记录观察、改动与证据，根据反馈调整功能范围。`;
+      return {text: `${background}当前选择：${memory.idea.selected + 1}. ${choice.name}。\n\n${next}${lowResource ? '\n\n资源建议：优先采用授权资料与低成本软件原型；涉及硬件时另行评估设备与安全条件。' : ''}\n\n该方案为项目推演，仍需用户反馈与实验验证。`, sources: []};
     }
     function remember(result, scope) {
       memory.scope = scope;
@@ -321,20 +361,24 @@
     function reply(input, messages) {
       const text = String(input || '').trim();
       hydrate(text, messages);
-      if (!text) return {text: '请写下想了解的概念、目录名称或项目问题。', sources: []};
+      if (!text) return {text: '请输入具体概念、目录名称或项目问题。', sources: []};
       const siteGuides = technical(text).filter(entry => entry.sourceType === 'first-party-site-guide');
       if (siteGuides.length && !sourceIntent(text)) return remember(explain(text, siteGuides), 'technical');
-      if (/身份证|家庭住址|住哪|私人地址|密码|密钥|api.?key|未公开|私人电话|私密|内部数据|薪资/i.test(text)) return remember({text: '我只使用网站公开经历与已整理资料，不提供未公开的个人信息、账号凭据或单位内部数据。公开联系入口请查看个人主页。', sources: []}, 'privacy');
+      if (/身份证|家庭住址|住哪|私人地址|密码|密钥|api.?key|未公开|私人电话|私密|内部数据|薪资/i.test(text)) return remember({text: 'Xiaoyi 仅使用网站公开经历与已整理资料，不提供未公开的个人信息、账号凭据或单位内部数据。公开联系方式见个人主页。', sources: []}, 'privacy');
+      const personalRecords = technical(text).filter(entry => /^owner-provided-(?:course-paper|project-material|training-story)$/.test(entry.sourceType));
+      if (personalRecords.length) return remember(sourceIntent(text) ? sourceAnswer(text, messages) : explain(text, personalRecords), 'technical');
+      const ventureRecords = technical(text).filter(entry => entry.sourceType === 'owner-provided-business-plan');
+      if (ventureRecords.length) return remember(sourceIntent(text) ? sourceAnswer(text, messages) : explain(text, ventureRecords), 'venture');
       if (/创享艺苑|平台介绍|介绍.*平台/.test(text)) return remember({text: PLATFORM, sources: []}, 'platform');
-      if (/opc|一人公司/i.test(text)) return remember({text: 'OPC 是 One Person Company（一人公司）。赵子状用它描述自己的个人项目探索；他的原点学堂与原点夜校学习经历是另一件事。创享艺苑的公开定位是大学生创业者联盟。', sources: []}, 'profile');
+      if (/opc|一人公司/i.test(text)) return remember({text: 'OPC 是 One Person Company（一人公司）。赵子状以此描述个人创业实践，独立于原点学堂与原点夜校的学习经历。创享艺苑的公开定位为大学生创业者联盟。', sources: []}, 'profile');
       if (/创始人|赵子状/.test(text)) return remember({text: '赵子状是创享艺苑创始人，计算机专业背景，目前在千寻智能担任机器人端到端评测工程师，关注 VLA、具身智能与 Agent，并在原点学堂和原点夜校持续学习。更多公开经历可查看个人主页。', sources: []}, 'profile');
-      if (/^(你好|哈喽|hello|hi)[！!。\s]*$/i.test(text)) return remember({text: '你好，我是小艺。可以查已整理的技术、竞赛与期刊资料，也可以一起缩小科创项目的范围。本地模式使用有限资料与规则，不是通用大模型。', sources: []}, 'greeting');
+      if (/^(你好|哈喽|hello|hi)[！!。\s]*$/i.test(text)) return remember({text: '你好，我是 Xiaoyi，网站里的知识入口。可查询技术、竞赛与期刊资料，并提供初步项目建议。当前使用本地资料与规则检索，未启用在线大模型。', sources: []}, 'greeting');
       if (sourceIntent(text)) {
         const result = sourceAnswer(text, messages);
         const scope = result.sources[0]?.kind;
         return remember(result, scope === 'technical-knowledge' ? 'technical' : scope || 'limited');
       }
-      if (acknowledgement(text)) return {text: '好的，需要时可以继续问刚才的主题，也可以换一个问题。', sources: []};
+      if (acknowledgement(text)) return {text: '可继续当前主题，或提出新的问题。', sources: []};
       const request = directoryRequest(text, messages);
       if (request) return remember(directory(text, request), request.kind);
       const definition = /是什么|什么是|是啥|如何理解|解释|定义|区别|对比|比较|关系|不同|vs\b|那.{1,25}呢[？?]?$/i.test(text);
@@ -347,7 +391,7 @@
         if (prior.some(entry => ['tech-vln-foundation', 'tech-vln-evaluation'].includes(entry.id))) records = unique([byId('tech-vln-foundation'), byId('tech-vln-evaluation')]);
       }
       if (/机器人.*(是什么|是啥)|什么是机器人/.test(text)) records = unique([byId('tech-embodied-agent'), byId('tech-vla-foundation')]);
-      if (/\bskills?\b|技能包|技能是什么/i.test(text)) return remember({text: '当前本地资料没有单独核验 Agent Skill 的定义与实现规范。若你指某个平台的 Skill，请提供名称；我可以区分其任务说明、资源和执行接口，但不会把具身 Agent 的资料冒充该平台文档。', sources: []}, 'technical');
+      if (/\bskills?\b|技能包|技能是什么/i.test(text)) return remember({text: '本地资料尚未收录经核验的 Agent Skill 定义与实现规范。请提供具体平台名称，以便进一步区分任务说明、资源与执行接口；相关结论仍需以该平台文档为准。', sources: []}, 'technical');
       if (!records.length && technicalFollowup(text)) {
         const active = activeEvidence(text, messages).filter(entry => entry.kind === 'technical-knowledge');
         records = /它们|二者|两者|这两个/.test(text) && memory.scope === 'technical' ? memory.technical.map(byId).filter(Boolean) : active;
@@ -355,8 +399,8 @@
       if (/区别|比较|对比|关系|不同|vs\b/i.test(text) && records.length === 1 && memory.scope === 'technical' && (/它|它们|二者|两者|这两个/.test(text) || /vlm|vla/i.test(text) && memory.technical.some(id => ['tech-vla-foundation', 'tech-vlm-bridge'].includes(id)))) records = unique([...records, ...memory.technical.map(byId)]);
       if (records.length) return remember(explain(text, records), 'technical');
       if (definition) return remember(explain(text, []), 'technical');
-      if (/航空|航天|卫星|飞机|飞行/.test(text)) return remember({text: '本地技术资料目前重点是 VLA、训练评测与 AI Infra，没有足够的航空航天专业条目。若是做科普项目，可以告诉我目标读者和主题；我能协助缩小原型范围，但不会编造专业事实或竞赛获奖案例。', sources: []}, 'limited');
-      return remember({text: '可以具体到一个概念、赛事或刊名，也可以说明“帮助谁、解决什么问题”。本地模式仅检索已整理资料并提供有限的项目推演；超出资料范围时，我会说明缺口。', sources: []}, 'limited');
+      if (/航空|航天|卫星|飞机|飞行/.test(text)) return remember({text: '本地技术资料主要覆盖 VLA、训练评测与 AI Infra，航空航天专业资料尚不充分。科普项目可从目标读者、主题和原型范围展开；专业事实与竞赛案例需另行核验。', sources: []}, 'limited');
+      return remember({text: '请提供具体概念、赛事、刊名，或项目的目标用户与拟解决问题。本地模式基于已整理资料提供检索与初步项目分析，未覆盖的内容将明确说明。', sources: []}, 'limited');
     }
     function context(input, messages) {
       const text = String(input || '').trim();
@@ -377,4 +421,120 @@
     return {loadData, reply, context, reset};
   }
   root.XiaoyiEngine = {create};
+})(typeof window !== 'undefined' ? window : globalThis);
+
+/*
+ * A small, tab-session memory stream for Xiaoyi.  This is deliberately
+ * separate from the retrieval engine: it stores recent turns for continuity,
+ * but it does not turn assistant text into a knowledge source or send
+ * anything to a provider.  The UI may disable or clear it at any time.
+ */
+(function (root) {
+  'use strict';
+  const VERSION = 1;
+  // Do not read or migrate the former localStorage stream: it could belong to
+  // somebody who previously used this browser profile. Session storage is
+  // scoped to the current top-level tab and site, not to an authenticated user.
+  const DEFAULT_KEY = 'xiaoyi-memory-session-v2';
+  const MAX_ENTRIES = 24;
+  const MAX_ENTRY_CHARS = 6000;
+  const MAX_TOTAL_CHARS = 24000;
+  const MAX_TOTAL_BYTES = 60000;
+  const text = value => String(value == null ? '' : value).replace(/\u0000/g, '').trim();
+  const bytes = value => { let total = 0; for (const character of value) { const point = character.codePointAt(0); total += point < 0x80 ? 1 : point < 0x800 ? 2 : point < 0x10000 ? 3 : 4; } return total; };
+  const id = () => {
+    try { if (root.crypto?.randomUUID) return root.crypto.randomUUID(); } catch (_) { /* fallback below */ }
+    return `xy-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+  };
+  const clone = value => JSON.parse(JSON.stringify(value));
+  function recallRequest(input) {
+    const value = text(input);
+    if (!/你还记得|我们聊过什么|(?:之前|上次).{0,20}(?:问|聊|说)|我的条件|^(?:查看|列出|看看|回忆一下)(?:我的|我们)?(?:记忆|聊天|对话)|^(?:what (?:do you )?remember|do you remember|recall (?:my|our))\b/i.test(value)) return null;
+    return {query: value.replace(/你还记得|我们聊过什么|我们|之前|上次|我|的|条件|吗|什么|问过|聊过|说过|记忆|回忆一下|[，,。.?？!！]/g,'').replace(/\b(?:what|do|you|remember|recall|my|our|did|discuss|about|conversation|history)\b/gi,'').trim()};
+  }
+
+  function create(options) {
+    options = options || {};
+    const key = text(options.key) || DEFAULT_KEY;
+    let storage = options.storage;
+    if (storage === undefined) {
+      try { storage = root.sessionStorage; } catch (_) { storage = null; }
+    }
+    let persistent = Boolean(storage && typeof storage.getItem === 'function' && typeof storage.setItem === 'function');
+    let state = {version: VERSION, enabled: true, activeConversation: id(), entries: []};
+    function read() {
+      if (!storage || typeof storage.getItem !== 'function') return;
+      let raw;
+      try { raw = storage.getItem(key); } catch (_) { persistent = false; return; }
+      if (!raw || bytes(raw) > MAX_TOTAL_BYTES) return;
+      try {
+        const parsed = JSON.parse(raw);
+        if (!parsed || parsed.version !== VERSION) return;
+        state.enabled = parsed.enabled !== false;
+        state.activeConversation = text(parsed.activeConversation).slice(0, 80) || state.activeConversation;
+        state.entries = Array.isArray(parsed.entries) ? parsed.entries.map(entry => ({
+          id: text(entry?.id).slice(0, 80) || id(),
+          conversationId: text(entry?.conversationId).slice(0, 80) || state.activeConversation,
+          createdAt: Number.isFinite(entry?.createdAt) ? entry.createdAt : Date.now(),
+          user: text(entry?.user).slice(0, MAX_ENTRY_CHARS),
+          assistant: text(entry?.assistant).slice(0, MAX_ENTRY_CHARS),
+          sources: Array.isArray(entry?.sources) ? entry.sources.map(source => ({name: text(source?.name || source?.title).slice(0, 160), website: /^https?:\/\//.test(source?.website || source?.url || '') ? String(source.website || source.url).slice(0, 500) : '', urlType: text(source?.urlType).slice(0, 20)})).filter(source => source.website).slice(0, 4) : []
+        })).filter(entry => entry.user && entry.assistant) : [];
+        trim();
+      } catch (_) { /* malformed or blocked storage is treated as an empty stream */ }
+    }
+    function save() {
+      if (!storage || typeof storage.setItem !== 'function') return false;
+      try { storage.setItem(key, JSON.stringify(state)); persistent = true; return true; }
+      catch (_) { persistent = false; return false; }
+    }
+    function trim() {
+      state.entries = state.entries.slice(-MAX_ENTRIES);
+      let total = 0;
+      const kept = [];
+      for (let index = state.entries.length - 1; index >= 0; index -= 1) {
+        const entry = state.entries[index];
+        const size = bytes(JSON.stringify(entry));
+        const chars = entry.user.length + entry.assistant.length;
+        if (kept.length && (total + size > MAX_TOTAL_BYTES || chars + kept.reduce((sum, item) => sum + item.user.length + item.assistant.length, 0) > MAX_TOTAL_CHARS)) break;
+        kept.push(entry); total += size;
+      }
+      state.entries = kept.reverse();
+      while (state.entries.length && bytes(JSON.stringify(state)) > MAX_TOTAL_BYTES) state.entries.shift();
+    }
+    read();
+    function list() { return clone(state.entries).reverse(); }
+    function messages() {
+      if (!state.enabled) return [];
+      return state.entries.filter(entry => entry.conversationId === state.activeConversation).flatMap(entry => [
+        {role: 'user', content: entry.user}, {role: 'assistant', content: entry.assistant}
+      ]);
+    }
+    function remember(user, assistant, sources) {
+      if (!state.enabled) return null;
+      const u = text(user).slice(0, MAX_ENTRY_CHARS), a = text(assistant).slice(0, MAX_ENTRY_CHARS);
+      if (!u || !a) return null;
+      const safeSources = Array.isArray(sources) ? sources.map(source => ({name: text(source?.name || source?.title).slice(0, 160), website: /^https?:\/\//.test(source?.website || source?.url || '') ? String(source.website || source.url).slice(0, 500) : '', urlType: text(source?.urlType).slice(0, 20)})).filter(source => source.website).slice(0, 4) : [];
+      const entry = {id: id(), conversationId: state.activeConversation, createdAt: Date.now(), user: u, assistant: a, sources: safeSources};
+      state.entries.push(entry); trim(); save(); return clone(entry);
+    }
+    return {
+      list,
+      reload() { state = {version: VERSION, enabled: true, activeConversation: id(), entries: []}; read(); },
+      current() { return clone(state.entries.filter(entry => entry.conversationId === state.activeConversation)); },
+      messages,
+      remember,
+      recall(query) { const needle = text(query).toLowerCase(); return list().filter(entry => !needle || entry.user.toLowerCase().includes(needle)).slice(0, 5).map(entry => ({id: entry.id, conversationId: entry.conversationId, user: entry.user})); },
+      remove(entryId) { const before = state.entries.length; state.entries = state.entries.filter(entry => entry.id !== entryId); if (state.entries.length !== before) save(); return before !== state.entries.length; },
+      clear() { state.entries = []; save(); },
+      startNew() { state.activeConversation = id(); save(); },
+      resume(conversationId) { if (!state.entries.some(entry => entry.conversationId === conversationId)) return false; state.activeConversation = conversationId; save(); return true; },
+      setEnabled(value) { state.enabled = value !== false; save(); },
+      isEnabled() { return state.enabled; },
+      isPersistent() { return persistent; },
+      count() { return state.entries.length; },
+      limits: {maxEntries: MAX_ENTRIES, maxEntryChars: MAX_ENTRY_CHARS, maxTotalChars: MAX_TOTAL_CHARS, maxTotalBytes: MAX_TOTAL_BYTES}
+    };
+  }
+  root.XiaoyiMemory = {create, recallRequest, key: DEFAULT_KEY, limits: {maxEntries: MAX_ENTRIES, maxEntryChars: MAX_ENTRY_CHARS, maxTotalChars: MAX_TOTAL_CHARS, maxTotalBytes: MAX_TOTAL_BYTES}};
 })(typeof window !== 'undefined' ? window : globalThis);
