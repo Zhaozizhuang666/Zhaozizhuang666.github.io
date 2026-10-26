@@ -56,7 +56,7 @@ Run the automated contracts with Node.js 22 or later:
 node --test tests/*.test.mjs
 ```
 
-The latest local run passed **130 of 130 tests**. This covers retrieval and conversation contracts (including VLN source follow-ups, site-guide answers, business-plan answers, the 6G course-paper materials, memory-stream controls, and natural third-turn preparation questions), API validation and adapters for GLM-5.3, Tencent TokenHub Kimi K3, Ark Doubao Responses, and Workers AI's four verified model contracts, language switching, theme persistence, refresh behavior, and the collapsed AI Websites directory. Provider tests use simulated services. The six external AI website entries were also clicked individually in Chrome; each navigated to its corresponding service. See [QA.md](QA.md) for the publication status and the three independent release rounds required for future changes.
+The latest local run passed **132 of 132 tests**. This covers retrieval and conversation contracts (including VLN source follow-ups, site-guide answers, business-plan answers, the 6G course-paper materials, memory-stream controls, and natural third-turn preparation questions), API validation and adapters for GLM-5.3, Tencent TokenHub Kimi K3, Ark Doubao Responses, and Workers AI's four verified model contracts, language switching, theme persistence, refresh behavior, and the collapsed AI Websites directory. Provider tests use simulated services. The six external AI website entries were also clicked individually in Chrome; each navigated to its corresponding service. See [QA.md](QA.md) for the publication status and the three independent release rounds required for future changes.
 
 ## Public contact details
 
@@ -66,17 +66,17 @@ The latest local run passed **130 of 130 tests**. This covers retrieval and conv
 - Phone: `13203434165`
 - WeChat: `Z02-Sept13`
 
-The original CV and other working documents stay local. Four owner-authorized public documents are available across Learning and Community:
+The original CV and other working documents stay local. Two owner-authorized public PDF documents are available across Learning and Community:
 
-- Business materials: [business plan · DOCX](assets/documents/chuangxiang-business-plan.docx), [business model · PPTX](assets/documents/chuangxiang-business-model.pptx), and [business model · PDF](assets/documents/chuangxiang-business-model.pdf).
+- Business material: [business model · PDF](assets/documents/chuangxiang-business-model.pdf).
 - Training material: [6G course paper · PDF](assets/documents/6g-data-flows-embodied-ai-course-paper.pdf), **《6G时代数据要素安全流通赋能具身智能》**. This is a course paper from advanced training, not a published journal article, a completion certificate, or evidence of validated deployment.
 
 The page uses the blue, black, white, and light-gray visual system requested by the owner; it does not use the earlier green palette.
 
-To refresh the attachments, run `python3 scripts/sync-public-documents.py sync`, then `python3 scripts/sync-public-documents.py --check` before committing and publishing. The script copies only four allowlisted files and records hashes in [assets/documents/manifest.json](assets/documents/manifest.json); it never changes the originals. GitHub Pages serves the published copies and cannot watch a folder on this Mac. A source update becomes public after synchronization, commit, and a successful Pages deployment. Refresh the separate learning-resource copies with `scripts/sync-learning-resources.py`, then run `scripts/check-learning-resources.py`; see [resources/README.md](resources/README.md) for the source arguments and checks.
+To refresh the attachments, run `python3 scripts/sync-public-documents.py sync`, then `python3 scripts/sync-public-documents.py --check` before committing and publishing. The script copies only two allowlisted PDF files and records hashes in [assets/documents/manifest.json](assets/documents/manifest.json); it never changes the originals. GitHub Pages serves the published copies and cannot watch a folder on this Mac. A source update becomes public after synchronization, commit, and a successful Pages deployment. Refresh the separate learning-resource copies with `scripts/sync-learning-resources.py`, then run `scripts/check-learning-resources.py`; see [resources/README.md](resources/README.md) for the source arguments and checks.
 
 ## Content sources
 
-Patent titles and publication types are linked to the owner-provided CNKI records. The published journal article links to its DOI; the separate 6G course paper stays under Learning. The community gallery uses photographs from the linked Chuangxiang Yiyuan articles. Apart from the four allowlisted documents and reviewed learning-resource copies, source documents, uncompressed logo sources, and personal working files remain local. VLA code is MIT and tutorial content is CC BY 4.0 with attribution; the AI networking index has no explicit license declaration. Linked third-party materials retain their own rights.
+Patent titles and publication types are linked to the owner-provided CNKI records. The published journal article links to its DOI; the separate 6G course paper stays under Learning. The community gallery uses photographs from the linked Chuangxiang Yiyuan articles. Apart from the two allowlisted PDF documents and reviewed learning-resource copies, source documents, uncompressed logo sources, and personal working files remain local. VLA code is MIT and tutorial content is CC BY 4.0 with attribution; the AI networking index has no explicit license declaration. Linked third-party materials retain their own rights.
 
 Certificate-based honor cards are available in `outputs/honors-cards.md`. Duplicate certificate versions are merged, and competition stages are kept distinct. The original certificate images remain local and unchanged.

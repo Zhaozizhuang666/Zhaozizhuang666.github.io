@@ -1,5 +1,9 @@
 # Release evaluation
 
+## Publication scope update — 2026-10-27
+
+The DOCX business plan and PPTX presentation are withdrawn from the public file tree, Community links, handbook, Xiaoyi source records, and document sync allowlist. Only the business-model PDF and 6G course-paper PDF remain public. Original source files stay local. The complete automated suite passed 132/132 tests, and an independent publication audit passed 9/9 focused tests and verified both retained PDF hashes. Earlier four-document evidence below describes the preceding release and is superseded by this scope.
+
 Each release needs three independent passes for every module: behavior contracts, browser interaction and appearance, then publishing verification. A repeated command is not a substitute for the other passes. Record the commit or working-tree version, browser and viewport, observed result, and any unresolved issue. After fixing an issue, rerun the affected pass and any behavior that shares the changed code.
 
 ## Current evidence — 2026-10-26

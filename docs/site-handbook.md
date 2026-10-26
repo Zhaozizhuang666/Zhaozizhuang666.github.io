@@ -4,7 +4,7 @@ This is the short operating guide for Zizhuang Zhao’s personal site. The publi
 
 ## 1. Usage
 
-- **Home** presents the profile, current robotics end-to-end evaluation work, projects, learning, research and IP, community work, and selected public reports. Learning and Community link to four public documents: three business materials and a 6G course paper.
+- **Home** presents the profile, current robotics end-to-end evaluation work, projects, learning, research and IP, community work, and selected public reports. Learning and Community link to two public PDF documents: a business model and a 6G course paper.
 - **Library** provides searchable competition and journal directories and a **Learning** category for the local VLA Guide and AI Network Learning copies.
 - **Xiaoyi** gives a first explanation and points to sources. Open the source before relying on an important detail.
 
@@ -59,9 +59,9 @@ These are static learning resources, not validated deployment results. Xiaoyi in
 
 ### Public documents and naming
 
-The four published documents are:
+The two published documents are:
 
-- [Business plan · DOCX](../assets/documents/chuangxiang-business-plan.docx), [business model · PPTX](../assets/documents/chuangxiang-business-model.pptx) and [business model · PDF](../assets/documents/chuangxiang-business-model.pdf).
+- [business model · PDF](../assets/documents/chuangxiang-business-model.pdf).
 - [6G course paper · PDF](../assets/documents/6g-data-flows-embodied-ai-course-paper.pdf), **《6G时代数据要素安全流通赋能具身智能》**. It records advanced-training study and a proposed research framework; it is not a published journal article, completion certificate, or evidence of validated deployment. The published journal article remains a separate Research & IP record linked to its DOI.
 
 ## 5. External AI websites
@@ -95,7 +95,7 @@ node --test tests/*.test.mjs
 
 Use the three independent rounds in [`QA.md`](../QA.md): behavior and content contracts; browser layout, themes, drawer, library, and motion; then publishing verification. Check links, assets, focus behavior, no horizontal overflow, and the public pages after Pages deployment. Local tests do not prove a deployment or an online provider.
 
-For the four public documents, run `python3 scripts/sync-public-documents.py sync` and `python3 scripts/sync-public-documents.py --check` from the repository root before publishing. The allowlist includes the three business files and one 6G course-paper PDF. Original files stay unchanged; the [public manifest](../assets/documents/manifest.json) records file hashes and source modification times. Pages cannot read a local Mac folder, so source edits require another sync and deployment.
+For the two public PDF documents, run `python3 scripts/sync-public-documents.py sync` and `python3 scripts/sync-public-documents.py --check` from the repository root before publishing. The allowlist includes the business-model PDF and one 6G course-paper PDF. Original files stay unchanged; the [public manifest](../assets/documents/manifest.json) records file hashes and source modification times. Pages cannot read a local Mac folder, so source edits require another sync and deployment.
 
 Refresh learning-resource copies separately with `scripts/sync-learning-resources.py`, using the source arguments in [resources/README.md](../resources/README.md), and run `scripts/check-learning-resources.py`. Review the scope and licensing before publishing a new copy; the source directories remain read-only inputs.
 

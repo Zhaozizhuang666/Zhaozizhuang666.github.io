@@ -74,8 +74,6 @@ test('server retrieval exposes the owner-provided business plan records and sour
   assert.ok(direct.sources.some(source => source.website === 'https://zhaozizhuang666.github.io/#community'));
   const plan = direct.records.find(record => record.id === 'venture-agent-skills');
   assert.deepEqual(plan.sourceDocuments.map(document => document.url), [
-    'https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-plan.docx',
-    'https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pptx',
     'https://zhaozizhuang666.github.io/assets/documents/chuangxiang-business-model.pdf'
   ]);
   const followed = retrieveKnowledge([

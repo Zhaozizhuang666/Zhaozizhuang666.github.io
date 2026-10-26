@@ -8,7 +8,7 @@
     ". Auto follows the visitor's operating-system appearance. An explicit Light or Dark choice is saved locally across Home, Library, Guide, local learning-resource pages, and reloads.": "。Auto 跟随操作系统外观。手动选择 Light 或 Dark 后，主页、资料库、手册和本站学习资源页会保留选择，刷新后仍有效。",
     "to search these two resource copies by topic. VLA Guide saves progress and favorites in the current browser and offers exports; AI Network Learning is a resource index without progress tracking. These are static learning copies. Xiaoyi uses curated summaries and entry points, without claiming full-page absorption or reproduced experiments.": "按主题检索这两份资源副本。VLA Guide 在当前浏览器保存进度与收藏，并支持导出；AI Network Learning 是不记录学习进度的导航。这些是静态学习副本，Xiaoyi 采用整理后的摘要与入口，并不表示完整吸收所有页面或复现实验。",
     "VLA code is MIT and original tutorial content is CC BY 4.0 with attribution. The network index has no explicit license declaration; linked materials retain their own rights. See the": "VLA 代码采用 MIT，原创教程采用 CC BY 4.0 并要求署名。网络索引未明确声明许可证；所链接资料保留各自权利。详见",
-    "Before publishing document updates, sync and check the four allowlisted attachments. Original files remain unchanged:": "发布文档更新前，同步并核验四份明确列出的附件，原文件保持不变：",
+    "Before publishing document updates, sync and check the two allowlisted PDF attachments. Original files remain unchanged:": "发布文档更新前，同步并核验两份明确列出的 PDF 附件，原文件保持不变：",
     "python3 scripts/sync-public-documents.py sync python3 scripts/sync-public-documents.py --check": "python3 scripts/sync-public-documents.py sync python3 scripts/sync-public-documents.py --check",
     "Refresh the separate learning-resource copies with their sync script, then run the resource checker. The": "使用专用同步脚本刷新学习资源副本，再运行资源检查。",
     "Public documents": "公开文档",
@@ -304,8 +304,6 @@
     'Chuangxiang Yiyuan 创享艺苑 logo': '创享艺苑标志',
     'Chuangxiang Yiyuan WeChat QR code': '创享艺苑微信公众号二维码',
     "We are exploring embodied intelligence knowledge and applications, alongside AI Agent and reusable Skill development, building on the VLA Guide and our community practice. These remain directions for future work.": "我们正以 VLA Guide 与社区实践为基础，探索具身智能知识与应用，以及 AI Agent 和可复用 Skill 开发。这些仍是未来工作的探索方向。",
-    "Business Plan · DOCX ↓": "商业计划书 · DOCX ↓",
-    "Business Model · PPTX ↓": "商业模式 · PPTX ↓",
     "Business Model · PDF ↗": "商业模式 · PDF ↗",
   });
 })();

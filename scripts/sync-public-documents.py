@@ -26,12 +26,11 @@ PLAN_ROOT = ROOT / "创享艺苑" / "创享艺苑商业计划"
 TRAINING_ROOT = Path.home() / "Documents" / "Zhao" / "2026年北京市高级研修班"
 PUBLIC_ROOT = ROOT / "assets" / "documents"
 MANIFEST = PUBLIC_ROOT / "manifest.json"
+RETIRED_PUBLIC_FILES = ("chuangxiang-business-plan.docx", "chuangxiang-business-model.pptx")
 
 # Keep this allowlist explicit. Do not discover or copy other files from the
 # source directory (including temporary Office lock files).
 ALLOWLIST = (
-    (PLAN_ROOT / "创享艺苑商业计划书.docx", "Chuangxiang Yiyuan business plan", "chuangxiang-business-plan.docx"),
-    (PLAN_ROOT / "创享艺苑商业模式.pptx", "Chuangxiang Yiyuan business model presentation", "chuangxiang-business-model.pptx"),
     (PLAN_ROOT / "创享艺苑商业模式.pdf", "Chuangxiang Yiyuan business model PDF", "chuangxiang-business-model.pdf"),
     (TRAINING_ROOT / "结业论文 - 6G时代数据要素安全流通赋能具身智能.pdf", "6G data flows and embodied AI course paper", "6g-data-flows-embodied-ai-course-paper.pdf"),
 )
@@ -94,6 +93,9 @@ def atomic_replace(path: Path, data: bytes, mode: int = 0o644) -> bool:
 
 def check(outputs: list[tuple[Path, bytes]], manifest_data: dict[str, object]) -> list[str]:
     differences: list[str] = []
+    for name in RETIRED_PUBLIC_FILES:
+        if (PUBLIC_ROOT / name).exists():
+            differences.append(f"retired public file: {name}")
     for output, expected in outputs:
         if not output.is_file():
             differences.append(f"missing public file: {output.name}")
@@ -121,6 +123,12 @@ def run_check() -> int:
 def run_sync() -> int:
     outputs, manifest_data = expected_documents()
     changed = 0
+    # Remove only retired publication copies; source documents remain untouched.
+    for name in RETIRED_PUBLIC_FILES:
+        retired = PUBLIC_ROOT / name
+        if retired.is_file():
+            retired.unlink()
+            changed += 1
     for output, data in outputs:
         if atomic_replace(output, data):
             changed += 1

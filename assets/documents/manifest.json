@@ -1,20 +1,6 @@
 {
   "documents": [
     {
-      "sourceDocument": "Chuangxiang Yiyuan business plan",
-      "publicFile": "chuangxiang-business-plan.docx",
-      "sha256": "edbf30f24dc03a8d9cc7c8c86740e5feef934551b7c6fb70a7adacdb4362c5a4",
-      "bytes": 146764,
-      "sourceModifiedAt": "2026-10-26T04:39:08.292731411Z"
-    },
-    {
-      "sourceDocument": "Chuangxiang Yiyuan business model presentation",
-      "publicFile": "chuangxiang-business-model.pptx",
-      "sha256": "8729d7e9e1d1aeb3fd25eb86140c24d7705c17121437b3a6d159c427b3517ec4",
-      "bytes": 511054,
-      "sourceModifiedAt": "2026-10-26T02:55:05.028399398Z"
-    },
-    {
       "sourceDocument": "Chuangxiang Yiyuan business model PDF",
       "publicFile": "chuangxiang-business-model.pdf",
       "sha256": "ffcd964900106fa2109a942497532f55bbef9e5c9e6445902e1bd8f2293cf6b1",
