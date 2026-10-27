@@ -1,0 +1,316 @@
+{
+  "items": [
+    {
+      "id": "record-01",
+      "title": "Challenge Cup · Shanxi Student Academic Competition",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-01-thumb.webp",
+      "full": "assets/achievements/record-01.webp",
+      "width": 1200,
+      "height": 839,
+      "titleZh": "挑战杯·山西省大学生课外学术科技作品竞赛"
+    },
+    {
+      "id": "record-02",
+      "title": "National 3D Competition Winter Camp · Outstanding Camper",
+      "category": "learning",
+      "thumbnail": "assets/achievements/record-02-thumb.webp",
+      "full": "assets/achievements/record-02.webp",
+      "width": 1200,
+      "height": 900,
+      "titleZh": "全国3D大赛游学冬令营·优秀营员"
+    },
+    {
+      "id": "record-03",
+      "title": "Digital Media Technology & Creativity Competition · Shanxi Record",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-03-thumb.webp",
+      "full": "assets/achievements/record-03.webp",
+      "width": 1200,
+      "height": 435,
+      "titleZh": "数字媒体科技作品及创意竞赛·山西赛区记录"
+    },
+    {
+      "id": "record-04",
+      "title": "Chinese Collegiate Computing Competition · Shanxi Division",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-04-thumb.webp",
+      "full": "assets/achievements/record-04.webp",
+      "width": 848,
+      "height": 1200,
+      "titleZh": "中国大学生计算机设计大赛·山西省级赛"
+    },
+    {
+      "id": "record-06",
+      "title": "National 3D Digital Innovation Design Competition · Shanxi Certificate",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-06-thumb.webp",
+      "full": "assets/achievements/record-06.webp",
+      "width": 500,
+      "height": 707,
+      "titleZh": "全国三维数字化创新设计大赛·山西赛区证书"
+    },
+    {
+      "id": "record-07",
+      "title": "National Digital Media Technology & Creativity Competition · Final",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-07-thumb.webp",
+      "full": "assets/achievements/record-07.webp",
+      "width": 1200,
+      "height": 849,
+      "titleZh": "全国大学生数字媒体科技作品及创意竞赛·全国总决赛"
+    },
+    {
+      "id": "record-08",
+      "title": "National 3D Digital Innovation Design Competition · Final Certificate II",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-08-thumb.webp",
+      "full": "assets/achievements/record-08.webp",
+      "width": 837,
+      "height": 1200,
+      "titleZh": "全国三维数字化创新设计大赛·总决赛证书（二）"
+    },
+    {
+      "id": "record-09",
+      "title": "Challenge Cup · Shanxi Student Entrepreneurship Competition",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-09-thumb.webp",
+      "full": "assets/achievements/record-09.webp",
+      "width": 1200,
+      "height": 836,
+      "titleZh": "挑战杯·山西省大学生创业计划竞赛"
+    },
+    {
+      "id": "record-11",
+      "title": "China Society of Image and Graphics · Student Membership",
+      "category": "learning",
+      "thumbnail": "assets/achievements/record-11-thumb.webp",
+      "full": "assets/achievements/record-11.webp",
+      "width": 1024,
+      "height": 726,
+      "titleZh": "中国图象图形学学会·学生会员证"
+    },
+    {
+      "id": "record-12",
+      "title": "11th National Student Competition in Energy Economics",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-12-thumb.webp",
+      "full": "assets/achievements/record-12.webp",
+      "width": 848,
+      "height": 1200,
+      "titleZh": "第十一届全国大学生能源经济学术创意大赛"
+    },
+    {
+      "id": "record-13",
+      "title": "National 3D Digital Innovation Design Competition · Final Certificate IV",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-13-thumb.webp",
+      "full": "assets/achievements/record-13.webp",
+      "width": 500,
+      "height": 707,
+      "titleZh": "全国三维数字化创新设计大赛·总决赛证书（四）"
+    },
+    {
+      "id": "record-14",
+      "title": "National Undergraduate Innovation Training Program · Project Record",
+      "category": "record",
+      "thumbnail": "assets/achievements/record-14-thumb.webp",
+      "full": "assets/achievements/record-14.webp",
+      "width": 1027,
+      "height": 886,
+      "titleZh": "国家级大学生创新训练计划·项目记录"
+    },
+    {
+      "id": "record-15",
+      "title": "National 3D Digital Innovation Design Competition · Final Certificate V",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-15-thumb.webp",
+      "full": "assets/achievements/record-15.webp",
+      "width": 837,
+      "height": 1200,
+      "titleZh": "全国三维数字化创新设计大赛·总决赛证书（五）"
+    },
+    {
+      "id": "record-16",
+      "title": "National 3D Competition · Team Photograph",
+      "category": "record",
+      "thumbnail": "assets/achievements/record-16-thumb.webp",
+      "full": "assets/achievements/record-16.webp",
+      "width": 1200,
+      "height": 900,
+      "titleZh": "全国3D大赛·团队合影"
+    },
+    {
+      "id": "record-17",
+      "title": "Engineering Training Competition · Smart Vehicle Racing",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-17-thumb.webp",
+      "full": "assets/achievements/record-17.webp",
+      "width": 1200,
+      "height": 900,
+      "titleZh": "全国大学生工程训练综合能力竞赛·智能汽车竞速赛"
+    },
+    {
+      "id": "record-18",
+      "title": "National Undergraduate Engineering Practice & Innovation Competition",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-18-thumb.webp",
+      "full": "assets/achievements/record-18.webp",
+      "width": 1200,
+      "height": 900,
+      "titleZh": "中国大学生工程实践与创新能力大赛"
+    },
+    {
+      "id": "record-19",
+      "title": "Asia-Pacific Mathematical Contest in Modeling",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-19-thumb.webp",
+      "full": "assets/achievements/record-19.webp",
+      "width": 1200,
+      "height": 847,
+      "titleZh": "亚太地区大学生数学建模竞赛"
+    },
+    {
+      "id": "record-20",
+      "title": "National 3D Competition Study Camp · Completion Certificate",
+      "category": "learning",
+      "thumbnail": "assets/achievements/record-20-thumb.webp",
+      "full": "assets/achievements/record-20.webp",
+      "width": 900,
+      "height": 1200,
+      "titleZh": "全国3D大赛游学营·结业证书"
+    },
+    {
+      "id": "record-21",
+      "title": "Smart Sorting System for Express Stations · Patent Application Receipt",
+      "category": "research",
+      "thumbnail": "assets/achievements/record-21-thumb.webp",
+      "full": "assets/achievements/record-21.webp",
+      "width": 849,
+      "height": 1200,
+      "titleZh": "一种快递驿站用智能分拣系统·专利申请受理通知"
+    },
+    {
+      "id": "record-22",
+      "title": "China Creative Challenges Contest · National Certificate",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-22-thumb.webp",
+      "full": "assets/achievements/record-22.webp",
+      "width": 848,
+      "height": 1200,
+      "titleZh": "中国好创意暨全国数字艺术设计大赛·国赛证书"
+    },
+    {
+      "id": "record-23",
+      "title": "China Robot and Artificial Intelligence Competition · National Final",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-23-thumb.webp",
+      "full": "assets/achievements/record-23.webp",
+      "width": 1200,
+      "height": 848,
+      "titleZh": "中国机器人及人工智能大赛·全国总决赛"
+    },
+    {
+      "id": "record-24",
+      "title": "Computer-Vision Target Analysis System · Software Copyright",
+      "category": "research",
+      "thumbnail": "assets/achievements/record-24-thumb.webp",
+      "full": "assets/achievements/record-24.webp",
+      "width": 887,
+      "height": 1200,
+      "titleZh": "基于计算机视觉的目标特性检测分析管理系统·软件著作权"
+    },
+    {
+      "id": "record-25",
+      "title": "Engineering Practice & Innovation Competition · Solar Vehicle",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-25-thumb.webp",
+      "full": "assets/achievements/record-25.webp",
+      "width": 1200,
+      "height": 900,
+      "titleZh": "中国大学生工程实践与创新能力大赛·太阳能电动车"
+    },
+    {
+      "id": "record-26",
+      "title": "China Creative Challenges Contest · Shanxi Division",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-26-thumb.webp",
+      "full": "assets/achievements/record-26.webp",
+      "width": 848,
+      "height": 1200,
+      "titleZh": "中国好创意暨全国数字艺术设计大赛·山西赛区"
+    },
+    {
+      "id": "record-27",
+      "title": "Intelligent Pickup & Sorting Robot · Utility Model Patent",
+      "category": "research",
+      "thumbnail": "assets/achievements/record-27-thumb.webp",
+      "full": "assets/achievements/record-27.webp",
+      "width": 848,
+      "height": 1200,
+      "titleZh": "一种智能取件分拣机器人·实用新型专利证书"
+    },
+    {
+      "id": "record-28",
+      "title": "Smart Contact Lens Research · Article Acceptance Notice",
+      "category": "research",
+      "thumbnail": "assets/achievements/record-28-thumb.webp",
+      "full": "assets/achievements/record-28.webp",
+      "width": 849,
+      "height": 1200,
+      "titleZh": "智能隐形眼镜协同研究·论文录用通知"
+    },
+    {
+      "id": "record-29",
+      "title": "10th National Student Competition in Energy Economics · Provincial Round",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-29-thumb.webp",
+      "full": "assets/achievements/record-29.webp",
+      "width": 848,
+      "height": 1200,
+      "titleZh": "第十届全国大学生能源经济学术创意大赛·省赛"
+    },
+    {
+      "id": "record-30",
+      "title": "China Robot and Artificial Intelligence Competition · Shanxi Certificate",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-30-thumb.webp",
+      "full": "assets/achievements/record-30.webp",
+      "width": 848,
+      "height": 1200,
+      "titleZh": "中国机器人及人工智能大赛·山西赛区证书"
+    },
+    {
+      "id": "record-31",
+      "title": "China Robot and Artificial Intelligence Competition · Shanxi Award Record",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-31-thumb.webp",
+      "full": "assets/achievements/record-31.webp",
+      "width": 900,
+      "height": 1200,
+      "titleZh": "中国机器人及人工智能大赛·山西赛区获奖记录"
+    },
+    {
+      "id": "record-33",
+      "title": "10th National Student Competition in Energy Economics · Campus Round I",
+      "category": "competition",
+      "thumbnail": "assets/achievements/record-33-thumb.webp",
+      "full": "assets/achievements/record-33.webp",
+      "width": 900,
+      "height": 1200,
+      "titleZh": "第十届全国大学生能源经济学术创意大赛·校赛（一）"
+    },
+    {
+      "id": "record-35",
+      "title": "Handwritten Digit Recognition & Image Classification · Software Copyright",
+      "category": "research",
+      "thumbnail": "assets/achievements/record-35-thumb.webp",
+      "full": "assets/achievements/record-35.webp",
+      "width": 887,
+      "height": 1200,
+      "titleZh": "手写数字识别和图像分类系统·软件著作权"
+    }
+  ],
+  "sourceCount": 37,
+  "duplicateCount": 6
+}
