@@ -48,6 +48,7 @@
     'Email': '邮箱',
     'WeChat': '微信',
     'WeChat ID': '微信号',
+    'For collaborations, please state your purpose.': '合作请备注来意',
     'Phone': '电话',
     'Phone:': '电话：',
     'WeChat:': '微信：',

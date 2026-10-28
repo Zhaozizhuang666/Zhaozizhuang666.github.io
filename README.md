@@ -63,8 +63,7 @@ The latest local run passed **132 of 132 tests**. This covers retrieval and conv
 - GitHub: `https://github.com/Zhaozizhuang666`
 - VLA Guide: `https://zhaozizhuang666.github.io/vla-guide/`
 - Email: `zizhuang.zhao@spirit-ai.com`
-- Phone: `13203434165`
-- WeChat: `Z02-Sept13`
+- WeChat: `Z02-Sept13` — 合作请备注来意
 
 The original CV and other working documents stay local. Two owner-authorized public PDF documents are available across Learning and Community:
 
