@@ -23,6 +23,11 @@ function entryNames(entry) {
 function personalResourceIds(text) {
   if (/6g.*(?:报道|文章|story)|研修报道|研修文章/i.test(text)) return ['profile-6g-training-story'];
   if (/6g|6G时代数据要素|secure data flows/i.test(text)) return ['profile-6g-course-paper'];
+  const query = normalize(text);
+  const portfolio = technicalKnowledge.entries.filter(entry => entry.sourceType === 'owner-provided-project-material')
+    .map(entry => ({id: entry.id, score: Math.max(0, ...(entry.aliases || []).map(normalize).filter(name => name.length > 2).map(name => query.includes(name) ? name.length : 0))}))
+    .filter(item => item.score).sort((a, b) => b.score - a.score);
+  if (portfolio.length) return portfolio.slice(0, 4).map(item => item.id);
   return [];
 }
 

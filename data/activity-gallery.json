@@ -1,0 +1,684 @@
+{
+  "title": "Activities & Field Notes",
+  "sourceCount": 169,
+  "items": [
+    {
+      "id": "album-003",
+      "category": "conferences",
+      "title": "CLAW Summit · Event Record",
+      "titleZh": "CLAW Summit · 活动记录",
+      "thumbnail": "assets/activities/album-003-thumb.webp",
+      "full": "assets/activities/album-003.webp",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "id": "album-004",
+      "category": "exhibitions",
+      "title": "Emergency Response Robotics · Exhibition",
+      "titleZh": "应急救援机器人 · 展会观察",
+      "thumbnail": "assets/activities/album-004-thumb.webp",
+      "full": "assets/activities/album-004.webp",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "id": "album-005",
+      "category": "exhibitions",
+      "title": "Immersive Interaction · Demonstration",
+      "titleZh": "沉浸式交互 · 技术体验",
+      "thumbnail": "assets/activities/album-005-thumb.webp",
+      "full": "assets/activities/album-005.webp",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "id": "album-011",
+      "category": "certificates",
+      "title": "Summer Fieldwork · Recognized Outcome",
+      "titleZh": "暑期社会实践 · 优秀实践成果",
+      "thumbnail": "assets/activities/album-011-thumb.webp",
+      "full": "assets/activities/album-011.webp",
+      "width": 1600,
+      "height": 1200,
+      "award": "Team Project Recognition",
+      "awardZh": "团队项目表彰"
+    },
+    {
+      "id": "album-012",
+      "category": "certificates",
+      "title": "Summer Fieldwork · Featured Project",
+      "titleZh": "暑期社会实践 · 特色品牌项目",
+      "thumbnail": "assets/activities/album-012-thumb.webp",
+      "full": "assets/activities/album-012.webp",
+      "width": 1600,
+      "height": 1200,
+      "award": "Team Project Recognition",
+      "awardZh": "团队项目表彰"
+    },
+    {
+      "id": "album-014",
+      "category": "conferences",
+      "title": "Vision China · Machine Vision Seminar",
+      "titleZh": "Vision China · 机器视觉研讨会",
+      "thumbnail": "assets/activities/album-014-thumb.webp",
+      "full": "assets/activities/album-014.webp",
+      "width": 1600,
+      "height": 728
+    },
+    {
+      "id": "album-017",
+      "category": "community",
+      "title": "3D Innovation · Study Camp",
+      "titleZh": "全国3D大赛 · 游学冬令营",
+      "thumbnail": "assets/activities/album-017-thumb.webp",
+      "full": "assets/activities/album-017.webp",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "id": "album-020",
+      "category": "conferences",
+      "title": "China 3D Vision Conference · Discussion",
+      "titleZh": "中国三维视觉大会 · 讨论环节",
+      "thumbnail": "assets/activities/album-020-thumb.webp",
+      "full": "assets/activities/album-020.webp",
+      "width": 1600,
+      "height": 871
+    },
+    {
+      "id": "album-021",
+      "category": "conferences",
+      "title": "Disaster Reduction & AI Forum",
+      "titleZh": "防灾减灾人工智能分论坛",
+      "thumbnail": "assets/activities/album-021-thumb.webp",
+      "full": "assets/activities/album-021.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-022",
+      "category": "practice",
+      "title": "2026 HarmonyOS Innovation Competition · Geek Track",
+      "titleZh": "2026 HarmonyOS创新赛 · 极客赛道",
+      "thumbnail": "assets/activities/album-022-thumb.webp",
+      "full": "assets/activities/album-022.webp",
+      "width": 1600,
+      "height": 1063
+    },
+    {
+      "id": "album-023",
+      "category": "conferences",
+      "title": "Peking University Anniversary · AI Innovation Forum",
+      "titleZh": "北大校庆 · 人工智能创新创业论坛",
+      "thumbnail": "assets/activities/album-023-thumb.webp",
+      "full": "assets/activities/album-023.webp",
+      "width": 1600,
+      "height": 1201
+    },
+    {
+      "id": "album-025",
+      "category": "conferences",
+      "title": "2026 Sci. & Tech. Innovator Conference",
+      "titleZh": "2026科技创变者大会 · 参会记录",
+      "thumbnail": "assets/activities/album-025-thumb.webp",
+      "full": "assets/activities/album-025.webp",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "id": "album-026",
+      "category": "conferences",
+      "title": "6G & Cross-Border Data Flows · Study Program",
+      "titleZh": "6G与数据要素安全跨境流动高级研修班",
+      "thumbnail": "assets/activities/album-026-thumb.webp",
+      "full": "assets/activities/album-026.webp",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "id": "album-033",
+      "category": "certificates",
+      "title": "18th Collegiate Computing Competition",
+      "titleZh": "第18届中国大学生计算机设计大赛",
+      "thumbnail": "assets/activities/album-033-thumb.webp",
+      "full": "assets/activities/album-033.webp",
+      "width": 1140,
+      "height": 1600,
+      "award": "Shanxi Second Prize",
+      "awardZh": "山西省级赛二等奖"
+    },
+    {
+      "id": "album-034",
+      "category": "exhibitions",
+      "title": "Robot Manipulation · Exhibition",
+      "titleZh": "机器人操作 · 展示观察",
+      "thumbnail": "assets/activities/album-034-thumb.webp",
+      "full": "assets/activities/album-034.webp",
+      "width": 1067,
+      "height": 1600
+    },
+    {
+      "id": "album-037",
+      "category": "exhibitions",
+      "title": "Vision System · Demonstration",
+      "titleZh": "视觉系统 · 演示观察",
+      "thumbnail": "assets/activities/album-037-thumb.webp",
+      "full": "assets/activities/album-037.webp",
+      "width": 1067,
+      "height": 1600
+    },
+    {
+      "id": "album-039",
+      "category": "community",
+      "title": "Origin School · Learning Space",
+      "titleZh": "原点学堂 · 学习空间",
+      "thumbnail": "assets/activities/album-039-thumb.webp",
+      "full": "assets/activities/album-039.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-041",
+      "category": "conferences",
+      "title": "IGTA · Academic Exchange",
+      "titleZh": "图像图形技术与应用学术会议 · 交流记录",
+      "thumbnail": "assets/activities/album-041-thumb.webp",
+      "full": "assets/activities/album-041.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-044",
+      "category": "practice",
+      "title": "Project Presentation · On Site",
+      "titleZh": "项目展示 · 现场记录",
+      "thumbnail": "assets/activities/album-044-thumb.webp",
+      "full": "assets/activities/album-044.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-046",
+      "category": "practice",
+      "title": "Challenge Cup · Team Record",
+      "titleZh": "挑战杯 · 团队记录",
+      "thumbnail": "assets/activities/album-046-thumb.webp",
+      "full": "assets/activities/album-046.webp",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "id": "album-049",
+      "category": "awards",
+      "title": "Volunteer Service · Award Ceremony",
+      "titleZh": "志愿服务项目 · 颁奖现场",
+      "thumbnail": "assets/activities/album-049-thumb.webp",
+      "full": "assets/activities/album-049.webp",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "id": "album-051",
+      "category": "conferences",
+      "title": "China 3D Vision Conference · Group Photo",
+      "titleZh": "中国三维视觉大会 · 参会合影",
+      "thumbnail": "assets/activities/album-051-thumb.webp",
+      "full": "assets/activities/album-051.webp",
+      "width": 1600,
+      "height": 952
+    },
+    {
+      "id": "album-053",
+      "category": "practice",
+      "title": "Collegiate Computing Competition · Presentation",
+      "titleZh": "中国大学生计算机设计大赛 · 项目答辩",
+      "thumbnail": "assets/activities/album-053-thumb.webp",
+      "full": "assets/activities/album-053.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-054",
+      "category": "practice",
+      "title": "Collegiate Computing Competition · Team",
+      "titleZh": "中国大学生计算机设计大赛 · 团队合影",
+      "thumbnail": "assets/activities/album-054-thumb.webp",
+      "full": "assets/activities/album-054.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-055",
+      "category": "practice",
+      "title": "Project Demonstration · Classroom",
+      "titleZh": "项目演示 · 课堂记录",
+      "thumbnail": "assets/activities/album-055-thumb.webp",
+      "full": "assets/activities/album-055.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-058",
+      "category": "practice",
+      "title": "National 3D Competition · Team",
+      "titleZh": "全国三维数字化创新设计大赛 · 团队合影",
+      "thumbnail": "assets/activities/album-058-thumb.webp",
+      "full": "assets/activities/album-058.webp",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "id": "album-059",
+      "category": "practice",
+      "title": "Robotics Practice · Project Discussion",
+      "titleZh": "机器人实践 · 项目交流",
+      "thumbnail": "assets/activities/album-059-thumb.webp",
+      "full": "assets/activities/album-059.webp",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "id": "album-060",
+      "category": "practice",
+      "title": "Project Review · Presentation",
+      "titleZh": "项目汇报 · 交流记录",
+      "thumbnail": "assets/activities/album-060-thumb.webp",
+      "full": "assets/activities/album-060.webp",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "id": "album-062",
+      "category": "social",
+      "title": "Youyu Fieldwork · Team Record",
+      "titleZh": "右玉调研 · 社会实践团队",
+      "thumbnail": "assets/activities/album-062-thumb.webp",
+      "full": "assets/activities/album-062.webp",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "id": "album-063",
+      "category": "social",
+      "title": "Community Service · Practice Space",
+      "titleZh": "社会工作 · 实践空间",
+      "thumbnail": "assets/activities/album-063-thumb.webp",
+      "full": "assets/activities/album-063.webp",
+      "width": 1600,
+      "height": 1168
+    },
+    {
+      "id": "album-066",
+      "category": "certificates",
+      "title": "Shanxi Volunteer Service Project Competition",
+      "titleZh": "山西省首届新时代志愿服务项目大赛",
+      "thumbnail": "assets/activities/album-066-thumb.webp",
+      "full": "assets/activities/album-066.webp",
+      "width": 1600,
+      "height": 1200,
+      "award": "Project · Third Prize",
+      "awardZh": "项目三等奖"
+    },
+    {
+      "id": "album-069",
+      "category": "social",
+      "title": "Rural Fieldwork · Team Visit",
+      "titleZh": "乡村调研 · 实践记录",
+      "thumbnail": "assets/activities/album-069-thumb.webp",
+      "full": "assets/activities/album-069.webp",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "id": "album-072",
+      "category": "social",
+      "title": "Volunteer Service · Project Display",
+      "titleZh": "志愿服务 · 项目成果展示",
+      "thumbnail": "assets/activities/album-072-thumb.webp",
+      "full": "assets/activities/album-072.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-073",
+      "category": "awards",
+      "title": "Campus Recognition · Ceremony",
+      "titleZh": "校园表彰 · 颁奖现场",
+      "thumbnail": "assets/activities/album-073-thumb.webp",
+      "full": "assets/activities/album-073.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-075",
+      "category": "conferences",
+      "title": "Entrepreneurship Learning · Group Record",
+      "titleZh": "创业学习交流 · 集体记录",
+      "thumbnail": "assets/activities/album-075-thumb.webp",
+      "full": "assets/activities/album-075.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-078",
+      "category": "conferences",
+      "title": "JETOUR International Business Annual Conference 2026",
+      "titleZh": "JETOUR International Business Annual Conference 2026 · 活动记录",
+      "thumbnail": "assets/activities/album-078-thumb.webp",
+      "full": "assets/activities/album-078.webp",
+      "width": 1600,
+      "height": 1066
+    },
+    {
+      "id": "album-083",
+      "category": "community",
+      "title": "Community · Collaborative Discussion",
+      "titleZh": "社区交流 · 协作讨论",
+      "thumbnail": "assets/activities/album-083-thumb.webp",
+      "full": "assets/activities/album-083.webp",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "id": "album-084",
+      "category": "community",
+      "title": "Youth Innovation Space · Visit",
+      "titleZh": "青年共创空间 · 参访记录",
+      "thumbnail": "assets/activities/album-084-thumb.webp",
+      "full": "assets/activities/album-084.webp",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "id": "album-087",
+      "category": "conferences",
+      "title": "Vision China · Embodied Intelligence Forum",
+      "titleZh": "Vision China · 具身智能与工业大模型论坛",
+      "thumbnail": "assets/activities/album-087-thumb.webp",
+      "full": "assets/activities/album-087.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-088",
+      "category": "exhibitions",
+      "title": "Mozi Robot · Public Exhibition",
+      "titleZh": "墨子机器人 · 公开展陈",
+      "thumbnail": "assets/activities/album-088-thumb.webp",
+      "full": "assets/activities/album-088.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-093",
+      "category": "conferences",
+      "title": "6G Study Program · Group Record",
+      "titleZh": "6G高级研修班 · 集体学习记录",
+      "thumbnail": "assets/activities/album-093-thumb.webp",
+      "full": "assets/activities/album-093.webp",
+      "width": 1600,
+      "height": 1143
+    },
+    {
+      "id": "album-095",
+      "category": "conferences",
+      "title": "6G Study Program · Lecture",
+      "titleZh": "6G高级研修班 · 课堂记录",
+      "thumbnail": "assets/activities/album-095-thumb.webp",
+      "full": "assets/activities/album-095.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-097",
+      "category": "conferences",
+      "title": "6G Study Program · Technical Visit",
+      "titleZh": "6G高级研修班 · 参访交流",
+      "thumbnail": "assets/activities/album-097-thumb.webp",
+      "full": "assets/activities/album-097.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-098",
+      "category": "conferences",
+      "title": "6G Study Program · AI Health Session",
+      "titleZh": "6G高级研修班 · 智能体专题课程",
+      "thumbnail": "assets/activities/album-098-thumb.webp",
+      "full": "assets/activities/album-098.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-099",
+      "category": "social",
+      "title": "Bird’s Nest · Event Management Team Record",
+      "titleZh": "鸟巢 · 活动管理组合影",
+      "thumbnail": "assets/activities/album-099-thumb.webp",
+      "full": "assets/activities/album-099.webp",
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "id": "album-101",
+      "category": "exhibitions",
+      "title": "Quadruped Robot · Exhibition",
+      "titleZh": "四足机器人 · 展示观察",
+      "thumbnail": "assets/activities/album-101-thumb.webp",
+      "full": "assets/activities/album-101.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-103",
+      "category": "conferences",
+      "title": "Sci. & Tech. Innovator Conference · Panel",
+      "titleZh": "科技创变者大会 · 圆桌讨论",
+      "thumbnail": "assets/activities/album-103-thumb.webp",
+      "full": "assets/activities/album-103.webp",
+      "width": 1600,
+      "height": 1066
+    },
+    {
+      "id": "album-107",
+      "category": "awards",
+      "title": "Collegiate Computing Competition · Ceremony",
+      "titleZh": "中国大学生计算机设计大赛 · 颁奖合影",
+      "thumbnail": "assets/activities/album-107-thumb.webp",
+      "full": "assets/activities/album-107.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-112",
+      "category": "community",
+      "title": "Origin Community · Innovation Exchange",
+      "titleZh": "原点社区 · 创业交流",
+      "thumbnail": "assets/activities/album-112-thumb.webp",
+      "full": "assets/activities/album-112.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-123",
+      "category": "exhibitions",
+      "title": "Robot End Effectors · Exhibition",
+      "titleZh": "机器人末端执行器 · 展示观察",
+      "thumbnail": "assets/activities/album-123-thumb.webp",
+      "full": "assets/activities/album-123.webp",
+      "width": 1600,
+      "height": 1066
+    },
+    {
+      "id": "album-128",
+      "category": "sports",
+      "title": "Marathon · Running Record",
+      "titleZh": "马拉松 · 运动记录",
+      "thumbnail": "assets/activities/album-128-thumb.webp",
+      "full": "assets/activities/album-128.webp",
+      "width": 1600,
+      "height": 1091
+    },
+    {
+      "id": "album-129",
+      "category": "sports",
+      "title": "Marathon · Race-Day Record",
+      "titleZh": "马拉松 · 比赛日记录",
+      "thumbnail": "assets/activities/album-129-thumb.webp",
+      "full": "assets/activities/album-129.webp",
+      "width": 1066,
+      "height": 1600
+    },
+    {
+      "id": "album-132",
+      "category": "exhibitions",
+      "title": "Dual-Arm Manipulation · Exhibition",
+      "titleZh": "双臂操作系统 · 展示观察",
+      "thumbnail": "assets/activities/album-132-thumb.webp",
+      "full": "assets/activities/album-132.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-133",
+      "category": "conferences",
+      "title": "3rd China Embodied Intelligence & Humanoid Robot Industry Conference",
+      "titleZh": "第三届中国具身智能与人形机器人产业大会",
+      "thumbnail": "assets/activities/album-133-thumb.webp",
+      "full": "assets/activities/album-133.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-137",
+      "category": "conferences",
+      "title": "Embodied Intelligence Industry Conference · Group Record",
+      "titleZh": "具身智能与人形机器人产业大会 · 合影",
+      "thumbnail": "assets/activities/album-137-thumb.webp",
+      "full": "assets/activities/album-137.webp",
+      "width": 1600,
+      "height": 1066
+    },
+    {
+      "id": "album-139",
+      "category": "conferences",
+      "title": "AI Innovation Forum · Technical Session",
+      "titleZh": "人工智能创新创业论坛 · 专题报告",
+      "thumbnail": "assets/activities/album-139-thumb.webp",
+      "full": "assets/activities/album-139.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-143",
+      "category": "exhibitions",
+      "title": "Dexterous Manipulation · Demonstration",
+      "titleZh": "灵巧操作 · 演示观察",
+      "thumbnail": "assets/activities/album-143-thumb.webp",
+      "full": "assets/activities/album-143.webp",
+      "width": 1600,
+      "height": 1066
+    },
+    {
+      "id": "album-144",
+      "category": "exhibitions",
+      "title": "Dexterous Hands · Exhibition",
+      "titleZh": "灵巧手 · 展示观察",
+      "thumbnail": "assets/activities/album-144-thumb.webp",
+      "full": "assets/activities/album-144.webp",
+      "width": 1600,
+      "height": 1066
+    },
+    {
+      "id": "album-145",
+      "category": "conferences",
+      "title": "World Robot Conference 2026 · Venue",
+      "titleZh": "2026世界机器人大会 · 会场记录",
+      "thumbnail": "assets/activities/album-145-thumb.webp",
+      "full": "assets/activities/album-145.webp",
+      "width": 1600,
+      "height": 1066
+    },
+    {
+      "id": "album-151",
+      "category": "community",
+      "title": "Origin Community · Group Exchange",
+      "titleZh": "原点社区 · 交流合影",
+      "thumbnail": "assets/activities/album-151-thumb.webp",
+      "full": "assets/activities/album-151.webp",
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "id": "album-154",
+      "category": "exhibitions",
+      "title": "Robotics · Technology Exhibition",
+      "titleZh": "机器人 · 科技展记录",
+      "thumbnail": "assets/activities/album-154-thumb.webp",
+      "full": "assets/activities/album-154.webp",
+      "width": 1067,
+      "height": 1600
+    },
+    {
+      "id": "album-159",
+      "category": "conferences",
+      "title": "World Robot Conference 2026 · Exhibition",
+      "titleZh": "2026世界机器人大会 · 展区记录",
+      "thumbnail": "assets/activities/album-159-thumb.webp",
+      "full": "assets/activities/album-159.webp",
+      "width": 1600,
+      "height": 1066
+    },
+    {
+      "id": "album-161",
+      "category": "awards",
+      "title": "Volunteer Service · Recognition Event",
+      "titleZh": "志愿服务 · 表彰活动",
+      "thumbnail": "assets/activities/album-161-thumb.webp",
+      "full": "assets/activities/album-161.webp",
+      "width": 1200,
+      "height": 1600
+    },
+    {
+      "id": "album-162",
+      "category": "social",
+      "title": "Fieldwork · Team Visit",
+      "titleZh": "社会实践 · 团队参访",
+      "thumbnail": "assets/activities/album-162-thumb.webp",
+      "full": "assets/activities/album-162.webp",
+      "width": 1600,
+      "height": 1199
+    },
+    {
+      "id": "album-163",
+      "category": "conferences",
+      "title": "China 3D Vision Conference · Attendance",
+      "titleZh": "中国三维视觉大会 · 参会记录",
+      "thumbnail": "assets/activities/album-163-thumb.webp",
+      "full": "assets/activities/album-163.webp",
+      "width": 1600,
+      "height": 1199
+    },
+    {
+      "id": "album-166",
+      "category": "practice",
+      "title": "Chuangke China · Competition Record",
+      "titleZh": "创客中国 · 创新创业大赛记录",
+      "thumbnail": "assets/activities/album-166-thumb.webp",
+      "full": "assets/activities/album-166.webp",
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "id": "album-168",
+      "category": "awards",
+      "title": "Children’s Services · Volunteer Recognition",
+      "titleZh": "儿童服务 · 志愿者表彰",
+      "thumbnail": "assets/activities/album-168-thumb.webp",
+      "full": "assets/activities/album-168.webp",
+      "width": 1600,
+      "height": 1200
+    }
+  ]
+}

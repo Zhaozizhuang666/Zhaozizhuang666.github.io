@@ -1,5 +1,20 @@
 # Release evaluation
 
+## Current verification — 2026-11-04
+
+This evidence covers the current local release candidate and supersedes older release counts and publication-scope descriptions below. It does not establish that the candidate has been deployed publicly.
+
+- Publication scope: exactly two allowlisted PDFs are retained: `assets/documents/chuangxiang-business-model.pdf` and `assets/documents/6g-data-flows-embodied-ai-course-paper.pdf`. No DOCX or PPT/PPTX files are included. Original source documents, certificate scans, and album photographs remain local; source photo originals were read-only and all **169 original image SHA-256 checksums remained unchanged**.
+- Automated behavior and content contracts: **139/139 passed**.
+- Learning-resource audit: **90 files**, **80 HTML pages**, **7,737 local references**, and **763 anchors**, with no missing local targets or anchors.
+- Independent homepage audit: **239 local references**, **232 unique local paths**, and **12 anchors**; no missing targets or anchors.
+- Browser layout: at **1440 × 900**, **1024 × 768**, and **390 × 844**, `document.scrollWidth` equaled `innerWidth`; no horizontal overflow was present. Browser console warnings and errors were empty.
+- Browser interaction: the collapsed honors gallery opened to 27 records; its large-image viewer supported left/right keyboard navigation and Escape returned focus to the opening control. Switching EN/中文 before opening the deferred galleries displayed the current language. The activity gallery opened to 67 photographs and category filtering and pagination worked. Research Show more/Show less worked.
+- Research media: all four official demo videos reached `readyState === 4` without `video.error`. Visible videos played automatically; videos paused when offscreen or inside a collapsed disclosure. After **Pause previews**, all four reported `paused === true` and the control changed to **Play previews**.
+- Public deployment: **pending verification**. No statement that this candidate is live is supported by these local checks.
+
+The sections below retain prior release evidence for audit history. Their test counts, file totals, attachment scope, and deployment observations are historical and are superseded by the 2026-11-04 evidence above wherever they differ.
+
 ## Publication scope update — 2026-10-27
 
 The DOCX business plan and PPTX presentation are withdrawn from the public file tree, Community links, handbook, Xiaoyi source records, and document sync allowlist. Only the business-model PDF and 6G course-paper PDF remain public. Original source files stay local. The complete automated suite passed 132/132 tests, and an independent publication audit passed 9/9 focused tests and verified both retained PDF hashes. Earlier four-document evidence below describes the preceding release and is superseded by this scope.

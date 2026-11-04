@@ -1,6 +1,6 @@
 {
   "sourceTitle": "小艺学习资料 · VLA, VLN, AI Training, AI Infrastructure & Site Resources",
-  "sourceNote": "本资料将创享艺苑 VLA Guide、草帽路飞 AIInfraGuide、Lossless Network 的已阅读页面与标注的原始论文整理为简短、改写的学习索引。个人学习指南和教育教程不应替代原始论文、官方实现或实测证据；论文条目也只用于概念与方法定位，不代表完整复现或最新综述。每条保留具体来源页；不表示已完整抓取来源网站、完成模型训练或复现，也不把教程的类比与示例参数视为通用结论。涉及模型能力、许可、硬件配置与性能的实际决策仍须查验原始材料。 本站使用说明标记为 first-party-site-guide，仅描述此网站功能与配置，不作为外部技术结论的研究证据。 商业方向记录标记为 owner-provided-business-plan，来自所有者提供并公开的商业计划材料，既有实践与计划应用分开描述。 本站学习资源条目标记为静态副本或导航，只说明已发布范围；不会据此声称 Xiaoyi 已完整读取全部章节、完成模型训练或核验所有外链。 研修论文标记为 owner-provided-course-paper，仅说明本人提供的材料，不把研修当作发表或获证，也不把计划数据当作既有业绩。",
+  "sourceNote": "本资料将创享艺苑 VLA Guide、草帽路飞 AIInfraGuide、Lossless Network 的已阅读页面与标注的原始论文整理为简短、改写的学习索引。个人学习指南和教育教程不应替代原始论文、官方实现或实测证据；论文条目也只用于概念与方法定位，不代表完整复现或最新综述。每条保留具体来源页；不表示已完整抓取来源网站、完成模型训练或复现，也不把教程的类比与示例参数视为通用结论。涉及模型能力、许可、硬件配置与性能的实际决策仍须查验原始材料。 本站使用说明标记为 first-party-site-guide，仅描述此网站功能与配置，不作为外部技术结论的研究证据。 商业方向记录标记为 owner-provided-business-plan，来自所有者提供并公开的商业计划材料，既有实践与计划应用分开描述。 本站学习资源条目标记为静态副本或导航，只说明已发布范围；不会据此声称 Xiaoyi 已完整读取全部章节、完成模型训练或核验所有外链。 研修论文标记为 owner-provided-course-paper，仅说明本人提供的材料，不把研修当作发表或获证，也不把计划数据当作既有业绩。 个人工程与研究记录标记为 owner-provided-project-material，来自所有者确认并公开的经历；进行中的研究与复现学习不等于已完成复现、通过原论文指标或参与模型原创研发。",
   "entries": [
     {
       "id": "tech-vlm-bridge",
@@ -1367,6 +1367,261 @@
       "sourceType": "owner-provided-training-story",
       "topics": [
         "6G研修报道"
+      ]
+    },
+    {
+      "id": "profile-catering-evaluation",
+      "name": "餐饮机器人联调 · 端到端评测实践",
+      "aliases": [
+        "餐饮联调经验",
+        "餐饮机器人联调",
+        "餐饮测试案例",
+        "餐饮项目个人贡献",
+        "catering integration case",
+        "世界机器人运动会经历",
+        "世界机器人运动会餐饮",
+        "餐饮赛事联调",
+        "餐饮赛事测试",
+        "机器人运动会个人贡献"
+      ],
+      "summary": "赵子状作为第二届世界机器人运动会餐饮项目联调与测试核心成员，参与食品夹、交付区、微波炉、热食柜和饮水机相关任务的测试保障。",
+      "details": "个人执行内容包括环境与设备准备、机器人状态检查、用例执行、过程记录、异常复盘和测试资料归档，输出场景专项记录与报告，为工程迭代与团队赛事获奖提供测试支持。该赛事案例应与亮剑项目分开：咖啡制作、饮品递送和多模态茶点任务属于亮剑项目，不归入本赛事案例。公开介绍不披露单位内部配置、完整报告、模型版本或未公开数据，也不将团队成绩归因于个人。",
+      "website": "https://zhaozizhuang666.github.io/#experience",
+      "sourceLocation": "个人主页 · Current Role · Competition Catering · 本人确认的公开经历",
+      "sourceType": "owner-provided-project-material",
+      "topics": [
+        "餐饮联调",
+        "餐饮测试案例",
+        "catering integration"
+      ],
+      "urlType": "source"
+    },
+    {
+      "id": "profile-engineering-workflows",
+      "name": "工程实践 · 可复用 Skills、脚本与 SOP",
+      "aliases": [
+        "工程实践",
+        "个人工程能力",
+        "个人Skill实践",
+        "脚本与SOP",
+        "工程能力案例",
+        "Agent Skills工程实践"
+      ],
+      "summary": "赵子状持续学习 Agent 工具链，并将重复工程任务整理为可复用 Skills、脚本和操作流程。",
+      "details": "实践覆盖远程开发工具环境配置、诊断检查与故障排查，以及机器人软件启动检查和配置恢复。重点是把问题定位、前置条件、执行步骤、结果校验与异常处理串联成可复用流程。该条目描述个人实践范围，不把内部脚本作为公共下载材料，也不声称已形成通用自主科研系统。",
+      "website": "https://zhaozizhuang666.github.io/#projects",
+      "sourceLocation": "个人主页 · Projects & Explorations · Agent Skills & Engineering Workflows",
+      "sourceType": "owner-provided-project-material",
+      "topics": [
+        "工程实践",
+        "个人工程能力",
+        "脚本与SOP"
+      ],
+      "urlType": "source"
+    },
+    {
+      "id": "profile-spirit-v1-5-study",
+      "name": "Spirit V1.5 · 自主研究与验证",
+      "aliases": [
+        "Spirit V1.5研究",
+        "Spirit1.5研究",
+        "Spirit V1.5学习",
+        "Spirit V1.5",
+        "Spirit1.5",
+        "Spirit V1.5 study"
+      ],
+      "summary": "赵子状正自主围绕 Spirit V1.5 进行研究与验证学习，结合公开资料与动手实验。",
+      "details": "当前实践包括 Demo 复现、实验环境配置、观察模型在真实机器人上的表现，并探索用 Agent 工作流辅助实验。官网文章是模型相关信息的来源；个人研究条目只描述学习与验证工作，不代表参与 Spirit V1.5 原创研发，也未声明完成全量论文复现或得到可公开的性能提升。",
+      "website": "https://zhaozizhuang666.github.io/#research",
+      "sourceLocation": "个人主页 · Research & Reproduction · Spirit V1.5 · 本人确认的研究学习状态",
+      "sourceType": "owner-provided-project-material",
+      "topics": [
+        "Spirit V1.5",
+        "Spirit1.5",
+        "Spirit V1.5 study"
+      ],
+      "sourceDocuments": [
+        {
+          "title": "Spirit V1.5 官方文章",
+          "url": "https://www.spirit-ai.com/en/blog/spirit-v1-5",
+          "format": "web"
+        }
+      ],
+      "urlType": "source"
+    },
+    {
+      "id": "profile-act-study",
+      "name": "ACT · 双臂操作研究与复现学习",
+      "aliases": [
+        "ACT学习",
+        "ACT个人研究",
+        "ACT复现学习",
+        "ACT study",
+        "ACT研究",
+        "ACT复现",
+        "ACT reproduction"
+      ],
+      "summary": "赵子状正围绕 ACT 开展研究与 Demo 复现学习，关注示范数据、动作分块与仿真任务。",
+      "details": "学习对象为 Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware。重点梳理动作序列的分块预测、示范数据接口，以及固定条件下的任务成功判据。公开状态为研究与复现学习中；尚未在本站给出与原文对齐的实验指标，不将官网演示作为本人实验结果。",
+      "website": "https://zhaozizhuang666.github.io/#research",
+      "sourceLocation": "个人主页 · Research & Reproduction · ACT · 本人确认的研究学习状态",
+      "sourceType": "owner-provided-project-material",
+      "topics": [
+        "ACT学习",
+        "ACT个人研究",
+        "ACT study"
+      ],
+      "sourceDocuments": [
+        {
+          "title": "ACT 论文",
+          "url": "https://arxiv.org/abs/2304.13705",
+          "format": "web"
+        },
+        {
+          "title": "ALOHA 官方项目页",
+          "url": "https://tonyzhaozh.github.io/aloha/",
+          "format": "web"
+        },
+        {
+          "title": "ACT 官方代码",
+          "url": "https://github.com/tonyzhaozh/act",
+          "format": "web"
+        }
+      ],
+      "urlType": "source"
+    },
+    {
+      "id": "profile-diffusion-policy-study",
+      "name": "Diffusion Policy · 视觉运动策略研究与复现学习",
+      "aliases": [
+        "Diffusion Policy个人研究",
+        "Diffusion Policy复现学习",
+        "Diffusion Policy学习",
+        "扩散策略个人学习",
+        "Diffusion Policy研究",
+        "Diffusion Policy复现",
+        "Diffusion Policy study",
+        "Diffusion Policy reproduction"
+      ],
+      "summary": "赵子状正围绕 Diffusion Policy 开展研究与 Demo 复现学习，关注视觉条件下的动作轨迹生成。",
+      "details": "学习对象为 Diffusion Policy: Visuomotor Policy Learning via Action Diffusion，以 Push-T 等公开示例为实践入口，梳理观测输入、动作轨迹、随机种子与评测协议。公开状态为研究与复现学习中，未声明已达到原论文结果；官网演示与个人实验记录应分别理解。",
+      "website": "https://zhaozizhuang666.github.io/#research",
+      "sourceLocation": "个人主页 · Research & Reproduction · Diffusion Policy · 本人确认的研究学习状态",
+      "sourceType": "owner-provided-project-material",
+      "topics": [
+        "Diffusion Policy个人研究",
+        "Diffusion Policy学习",
+        "扩散策略个人学习"
+      ],
+      "sourceDocuments": [
+        {
+          "title": "Diffusion Policy 论文",
+          "url": "https://arxiv.org/abs/2303.04137",
+          "format": "web"
+        },
+        {
+          "title": "Diffusion Policy 官方项目页",
+          "url": "https://diffusion-policy.cs.columbia.edu/",
+          "format": "web"
+        },
+        {
+          "title": "Diffusion Policy 官方代码",
+          "url": "https://github.com/real-stanford/diffusion_policy",
+          "format": "web"
+        }
+      ],
+      "urlType": "source"
+    },
+    {
+      "id": "profile-openvla-study",
+      "name": "OpenVLA · 视觉语言动作模型研究与复现学习",
+      "aliases": [
+        "OpenVLA个人研究",
+        "OpenVLA复现学习",
+        "OpenVLA学习",
+        "OpenVLA study",
+        "OpenVLA研究",
+        "OpenVLA复现",
+        "OpenVLA reproduction"
+      ],
+      "summary": "赵子状正围绕 OpenVLA 开展研究与 Demo 复现学习，关注预训练推理、动作接口与任务评测。",
+      "details": "学习对象为 OpenVLA: An Open-Source Vision-Language-Action Model。学习重点包括视觉与语言输入、动作输出约定、预训练模型推理，以及小规模固定任务集上的评测设置。公开状态为研究与复现学习中；不代表已完成微调、在真实机器人上复现原论文指标，或参与 OpenVLA 论文研究。",
+      "website": "https://zhaozizhuang666.github.io/#research",
+      "sourceLocation": "个人主页 · Research & Reproduction · OpenVLA · 本人确认的研究学习状态",
+      "sourceType": "owner-provided-project-material",
+      "topics": [
+        "OpenVLA个人研究",
+        "OpenVLA学习",
+        "OpenVLA study"
+      ],
+      "sourceDocuments": [
+        {
+          "title": "OpenVLA 论文",
+          "url": "https://arxiv.org/abs/2406.09246",
+          "format": "web"
+        },
+        {
+          "title": "OpenVLA 官方项目页",
+          "url": "https://openvla.github.io/",
+          "format": "web"
+        },
+        {
+          "title": "OpenVLA 官方代码",
+          "url": "https://github.com/openvla/openvla",
+          "format": "web"
+        }
+      ],
+      "urlType": "source"
+    },
+    {
+      "id": "profile-lianjian-evaluation",
+      "name": "亮剑项目 · 多场景服务任务评测",
+      "aliases": [
+        "亮剑测试",
+        "亮剑项目",
+        "亮剑评测",
+        "咖啡测试经历",
+        "饮品递送测试经历",
+        "茶点测试经历"
+      ],
+      "summary": "赵子状参与亮剑项目的咖啡制作、饮品递送与多模态茶点任务测试，并进行测试记录和报告归档。",
+      "details": "个人工作覆盖咖啡制作流程中的按键与杯具取放、饮品递送模型验证、多模态茶点交互，以及冰箱使用和导航相关测试支撑。按照统一流程完成前置准备、基线记录、计时与录像、结果判定和场景复位，使用评测平台组织任务并输出专项报告。上述咖啡与茶点任务属于亮剑项目，不混写为世界机器人运动会餐饮项目；公开条目不提供内部平台配置、模型参数、完整测试数据或未公开报告。",
+      "website": "https://zhaozizhuang666.github.io/#experience",
+      "urlType": "source",
+      "sourceLocation": "个人主页 · 机器人评测经历 · 本人确认的公开任务说明",
+      "sourceType": "owner-provided-project-material",
+      "topics": [
+        "亮剑项目",
+        "亮剑测试",
+        "亮剑评测"
+      ]
+    },
+    {
+      "id": "profile-research-overview",
+      "name": "个人研究与复现学习 · 当前方向",
+      "aliases": [
+        "赵子状研究",
+        "赵子状的研究",
+        "赵子状正在研究",
+        "赵子状复现",
+        "赵子状的复现",
+        "个人研究进展",
+        "目前研究内容",
+        "正在研究哪些模型",
+        "在研究哪些模型",
+        "正在复现哪些论文",
+        "在复现哪些论文"
+      ],
+      "summary": "赵子状目前自主研究 Spirit V1.5，并围绕 ACT、Diffusion Policy 和 OpenVLA 开展研究与 Demo 复现学习。",
+      "details": "实践围绕实验环境配置、示范数据与动作接口、仿真示例、固定条件下的评测和真实机器人行为观察展开，同时尝试用 Agent 工作流辅助实验。当前展示为持续研究与复现学习，不将学习的第三方论文列为本人发表成果，也不把官网演示视为个人实验结果；本站未公布与原论文对齐的完整复现指标。",
+      "website": "https://zhaozizhuang666.github.io/#research",
+      "urlType": "source",
+      "sourceLocation": "个人主页 · Research & Reproduction · 本人确认的研究学习状态",
+      "sourceType": "owner-provided-project-material",
+      "topics": [
+        "个人研究进展",
+        "目前研究内容",
+        "正在复现哪些论文"
       ]
     }
   ],

@@ -26,3 +26,23 @@ test('publication files and synchronization allowlist contain only the retained 
   assert.doesNotMatch(allowlist, /\.(docx|pptx?)/i);
   assert.match(read('.gitignore'), /^\*\.pptx$/m);
 });
+
+test('research portfolio separates the two robotics projects and discloses official demo media', () => {
+  const page = read('index.html');
+  const experience = page.slice(page.indexOf('id="experience"'), page.indexOf('id="learning"'));
+  const research = page.slice(page.indexOf('id="research"'), page.indexOf('class="records-heading"'));
+  assert.match(experience, /World Robot Games · Catering Project/);
+  assert.match(experience, /food tongs, the handoff area, microwave, hot-food cabinet, and water dispenser/i);
+  assert.match(experience, /Lijian Project · Service Task Evaluation/);
+  assert.match(experience, /coffee preparation, drink delivery, and multimodal tea-service tasks/i);
+  const games = experience.split('<article>')[1].split('</article>')[0];
+  assert.doesNotMatch(games, /coffee preparation/i);
+  assert.match(page, /<summary><span class="when-closed">Show more/);
+  assert.match(research, /assets\/research\/spirit-v1-5-demo\.mp4/);
+  for (const name of ['act-demo.mp4', 'diffusion-policy-demo.mp4', 'openvla-demo.mp4']) {
+    assert.ok(research.includes(`assets/research/${name}`), name);
+  }
+  assert.match(research, /paper-keywords/);
+  assert.doesNotMatch(research, /Reproduction Plan|candidates, not completed results|PHASE [123]/);
+  assert.match(read('assets/research/SOURCES.md'), /not demonstrations produced by the portfolio owner/);
+});

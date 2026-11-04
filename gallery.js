@@ -1,19 +1,25 @@
 /* An accessible, image-based archive. CSS supplies motion; original files remain untouched. */
 (() => {
   'use strict';
-  const mount = document.getElementById('achievement-gallery');
+  function initArchive(mount) {
   if (!mount) return;
+  const activities = mount.dataset.galleryKind === 'activities';
   const disclosure = mount.closest('details');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const words = {
     en: {eyebrow:'ARCHIVE IN MOTION', title:'Certificates & Records', intro:'Competition, research and learning — collected in one visual archive.', all:'All', competition:'Competition', research:'Research', learning:'Learning', record:'Archive', pause:'Pause', resume:'Resume', grid:'Grid view', motion:'Motion view', records:'records', categories:'Archive categories', open:'View record', close:'Close image', previous:'Previous image', next:'Next image', original:'Open full image', failed:'The image could not be loaded. Use “Open full image” to try again.', empty:'No records in this category.'},
     zh: {eyebrow:'实践影像档案', title:'证书与记录', intro:'以图像记录科创竞赛、研究与学习。', all:'全部', competition:'科创竞赛', research:'研究成果', learning:'学习交流', record:'其他记录', pause:'暂停动态', resume:'继续动态', grid:'网格浏览', motion:'动态浏览', records:'项记录', categories:'档案类别', open:'查看记录', close:'关闭图片', previous:'上一张', next:'下一张', original:'打开完整图片', failed:'图片暂未加载，请使用“打开完整图片”重试。', empty:'此分类暂无记录。'}
   };
+  if (activities) {
+    Object.assign(words.en, {eyebrow:'ACTIVITIES & FIELD NOTES', title:'Learning, Practice & Community', intro:'Selected photographs from conferences, competitions, fieldwork, and community learning.', certificates:'Recognition', awards:'Ceremonies', conferences:'Conferences', practice:'Project Practice', social:'Social Practice', community:'Community', exhibitions:'Technology Exhibitions', sports:'Running & Sports'});
+    Object.assign(words.zh, {eyebrow:'活动影像', title:'学习、实践与交流', intro:'会议研修、科创竞赛、社会实践与社区学习的现场记录。', certificates:'荣誉证书', awards:'颁奖典礼', conferences:'会议研修', practice:'科创实践', social:'社会实践', community:'社区学习', exhibitions:'技术展会', sports:'马拉松与运动'});
+  }
   const language = () => document.documentElement.dataset.language === 'zh' ? 'zh' : 'en';
   const t = key => words[language()][key];
   const titleOf = item => language() === 'zh' ? item.titleZh || item.title : item.title;
+  const awardOf = item => language() === 'zh' ? item.awardZh || item.award || '' : item.award || '';
   let renderedLanguage = language();
-  let items = [], selected = 'all', grid = reducedMotion.matches, paused = false, visible = false, activeIndex = 0, previousFocus;
+  let items = [], selected = 'all', grid = activities || reducedMotion.matches, paused = false, visible = false, activeIndex = 0, previousFocus;
   let stage, status, filters, toggleMotion, toggleGrid, dialog, dialogImage, dialogTitle, imageLink, dialogCount, errorText;
   let keyboardNavigation = false, restoringFocus = false, oldRootOverflow = '';
   document.addEventListener('pointerdown', () => { keyboardNavigation = false; }, {capture:true, passive:true});
@@ -35,7 +41,7 @@
     const button = element('button', 'hg-card');
     button.type = 'button';
     button.dataset.recordId = item.id;
-    button.setAttribute('aria-label', `${t('open')}: ${titleOf(item)}`);
+    button.setAttribute('aria-label', `${t('open')}: ${titleOf(item)}${awardOf(item) ? ` · ${awardOf(item)}` : ''}`);
     const image = element('img');
     image.src = item.thumbnail;
     image.alt = '';
@@ -46,6 +52,7 @@
     const label = element('span', 'hg-card-title', titleOf(item));
     const type = element('span', 'hg-card-type', t(item.category));
     button.append(image, type, label);
+    if (awardOf(item)) button.append(element('span', 'hg-card-award', awardOf(item)));
     if (clone) { button.tabIndex = -1; button.setAttribute('aria-hidden', 'true'); }
     button.addEventListener('click', () => openImage(item.id, button));
     button.addEventListener('focus', () => {
@@ -93,7 +100,7 @@
     const list = filtered();
     const item = list[activeIndex];
     if (!item) return;
-    dialogTitle.textContent = titleOf(item);
+    dialogTitle.textContent = `${titleOf(item)}${awardOf(item) ? ` · ${awardOf(item)}` : ''}`;
     dialogCount.textContent = `${activeIndex + 1} / ${list.length}`;
     dialogImage.alt = titleOf(item);
     dialogImage.width = item.width;
@@ -127,6 +134,8 @@
     if (dialog.open) showImage();
   }
   function build() {
+    // A closed archive may be opened after the page language has changed.
+    renderedLanguage = language();
     mount.dataset.languageIgnore = '';
     const header = element('div', 'hg-header');
     const copy = element('div', 'hg-copy');
@@ -137,7 +146,8 @@
     header.append(copy, status);
     const toolbar = element('div', 'hg-toolbar');
     filters = element('div', 'hg-filters'); filters.setAttribute('role', 'group'); filters.setAttribute('aria-label', t('categories'));
-    for (const category of ['all', 'competition', 'research', 'learning', 'record'].filter(value => value === 'all' || items.some(item => item.category === value))) {
+    const categories = activities ? ['all','certificates','awards','conferences','practice','social','community','exhibitions','sports'] : ['all','competition','research','learning','record'];
+    for (const category of categories.filter(value => value === 'all' || items.some(item => item.category === value))) {
       const button = element('button', 'hg-filter', t(category));
       button.type = 'button'; button.dataset.category = category; button.dataset.hgCopy = category;
       button.addEventListener('click', () => { selected = category; renderStage(); }); filters.append(button);
@@ -147,9 +157,9 @@
     toggleGrid = element('button', 'hg-action'); toggleGrid.type = 'button'; toggleGrid.addEventListener('click', () => { grid = !grid; renderStage(); });
     actions.append(toggleMotion, toggleGrid); toolbar.append(filters, actions);
     stage = element('div', 'hg-stage');
-    dialog = element('dialog', 'hg-dialog'); dialog.setAttribute('aria-labelledby', 'hg-dialog-title'); dialog.dataset.languageIgnore = '';
+    dialog = element('dialog', 'hg-dialog'); dialog.setAttribute('aria-labelledby', `${mount.id}-dialog-title`); dialog.dataset.languageIgnore = '';
     const top = element('div', 'hg-dialog-top');
-    dialogTitle = element('h3', 'hg-dialog-title'); dialogTitle.id = 'hg-dialog-title';
+    dialogTitle = element('h3', 'hg-dialog-title'); dialogTitle.id = `${mount.id}-dialog-title`;
     const close = element('button', 'hg-dialog-close', '×'); close.type = 'button'; close.dataset.hgLabel = 'close'; close.setAttribute('aria-label', t('close')); close.addEventListener('click', () => dialog.close());
     top.append(dialogTitle, close);
     const picture = element('div', 'hg-picture');
@@ -198,12 +208,22 @@
       localize();
     }).observe(document.documentElement, {attributes:true, attributeFilter:['data-language']});
   }
-  fetch(new URL('data/achievements-gallery.json', document.baseURI)).then(response => {
+  function load() {
+  fetch(new URL(mount.dataset.gallerySource, document.baseURI)).then(response => {
     if (!response.ok) throw new Error('Gallery unavailable');
     return response.json();
   }).then(data => {
     const safePath = value => typeof value === 'string' && /^assets\/[a-z\d-]+\/[a-z\d-]+\.webp$/.test(value);
-    items = (data.items || []).filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && ['competition','research','learning','record'].includes(item.category) && safePath(item.full) && safePath(item.thumbnail) && Number(item.width) > 0 && Number(item.height) > 0);
+    const categories = activities ? ['certificates','awards','conferences','practice','social','community','exhibitions','sports'] : ['competition','research','learning','record'];
+    items = (data.items || []).filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && categories.includes(item.category) && safePath(item.full) && safePath(item.thumbnail) && Number(item.width) > 0 && Number(item.height) > 0);
     if (items.length) build();
   }).catch(() => { /* Keep the server-rendered fallback readable. */ });
+  }
+  // Fetch and initialize each archive only when requested. The HTML remains usable without JavaScript.
+  if (disclosure && !disclosure.open) {
+    const onOpen = () => { if (!disclosure.open) return; disclosure.removeEventListener('toggle', onOpen); load(); };
+    disclosure.addEventListener('toggle', onOpen);
+  } else load();
+  }
+  document.querySelectorAll('[data-gallery-source]').forEach(initArchive);
 })();

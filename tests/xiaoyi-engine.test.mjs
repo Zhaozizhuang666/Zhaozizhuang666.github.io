@@ -59,6 +59,51 @@ test('personal course materials override profile and competition menus with accu
   assert.match(course.text, /未作为已发表期刊论文或结业证书展示/);
 });
 
+test('portfolio research and engineering questions cite ongoing personal practice without claiming completed reproduction', () => {
+  for (const [query, id, expected] of [
+    ['介绍世界机器人运动会餐饮经历', 'profile-catering-evaluation', /食品夹.*交付区.*微波炉.*热食柜.*饮水机/],
+    ['介绍亮剑测试', 'profile-lianjian-evaluation', /咖啡制作.*饮品递送.*多模态茶点/],
+    ['介绍个人工程能力', 'profile-engineering-workflows', /诊断检查.*故障排查/],
+    ['Spirit V1.5研究内容是什么？', 'profile-spirit-v1-5-study', /自主.*研究与验证学习/],
+    ['ACT复现学习内容是什么？', 'profile-act-study', /研究与复现学习中/],
+    ['Diffusion Policy学习内容是什么？', 'profile-diffusion-policy-study', /研究与复现学习中/],
+    ['OpenVLA复现学习内容是什么？', 'profile-openvla-study', /研究与复现学习中/],
+    ['赵子状正在研究哪些模型？', 'profile-research-overview', /Spirit V1.5.*ACT.*Diffusion Policy.*OpenVLA/],
+  ]) {
+    const chat = conversation();
+    const result = chat.ask(query);
+    assert.ok(ids(result).includes(id), query);
+    assert.match(result.text, expected, query);
+    assert.ok(result.sources.every(source => source.sourceType === 'owner-provided-project-material'), query);
+    const followup = chat.ask('把链接给我');
+    assert.ok(ids(followup).includes(id), `follow-up: ${query}`);
+    const server = retrieveKnowledge([{role: 'user', content: query}]);
+    assert.ok(ids(server).includes(id), `server: ${query}`);
+  }
+  const catering = data['technical-knowledge'].entries.find(entry => entry.id === 'profile-catering-evaluation');
+  assert.doesNotMatch(catering.summary, /咖啡|茶点|饮品递送/);
+  assert.match(catering.details, /咖啡制作、饮品递送和多模态茶点任务属于亮剑项目/);
+  for (const id of ['profile-act-study', 'profile-diffusion-policy-study', 'profile-openvla-study']) {
+    const entry = data['technical-knowledge'].entries.find(entry => entry.id === id);
+    assert.ok(entry.sourceDocuments.some(source => source.url.startsWith('https://arxiv.org/abs/')), id);
+    assert.match(entry.details, /未|不代表|不将/);
+    assert.match(entry.website, /\/#research$/);
+  }
+});
+
+test('personal study aliases leave general model definitions and unrelated directory queries intact', () => {
+  for (const [query, id] of [
+    ['Diffusion Policy是什么？', 'tech-diffusion-policy'],
+    ['OpenVLA是什么？', 'tech-vla-action-interface'],
+    ['Agent是什么？', 'tech-tool-agent'],
+    ['怎么复现实验结果？', 'tech-training-reproducibility'],
+  ]) {
+    const result = make().reply(query);
+    assert.ok(ids(result).includes(id), query);
+    assert.ok(result.sources.every(source => source.sourceType !== 'owner-provided-project-material'), query);
+  }
+});
+
 test('classic browser factory has no DOM dependency and loads all three actual schemas once', async () => {
   const paths = [];
   const engine = sandbox.window.XiaoyiEngine.create({fetch: async path => { paths.push(path); return {ok: true, json: async () => data[path.slice(5, -5)]}; }});

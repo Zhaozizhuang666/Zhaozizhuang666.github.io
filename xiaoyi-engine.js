@@ -117,6 +117,13 @@
     function technical(text) {
       if (/6g.*(?:报道|文章|story)|研修报道|研修文章/i.test(text)) return unique(['profile-6g-training-story'].map(byId));
       if (/6g|6G时代数据要素|secure data flows/i.test(text)) return unique(['profile-6g-course-paper'].map(byId));
+      // Explicit portfolio aliases select personal practice before general concept routes.
+      // A bare technical name (for example OpenVLA) still resolves to technical evidence.
+      const portfolioQuery = norm(text);
+      const portfolio = entries('technical-knowledge').filter(entry => entry.sourceType === 'owner-provided-project-material')
+        .map(entry => ({entry, score: Math.max(0, ...(entry.aliases || []).map(norm).filter(name => name.length > 2).map(name => portfolioQuery.includes(name) ? name.length : 0))}))
+        .filter(item => item.score).sort((a, b) => b.score - a.score);
+      if (portfolio.length) return portfolio.slice(0, 4).map(item => item.entry);
       // Resource navigation is distinct from an explanation of the VLA concept.
       if (/学习资源.*(?:怎么|如何|使用)|(?:怎么|如何).*学习资源|learning resources.*(?:use|help)/i.test(text)) return unique(['site-guide-learning-resources'].map(byId));
       if (/(?:vla[\s-]*guide|本地VLA知识库)/i.test(text) && /入口|在哪|哪里|链接|浏览|打开|\b(?:where|link|open|find|access)\b/i.test(text)) return unique(['learning-vla-guide'].map(byId));

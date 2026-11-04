@@ -22,6 +22,7 @@ Then open `http://localhost:8000/`.
 - Experience: current Robotics End-to-End Evaluation Engineer role at Spirit AI, with concise entries for 清华研究院 and 易点云.
 - Learning: AI Agent study at Origin School and Origin Night School, plus a 6G and secure-data-flows training programme and its course paper. The course paper is not presented as a published journal article or completion certificate.
 - Research & IP: one paper and four patent records; titles, identifiers, and source links, without author lists or dates.
+- Research & Reproduction: an ongoing Spirit V1.5 study plus ACT, Diffusion Policy, and OpenVLA reading and demo-reproduction entries. Each entry pairs a concise study note and keywords with official project/paper/code links; official demo videos use local poster images and respect the page's playback controls.
 - Projects: VLA Guide, intelligent parcel robot, steel surface defect detection, and model deployment explorations.
 - Community: Chuangxiang Yiyuan, Youyu social practice, volunteering, and event coordination, with proposed embodied-intelligence and AI Agent/Skill directions.
 - Media: selected public reports and project stories from 2024–2026, linked to their original pages or a stable official-account search entry.
@@ -29,6 +30,8 @@ Then open `http://localhost:8000/`.
 - Xiaoyi: the website knowledge entry, presented as a collapsible assistant with local retrieval and a bounded local memory stream. The published site currently uses local knowledge mode only.
 - [Site Handbook](guide.html): visitor guidance for navigation, themes, Xiaoyi, the Library, external AI websites, and release maintenance.
 - Contact: GitHub, VLA Guide, email, and WeChat.
+
+The Research section's additional paper entries are grouped in a collapsed **Show more / Show less** disclosure. The **Certificates & Records** and **Activities & Field Notes** archives are also collapsed by default. The honors gallery contains 27 selected records; the activity gallery contains 67 selected photographs, grouped and filterable by category. Original certificate and album sources remain local.
 
 ## Xiaoyi knowledge and local mode
 
@@ -56,7 +59,7 @@ Run the automated contracts with Node.js 22 or later:
 node --test tests/*.test.mjs
 ```
 
-The latest local run passed **132 of 132 tests**. This covers retrieval and conversation contracts (including VLN source follow-ups, site-guide answers, business-plan answers, the 6G course-paper materials, memory-stream controls, and natural third-turn preparation questions), API validation and adapters for GLM-5.3, Tencent TokenHub Kimi K3, Ark Doubao Responses, and Workers AI's four verified model contracts, language switching, theme persistence, refresh behavior, and the collapsed AI Websites directory. Provider tests use simulated services. The six external AI website entries were also clicked individually in Chrome; each navigated to its corresponding service. See [QA.md](QA.md) for the publication status and the three independent release rounds required for future changes.
+The latest automated run passed **139 of 139 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme persistence, refresh behavior, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. See [QA.md](QA.md) for the dated release evidence and the three independent release rounds required for future changes. The current public deployment is still awaiting verification; this local evidence does not claim that these changes are live.
 
 ## Public contact details
 
@@ -78,4 +81,4 @@ To refresh the attachments, run `python3 scripts/sync-public-documents.py sync`,
 
 Patent titles and publication types are linked to the owner-provided CNKI records. The published journal article links to its DOI; the separate 6G course paper stays under Learning. The community gallery uses photographs from the linked Chuangxiang Yiyuan articles. Apart from the two allowlisted PDF documents and reviewed learning-resource copies, source documents, uncompressed logo sources, and personal working files remain local. VLA code is MIT and tutorial content is CC BY 4.0 with attribution; the AI networking index has no explicit license declaration. Linked third-party materials retain their own rights.
 
-Certificate-based honor cards are available in `outputs/honors-cards.md`. Duplicate certificate versions are merged, and competition stages are kept distinct. The original certificate images remain local and unchanged.
+The honors gallery contains 27 selected WebP records, keeps competition stages distinct, and labels alternate certificate copies. Original certificate images remain local and unchanged. The activity gallery contains 67 selected WebP photographs in categorized, filterable groups; original album images remain local. Public deployment of this candidate is awaiting verification.
