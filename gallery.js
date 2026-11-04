@@ -7,20 +7,22 @@
   const disclosure = mount.closest('details');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const words = {
-    en: {eyebrow:'ARCHIVE IN MOTION', title:'Certificates & Records', intro:'Competition, research and learning — collected in one visual archive.', all:'All', competition:'Competition', research:'Research', learning:'Learning', record:'Archive', pause:'Pause', resume:'Resume', grid:'Grid view', motion:'Motion view', records:'records', categories:'Archive categories', open:'View record', close:'Close image', previous:'Previous image', next:'Next image', original:'Open full image', failed:'The image could not be loaded. Use “Open full image” to try again.', empty:'No records in this category.'},
-    zh: {eyebrow:'实践影像档案', title:'证书与记录', intro:'以图像记录科创竞赛、研究与学习。', all:'全部', competition:'科创竞赛', research:'研究成果', learning:'学习交流', record:'其他记录', pause:'暂停动态', resume:'继续动态', grid:'网格浏览', motion:'动态浏览', records:'项记录', categories:'档案类别', open:'查看记录', close:'关闭图片', previous:'上一张', next:'下一张', original:'打开完整图片', failed:'图片暂未加载，请使用“打开完整图片”重试。', empty:'此分类暂无记录。'}
+    en: {eyebrow:'ARCHIVE IN MOTION', title:'Certificates & Records', intro:'Award certificates, learning records, and research or project documentation.', all:'All', competition:'Competition Awards', research:'Research Records', learning:'Learning Records', record:'Project Records', pause:'Pause', resume:'Resume', grid:'Grid view', motion:'Motion view', records:'records', categories:'Archive categories', open:'View record', close:'Close image', previous:'Previous image', next:'Next image', original:'Open full image', article:'Read event report', failed:'The image could not be loaded. Use “Open full image” to try again.', empty:'No records in this category.'},
+    zh: {eyebrow:'实践影像档案', title:'证书与成果凭证', intro:'分类展示竞赛获奖、学习记录、研究成果与项目凭证。', all:'全部', competition:'竞赛奖项', research:'研究凭证', learning:'学习凭证', record:'项目凭证', pause:'暂停动态', resume:'继续动态', grid:'网格浏览', motion:'动态浏览', records:'项记录', categories:'档案类别', open:'查看记录', close:'关闭图片', previous:'上一张', next:'下一张', original:'打开完整图片', article:'阅读活动报道', failed:'图片暂未加载，请使用“打开完整图片”重试。', empty:'此分类暂无记录。'}
   };
   if (activities) {
-    Object.assign(words.en, {eyebrow:'ACTIVITIES & FIELD NOTES', title:'Learning, Practice & Community', intro:'Selected photographs from conferences, competitions, fieldwork, and community learning.', certificates:'Recognition', awards:'Ceremonies', conferences:'Conferences', practice:'Project Practice', social:'Social Practice', community:'Community', exhibitions:'Technology Exhibitions', sports:'Running & Sports'});
-    Object.assign(words.zh, {eyebrow:'活动影像', title:'学习、实践与交流', intro:'会议研修、科创竞赛、社会实践与社区学习的现场记录。', certificates:'荣誉证书', awards:'颁奖典礼', conferences:'会议研修', practice:'科创实践', social:'社会实践', community:'社区学习', exhibitions:'技术展会', sports:'马拉松与运动'});
+    Object.assign(words.en, {eyebrow:'ACTIVITIES & FIELD NOTES', title:'Learning, Practice & Community', intro:'Selected photographs from conferences, competitions, fieldwork, and community learning.', awards:'Ceremonies', conferences:'Conferences', practice:'Project Practice', social:'Social Practice', community:'Community', exhibitions:'Technology Exhibitions', sports:'Running & Sports'});
+    Object.assign(words.zh, {eyebrow:'活动影像', title:'学习、实践与交流', intro:'会议研修、科创竞赛、社会实践与社区学习的现场记录。', awards:'颁奖典礼', conferences:'会议研修', practice:'科创实践', social:'社会实践', community:'社区学习', exhibitions:'技术展会', sports:'马拉松与运动'});
   }
   const language = () => document.documentElement.dataset.language === 'zh' ? 'zh' : 'en';
   const t = key => words[language()][key];
   const titleOf = item => language() === 'zh' ? item.titleZh || item.title : item.title;
   const awardOf = item => language() === 'zh' ? item.awardZh || item.award || '' : item.award || '';
+  const roleOf = item => language() === 'zh' ? item.roleZh || item.role || '' : item.role || '';
+  const detailOf = item => [awardOf(item), roleOf(item)].filter(Boolean).join(' · ');
   let renderedLanguage = language();
   let items = [], selected = 'all', grid = activities || reducedMotion.matches, paused = false, visible = false, activeIndex = 0, previousFocus;
-  let stage, status, filters, toggleMotion, toggleGrid, dialog, dialogImage, dialogTitle, imageLink, dialogCount, errorText;
+  let stage, status, filters, toggleMotion, toggleGrid, dialog, dialogImage, dialogTitle, imageLink, reportLink, dialogCount, errorText;
   let keyboardNavigation = false, restoringFocus = false, oldRootOverflow = '';
   document.addEventListener('pointerdown', () => { keyboardNavigation = false; }, {capture:true, passive:true});
   document.addEventListener('keydown', event => { if (event.key === 'Tab') keyboardNavigation = true; }, true);
@@ -41,7 +43,7 @@
     const button = element('button', 'hg-card');
     button.type = 'button';
     button.dataset.recordId = item.id;
-    button.setAttribute('aria-label', `${t('open')}: ${titleOf(item)}${awardOf(item) ? ` · ${awardOf(item)}` : ''}`);
+    button.setAttribute('aria-label', `${t('open')}: ${titleOf(item)}${detailOf(item) ? ` · ${detailOf(item)}` : ''}`);
     const image = element('img');
     image.src = item.thumbnail;
     image.alt = '';
@@ -52,7 +54,7 @@
     const label = element('span', 'hg-card-title', titleOf(item));
     const type = element('span', 'hg-card-type', t(item.category));
     button.append(image, type, label);
-    if (awardOf(item)) button.append(element('span', 'hg-card-award', awardOf(item)));
+    if (detailOf(item)) button.append(element('span', 'hg-card-award', detailOf(item)));
     if (clone) { button.tabIndex = -1; button.setAttribute('aria-hidden', 'true'); }
     button.addEventListener('click', () => openImage(item.id, button));
     button.addEventListener('focus', () => {
@@ -67,6 +69,7 @@
     const list = filtered();
     stage.replaceChildren();
     stage.classList.toggle('hg-stage-grid', grid);
+    stage.classList.remove('hg-stage-single');
     mount.dataset.view = grid ? 'grid' : 'motion';
     status.textContent = `${list.length} ${t('records')}`;
     toggleGrid.textContent = grid ? `↔ ${t('motion')}` : `▦ ${t('grid')}`;
@@ -74,12 +77,28 @@
     for (const button of filters.querySelectorAll('button')) button.setAttribute('aria-pressed', String(button.dataset.category === selected));
     if (!list.length) { stage.append(element('p', 'hg-empty', t('empty'))); updateRunning(); return; }
     if (grid) {
-      const group = element('div', 'hg-grid');
-      list.forEach(item => group.append(card(item)));
-      stage.append(group);
+      for (const category of [...new Set(list.map(item => item.category))]) {
+        const records = list.filter(item => item.category === category);
+        const section = element('section', 'hg-category-section');
+        const heading = element('h4', 'hg-category-title', `${t(category)} · ${records.length}`);
+        const group = element('div', 'hg-grid');
+        records.forEach(item => group.append(card(item)));
+        section.append(heading, group);
+        stage.append(section);
+      }
     } else {
-      const rows = [list.filter((_, i) => i % 2 === 0), list.filter((_, i) => i % 2 === 1)];
-      rows.filter(row => row.length).forEach((row, i) => {
+      // Keep adjacent records together rather than alternating them between lanes.
+      const midpoint = Math.ceil(list.length / 2);
+      const boundaries = [];
+      for (let index = 1; index < list.length; index++) {
+        if (list[index - 1].group !== list[index].group || list[index - 1].event !== list[index].event) boundaries.push(index);
+      }
+      const splitAt = boundaries.length
+        ? boundaries.reduce((best, index) => Math.abs(index - midpoint) < Math.abs(best - midpoint) ? index : best)
+        : list.length;
+      const rows = [list.slice(0, splitAt), list.slice(splitAt)].filter(row => row.length);
+      stage.classList.toggle('hg-stage-single', rows.length === 1);
+      rows.forEach((row, i) => {
         const lane = element('div', `hg-lane hg-lane-${i}`);
         const track = element('div', 'hg-track');
         const group = element('div', 'hg-group');
@@ -100,7 +119,7 @@
     const list = filtered();
     const item = list[activeIndex];
     if (!item) return;
-    dialogTitle.textContent = `${titleOf(item)}${awardOf(item) ? ` · ${awardOf(item)}` : ''}`;
+    dialogTitle.textContent = `${titleOf(item)}${detailOf(item) ? ` · ${detailOf(item)}` : ''}`;
     dialogCount.textContent = `${activeIndex + 1} / ${list.length}`;
     dialogImage.alt = titleOf(item);
     dialogImage.width = item.width;
@@ -108,6 +127,9 @@
     errorText.hidden = true;
     dialogImage.src = item.full;
     imageLink.href = item.full;
+    reportLink.hidden = !item.sourceUrl;
+    if (item.sourceUrl) reportLink.href = item.sourceUrl;
+    else reportLink.removeAttribute('href');
   }
   function openImage(id, trigger) {
     activeIndex = filtered().findIndex(item => item.id === id);
@@ -146,7 +168,7 @@
     header.append(copy, status);
     const toolbar = element('div', 'hg-toolbar');
     filters = element('div', 'hg-filters'); filters.setAttribute('role', 'group'); filters.setAttribute('aria-label', t('categories'));
-    const categories = activities ? ['all','certificates','awards','conferences','practice','social','community','exhibitions','sports'] : ['all','competition','research','learning','record'];
+    const categories = activities ? ['all','awards','conferences','practice','social','community','exhibitions','sports'] : ['all','competition','research','learning','record'];
     for (const category of categories.filter(value => value === 'all' || items.some(item => item.category === value))) {
       const button = element('button', 'hg-filter', t(category));
       button.type = 'button'; button.dataset.category = category; button.dataset.hgCopy = category;
@@ -170,8 +192,9 @@
     const previous = element('button', 'hg-step', '←'); previous.type = 'button'; previous.dataset.hgLabel = 'previous'; previous.setAttribute('aria-label', t('previous')); previous.addEventListener('click', () => moveImage(-1));
     const next = element('button', 'hg-step', '→'); next.type = 'button'; next.dataset.hgLabel = 'next'; next.setAttribute('aria-label', t('next')); next.addEventListener('click', () => moveImage(1));
     dialogCount = element('span', 'hg-dialog-count');
+    reportLink = element('a', 'hg-report-link', t('article')); reportLink.dataset.hgCopy = 'article'; reportLink.target = '_blank'; reportLink.rel = 'noopener noreferrer'; reportLink.hidden = true;
     imageLink = element('a', 'hg-original', t('original')); imageLink.dataset.hgCopy = 'original'; imageLink.target = '_blank'; imageLink.rel = 'noopener noreferrer';
-    bottom.append(previous, dialogCount, next, imageLink); dialog.append(top, picture, bottom);
+    bottom.append(previous, dialogCount, next, reportLink, imageLink); dialog.append(top, picture, bottom);
     dialog.addEventListener('keydown', event => {
       if (event.key === 'ArrowLeft') { event.preventDefault(); moveImage(-1); }
       if (event.key === 'ArrowRight') { event.preventDefault(); moveImage(1); }
@@ -214,8 +237,10 @@
     return response.json();
   }).then(data => {
     const safePath = value => typeof value === 'string' && /^assets\/[a-z\d-]+\/[a-z\d-]+\.webp$/.test(value);
-    const categories = activities ? ['certificates','awards','conferences','practice','social','community','exhibitions','sports'] : ['competition','research','learning','record'];
-    items = (data.items || []).filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && categories.includes(item.category) && safePath(item.full) && safePath(item.thumbnail) && Number(item.width) > 0 && Number(item.height) > 0);
+    const categories = activities ? ['awards','conferences','practice','social','community','exhibitions','sports'] : ['competition','research','learning','record'];
+    items = (data.items || []).filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && item.group === item.category && typeof item.event === 'string' && /^[a-z\d]+(?:-[a-z\d]+)*$/.test(item.event) && Number.isInteger(item.sortOrder) && categories.includes(item.category) && safePath(item.full) && safePath(item.thumbnail) && Number(item.width) > 0 && Number(item.height) > 0 && (!item.sourceUrl || /^https:\/\/mp\.weixin\.qq\.com\/s\/[\w-]+$/.test(item.sourceUrl)));
+    const categoryRank = new Map(categories.map((category, index) => [category, index]));
+    items.sort((a, b) => categoryRank.get(a.group) - categoryRank.get(b.group) || a.event.localeCompare(b.event) || a.sortOrder - b.sortOrder);
     if (items.length) build();
   }).catch(() => { /* Keep the server-rendered fallback readable. */ });
   }

@@ -177,6 +177,9 @@ html[data-theme="dark"] .nav-inner .nav-more-menu a:hover,html[data-theme="dark"
 .research-controls { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
 .preview-toggle { min-height:36px; padding:5px 10px; border:1px solid var(--line); border-radius:20px; background:transparent; color:var(--muted); font:inherit; font-size:11px; cursor:pointer; }
 .research-study,.paper-roadmap-item { display:grid; grid-template-columns:200px minmax(0,1fr); gap:24px; align-items:start; padding:22px 0; border-top:1px solid var(--line); }
+.research-section > .section-heading { align-items:center; margin-bottom:16px; }
+.research-section > .section-heading h2 { margin-bottom:0; }
+.research-study { grid-template-columns:240px minmax(0,1fr); gap:24px; padding:20px 0; }
 .research-study-visual { min-width:0; margin:0; }
 .paper-media { display:block; position:relative; width:100%; overflow:hidden; border-radius:11px; border:1px solid var(--line); background:#edf0f4; aspect-ratio:16/10; }
 .paper-media video,.paper-media img { display:block; width:100%; height:100%; object-fit:cover; }
@@ -184,8 +187,11 @@ html[data-theme="dark"] .nav-inner .nav-more-menu a:hover,html[data-theme="dark"
 .research-study-copy,.paper-description { min-width:0; }
 .research-study-copy h3 { margin:0 0 7px; font-size:19px; line-height:1.45; }
 .research-study-copy > p:not(.paper-status),.paper-roadmap-item p { margin-bottom:8px; font-size:13px; line-height:1.7; }
+.research-study-copy > p:not(.paper-status) { margin-bottom:6px; line-height:1.6; }
+.research-study-copy .paper-keywords { margin:6px 0!important; }
+.research-study-copy .project-links { margin-top:6px; }
 .study-paper-title { color:var(--muted); }
-.paper-roadmap { margin-top:22px; }
+.paper-roadmap { margin-top:12px; }
 .paper-roadmap > .section-heading { align-items:center; margin-bottom:8px; }
 .paper-roadmap > .section-heading h3 { margin:0; font-size:19px; }
 .paper-roadmap > .section-heading .section-note { font-size:10px; letter-spacing:.08em; }
@@ -221,6 +227,8 @@ html[data-theme="dark"] .nav-inner .nav-more-menu a:hover,html[data-theme="dark"
 .case-disclosure[open] .when-closed { display:none; }
 .case-details { display:grid; grid-template-columns:1fr 1fr; gap:24px; padding:12px 0 4px; }
 .case-details article { min-width:0; }
+.case-report-links { gap: 6px 16px; margin: 2px 0 12px; }
+.case-report-links a { font-size: 12px; }
 .case-details h4 { margin:0 0 9px; font-size:14px; color:var(--ink); }
 .case-details p { margin:0 0 10px; font-size:13px; line-height:1.75; }
 .experience-mark-group { margin-bottom:20px; }
@@ -242,9 +250,10 @@ html[data-language="zh"] :is(.bilingual-context,.paired-en) { display: none; }
   .research-index span { font-size: 11px; overflow-wrap: anywhere; }
   .learning-meta { gap: 7px; }
   .research-study,.paper-roadmap-item { grid-template-columns:116px minmax(0,1fr); gap:14px; padding:18px 0; }
+  .research-study { grid-template-columns:180px minmax(0,1fr); gap:18px; }
   .research-study-copy h3,.paper-roadmap-item h4 { font-size:16px; }
   .research-controls .section-note { margin:0; }
-  .paper-roadmap { margin-top: 27px; padding-top: 20px; }
+  .paper-roadmap { margin-top:16px; padding-top:0; }
   .paper-roadmap > .section-heading { display: block; }
   .paper-roadmap > .section-heading h3 { margin-bottom: 5px; font-size: 18px; }
   .paper-roadmap > .section-heading .section-note { max-width: none; margin: 0; text-align: left; font-size: 11px; }
@@ -267,9 +276,37 @@ html[data-language="zh"] :is(.bilingual-context,.paired-en) { display: none; }
 
 @media(max-width:480px) {
   .research-study,.paper-roadmap-item { grid-template-columns:1fr; gap:12px; }
-  .research-study-visual,.paper-media { width:148px; }
+  .paper-roadmap-item > .paper-media { width:148px; }
+  .research-study-visual { width:140px; }
+  .research-section > .section-heading { align-items:start; }
+  .research-controls { justify-content:flex-end; }
   .paper-roadmap > .section-heading .section-note { font-size:10px; }
 }
 
 .honors-more{margin-top:14px}.honors-more>summary{display:flex;align-items:center;gap:9px;width:fit-content;font-size:13px;color:var(--blue);list-style:none;min-height:40px}.honors-more>summary::-webkit-details-marker{display:none}.honors-more[open]>summary span{transform:rotate(180deg)}.honors-list{min-width:0}.honors-list li{grid-template-columns:minmax(0,1fr) 260px}.honors-list li>span{min-width:0}.honors-list strong{color:var(--blue);font-size:13px}.honors-project-note{margin:20px 0 0;font-size:13px;color:var(--muted);line-height:1.7}.gallery-disclosure-hint{font-size:12px}.gallery-disclosure>summary{min-height:56px}.gallery-disclosure:target{scroll-margin-top:90px}
 @media(max-width:760px){.honors-list li{grid-template-columns:1fr;gap:6px}.honors-list strong{text-align:left}.gallery-disclosure-hint{font-size:11px;max-width:48%;text-align:right}.honors-project-note{font-size:13px}}
+
+/* Compact alliance profile: one brand header, balanced reading columns and a shared link row. */
+.community-feature{display:block;padding:4px 0 28px}
+.community-header{display:flex;align-items:center;gap:20px;margin-bottom:20px}
+.community-header .community-brand{width:96px;flex:0 0 96px;aspect-ratio:4/3;height:auto;border-radius:12px}
+.community-heading{min-width:0}
+.community-heading .overline{margin:0 0 5px;font-size:11px;text-align:left}
+.community-heading h3{margin:0;font-size:24px;line-height:1.35}
+.community-body{display:grid;grid-template-columns:minmax(0,2fr) minmax(230px,1fr);gap:30px;align-items:start}
+.community-feature .community-body p{max-width:none;margin:0;font-size:14px;line-height:1.85}
+.community-introduction,.community-focus{min-width:0}
+.community-focus{padding-left:24px;border-left:1px solid var(--line);color:var(--muted)}
+.community-feature>.project-links{align-items:flex-start;gap:6px 24px;margin-top:20px;padding-top:12px;border-top:1px solid var(--line)}
+.community-feature>.project-links>a,.community-feature .qr-details>summary{display:flex;align-items:center;min-height:36px;padding-block:6px;font-size:13px;line-height:1.7}
+.community-feature .qr-details{flex-basis:auto}
+.community-feature .qr-details[open]{flex-basis:100%}
+.community-feature .qr-account{margin-top:10px}
+@media(max-width:760px){
+  .community-header{gap:16px;margin-bottom:17px}
+  .community-header .community-brand{width:76px;flex-basis:76px;border-radius:10px}
+  .community-heading h3{font-size:21px}
+  .community-body{grid-template-columns:minmax(0,1fr);gap:17px}
+  .community-focus{padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}
+  .community-feature>.project-links{gap:3px 20px;margin-top:16px}
+}

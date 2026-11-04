@@ -1,19 +1,17 @@
 # Release evaluation
 
-## Current verification — 2026-11-04
+## Current verification — 2026-11-05
 
-This evidence covers the current local release candidate and supersedes older release counts and publication-scope descriptions below. It does not establish that the candidate has been deployed publicly.
+This evidence covers the current release candidate based on `8aa38a0` and supersedes older counts and publication-scope descriptions below. Public deployment is recorded separately after verification.
 
-- Publication scope: exactly two allowlisted PDFs are retained: `assets/documents/chuangxiang-business-model.pdf` and `assets/documents/6g-data-flows-embodied-ai-course-paper.pdf`. No DOCX or PPT/PPTX files are included. Original source documents, certificate scans, and album photographs remain local; source photo originals were read-only and all **169 original image SHA-256 checksums remained unchanged**.
-- Automated behavior and content contracts: **139/139 passed**.
-- Learning-resource audit: **90 files**, **80 HTML pages**, **7,737 local references**, and **763 anchors**, with no missing local targets or anchors.
-- Independent homepage audit: **239 local references**, **232 unique local paths**, and **12 anchors**; no missing targets or anchors.
-- Browser layout: at **1440 × 900**, **1024 × 768**, and **390 × 844**, `document.scrollWidth` equaled `innerWidth`; no horizontal overflow was present. Browser console warnings and errors were empty.
-- Browser interaction: the collapsed honors gallery opened to 27 records; its large-image viewer supported left/right keyboard navigation and Escape returned focus to the opening control. Switching EN/中文 before opening the deferred galleries displayed the current language. The activity gallery opened to 67 photographs and category filtering and pagination worked. Research Show more/Show less worked.
-- Research media: all four official demo videos reached `readyState === 4` without `video.error`. Visible videos played automatically; videos paused when offscreen or inside a collapsed disclosure. After **Pause previews**, all four reported `paused === true` and the control changed to **Play previews**.
-- Public deployment: **pending verification**. No statement that this candidate is live is supported by these local checks.
+- Round 1 — content and behavior: **144/144 automated tests passed**, with no failures or skips. JavaScript syntax and `git diff --check` passed. The galleries contain **30 certificates/records and 64 activity photographs**; category and event ordering, static fallback parity, withdrawn certificates, user-confirmed captions and the two World Robot Games report destinations are covered by regression checks.
+- Confirmed corrections: the China3dV photograph `album-162` is classified under conferences beside the other three China 3D Vision records; GSF photographs retain their report link; the computer-design photographs identify the team-leader role; APMCM is an award ceremony; the volunteer photograph is project research. World Robot Games catering tasks remain distinct from Lijian service tasks.
+- Round 2 — real-browser checks: the current candidate was served from `127.0.0.1:8002`. At the measured **390 × 844** Chrome viewport, document width remained 390px, the China3dV dialog stayed inside the viewport, and the Community profile used one column. Category filters, image navigation, the separate GSF report link and its removal on non-GSF images passed. At **1280 × 720** in the in-app browser, China3dV displayed the correct full photograph and caption, the 24-record conference group and adjacent 3D study credentials were verified, and grid/motion and disclosure controls worked. Desktop Community layout and QR disclosure were checked in light/dark themes. Chrome screenshots were blank in this session, so visual evidence was captured with the in-app browser; the Chrome responsive results above are measured DOM/interaction evidence.
+- Round 3 — publication-tree audit: only the two allowlisted PDFs remain (`chuangxiang-business-model.pdf` and `6g-data-flows-embodied-ai-course-paper.pdf`); no DOCX/PPT/PPTX or withdrawn certificate assets are present. Independent review checked **83 HTML pages and 8,053 local references**, with no missing targets; five script-managed fragment destinations were separately confirmed. The learning-resource audit passed **90 files, 80 HTML pages, 7,737 local references and 763 anchors**. All **169 original source-image SHA-256 checksums remained unchanged** in the source audit.
+- External reports: the two user-provided WeChat report URLs are attached to the catering case, with bilingual neutral labels. WeChat returned a verification page during inspection; article titles and publisher identities are not claimed as verified.
+- Public deployment: **pending**. GitHub `main` was verified at `9fc7a2f` before publishing; these local checks do not establish that visitors receive this candidate yet.
 
-The sections below retain prior release evidence for audit history. Their test counts, file totals, attachment scope, and deployment observations are historical and are superseded by the 2026-11-04 evidence above wherever they differ.
+The sections below retain historical release evidence. Their counts, attachment scope and deployment observations are superseded by the current verification above wherever they differ.
 
 ## Publication scope update — 2026-10-27
 
