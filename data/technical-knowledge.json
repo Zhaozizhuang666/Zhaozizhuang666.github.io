@@ -1398,7 +1398,7 @@
     },
     {
       "id": "profile-engineering-workflows",
-      "name": "工程实践 · 可复用 Skills、脚本与 SOP",
+      "name": "工程实践 · Bash 脚本、SOP 与 Agent Skills 探索",
       "aliases": [
         "工程实践",
         "个人工程能力",
@@ -1407,10 +1407,10 @@
         "工程能力案例",
         "Agent Skills工程实践"
       ],
-      "summary": "赵子状持续学习 Agent 工具链，并将重复工程任务整理为可复用 Skills、脚本和操作流程。",
-      "details": "实践覆盖远程开发工具环境配置、诊断检查与故障排查，以及机器人软件启动检查和配置恢复。重点是把问题定位、前置条件、执行步骤、结果校验与异常处理串联成可复用流程。该条目描述个人实践范围，不把内部脚本作为公共下载材料，也不声称已形成通用自主科研系统。",
+      "summary": "赵子状围绕机器人实验编写与整理 Bash 脚本和 SOP，涵盖远程环境配置、诊断检查与故障排查、设备自检及配置恢复，并探索将流程封装为可复用 Agent Skills。",
+      "details": "已有材料支持的实践包括远程开发环境配置与 CLI 最小验证、机器人启动自检、CAN 故障定位及恢复后的复查、相机与串口占用排查和受控释放、关键配置检查与恢复，以及基于日志定位推理加载异常。通过记录前置条件、执行步骤、日志和结果复查，将这些任务整理为可重复的工程流程。Agent Skill 封装仍在探索中；不声称已经形成成熟 Skill 库、通用自主科研系统或全自动故障修复能力。内部脚本不作为公共下载材料，公开介绍不包含凭据、内网地址、设备路径或主机信息。",
       "website": "https://zhaozizhuang666.github.io/#projects",
-      "sourceLocation": "个人主页 · Projects & Explorations · Agent Skills & Engineering Workflows",
+      "sourceLocation": "个人主页 · Projects & Explorations · Agent Skills & Engineering Workflows；本人提供的工程诊断、环境配置与机器人运维材料",
       "sourceType": "owner-provided-project-material",
       "topics": [
         "工程实践",
@@ -1444,6 +1444,11 @@
         {
           "title": "Spirit V1.5 官方文章",
           "url": "https://www.spirit-ai.com/en/blog/spirit-v1-5",
+          "format": "web"
+        },
+        {
+          "title": "Spirit V1.5 官方开源仓库",
+          "url": "https://github.com/Spirit-AI-Team/spirit-v1.5",
           "format": "web"
         }
       ],

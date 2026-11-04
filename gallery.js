@@ -43,6 +43,10 @@
     const button = element('button', 'hg-card');
     button.type = 'button';
     button.dataset.recordId = item.id;
+    if (activities) {
+      // Let a portrait photograph occupy a portrait-sized card, without letterboxing.
+      button.style.setProperty('--hg-photo-ratio', String(item.width / item.height));
+    }
     button.setAttribute('aria-label', `${t('open')}: ${titleOf(item)}${detailOf(item) ? ` · ${detailOf(item)}` : ''}`);
     const image = element('img');
     image.src = item.thumbnail;

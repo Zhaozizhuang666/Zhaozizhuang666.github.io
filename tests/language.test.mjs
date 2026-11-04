@@ -46,8 +46,10 @@ function page({saved = storage(), blocked = false} = {}) {
   const root = new Element('html');
   const button = new Element('button', {id: 'language-toggle'}, '中文');
   const anchor = new Element('a', {href: 'https://www.spirit-ai.com/about', target: '_blank', rel: 'noopener noreferrer'}, 'Spirit AI (千寻智能)');
-  const role = new Element('strong', {}, 'Robotics End-to-End Evaluation Engineer');
-  const intro = new Element('p', {}, 'I am a ', role, ' at ', anchor, '. My work focuses on evaluating robot behavior in real-world scenarios, visual perception, and vision-language-action (VLA) systems. I also explore ');
+  const role = new Element('strong', {}, 'Robotics End-to-End Model Evaluation Engineer');
+  const specialty = new Element('strong', {}, 'VLA evaluation benchmarks, simulation, and real-robot testing');
+  const guide = new Element('a', {href: 'resources/vla-guide/'}, 'VLA knowledge base');
+  const intro = new Element('p', {}, 'I am a ', role, ' at ', anchor, '. I work on ', specialty, ', connecting test execution with metrics, failure analysis, and feedback for model iteration. Alongside this work, I develop Bash scripts and reusable engineering workflows, and explore Agent Skills to support experiments. I maintain a ', guide, ' and organize collaborative innovation and volunteer initiatives.');
   const originalChinese = new Element('p', {lang: 'zh-CN'}, '知识库');
   const navigation = new Element('nav', {'aria-label': 'Main navigation'}, new Element('a', {href: '#experience'}, 'Experience'));
   const theme = new Element('button', {'aria-label': 'Theme: Auto. Activate to switch to Light.', title: 'Theme: Auto'}, 'Auto');
@@ -94,7 +96,7 @@ test('native toggle translates a paragraph around nested links and restores orig
     p.button.click();
     assert.equal(p.root.lang, 'zh-CN');
     assert.equal(p.button.textContent, 'EN');
-    assert.equal(p.role.textContent, '机器人端到端评测工程师');
+    assert.equal(p.role.textContent, '机器人端到端模型评测工程师');
     assert.match(p.intro.textContent, /我目前担任/);
     assert.equal(p.anchor.textContent, 'Spirit AI (千寻智能)');
     assert.equal(p.anchor.getAttribute('href'), 'https://www.spirit-ai.com/about');
@@ -115,7 +117,7 @@ test('a deliberate choice survives a new page, while EN resets the saved overrid
   assert.equal(saved.values.get(key), 'zh');
   const library = page({saved});
   assert.equal(library.initialLanguage, 'zh-CN', 'blocking initializer reads choice before content scripts');
-  assert.equal(library.role.textContent, '机器人端到端评测工程师');
+  assert.equal(library.role.textContent, '机器人端到端模型评测工程师');
   library.button.click();
   assert.equal(saved.values.has(key), false);
   assert.equal(page({saved}).root.lang, 'en');
@@ -157,9 +159,9 @@ test('storage events update open pages without treating theme events as language
   p.storageEvent('zizhuang-theme-choice-v1', 'dark');
   assert.equal(p.root.lang, 'en');
   p.storageEvent(key, 'zh');
-  assert.equal(p.role.textContent, '机器人端到端评测工程师');
+  assert.equal(p.role.textContent, '机器人端到端模型评测工程师');
   p.storageEvent(key, null);
-  assert.equal(p.role.textContent, 'Robotics End-to-End Evaluation Engineer');
+  assert.equal(p.role.textContent, 'Robotics End-to-End Model Evaluation Engineer');
 });
 
 test('all pages wire one language control after the early initializer, and allow browser translation', () => {

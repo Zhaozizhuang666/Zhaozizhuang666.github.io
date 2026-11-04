@@ -39,6 +39,7 @@ test('research portfolio separates the two robotics projects and discloses offic
   assert.doesNotMatch(games, /coffee preparation/i);
   assert.match(page, /<summary><span class="when-closed">Show more/);
   assert.match(research, /assets\/research\/spirit-v1-5-demo\.mp4/);
+  assert.match(research, /href="https:\/\/github\.com\/Spirit-AI-Team\/spirit-v1\.5"[^>]*>Official GitHub/);
   for (const name of ['act-demo.mp4', 'diffusion-policy-demo.mp4', 'openvla-demo.mp4']) {
     assert.ok(research.includes(`assets/research/${name}`), name);
   }

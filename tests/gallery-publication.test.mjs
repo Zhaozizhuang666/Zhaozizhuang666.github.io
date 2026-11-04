@@ -153,8 +153,8 @@ test('official World Robot Games reports stay with the catering case, separate f
   assert.equal((match[1].match(/class="[^"]*\bcase-report-links\b[^"]*"/g) || []).length, 1);
   assert.doesNotMatch(page.match(/<article><h4>Lijian Project[\s\S]*?<\/article>/)?.[0] || '', /72bqwqyHdnddDNOmFLpvYg|CKZt89C16-UYofxPEr-T1Q/);
   const translations = read('language-copy.js');
-  assert.match(translations, /'Official Report · 01 ↗': '赛事官方报道（一） ↗'/);
-  assert.match(translations, /'Official Report · 02 ↗': '赛事官方报道（二） ↗'/);
+  assert.match(translations, /'ifeng Tech · Autonomous Reasoning in Scenario Events ↗': '凤凰网科技 · 全自主推理挑战最难场景赛 ↗'/);
+  assert.match(translations, /'Spirit AI · Autonomous Reasoning Wins Gold and Silver ↗': '千寻智能 · 全自主推理斩获一金一银 ↗'/);
 });
 
 test('static archives preserve grouped manifest order and provide separate report links', () => {
