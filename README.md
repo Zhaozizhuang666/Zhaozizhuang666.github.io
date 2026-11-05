@@ -59,7 +59,7 @@ Run the automated contracts with Node.js 22 or later:
 node --test tests/*.test.mjs
 ```
 
-The latest automated run passed **162 of 162 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme behavior across navigation and refresh, mouse-leave disclosures, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. See [QA.md](QA.md) for dated evidence and the three independent release rounds required for future changes. The current refresh and disclosure update has passed behavior and browser checks; its GitHub Pages publication is verified separately after release.
+The latest automated run passed **162 of 162 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme behavior across navigation and refresh, mouse-leave disclosures, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. The refresh and disclosure update passed browser and public GitHub Pages checks: changed files and all 90 learning-resource files matched the release bytes. See [QA.md](QA.md) for dated evidence and the three independent release rounds required for future changes.
 
 ## Public contact details
 
