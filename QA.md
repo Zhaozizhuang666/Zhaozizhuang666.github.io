@@ -2,7 +2,9 @@
 
 ## Current verification — 2026-11-05
 
-This evidence covers the release candidate through `ef0df3c` and the subsequent gallery, profile, language and knowledge-base updates in the working tree. It supersedes older counts and publication-scope descriptions below. Public deployment is recorded separately after verification.
+This evidence covers the release candidate through `0dc7693`, including the gallery, profile, language, knowledge-base and honors-order updates. It supersedes older counts and publication-scope descriptions below. Public deployment is recorded separately after verification.
+
+- Latest honors update: the complete automated suite passed **145/145**, including the regression check that the national-level undergraduate innovation project is the first honors entry and is labelled as project approval with the core-member role. The earlier 144-test runs below predate this additional check.
 
 - Profile update: three full regression runs passed **144/144** each. The Chinese and English profile and five work points were checked in a real browser; company background is separate from individual contributions, and Agent Skills are described as ongoing exploration. Spirit V1.5 links to its official GitHub repository in both the research card and Xiaoyi's sources. The project README describes its Table30 result as of 2026-01-11; no current ranking or personal claim is made.
 - Profile responsive check: Chrome's measured viewport was **390 × 844**, with document width **390px** and no horizontal overflow. A visible layout check was also performed at a measured **487px** width. The desktop browser showed both language versions and the research link. The temporary viewport override was reset.
