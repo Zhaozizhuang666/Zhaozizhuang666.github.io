@@ -1,11 +1,21 @@
-/* Resolve the chosen appearance before stylesheets load; legacy preferences are ignored. */
+/* Resolve appearance before CSS: reload follows this device, links preserve a deliberate choice. */
 (() => {
   const root = document.documentElement;
   const storageKey = 'zizhuang-theme-choice-v1';
+  let navigationType = '';
+  try {
+    navigationType = window.performance?.getEntriesByType?.('navigation')[0]?.type || '';
+  } catch (_) {}
+  if (!navigationType) {
+    try { navigationType = window.performance?.navigation?.type === 1 ? 'reload' : ''; } catch (_) {}
+  }
   let preference = 'auto';
   try {
-    const saved = window.localStorage.getItem(storageKey);
-    if (saved === 'light' || saved === 'dark') preference = saved;
+    if (navigationType === 'reload') window.localStorage.removeItem(storageKey);
+    else {
+      const saved = window.localStorage.getItem(storageKey);
+      if (saved === 'light' || saved === 'dark') preference = saved;
+    }
   } catch (_) {}
   let media = {matches: false};
   try {

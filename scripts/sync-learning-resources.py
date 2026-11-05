@@ -15,7 +15,7 @@ PUBLIC = ROOT / "resources"
 VLA = PUBLIC / "vla-guide"
 LEGACY_INIT = "<script>try{document.documentElement.dataset.theme=localStorage.getItem('vla-guide-theme')||'dark'}catch{}</script>"
 LICENSES = ("LICENSE", "CONTENT_LICENSE.md", "THIRD_PARTY_NOTICES.md")
-RESET_VERSION = "20261105-reset1"
+RESET_VERSION = "20261105-reset2"
 DISCLOSURE_VERSION = "20261105-hover-close1"
 STATIC = {"index.html", "404.html", "search-index.json", "roles.json", "questions.json",
           "assets/app.js", "assets/careers.js", "assets/style.css", "assets/favicon.svg",

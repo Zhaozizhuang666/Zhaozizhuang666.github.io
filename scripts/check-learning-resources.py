@@ -72,7 +72,7 @@ def main():
         if "vla-guide-theme" in text or "vla-roadmap.bento.html" in text or "resource-audit.json" in text:
             fail(path, "Legacy integration reference")
         page = pages[path]
-        expected_scripts = {"theme-init.js": "v=20261105-reset1", "scroll-init.js": "v=20261105-reset1",
+        expected_scripts = {"theme-init.js": "v=20261105-reset2", "scroll-init.js": "v=20261105-reset2",
                             "disclosures.js": "v=20261105-hover-close1", "theme.js": ""}
         for script_name, expected_query in expected_scripts.items():
             scripts = [(attrs, position) for attrs, position in page.script_attrs
