@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#ffffff">
 <meta name="description" content="AI 算力网络学习导航：GPU 互联、RDMA、RoCE、NCCL 与集群容量规划。">
-<script src="../theme-init.js"></script>
+<script src="../theme-init.js?v=20261105-reset1"></script>
+<script src="../scroll-init.js?v=20261105-reset1"></script>
 <title>AI 算力中心网络架构 · 学习资源合集</title>
 <style>
   :root{
@@ -124,6 +125,7 @@ main{min-width:0}table{display:block;overflow-x:auto}td,th{overflow-wrap:anywher
 @media print{.resource-nav{display:none}:root,:root[data-theme=dark]{--bg:#fff;--panel:#fff;--text:#111;--muted:#444;--border:#ccc;--primary:#333;--accent:#333}.hero{background:#fff!important;color:#111}.wrap{display:block;padding:0}.toc{display:none}section{break-inside:avoid}table{display:table}}
 </style>
 <script src="../theme.js" defer></script>
+<script src="../disclosures.js?v=20261105-hover-close1" defer></script>
 </head>
 <body>
 <nav class="resource-nav" aria-label="Personal website"><a href="../index.html">← Personal site</a><a href="../knowledge.html">Library</a><button id="theme-toggle" type="button" aria-label="Theme: Auto">Auto</button></nav>
@@ -583,9 +585,9 @@ mpirun -np 16 --bind-to socket ./build/all_reduce_perf -b 8 -e 8G -f 2 -g 8</pre
   <div class="res">
     <span class="badge b-doc">文档</span>
     <div class="res-body">
-      <div class="title">NVIDIA nccl-tests · 官方测试工具与参数说明</div>
-      <div class="desc">官方仓库说明测试命令、消息大小与 GPU 数量等参数，并提供 algbw / busbw 指标的解释。</div>
-      <a class="link" href="https://github.com/NVIDIA/nccl-tests#readme" target="_blank" rel="noopener noreferrer">github.com/NVIDIA/nccl-tests#readme</a>
+      <div class="title">AI-HPC《NCCL Performance Testing & Tuning Guide》</div>
+      <div class="desc">命令行参数、如何读 busbw。</div>
+      <a class="link" href="https://ai-hpc.org/en/guide/03-network/nccl-test" target="_blank" rel="noopener noreferrer">ai-hpc.org/en/guide/03-network/nccl-test</a>
     </div>
   </div>
 </section>

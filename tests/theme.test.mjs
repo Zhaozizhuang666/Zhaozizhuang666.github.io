@@ -16,7 +16,7 @@ function memoryStorage(initial = {}) {
     removeItem(key) { writes.push(['remove', key]); values.delete(key); }};
 }
 
-function page({dark = false, storage = memoryStorage(), legacyMedia = false, blockedStorage = false} = {}) {
+function page({dark = false, storage = memoryStorage(), legacyMedia = false, blockedStorage = false, navigation = 'navigate', legacyNavigation = false, unavailableNavigation = false} = {}) {
   const root = {dataset: {}, style: {}};
   const meta = {content: '#ffffff'};
   const systemListeners = new Set();
@@ -30,10 +30,13 @@ function page({dark = false, storage = memoryStorage(), legacyMedia = false, blo
   else media.addEventListener = (type, listener) => { assert.equal(type, 'change'); systemListeners.add(listener); };
   let mediaQueries = 0, uiReady = false;
   const window = {
+    performance: {getEntriesByType: () => [{type: navigation}], navigation: {type: navigation === 'reload' ? 1 : 0}},
     get localStorage() { if (blockedStorage) throw Error('Storage blocked'); return storage; },
     matchMedia(query) { mediaQueries++; assert.equal(query, '(prefers-color-scheme: dark)'); return media; },
     addEventListener(type, listener) { assert.equal(type, 'storage'); storageListeners.push(listener); }
   };
+  if (legacyNavigation) window.performance.getEntriesByType = () => { throw Error('Navigation entries unavailable'); };
+  if (unavailableNavigation) delete window.performance;
   const sandbox = {
     document: {documentElement: root,
       querySelector(selector) { assert.equal(selector, 'meta[name="theme-color"]'); return meta; },
@@ -141,7 +144,7 @@ test('system changes update Auto while saved explicit Light and Dark remain fixe
 });
 
 for (const preference of ['light', 'dark']) {
-  test(`manual ${preference} survives main → knowledge navigation and a reload`, () => {
+  test(`manual ${preference} survives main → knowledge navigation but reload resets to system Auto`, () => {
     const storage = memoryStorage();
     const main = page({dark: true, storage});
     main.start();
@@ -152,9 +155,17 @@ for (const preference of ['light', 'dark']) {
     appearance(knowledge, preference, preference);
     knowledge.start();
     appearance(knowledge, preference, preference);
-    const reloaded = page({dark: preference === 'light', storage});
+    const reloaded = page({dark: preference === 'light', storage, navigation: 'reload'});
+    appearance(reloaded, 'auto', preference === 'light' ? 'dark' : 'light');
+    assert.ok(!storage.values.has(storageKey), 'old override is removed before the deferred controller and CSS');
     reloaded.start();
-    appearance(reloaded, preference, preference);
+    appearance(reloaded, 'auto', preference === 'light' ? 'dark' : 'light');
+    assert.equal(reloaded.button.textContent, 'Auto');
+    reloaded.system(preference !== 'light');
+    appearance(reloaded, 'auto', preference !== 'light' ? 'dark' : 'light');
+    const nextPage = page({dark: false, storage});
+    nextPage.start();
+    appearance(nextPage, 'auto', 'light');
   });
 }
 
@@ -168,7 +179,7 @@ test('choosing Auto clears the saved override and remains Auto across navigation
   const knowledge = page({dark: true, storage});
   knowledge.start();
   appearance(knowledge, 'auto', 'dark');
-  const reloaded = page({dark: false, storage});
+  const reloaded = page({dark: false, storage, navigation: 'reload'});
   reloaded.start();
   appearance(reloaded, 'auto', 'light');
 });
@@ -202,6 +213,32 @@ test('unavailable localStorage still permits system Auto and interactive overrid
   appearance(p, 'auto', 'dark');
 });
 
+test('a reload with blocked storage still follows this device before the UI is loaded', () => {
+  const p = page({dark: true, blockedStorage: true, navigation: 'reload'});
+  appearance(p, 'auto', 'dark');
+  p.start();
+  appearance(p, 'auto', 'dark');
+  p.click();
+  appearance(p, 'light', 'light');
+});
+
+test('legacy reload detection clears the override even if modern timing throws', () => {
+  const storage = memoryStorage({[storageKey]: 'light'});
+  const p = page({dark: true, storage, navigation: 'reload', legacyNavigation: true});
+  appearance(p, 'auto', 'dark');
+  assert.deepEqual(storage.reads, []);
+  assert.deepEqual(storage.writes, [['remove', storageKey]]);
+});
+
+test('back/forward and unavailable navigation timing retain an explicit choice', () => {
+  for (const options of [{navigation: 'back_forward'}, {unavailableNavigation: true}]) {
+    const p = page({dark: true, storage: memoryStorage({[storageKey]: 'light'}), ...options});
+    appearance(p, 'light', 'light');
+    p.start();
+    appearance(p, 'light', 'light');
+  }
+});
+
 test('legacy MediaQueryList.addListener still tracks system appearance in Auto', () => {
   const p = page({dark: false, legacyMedia: true});
   p.start();
@@ -214,15 +251,15 @@ test('legacy MediaQueryList.addListener still tracks system appearance in Auto',
   appearance(p, 'light', 'light');
 });
 
-test('both pages load the same blocking initializer before CSS and one deferred controller', () => {
-  for (const name of ['index.html', 'knowledge.html']) {
+test('public pages load the same blocking initializer before CSS and one deferred controller', () => {
+  for (const name of ['index.html', 'knowledge.html', 'guide.html']) {
     const html = fs.readFileSync(new URL(`../${name}`, import.meta.url), 'utf8');
-    const init = html.indexOf('<script src="theme-init.js"></script>');
+    const init = html.search(/<script src="theme-init\.js(?:\?[^"\s]*)?"><\/script>/);
     const firstStyle = html.indexOf('rel="stylesheet"');
     assert.ok(init > html.indexOf('name="theme-color"'), `${name}: theme-color meta exists before initialization`);
     assert.ok(init < firstStyle, `${name}: theme is resolved before any stylesheet`);
-    assert.equal((html.match(/src="theme-init\.js"/g) || []).length, 1);
-    assert.equal((html.match(/<script src="theme\.js" defer><\/script>/g) || []).length, 1);
+    assert.equal((html.match(/src="theme-init\.js(?:\?[^"\s]*)?"/g) || []).length, 1);
+    assert.equal((html.match(/<script src="theme\.js(?:\?[^"\s]*)?" defer><\/script>/g) || []).length, 1);
     assert.ok(!html.includes("localStorage.getItem('theme-preference')"), `${name}: no stale inline storage resolver`);
   }
 });

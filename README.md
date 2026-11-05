@@ -4,7 +4,7 @@ English-first personal website for Zizhuang Zhao (赵子状), built with plain H
 
 The compact EN/中文 header switch translates site copy locally and remembers the choice across Home, Library, Guide, and reloads. Source titles, names, contacts, and Xiaoyi conversation messages stay intact; this does not depend on Chrome/Google Translate.
 
-The header’s Auto / Light / Dark control applies across Home, Library, Guide, the local learning-resource pages, and reloads. With no deliberate saved choice, Auto follows the visitor’s system appearance. Explicit Light or Dark choices are saved under the versioned `zizhuang-theme-choice-v1` key when local storage is available; choosing Auto removes that override. Legacy preferences are ignored. Xiaoyi’s colors follow the active appearance; its normal Auto outfit, happy Light outfit, and sleepy Dark outfit follow the selected mode rather than the system’s resolved color.
+The header’s Auto / Light / Dark control applies across Home, Library, Guide, and the local learning-resource pages. Explicit Light or Dark choices are saved under the versioned `zizhuang-theme-choice-v1` key when local storage is available and remain consistent during ordinary navigation between these pages. A browser refresh clears that override before styles load, restores Auto to match the visiting device’s current light or dark appearance, returns to the top, removes the previous section anchor, and collapses expanded details. Choosing Auto also removes the override; legacy preferences are ignored. Xiaoyi’s colors follow the active appearance; its normal Auto outfit, happy Light outfit, and sleepy Dark outfit follow the selected mode rather than the system’s resolved color.
 
 ## Preview locally
 
@@ -31,7 +31,7 @@ Then open `http://localhost:8000/`.
 - [Site Handbook](guide.html): visitor guidance for navigation, themes, Xiaoyi, the Library, external AI websites, and release maintenance.
 - Contact: GitHub, VLA Guide, email, and WeChat.
 
-The Research section's additional paper entries are grouped in a collapsed **Show more / Show less** disclosure. The **Certificates & Records** and **Activities & Field Notes** archives are also collapsed by default. The honors gallery contains 30 selected records; the activity gallery contains 64 selected photographs, grouped and filterable by category. Original certificate and album sources remain local.
+The Research section's additional paper entries are grouped in a collapsed **Show more / Show less** disclosure. The **Certificates & Records** and **Activities & Field Notes** archives are also collapsed by default. Expanded details collapse after the mouse leaves the whole region; moving into a menu panel, using a full-image dialog, and keyboard or touch interaction remain supported. Refreshing starts with all details collapsed. The honors gallery contains 30 selected records; the activity gallery contains 64 selected photographs, grouped and filterable by category. Original certificate and album sources remain local.
 
 ## Xiaoyi knowledge and local mode
 
@@ -59,7 +59,7 @@ Run the automated contracts with Node.js 22 or later:
 node --test tests/*.test.mjs
 ```
 
-The latest automated run passed **145 of 145 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme persistence, refresh behavior, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. See [QA.md](QA.md) for the dated release evidence and the three independent release rounds required for future changes. GitHub Pages was verified after the latest gallery update: the 3D Innovation Study Camp photograph appears under Innovation Practice.
+The latest automated run passed **162 of 162 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme behavior across navigation and refresh, mouse-leave disclosures, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. See [QA.md](QA.md) for dated evidence and the three independent release rounds required for future changes. The current refresh and disclosure update has passed behavior and browser checks; its GitHub Pages publication is verified separately after release.
 
 ## Public contact details
 

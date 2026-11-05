@@ -22,6 +22,8 @@ class Page(HTMLParser):
         self.ids = set()
         self.links = []
         self.scripts = []
+        self.script_attrs = []
+        self.first_style = None
         self.feed(text)
 
     def handle_starttag(self, tag, attrs):
@@ -33,6 +35,9 @@ class Page(HTMLParser):
                 self.links.append((tag, attr, attrs[attr]))
         if tag == "script" and attrs.get("src"):
             self.scripts.append(attrs["src"])
+            self.script_attrs.append((attrs, self.getpos()))
+        if self.first_style is None and (tag == "style" or (tag == "link" and attrs.get("rel") == "stylesheet")):
+            self.first_style = self.getpos()
 
 
 def main():
@@ -67,12 +72,25 @@ def main():
         if "vla-guide-theme" in text or "vla-roadmap.bento.html" in text or "resource-audit.json" in text:
             fail(path, "Legacy integration reference")
         page = pages[path]
-        initializers = [s for s in page.scripts if s.endswith("theme-init.js")]
-        controllers = [s for s in page.scripts if s.endswith("theme.js")]
-        if len(initializers) != 1 or len(controllers) != 1:
-            fail(path, "Shared theme scripts missing or repeated")
-        if path.parent != PUBLIC and text.index("theme-init.js") > text.index('<link rel="stylesheet"'):
-            fail(path, "Theme initializer runs after stylesheet")
+        expected_scripts = {"theme-init.js": "v=20261105-reset1", "scroll-init.js": "v=20261105-reset1",
+                            "disclosures.js": "v=20261105-hover-close1", "theme.js": ""}
+        for script_name, expected_query in expected_scripts.items():
+            scripts = [(attrs, position) for attrs, position in page.script_attrs
+                       if Path(urlsplit(attrs["src"]).path).name == script_name]
+            if len(scripts) != 1:
+                fail(path, f"Shared {script_name} missing or repeated")
+                continue
+            attrs, position = scripts[0]
+            parts = urlsplit(attrs["src"])
+            if (path.parent / unquote(parts.path)).resolve() != ROOT / script_name or parts.query != expected_query:
+                fail(path, f"Shared {script_name} path/version mismatch")
+            if script_name in {"theme-init.js", "scroll-init.js"}:
+                if 'defer' in attrs or 'async' in attrs or attrs.get('type') == 'module':
+                    fail(path, f"Shared {script_name} must run synchronously")
+                if page.first_style is not None and position > page.first_style:
+                    fail(path, f"Shared {script_name} runs after stylesheet")
+            elif 'defer' not in attrs or 'async' in attrs:
+                fail(path, f"Shared {script_name} must be deferred")
         for script in page.scripts:
             if urlsplit(script).scheme or script.startswith("//"):
                 fail(path, "Unexpected remote script")

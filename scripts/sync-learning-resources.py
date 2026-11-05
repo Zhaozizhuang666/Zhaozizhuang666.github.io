@@ -15,6 +15,8 @@ PUBLIC = ROOT / "resources"
 VLA = PUBLIC / "vla-guide"
 LEGACY_INIT = "<script>try{document.documentElement.dataset.theme=localStorage.getItem('vla-guide-theme')||'dark'}catch{}</script>"
 LICENSES = ("LICENSE", "CONTENT_LICENSE.md", "THIRD_PARTY_NOTICES.md")
+RESET_VERSION = "20261105-reset1"
+DISCLOSURE_VERSION = "20261105-hover-close1"
 STATIC = {"index.html", "404.html", "search-index.json", "roles.json", "questions.json",
           "assets/app.js", "assets/careers.js", "assets/style.css", "assets/favicon.svg",
           "handbook/index.html", "industry/index.html", "interview/index.html"}
@@ -44,17 +46,27 @@ def source_snapshot(vla_source, network_source):
     return {str(p): digest(p.read_bytes()) for p in paths}
 
 
+def shared_page_scripts(target):
+    scripts = {}
+    for name, version in (("theme-init.js", RESET_VERSION), ("scroll-init.js", RESET_VERSION),
+                          ("disclosures.js", DISCLOSURE_VERSION), ("theme.js", None)):
+        src = relative(ROOT / name, target) + (f"?v={version}" if version else "")
+        deferred = ' defer' if name in {"disclosures.js", "theme.js"} else ''
+        scripts[name] = f'<script src="{html.escape(src, quote=True)}"{deferred}></script>'
+    return scripts
+
+
 def integrate_vla(content, target):
     if target.name == "404.html":
         content = content.replace("/vla-guide/", "./")
     if content.count(LEGACY_INIT) != 1:
         raise ValueError(f"Unexpected theme initializer: {target.relative_to(ROOT)}")
     content = content.replace(LEGACY_INIT, "")
-    init = html.escape(relative(ROOT / "theme-init.js", target), quote=True)
-    theme = html.escape(relative(ROOT / "theme.js", target), quote=True)
-    # Run the shared blocking initializer before any stylesheet to avoid a flash.
-    content = content.replace('<link rel="stylesheet"', f'<script src="{init}"></script><link rel="stylesheet"', 1)
-    content = content.replace("</head>", f'<script src="{theme}" defer></script></head>', 1)
+    scripts = shared_page_scripts(target)
+    # Reset the previous theme/hash before CSS or parsing can restore an old appearance/anchor.
+    content = content.replace('<link rel="stylesheet"',
+        scripts["theme-init.js"] + scripts["scroll-init.js"] + '<link rel="stylesheet"', 1)
+    content = content.replace("</head>", scripts["theme.js"] + scripts["disclosures.js"] + '</head>', 1)
     content = content.replace('　<a href="https://bento.page/">Bento ↗</a>', '')
     content = content.replace('aria-label="切换深色主题" aria-pressed="false">◐',
                               'aria-label="Theme: Auto">Auto')
@@ -68,7 +80,7 @@ def integrate_vla(content, target):
     content = content.replace("</footer>", '<p class="resource-attribution">'
         '原作：创享艺苑（VLA Guide） · '
         '<a href="https://github.com/Zhaozizhuang666/vla-guide" target="_blank" rel="noopener noreferrer">原项目</a>'
-        '<br>本站副本仅调整导航、主题与部署路径；路线演示改用静态章节。<br>' + license_links + '</p></footer>', 1)
+        '<br>本站副本调整导航、主题、下拉交互、刷新行为与部署路径；路线演示改用静态章节。<br>' + license_links + '</p></footer>', 1)
     if target == VLA / "index.html":
         old = re.compile(r'<div class="card feature" style="background:var\(--warm\)"><div class="eyebrow">A portable learning map / Bento</div>.*?</div></div></section>', re.S)
         content, changed = old.subn(
@@ -115,11 +127,12 @@ main{min-width:0}table{display:block;overflow-x:auto}td,th{overflow-wrap:anywher
 
 
 def integrate_network(content):
+    scripts = shared_page_scripts(PUBLIC / "ai-network-learning.html")
     content = content.replace('<title>', '<meta name="theme-color" content="#ffffff">\n'
         '<meta name="description" content="AI 算力网络学习导航：GPU 互联、RDMA、RoCE、NCCL 与集群容量规划。">\n'
-        '<script src="../theme-init.js"></script>\n<title>', 1)
+        + scripts["theme-init.js"] + '\n' + scripts["scroll-init.js"] + '\n<title>', 1)
     content = content.replace('</style>', NETWORK_CSS + '</style>', 1)
-    content = content.replace('</head>', '<script src="../theme.js" defer></script>\n</head>', 1)
+    content = content.replace('</head>', scripts["theme.js"] + '\n' + scripts["disclosures.js"] + '\n</head>', 1)
     content = content.replace('<body>', '<body>\n<nav class="resource-nav" aria-label="Personal website">'
         '<a href="../index.html">← Personal site</a><a href="../knowledge.html">Library</a>'
         '<button id="theme-toggle" type="button" aria-label="Theme: Auto">Auto</button></nav>', 1)
@@ -192,7 +205,9 @@ def main():
              "attribution": "创享艺苑（VLA Guide）", "codeLicense": "MIT", "contentLicense": "CC-BY-4.0",
              "modules": 11, "chapters": 63, "roles": 24, "interviewQuestions": 80}
         ],
-        "integration": ["Shared personal-site theme preference", "Parent website return links",
+        "integration": ["Shared personal-site theme preference; reload resets to device Auto",
+                        "Reload returns to the top with disclosures collapsed",
+                        "Shared mouse-leave disclosure controller", "Parent website return links",
                         "Deployment-relative paths", "Static chapter roadmap replaces optional Bento presentation"],
         "excluded": [".git", "node_modules", "source drafts and development folders", "robots.txt", "sitemap.xml",
                      "assets/resource-audit.json", "vla-roadmap.bento.html"],
