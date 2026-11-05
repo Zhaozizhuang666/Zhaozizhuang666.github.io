@@ -503,6 +503,19 @@
       "sortOrder": 1
     },
     {
+      "id": "album-017",
+      "category": "practice",
+      "title": "3D Innovation · Study Camp",
+      "titleZh": "全国3D大赛 · 游学冬令营",
+      "thumbnail": "assets/activities/album-017-thumb.webp",
+      "full": "assets/activities/album-017.webp",
+      "width": 1600,
+      "height": 1200,
+      "group": "practice",
+      "event": "national-3d-study",
+      "sortOrder": 0
+    },
+    {
       "id": "album-044",
       "category": "practice",
       "title": "Project Presentation · On Site",
@@ -617,19 +630,6 @@
       "height": 900,
       "group": "social",
       "event": "youyu-fieldwork",
-      "sortOrder": 0
-    },
-    {
-      "id": "album-017",
-      "category": "community",
-      "title": "3D Innovation · Study Camp",
-      "titleZh": "全国3D大赛 · 游学冬令营",
-      "thumbnail": "assets/activities/album-017-thumb.webp",
-      "full": "assets/activities/album-017.webp",
-      "width": 1600,
-      "height": 1200,
-      "group": "community",
-      "event": "national-3d-study",
       "sortOrder": 0
     },
     {

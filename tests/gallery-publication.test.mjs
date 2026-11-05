@@ -106,6 +106,7 @@ test('archives remain ordered by category with adjacent records from each event'
       ['album-026', 'album-093', 'album-095', 'album-097', 'album-098'],
       ['album-020', 'album-051', 'album-163', 'album-162'], ['album-025', 'album-103'],
       ['album-133', 'album-137'], ['album-145', 'album-159'],
+      ['album-058', 'record-16', 'album-017'],
       ['album-039', 'album-112', 'album-151'], ['album-128', 'album-129']
     ]]
   ];
@@ -146,6 +147,9 @@ test('user-confirmed activity captions, team leadership and GSF sources are pres
   assert.equal(records.get('album-162').titleZh, 'China3dV 活动纪实');
   assert.equal(records.get('album-162').category, 'conferences');
   assert.equal(records.get('album-162').event, 'china-3d-vision');
+  assert.equal(records.get('album-017').category, 'practice');
+  assert.equal(records.get('album-017').group, 'practice');
+  assert.match(page, /data-record-id="album-017" data-category="practice"/);
   assert.doesNotMatch(page, /社会实践 · 团队参访/);
   for (const id of ['album-083', 'album-084']) {
     assert.equal(records.get(id).category, 'practice');

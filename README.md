@@ -59,7 +59,7 @@ Run the automated contracts with Node.js 22 or later:
 node --test tests/*.test.mjs
 ```
 
-The latest automated run passed **145 of 145 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme persistence, refresh behavior, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. See [QA.md](QA.md) for the dated release evidence and the three independent release rounds required for future changes. The current public deployment is still awaiting verification; this local evidence does not claim that these changes are live.
+The latest automated run passed **145 of 145 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme persistence, refresh behavior, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. See [QA.md](QA.md) for the dated release evidence and the three independent release rounds required for future changes. The latest gallery update classifies the 3D Innovation Study Camp photograph under Innovation Practice; its public deployment is being verified.
 
 ## Public contact details
 
@@ -81,4 +81,4 @@ To refresh the attachments, run `python3 scripts/sync-public-documents.py sync`,
 
 Patent titles and publication types are linked to the owner-provided CNKI records. The published journal article links to its DOI; the separate 6G course paper stays under Learning. The community gallery uses photographs from the linked Chuangxiang Yiyuan articles. Apart from the two allowlisted PDF documents and reviewed learning-resource copies, source documents, uncompressed logo sources, and personal working files remain local. VLA code is MIT and tutorial content is CC BY 4.0 with attribution; the AI networking index has no explicit license declaration. Linked third-party materials retain their own rights.
 
-The honors gallery contains 30 selected WebP records, keeps competition stages distinct, and labels alternate certificate copies. Original certificate images remain local and unchanged. The activity gallery contains 64 selected WebP photographs in categorized, filterable groups; original album images remain local. Public deployment of this candidate is awaiting verification.
+The honors gallery contains 30 selected WebP records, keeps competition stages distinct, and labels alternate certificate copies. Original certificate images remain local and unchanged. The activity gallery contains 64 selected WebP photographs in categorized, filterable groups; original album images remain local. The latest local checks verify **14 Innovation Practice** and **3 Community Learning** photographs; public deployment is being verified.
