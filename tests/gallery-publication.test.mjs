@@ -69,6 +69,15 @@ test('gallery captions preserve verified competition stages and project recognit
   assert.match(activities.get('album-137').titleZh, /会场入口/);
 });
 
+test('national undergraduate innovation project approval leads the honors summary', () => {
+  const page = read('index.html');
+  const honors = page.slice(page.indexOf('id="honors"'), page.indexOf('id="media"'));
+  const leadingSummary = honors.slice(honors.indexOf('<ul class="honors-list"'), honors.indexOf('</ul>'));
+  assert.match(leadingSummary, /<li>.*?国家级大学生创新创业训练计划/);
+  assert.match(leadingSummary, /国家级项目立项/);
+  assert.ok(!honors.includes('class="honors-project-note"'), 'the project approval is not repeated beneath the awards list');
+});
+
 test('award evidence and activity photographs stay in their respective archives', () => {
   const achievements = new Map(JSON.parse(read('data/achievements-gallery.json')).items.map(item => [item.id, item]));
   const activities = new Map(JSON.parse(read('data/activity-gallery.json')).items.map(item => [item.id, item]));
