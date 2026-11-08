@@ -16,6 +16,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -228,12 +229,27 @@ def deploy(artifact: Path, base: str, environment: str, executable: str,
             event("initializing empty dedicated hosting")
             upload_receipt(cli.run("hosting", "deploy", str(artifact / "release.json"), "release.json", "--verify"), 1, False)
 
-        event("uploading current public files")
-        # Omit the optional root cloudPath. CLI 3.9.1 preserves '/' in its
-        # expected manifest keys but shared hosting strips it in object keys,
-        # causing --verify to report every uploaded file missing.
-        upload_receipt(cli.run("hosting", "deploy", str(artifact), "--ignore", "release.json",
-                               "--verify", "--entry", "index.html,knowledge.html,guide.html"), len(current), True)
+        changed = sorted(name for name, item in current.items()
+                         if name not in before or name not in prior
+                         or item["bytes"] != prior[name]["bytes"]
+                         or item["sha256"] != prior[name]["sha256"])
+        if changed:
+            event("uploading changed public files")
+            stage = directory / "upload"
+            stage.mkdir()
+            for name in changed:
+                target = stage / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(artifact / name, target)
+            # Keep the same CLI count/ignore contract for this subset. The
+            # identity remains unchanged remotely until all site checks pass.
+            (stage / "release.json").write_bytes(raw)
+            # Omit root cloudPath: CLI 3.9.1 mismatches '/key' with shared-hosting
+            # 'key'. --verify checks every staged file, ignoring untouched keys.
+            upload_receipt(cli.run("hosting", "deploy", str(stage), "--ignore", "release.json",
+                                   "--verify", "--entry", "index.html,knowledge.html,guide.html"), len(changed), True)
+        else:
+            event("public files unchanged; verifying existing deployment")
         visible = cli.inventory()
         obsolete = set(prior) - set(current)
         if set(visible) - (expected | obsolete) or not expected.issubset(visible):
@@ -258,6 +274,7 @@ def deploy(artifact: Path, base: str, environment: str, executable: str,
             raise DeploymentError("Final remote file inventory differs from the reviewed release")
         return {"passed": True, "site": base, "commit": production_commit,
                 "filesVerified": report["filesVerified"], "withdrawnFiles": len(obsolete),
+                "filesUploaded": len(changed),
                 "publicBackupsCreated": False, "visibleInventoryVerified": True,
                 "platformObjectsPreserved": cli.platform_objects}
 

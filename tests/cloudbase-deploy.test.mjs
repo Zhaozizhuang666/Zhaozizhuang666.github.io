@@ -66,10 +66,14 @@ elif action == 'deploy':
         assert args[args.index('--ignore')+1] == 'release.json'
         assert '--verify' in args and '--entry' in args
         names = [p for p in source.rglob('*') if p.is_file() and p.name != 'release.json']
-        for p in names:
+        with (root / 'uploads.jsonl').open('a') as log:
+            log.write(json.dumps(sorted(p.relative_to(source).as_posix() for p in names))+'\\n')
+        selected = names[:1] if options.get('partialUploadOnce') else names
+        for p in selected:
             target=remote/p.relative_to(source); target.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(p,target)
-        if options.get('failUploadOnce'):
-            options.pop('failUploadOnce'); (root/'options.json').write_text(json.dumps(options)); sys.exit(1)
+        if options.get('failUploadOnce') or options.get('partialUploadOnce'):
+            options.pop('failUploadOnce',None); options.pop('partialUploadOnce',None)
+            (root/'options.json').write_text(json.dumps(options)); sys.exit(1)
         if options.get('unexpectedAfterUpload'): (remote/'unrelated.json').write_text('unknown')
         reply({'totalFiles':len(names)+1,'successCount':len(names),'failedCount':0,'verified':not options.get('unverified')})
     else:
@@ -103,7 +107,8 @@ print(json.dumps(result))
   return { root, current, remote, cli, files, run: () => {
     const result = spawnSync('python3', [runner, wrapper], { cwd: root, encoding: 'utf8', env: { ...process.env, DEPLOY_TEST_ROOT: root } });
     return { ...result, report: JSON.parse(result.stdout.trim().split('\n').at(-1)) };
-  }, calls: () => fs.existsSync(path.join(root, 'calls.jsonl')) ? fs.readFileSync(path.join(root, 'calls.jsonl'), 'utf8').trim().split('\n').map(JSON.parse) : [] };
+  }, calls: () => fs.existsSync(path.join(root, 'calls.jsonl')) ? fs.readFileSync(path.join(root, 'calls.jsonl'), 'utf8').trim().split('\n').map(JSON.parse) : [],
+  uploads: () => fs.existsSync(path.join(root, 'uploads.jsonl')) ? fs.readFileSync(path.join(root, 'uploads.jsonl'), 'utf8').trim().split('\n').map(JSON.parse) : [] };
 }
 
 test('owned update verifies files, deletes only withdrawn paths, and commits identity last', t => {
@@ -113,6 +118,8 @@ test('owned update verifies files, deletes only withdrawn paths, and commits ide
   assert.equal(result.report.passed, true);
   assert.equal(result.report.filesVerified, 5);
   assert.equal(result.report.withdrawnFiles, 1);
+  assert.equal(result.report.filesUploaded, 1);
+  assert.deepEqual(f.uploads(), [['index.html']]);
   assert.equal(fs.existsSync(path.join(f.remote, 'assets/withdrawn.webp')), false);
   const calls = f.calls(), mutations = calls.filter(a => ['deploy','delete'].includes(a[1]));
   assert.equal(mutations[0][1], 'deploy');
@@ -129,6 +136,66 @@ test('empty dedicated hosting bootstraps and a second identical deployment is id
   assert.equal(f.run().status, 0);
   assert.equal(f.calls().some(a => a[1] === 'delete'), false);
   assert.equal(fs.existsSync(path.join(f.remote, '.cloudbase-backup')), false);
+});
+
+test('unchanged public files skip directory upload while a new release identity is still verified', t => {
+  const f = fixture(t);
+  fs.rmSync(path.join(f.remote, 'assets/withdrawn.webp'));
+  artifact(f.remote, f.files, 'b'.repeat(40));
+  const result = f.run();
+  assert.equal(result.status, 0, result.stderr + result.stdout);
+  assert.equal(result.report.filesUploaded, 0);
+  assert.equal(result.report.filesVerified, 5);
+  assert.deepEqual(f.uploads(), []);
+  assert.deepEqual(f.calls().filter(a => a[1] === 'deploy').map(a => a[3]), ['release.json']);
+  assert.deepEqual(fs.readFileSync(path.join(f.remote, 'release.json')), fs.readFileSync(path.join(f.current, 'release.json')));
+});
+
+test('a same-size content change uploads only that resource even without staged entry pages', t => {
+  const f = fixture(t);
+  fs.rmSync(path.join(f.remote, 'assets/withdrawn.webp'));
+  artifact(f.remote, { ...f.files, 'QA.md':'old evidence' }, 'b'.repeat(40));
+  artifact(f.current, { ...f.files, 'QA.md':'new evidence' });
+  const result = f.run();
+  assert.equal(result.status, 0, result.stderr + result.stdout);
+  assert.equal(result.report.filesUploaded, 1);
+  assert.equal(result.report.filesVerified, 6);
+  assert.deepEqual(f.uploads(), [['QA.md']]);
+  assert.equal(fs.readFileSync(path.join(f.remote, 'QA.md'), 'utf8'), 'new evidence');
+});
+
+test('a missing file is repaired even when its prior manifest hash is unchanged', t => {
+  const f = fixture(t);
+  fs.rmSync(path.join(f.remote, 'assets/withdrawn.webp'));
+  artifact(f.remote, f.files, 'b'.repeat(40));
+  fs.rmSync(path.join(f.remote, 'assets/new.webp'));
+  const result = f.run();
+  assert.equal(result.status, 0, result.stderr + result.stdout);
+  assert.equal(result.report.filesUploaded, 1);
+  assert.deepEqual(f.uploads(), [['assets/new.webp']]);
+});
+
+test('an interrupted bootstrap uploads only its missing files on retry', t => {
+  const f = fixture(t, false, { partialUploadOnce:true });
+  assert.equal(f.run().status, 1);
+  const missing = Object.keys(f.files).filter(name => !fs.existsSync(path.join(f.remote, name))).sort();
+  assert.ok(missing.length > 0 && missing.length < Object.keys(f.files).length);
+  const result = f.run();
+  assert.equal(result.status, 0, result.stderr + result.stdout);
+  assert.deepEqual(f.uploads().at(-1), missing);
+  assert.equal(result.report.filesUploaded, missing.length);
+});
+
+test('unchanged files still require full HTTPS validation before committing a new identity', t => {
+  const f = fixture(t, true, { stalePublic:true });
+  fs.rmSync(path.join(f.remote, 'assets/withdrawn.webp'));
+  artifact(f.remote, f.files, 'b'.repeat(40));
+  const previous = fs.readFileSync(path.join(f.remote, 'release.json'));
+  const result = f.run();
+  assert.equal(result.status, 1);
+  assert.deepEqual(f.uploads(), []);
+  assert.equal(f.calls().some(a => ['deploy','delete'].includes(a[1])), false);
+  assert.deepEqual(fs.readFileSync(path.join(f.remote, 'release.json')), previous);
 });
 
 test('unknown remote files halt before any upload or deletion', t => {
