@@ -56,7 +56,16 @@ class CLI:
         except (OSError, subprocess.TimeoutExpired) as exc:
             raise DeploymentError("CloudBase CLI failed or timed out") from exc
         if process.returncode:
-            raise DeploymentError("CloudBase CLI command failed; inspect the provider console")
+            code = "UNKNOWN"
+            try:
+                failure = json.loads(process.stdout)
+                candidate = failure.get("error", {}).get("code", "")
+                if isinstance(candidate, str) and re.fullmatch(r"[A-Za-z0-9_.-]{1,80}", candidate):
+                    code = candidate
+            except (ValueError, TypeError, AttributeError):
+                pass
+            action = " ".join(arguments[:2])
+            raise DeploymentError(f"CloudBase {action} failed ({code}); inspect the provider console")
         try:
             result = json.loads(process.stdout, object_pairs_hook=VERIFY.no_duplicate_keys)
         except (ValueError, TypeError) as exc:
@@ -157,7 +166,9 @@ def deploy(artifact: Path, base: str, environment: str, executable: str,
     artifact = artifact.resolve()
     with tempfile.TemporaryDirectory(prefix="cloudbase-publish-") as scratch:
         directory = Path(scratch)
-        cli = CLI(executable, environment, directory)
+        # Environment API-Key login is project-scoped in CLI 3.9.1. Keep the
+        # caller's login cwd; the scratch directory is only for downloads.
+        cli = CLI(executable, environment, Path.cwd())
         event("checking remote ownership")
         before = cli.inventory()
         prior = {}

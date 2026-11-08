@@ -46,6 +46,7 @@ args = sys.argv[1:]
 with (root / 'calls.jsonl').open('a') as log: log.write(json.dumps(args)+'\\n')
 assert args[:1] == ['hosting'] and '--json' in args and '--yes' in args
 assert '--safe' not in args and '--prune' not in args and '--dir' not in args
+assert pathlib.Path.cwd().resolve() == root.resolve(), 'CLI must retain the project-scoped login cwd'
 action = args[1]
 def reply(data, **meta): print(json.dumps({'data':data, 'meta':meta}))
 if action == 'list':
@@ -99,7 +100,7 @@ except (ValueError,OSError,KeyError,TypeError) as exc:
 print(json.dumps(result))
 `);
   return { root, current, remote, cli, files, run: () => {
-    const result = spawnSync('python3', [runner, wrapper], { encoding: 'utf8', env: { ...process.env, DEPLOY_TEST_ROOT: root } });
+    const result = spawnSync('python3', [runner, wrapper], { cwd: root, encoding: 'utf8', env: { ...process.env, DEPLOY_TEST_ROOT: root } });
     return { ...result, report: JSON.parse(result.stdout.trim().split('\n').at(-1)) };
   }, calls: () => fs.existsSync(path.join(root, 'calls.jsonl')) ? fs.readFileSync(path.join(root, 'calls.jsonl'), 'utf8').trim().split('\n').map(JSON.parse) : [] };
 }
