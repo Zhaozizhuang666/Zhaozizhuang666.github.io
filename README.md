@@ -16,6 +16,12 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000/`.
 
+## GitHub Pages and the domestic mirror
+
+The `Verify and sync website mirrors` GitHub Actions workflow builds one reviewed public artifact from each `main` push and verifies the GitHub Pages copy and the optional Tencent CloudBase copy separately. The mirror is enabled through repository Secrets and Variables, never through checked-in credentials. See [deployment and maintenance](docs/domestic-mirror.md) for setup, account limits, credential renewal, and file-withdrawal safeguards. A skipped deployment is reported as **NOT DEPLOYED**.
+
+Outfit is served locally under its SIL Open Font License on both hosts. Site navigation and Xiaoyi's references to this site's published resources follow the current host; third-party sources stay external. Public artifacts exclude Office documents, private originals, backend source, and credentials. Only the two owner-approved PDFs are included. A generated `release.json` and full byte/hash checks establish which commit the mirror serves; they do not guarantee connectivity from every campus network.
+
 ## Current structure
 
 - About: robotics evaluation, VLA, computer vision, and model deployment.
@@ -59,7 +65,7 @@ Run the automated contracts with Node.js 22 or later:
 node --test tests/*.test.mjs
 ```
 
-The latest automated run passed **182 of 182 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme behavior across navigation and refresh, hover-open disclosures with delayed close, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. The disclosure update passed desktop and mobile browser checks; see [QA.md](QA.md) for dated evidence and the three independent release rounds required for future changes.
+The automated suite covers retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme behavior across navigation and refresh, hover-open disclosures with delayed close, publication scope, research entries, collapsed galleries, mirror links, the public artifact, and deployment verification. Provider tests use simulated services and do not establish live provider availability. See [QA.md](QA.md) for dated counts, browser checks, and the three independent release rounds required for future changes.
 
 ## Public contact details
 

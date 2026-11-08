@@ -1,5 +1,13 @@
 # Release evaluation
 
+## Dual-host release candidate — 2026-11-08
+
+This change prepares a CloudBase mirror alongside the existing GitHub Pages branch publisher. Both use the same public files, with local Outfit fonts and current-origin links for Xiaoyi's site references. Only tracked, allowlisted public files enter the mirror artifact. Office documents, private sources, credentials and unapproved PDFs remain excluded.
+
+- Round 1 — local contracts: **214/214 tests passed** including deployment-transaction coverage, with no failures or skips. The new cases cover mirror references, public build scope, artifact determinism, release identity and full-file verification; fixture HTTP servers require local TCP permission. `git diff --check` passes. The builder checks **83 HTML pages, 8,410 local references and 790 anchors**, and produces **338 files** including its release manifest. The deployment fixtures also cover retries, unknown files, stale CDN bytes and withdrawn-file cleanup.
+- Round 2 — browser: the public artifact served from a second local origin loaded Outfit locally with no Google Fonts stylesheet, both contact links used `zizhuang.zhao@spirit-ai.com`, and no completed homepage images were broken. Xiaoyi's inline and source-card VLA links resolved to the preview origin. At **390 × 844**, document width was **375px** with no horizontal overflow; Chinese content, Library navigation and refresh to collapsed Auto/Dark were observed. A mobile screenshot was retained. These checks do not establish mainland public reachability.
+- Round 3 — pending: account configuration is prepared. Public deployment, the Actions result, and complete HTTPS file hashes must be recorded after the reviewed commit is pushed. No domestic launch is claimed by this candidate note.
+
 ## Hover disclosures — 2026-11-08
 
 This update makes all disclosure headings available by mouse hover after a brief 180 ms intent delay. On pointer exit, each disclosure remains open for 1.2 seconds; moving into a neighboring disclosure in the same section protects the current reading area during the transition. The Research “Show more” control now appears before the extra paper cards, which expand directly below it, and receives a compact open-state treatment. Touch and keyboard activation remain native; Escape closes the innermost disclosure, keyboard focus is returned safely, galleries protect open image dialogs, and refresh continues to start collapsed.

@@ -12,3 +12,7 @@ preview*.jpg
 Work_experience/
 baidu_sync/
 outputs/
+dist/
+.cloudbase/
+.cloudbaserc.local.json
+auth.json

@@ -54,8 +54,22 @@
     try{const r=await fetch(api('chat'),{method:'POST',headers:{'Content-Type':'application/json'},signal:controller.signal,body:JSON.stringify(payload())});if(!r.ok)throw Error('Unavailable');const b=await r.json();if(typeof b.answer!=='string'||!b.answer.trim())throw Error('Invalid reply');return {text:b.answer,sources:Array.isArray(b.sources)?b.sources:contextData.sources,online:true}}
     catch(_){const fallback=engine.reply(input,state.messages);return {...fallback,text:`在线服务暂不可用，以下为本地知识检索结果：\n\n${fallback.text}`,online:false}}finally{clearTimeout(timer)}
   }
-  function richText(container,text){const re=/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<>]+)/g;let start=0;for(const m of text.matchAll(re)){container.append(document.createTextNode(text.slice(start,m.index)));const a=make('a','',m[1]||'Open reference ↗');a.href=m[2]||m[3];a.target='_blank';a.rel='noopener noreferrer';container.append(a);start=m.index+m[0].length}container.append(document.createTextNode(text.slice(start)))}
-  function sources(container,records){const clean=(records||[]).filter(s=>s&&/^https?:\/\//.test(s.website||s.url||''));if(!clean.length)return;const box=make('div','xiaoyi-references');box.append(make('span','','REFERENCES / 参考入口'));clean.slice(0,6).forEach(s=>{const a=make('a','',`${s.name||s.title||'Reference'} · ${s.urlType==='search'?'检索入口':'原始来源'} ↗`);a.href=s.website||s.url;a.target='_blank';a.rel='noopener noreferrer';box.append(a)});container.append(box)}
+  // Only this site's published paths follow a mirror host. Independent projects
+  // (including the upstream /vla-guide/) and third-party references stay intact.
+  function referenceUrl(value) {
+    try {
+      const source = new URL(value);
+      const current = new URL(window.location.href);
+      const localPath = ['/', '/index.html', '/knowledge.html', '/guide.html'].includes(source.pathname)
+        || source.pathname.startsWith('/resources/') || source.pathname.startsWith('/assets/');
+      if (source.origin === 'https://zhaozizhuang666.github.io' && localPath && /^https?:$/.test(current.protocol)) {
+        return new URL(source.pathname + source.search + source.hash, current.origin).href;
+      }
+    } catch (_) { /* Keep malformed or non-web values unchanged for the caller. */ }
+    return value;
+  }
+  function richText(container,text){const re=/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<>]+)/g;let start=0;for(const m of text.matchAll(re)){container.append(document.createTextNode(text.slice(start,m.index)));const a=make('a','',m[1]||'Open reference ↗');a.href=referenceUrl(m[2]||m[3]);a.target='_blank';a.rel='noopener noreferrer';container.append(a);start=m.index+m[0].length}container.append(document.createTextNode(text.slice(start)))}
+  function sources(container,records){const clean=(records||[]).filter(s=>s&&/^https?:\/\//.test(s.website||s.url||''));if(!clean.length)return;const box=make('div','xiaoyi-references');box.append(make('span','','REFERENCES / 参考入口'));clean.slice(0,6).forEach(s=>{const a=make('a','',`${s.name||s.title||'Reference'} · ${s.urlType==='search'?'检索入口':'原始来源'} ↗`);a.href=referenceUrl(s.website||s.url);a.target='_blank';a.rel='noopener noreferrer';box.append(a)});container.append(box)}
   async function models(select,status,hint){
     select.replaceChildren(new Option('Knowledge / 知识模式','local'));state.models=[];state.selection='local';select.value='local';status.textContent='KNOWLEDGE MODE';
     if(!onlineEnabled||!api('models')){hint.textContent='本地知识检索已启用，不会连接在线模型。';return}

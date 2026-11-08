@@ -1,0 +1,117 @@
+name: Verify and sync website mirrors
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-mirrors-production
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22.18.0'
+      - name: Check behavior and publication scope
+        run: |
+          node --test tests/*.test.mjs
+          python3 scripts/check-learning-resources.py
+          git diff --check
+      - name: Build the reviewed public artifact
+        run: python3 scripts/build-public-site.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: public-site
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Report activation state
+        env:
+          MIRROR_ENABLED: ${{ vars.CLOUDBASE_ENABLED }}
+        run: |
+          if [ "$MIRROR_ENABLED" != 'true' ]; then
+            echo '::notice::CloudBase is not enabled. GitHub Pages remains active; no domestic deployment is claimed.'
+            echo 'CloudBase: NOT DEPLOYED. Complete docs/domestic-mirror.md and set CLOUDBASE_ENABLED=true.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  github-pages-check:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: public-site
+          path: dist/
+      # GitHub's existing branch-based Pages publisher stays in place.
+      - name: Verify the GitHub Pages copy after its independent deployment
+        run: |
+          python3 scripts/verify-public-release.py --artifact dist \
+            --url https://zhaozizhuang666.github.io/ \
+            --identity optional --attempts 20 --delay 15
+          echo 'GitHub Pages: published files match this commit.' >> "$GITHUB_STEP_SUMMARY"
+
+  cloudbase:
+    needs: verify
+    if: vars.CLOUDBASE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22.18.0'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: public-site
+          path: dist/
+      - name: Check required settings
+        env:
+          CLOUDBASE_ENV_ID: ${{ secrets.CLOUDBASE_ENV_ID }}
+          CLOUDBASE_API_KEY: ${{ secrets.CLOUDBASE_API_KEY }}
+          CLOUDBASE_SITE_URL: ${{ vars.CLOUDBASE_SITE_URL }}
+        run: |
+          test -n "$CLOUDBASE_ENV_ID" || { echo '::error::Missing CLOUDBASE_ENV_ID secret'; exit 1; }
+          test -n "$CLOUDBASE_API_KEY" || { echo '::error::Missing CLOUDBASE_API_KEY secret'; exit 1; }
+          test -n "$CLOUDBASE_SITE_URL" || { echo '::error::Missing CLOUDBASE_SITE_URL variable'; exit 1; }
+      - name: Install the official deployment CLI
+        run: npm install --global @cloudbase/cli@3.9.1 --ignore-scripts --no-audit --no-fund
+      - name: Publish only the verified static artifact
+        working-directory: ${{ runner.temp }}
+        env:
+          CLOUDBASE_ENV_ID: ${{ secrets.CLOUDBASE_ENV_ID }}
+          CLOUDBASE_API_KEY: ${{ secrets.CLOUDBASE_API_KEY }}
+          CLOUDBASE_SITE_URL: ${{ vars.CLOUDBASE_SITE_URL }}
+          XDG_CONFIG_HOME: ${{ runner.temp }}/cloudbase-auth
+          TCB_DISABLE_REPORT: '1'
+        run: |
+          tcb login --cloudbase-api-key "$CLOUDBASE_API_KEY" -e "$CLOUDBASE_ENV_ID"
+          python3 "$GITHUB_WORKSPACE/scripts/deploy-cloudbase-site.py" \
+            --artifact "$GITHUB_WORKSPACE/dist" --url "$CLOUDBASE_SITE_URL" \
+            --expected-commit "$GITHUB_SHA" --attempts 8 --delay 15
+          echo 'CloudBase: HTTPS release identity and public file hashes verified.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Remove temporary CLI credentials
+        if: always()
+        working-directory: ${{ runner.temp }}
+        env:
+          XDG_CONFIG_HOME: ${{ runner.temp }}/cloudbase-auth
+          TCB_DISABLE_REPORT: '1'
+        run: |
+          if command -v tcb >/dev/null 2>&1; then tcb logout >/dev/null 2>&1 || true; fi
+          rm -rf -- "$RUNNER_TEMP/cloudbase-auth"
