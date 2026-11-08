@@ -33,6 +33,8 @@ CloudBase 的验证改为控制台确认的域名并使用 `--identity required`
 
 CloudBase 自动生成并保护 `__auth/` 和 `cloud-admin/` 两个目录；包装器只排除这两个精确目录前缀，保留平台文件，绝不上传、删除或覆盖其中的内容。公开产物和旧版本清单均不得声称拥有这些路径。近似名称及其他未知路径仍会中止发布。
 
+根目录部署省略可选的 `cloudPath` 参数，不传 `/`。CLI 3.9.1 在共享托管中会保留本地验证清单路径前面的 `/`，而实际上传对象已去掉该前缀，导致文件已上传却全部被判定缺失。包装器和回归测试均固定使用无前导斜杠的根路径语义。
+
 部署前还会检查其余可见网站对象的大小是否符合旧版或当前版本清单。此项和两个 canary 哈希用于确认专用环境的已有内容；完整逐文件 HTTPS 哈希验证在上传后执行，避免每次启动数百个独立 CLI 下载进程。
 
 首次部署仅允许专用托管根目录中除上述平台保留目录外没有其他文件，先写入当前清单作为可重试的初始化标记，随后仍须完成全部网页、资源及清单验证才能报告成功。相同版本可重复发布；不同版本中断留下的无法识别文件会停止后续发布，需先人工检查。
@@ -50,3 +52,10 @@ CloudBase 默认域名定位为开发／测试地址，存在访问频率限制�
 首次部署后还需用大陆网络实际打开主页、知识库、学习资源、图片和 PDF；HTTPS 与哈希通过不能替代不同校园网络的连通性检查。将验证过的国内地址发给国内访客，保留 [GitHub Pages](https://zhaozizhuang666.github.io/) 作为另一入口。只有两个站点都验证通过后才宣布双站点同步完成。
 
 官方参考：[安装](https://docs.cloudbase.net/cli-v1/install) · [登录与环境级 API Key](https://docs.cloudbase.net/cli-v1/login) · [静态文件部署](https://docs.cloudbase.net/cli-v1/hosting/deploy) · [静态托管概述](https://docs.cloudbase.net/hosting/introduce)。
+
+## 当前访问入口与实测记录
+
+- GitHub Pages：https://zhaozizhuang666.github.io/
+- CloudBase 临时镜像：https://evident-perch-d5gh4ja4h948de79a-1445323010.tcloudbaseapp.com/
+
+2026-11-08：`ba5ca9f` 的两个公开站点均完成 337 个内容文件的 HTTPS 哈希比对；CloudBase 同时通过发布清单身份检查。CI 在文件上传后遇到 CLI 根路径校验缺陷，已修复，修复后的自动流程仍待完成。首次访问 CloudBase 测试域名可能显示平台的“页面访问提示”，确认后进入网站；该提示不属于本站登录，不应要求访客输入账号或密钥。长期分享仍应使用符合平台要求的自定义域名。

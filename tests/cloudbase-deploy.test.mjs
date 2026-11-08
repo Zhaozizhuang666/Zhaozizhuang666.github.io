@@ -62,6 +62,7 @@ elif action == 'delete':
 elif action == 'deploy':
     source = pathlib.Path(args[2]); dest=args[3]
     if source.is_dir():
+        assert dest == '--ignore', 'Root deployment must omit cloudPath, never use a positional /'
         assert args[args.index('--ignore')+1] == 'release.json'
         assert '--verify' in args and '--entry' in args
         names = [p for p in source.rglob('*') if p.is_file() and p.name != 'release.json']
@@ -115,6 +116,7 @@ test('owned update verifies files, deletes only withdrawn paths, and commits ide
   assert.equal(fs.existsSync(path.join(f.remote, 'assets/withdrawn.webp')), false);
   const calls = f.calls(), mutations = calls.filter(a => ['deploy','delete'].includes(a[1]));
   assert.equal(mutations[0][1], 'deploy');
+  assert.equal(mutations[0][3], '--ignore');
   assert.deepEqual(mutations.filter(a => a[1] === 'delete').map(a => a[2]), ['assets/withdrawn.webp']);
   assert.equal(mutations.at(-1)[3], 'release.json');
   assert.deepEqual(fs.readFileSync(path.join(f.remote, 'release.json')), fs.readFileSync(path.join(f.current, 'release.json')));

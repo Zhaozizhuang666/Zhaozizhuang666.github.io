@@ -229,7 +229,10 @@ def deploy(artifact: Path, base: str, environment: str, executable: str,
             upload_receipt(cli.run("hosting", "deploy", str(artifact / "release.json"), "release.json", "--verify"), 1, False)
 
         event("uploading current public files")
-        upload_receipt(cli.run("hosting", "deploy", str(artifact), "/", "--ignore", "release.json",
+        # Omit the optional root cloudPath. CLI 3.9.1 preserves '/' in its
+        # expected manifest keys but shared hosting strips it in object keys,
+        # causing --verify to report every uploaded file missing.
+        upload_receipt(cli.run("hosting", "deploy", str(artifact), "--ignore", "release.json",
                                "--verify", "--entry", "index.html,knowledge.html,guide.html"), len(current), True)
         visible = cli.inventory()
         obsolete = set(prior) - set(current)
