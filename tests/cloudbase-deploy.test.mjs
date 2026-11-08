@@ -141,6 +141,55 @@ test('unknown remote files halt before any upload or deletion', t => {
   }
 });
 
+test('CloudBase protected directories are preserved through bootstrap, update and cleanup', t => {
+  for (const previous of [false, true]) {
+    const f = fixture(t, previous);
+    const reserved = { '__auth/index.html': 'platform auth content',
+      'cloud-admin/console/config.json': '{"platform":"admin"}' };
+    for (const [name, bytes] of Object.entries(reserved)) {
+      fs.mkdirSync(path.dirname(path.join(f.remote, name)), { recursive: true });
+      fs.writeFileSync(path.join(f.remote, name), bytes);
+    }
+    const result = f.run();
+    assert.equal(result.status, 0, result.stderr + result.stdout);
+    assert.equal(result.report.platformObjectsPreserved, 2);
+    for (const [name, bytes] of Object.entries(reserved)) {
+      assert.equal(fs.readFileSync(path.join(f.remote, name), 'utf8'), bytes);
+      assert.equal(f.calls().some(a => ['delete','deploy','download'].includes(a[1]) && a[2] === name), false);
+    }
+    assert.equal(f.run().status, 0);
+  }
+});
+
+test('reserved directory lookalikes remain unknown and halt before any mutation', t => {
+  for (const name of ['__auth', 'cloud-admin', '__auth-other/index.html', 'cloud-admin-extra/config.json']) {
+    const f = fixture(t, false);
+    fs.mkdirSync(path.dirname(path.join(f.remote, name)), { recursive: true });
+    fs.writeFileSync(path.join(f.remote, name), 'unrelated file');
+    const result = f.run();
+    assert.equal(result.status, 1, name);
+    assert.equal(f.calls().some(a => ['deploy','delete'].includes(a[1])), false);
+  }
+});
+
+test('a current or previous release cannot claim platform-owned paths', t => {
+  for (const which of ['current', 'previous']) {
+    const f = fixture(t, true);
+    const directory = which === 'current' ? f.current : f.remote;
+    const name = '__auth/index.html', bytes = 'site must not own this';
+    fs.mkdirSync(path.dirname(path.join(directory, name)), { recursive: true });
+    fs.writeFileSync(path.join(directory, name), bytes);
+    const manifestPath = path.join(directory, 'release.json');
+    const manifest = JSON.parse(fs.readFileSync(manifestPath));
+    manifest.files.push({ path:name, bytes:Buffer.byteLength(bytes), sha256:createHash('sha256').update(bytes).digest('hex') });
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest));
+    const result = f.run();
+    assert.equal(result.status, 1);
+    assert.match(result.report.error, /reserved CloudBase platform directory/);
+    assert.equal(f.calls().some(a => ['deploy','delete'].includes(a[1])), false);
+  }
+});
+
 test('invalid prior identity or unknown canary bytes halt without remote mutation', t => {
   for (const corrupt of ['identity','canary']) {
     const f = fixture(t);

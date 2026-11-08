@@ -30,6 +30,11 @@ spec = importlib.util.spec_from_file_location("public_release", ROOT / "scripts/
 VERIFY = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(VERIFY)
 ENTRY_FILES = {"index.html", "knowledge.html", "guide.html"}
+PLATFORM_PREFIXES = ("__auth/", "cloud-admin/")
+
+
+def platform_owned(name: str) -> bool:
+    return name.startswith(PLATFORM_PREFIXES)
 
 
 class DeploymentError(ValueError):
@@ -45,6 +50,7 @@ class CLI:
         self.executable = executable
         self.environment = environment
         self.cwd = cwd
+        self.platform_objects = 0
 
     def run(self, *arguments: str) -> object:
         # Capture output so credential-bearing diagnostics cannot enter CI logs.
@@ -82,6 +88,8 @@ class CLI:
                 or result["meta"].get("total") != len(entries)):
             raise DeploymentError("Invalid CloudBase file inventory")
         files = {}
+        seen = set()
+        self.platform_objects = 0
         for item in entries:
             if not isinstance(item, dict):
                 raise DeploymentError("Invalid CloudBase file inventory entry")
@@ -92,8 +100,14 @@ class CLI:
             size = item.get("size")
             if isinstance(size, str) and re.fullmatch(r"[0-9]+", size):
                 size = int(size)
-            if type(size) is not int or size < 0 or name in files:
+            if type(size) is not int or size < 0 or name in seen:
                 raise DeploymentError("Invalid or duplicate CloudBase inventory entry")
+            seen.add(name)
+            if platform_owned(name):
+                # CloudBase creates these protected application directories.
+                # Keep them out of site ownership and never mutate them.
+                self.platform_objects += 1
+                continue
             files[name] = size
         return files
 
@@ -160,6 +174,8 @@ def deploy(artifact: Path, base: str, environment: str, executable: str,
     if manifest["sourceDirty"] or manifest["commit"] != production_commit:
         raise DeploymentError("Deployment requires a clean artifact for the expected production commit")
     current = {item["path"]: item for item in manifest["files"]}
+    if any(platform_owned(name) for name in current):
+        raise DeploymentError("Public artifact attempts to overwrite a reserved CloudBase platform directory")
     if not ENTRY_FILES.issubset(current) or any(Path(name).name == "release.json" for name in current):
         raise DeploymentError("Required entry files are missing or a nested release manifest is present")
     expected = set(current) | {"release.json"}
@@ -180,6 +196,8 @@ def deploy(artifact: Path, base: str, environment: str, executable: str,
             if previous["sourceDirty"]:
                 raise DeploymentError("Prior remote release is not a clean reviewed artifact")
             prior = {item["path"]: item for item in previous["files"]}
+            if any(platform_owned(name) for name in prior):
+                raise DeploymentError("Prior manifest claims a reserved CloudBase platform directory; no mutation is allowed")
             # Old identity plus known current files is an interrupted update.
             # Unknown visible objects are never overwritten or deleted.
             if set(before) - (set(prior) | expected):
@@ -237,7 +255,8 @@ def deploy(artifact: Path, base: str, environment: str, executable: str,
             raise DeploymentError("Final remote file inventory differs from the reviewed release")
         return {"passed": True, "site": base, "commit": production_commit,
                 "filesVerified": report["filesVerified"], "withdrawnFiles": len(obsolete),
-                "publicBackupsCreated": False, "visibleInventoryVerified": True}
+                "publicBackupsCreated": False, "visibleInventoryVerified": True,
+                "platformObjectsPreserved": cli.platform_objects}
 
 
 def main() -> int:
