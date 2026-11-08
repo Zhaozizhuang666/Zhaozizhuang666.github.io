@@ -73,7 +73,7 @@ def main():
             fail(path, "Legacy integration reference")
         page = pages[path]
         expected_scripts = {"theme-init.js": "v=20261105-reset2", "scroll-init.js": "v=20261105-reset2",
-                            "disclosures.js": "v=20261105-hover-close1", "theme.js": ""}
+                            "disclosures.js": "v=20261108-hover-intent1", "theme.js": ""}
         for script_name, expected_query in expected_scripts.items():
             scripts = [(attrs, position) for attrs, position in page.script_attrs
                        if Path(urlsplit(attrs["src"]).path).name == script_name]

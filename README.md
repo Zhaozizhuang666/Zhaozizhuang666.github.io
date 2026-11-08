@@ -31,7 +31,7 @@ Then open `http://localhost:8000/`.
 - [Site Handbook](guide.html): visitor guidance for navigation, themes, Xiaoyi, the Library, external AI websites, and release maintenance.
 - Contact: GitHub, VLA Guide, email, and WeChat.
 
-The Research section's additional paper entries are grouped in a collapsed **Show more / Show less** disclosure. The **Certificates & Records** and **Activities & Field Notes** archives are also collapsed by default. Expanded details collapse after the mouse leaves the whole region; moving into a menu panel, using a full-image dialog, and keyboard or touch interaction remain supported. Refreshing starts with all details collapsed. The honors gallery contains 30 selected records; the activity gallery contains 64 selected photographs, grouped and filterable by category. Original certificate and album sources remain local.
+The Research section's additional paper entries are grouped in a collapsed **Show more / Show less** disclosure. The **Certificates & Records** and **Activities & Field Notes** archives are also collapsed by default. A short mouse hover opens disclosure content; it waits 1.2 seconds after pointer exit before closing, and neighboring disclosures in the same section remain open while the visitor moves between them. Click, keyboard, touch, and full-image dialog behavior remain supported. Refreshing starts with all details collapsed. The honors gallery contains 30 selected records; the activity gallery contains 64 selected photographs, grouped and filterable by category. Original certificate and album sources remain local.
 
 ## Xiaoyi knowledge and local mode
 
@@ -59,7 +59,7 @@ Run the automated contracts with Node.js 22 or later:
 node --test tests/*.test.mjs
 ```
 
-The latest automated run passed **162 of 162 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme behavior across navigation and refresh, mouse-leave disclosures, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. The refresh and disclosure update passed browser and public GitHub Pages checks: changed files and all 90 learning-resource files matched the release bytes. See [QA.md](QA.md) for dated evidence and the three independent release rounds required for future changes.
+The latest automated run passed **182 of 182 tests**. Coverage includes retrieval and conversation contracts, memory-stream controls, API validation and simulated provider adapters, language switching, theme behavior across navigation and refresh, hover-open disclosures with delayed close, publication scope, research entries, and the collapsed galleries. Provider tests use simulated services and do not establish live provider availability. The disclosure update passed desktop and mobile browser checks; see [QA.md](QA.md) for dated evidence and the three independent release rounds required for future changes.
 
 ## Public contact details
 

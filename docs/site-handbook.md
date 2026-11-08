@@ -16,7 +16,7 @@ The compact header control offers EN/中文 alongside Auto, Light, and Dark. The
 
 The theme button cycles through Auto, Light, and Dark. Auto follows the operating system. An explicit Light or Dark choice persists when following links within this site. Refresh resets the appearance to Auto, matches the current device, returns to the top, and collapses expanded sections. Language choice and Xiaoyi's tab-session memory retain their separate controls. Xiaoyi follows the selected appearance, and reduced motion keeps content visible without entrance animation. External sites control their own themes; the learning copies retain their original content language.
 
-Expanded sections collapse 240ms after the mouse leaves their full area; returning before that delay keeps them open. Touch and keyboard controls retain normal click/activation behavior. Viewing a full-size image keeps its parent gallery open until the viewer is dismissed.
+Hover any disclosure heading to open it after a brief 180ms pause. It remains open for 1.2 seconds after the pointer leaves; moving into another disclosure in the same section keeps the earlier content available while you read. Touch and keyboard retain native activation, Escape closes the focused disclosure, and a full-size image keeps its parent gallery open until dismissed.
 
 On desktop, the page scales into the space beside the Xiaoyi drawer. The drawer can be on either edge. A new visit defaults to the right; dragging changes the side and height for the current visit. On mobile, the drawer is a modal with focus management.
 

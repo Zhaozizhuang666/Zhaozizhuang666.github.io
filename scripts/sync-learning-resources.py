@@ -16,7 +16,7 @@ VLA = PUBLIC / "vla-guide"
 LEGACY_INIT = "<script>try{document.documentElement.dataset.theme=localStorage.getItem('vla-guide-theme')||'dark'}catch{}</script>"
 LICENSES = ("LICENSE", "CONTENT_LICENSE.md", "THIRD_PARTY_NOTICES.md")
 RESET_VERSION = "20261105-reset2"
-DISCLOSURE_VERSION = "20261105-hover-close1"
+DISCLOSURE_VERSION = "20261108-hover-intent1"
 STATIC = {"index.html", "404.html", "search-index.json", "roles.json", "questions.json",
           "assets/app.js", "assets/careers.js", "assets/style.css", "assets/favicon.svg",
           "handbook/index.html", "industry/index.html", "interview/index.html"}
@@ -207,7 +207,7 @@ def main():
         ],
         "integration": ["Shared personal-site theme preference; reload resets to device Auto",
                         "Reload returns to the top with disclosures collapsed",
-                        "Shared mouse-leave disclosure controller", "Parent website return links",
+                        "Hover-open disclosure controller with a 1.2-second close delay", "Parent website return links",
                         "Deployment-relative paths", "Static chapter roadmap replaces optional Bento presentation"],
         "excluded": [".git", "node_modules", "source drafts and development folders", "robots.txt", "sitemap.xml",
                      "assets/resource-audit.json", "vla-roadmap.bento.html"],

@@ -1,5 +1,13 @@
 # Release evaluation
 
+## Hover disclosures — 2026-11-08
+
+This update makes all disclosure headings available by mouse hover after a brief 180 ms intent delay. On pointer exit, each disclosure remains open for 1.2 seconds; moving into a neighboring disclosure in the same section protects the current reading area during the transition. The Research “Show more” control now appears before the extra paper cards, which expand directly below it, and receives a compact open-state treatment. Touch and keyboard activation remain native; Escape closes the innermost disclosure, keyboard focus is returned safely, galleries protect open image dialogs, and refresh continues to start collapsed.
+
+- Round 1 — behavior contracts: **182/182 automated tests pass** after adding coverage for hover opening, delayed close, sibling and nested movement, click/touch/pen/keyboard handling, stale hover state, Escape, dialog protection, and refresh restoration. JavaScript and Python syntax checks pass; `git diff --check` passes. The learning-resource audit verifies **90 files, 80 HTML pages, 7,897 local references, and 763 anchors** with no failures.
+- Round 2 — real-browser interaction: at **1280 × 900**, pointer hover opened Research “Show more” without clicking. It remained open 250 ms after the pointer left and collapsed after the 1.2-second grace period. The two additional project cards appeared below the button. At **390 × 844**, the disclosure remained collapsed on entry, opened with native activation, fit within the viewport without horizontal overflow, and closed with Escape while restoring focus to its summary. Focused automated tests separately cover moving between adjacent disclosures; a touch device was not physically available.
+- Round 3 — publication: pending GitHub push and public-page byte verification.
+
 ## Refresh and disclosure update — 2026-11-05
 
 This working-tree update changes the current rule across Home, Library, Guide and the published learning-resource copies: a real browser refresh returns to the top, removes the old section anchor, collapses expanded details and restores Auto to match the visiting device’s current light or dark appearance. Ordinary page-to-page navigation retains a deliberate Light/Dark choice. Mouse-leave collapse applies to the whole disclosure region, with menu-gap, nested disclosure, full-image dialog, keyboard and touch behavior included in the release checks. This rule supersedes historical statements below that explicit Light/Dark survives a refresh; those statements remain as evidence of earlier versions. Language selection, learning progress, favorites and Xiaoyi’s bounded tab-session memory keep their separate persistence rules.
