@@ -318,4 +318,6 @@ html[data-language="zh"] :is(.bilingual-context,.paired-en) { display: none; }
   .community-feature>.project-links{gap:3px 20px;margin-top:16px}
 }
 /* Outfit 5.3.0, SIL OFL 1.1. Served locally on both public hosts. */
+.learning-feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.78fr);gap:26px;align-items:start}.learning-feature-copy{min-width:0}.training-certificate{margin:10px 0 0;min-width:0}.training-certificate a{display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}.training-certificate img{display:block;width:100%;height:auto}.training-certificate figcaption{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:7px;color:var(--muted);font-size:11px;line-height:1.5}.training-certificate .archive-en{font-size:inherit;letter-spacing:0}
+@media(max-width:760px){.learning-feature{grid-template-columns:1fr;gap:12px}.training-certificate{max-width:100%}}
 @font-face{font-family:'Outfit';font-style:normal;font-display:swap;font-weight:100 900;src:url('assets/fonts/outfit-latin-wght-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}

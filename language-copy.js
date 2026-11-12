@@ -170,6 +170,7 @@
     'Participation in an advanced programme on 6G and secure cross-border data flows. The associated course paper examines data classification, lifecycle governance, and privacy-preserving evaluation for embodied-intelligence systems.': '参加 6G 与数据要素安全跨境流动高级研修，相关研修论文考察具身智能数据的分类、全生命周期治理与隐私保护评测。',
     'Training Story ↗': '研修报道 ↗',
     'Course Paper · PDF ↗': '研修论文 · PDF ↗',
+    'Completion certificate · personal ID and QR redacted': '高级研修班结业证书 · 身份证号与二维码已隐去',
     'AI Network Learning ↗': 'AI 算力网络学习 ↗',
     'A working reference for student projects, academic exploration and technical learning.': '面向学生项目、学术探索与技术学习的参考资料库。',
     'A curated reference for student projects, academic exploration, and technical learning.': '面向学生项目、学术探索与技术学习的资料索引。',
