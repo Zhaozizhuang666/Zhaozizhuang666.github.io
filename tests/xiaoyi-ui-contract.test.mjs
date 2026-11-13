@@ -34,6 +34,25 @@ test('local-only chat ignores stale online selection and keeps the active histor
   assert.equal(received.messages, history);
 });
 
+test('clicking outside Xiaoyi closes it while clicks inside or on its dock do not', () => {
+  const start = source.indexOf("  document.addEventListener('pointerdown',event=>{");
+  const end = source.indexOf('\n  window.addEventListener(\'resize\',layout)', start);
+  assert.ok(start >= 0 && end > start, 'outside-dismiss pointer boundary is present');
+  const panel = {hidden: false, contains: target => target === 'inside'}, dock = {contains: target => target === 'dock'};
+  let closed = 0;
+  const document = {addEventListener(name, listener) { assert.equal(name, 'pointerdown'); this.listener = listener; }};
+  const context = vm.createContext({document, panel, dock, hide() { closed++; }});
+  vm.runInContext(source.slice(start, end), context);
+  document.listener({target: 'inside'});
+  document.listener({target: 'dock'});
+  assert.equal(closed, 0);
+  document.listener({target: 'page'});
+  assert.equal(closed, 1);
+  panel.hidden = true;
+  document.listener({target: 'page'});
+  assert.equal(closed, 1, 'a closed drawer remains inert');
+});
+
 function memory() {
   const sandbox = {window: {}};
   vm.runInNewContext(engineSource, sandbox);

@@ -365,6 +365,14 @@
       if (scope === 'technical' && memory.sources.length) memory.technical = unique([...memory.technical.map(byId), ...memory.sources]).slice(-5).map(entry => entry.id);
       return result;
     }
+    function evaluateProfile() {
+      const ids = ['profile-engineering-workflows', 'profile-catering-evaluation', 'profile-research-overview'];
+      const records = ids.map(byId).filter(Boolean).map(entry => source(entry, 'technical-knowledge'));
+      return {
+        text: '基于本站公开经历，可以作一个有限且有依据的评价：赵子状的实践呈现出“机器人评测—工程流程—自主研究学习”的连续性，既有真实场景测试、记录和复盘，也在把环境配置与排障经验整理成可复用流程，并持续学习 VLA 与具身智能。\n\n这说明其优势目前更偏向工程执行、问题记录和持续动手验证。仅凭本站材料还不能判断论文研究深度、独立科研成果或技术方案的普适性；这些需要通过可复现的实验记录、对照结果和公开产出进一步评估。',
+        sources: records
+      };
+    }
     function reply(input, messages) {
       const text = String(input || '').trim();
       hydrate(text, messages);
@@ -376,10 +384,12 @@
       if (personalRecords.length) return remember(sourceIntent(text) ? sourceAnswer(text, messages) : explain(text, personalRecords), 'technical');
       const ventureRecords = technical(text).filter(entry => entry.sourceType === 'owner-provided-business-plan');
       if (ventureRecords.length) return remember(sourceIntent(text) ? sourceAnswer(text, messages) : explain(text, ventureRecords), 'venture');
+      if (/^(?:作者是谁|作者是誰|谁是作者|who is the author\??)$/i.test(text)) return remember({text: '如果你问的是这张个人主页，主页主体与内容整理者是赵子状；如果指某篇论文、文章或项目材料，请告诉我标题或主题，我可以按对应来源核对作者信息。', sources: []}, 'clarify');
+      if (/(?:评价|评估|怎么看|怎么样|什么印象).{0,12}(?:赵子状|这个人|本人)|(?:赵子状|这个人|本人).{0,12}(?:评价|评估|怎么样|什么水平)/i.test(text)) return remember(evaluateProfile(), 'profile-evaluation');
       if (/创享艺苑|平台介绍|介绍.*平台/.test(text)) return remember({text: PLATFORM, sources: []}, 'platform');
       if (/opc|一人公司/i.test(text)) return remember({text: 'OPC 是 One Person Company（一人公司）。赵子状以此描述个人创业实践，独立于原点学堂与原点夜校的学习经历。创享艺苑的公开定位为大学生创业者联盟。', sources: []}, 'profile');
-      if (/创始人|赵子状/.test(text)) return remember({text: '赵子状是创享艺苑创始人，计算机专业背景，目前在千寻智能担任机器人端到端评测工程师，关注 VLA、具身智能与 Agent，并在原点学堂和原点夜校持续学习。更多公开经历可查看个人主页。', sources: []}, 'profile');
-      if (/^(你好|哈喽|hello|hi)[！!。\s]*$/i.test(text)) return remember({text: '你好，我是 Xiaoyi，网站里的知识入口。可查询技术、竞赛与期刊资料，并提供初步项目建议。当前使用本地资料与规则检索，未启用在线大模型。', sources: []}, 'greeting');
+      if (/创始人|赵子状/.test(text)) return remember({text: '赵子状是创享艺苑创始人，计算机专业背景，目前在千寻智能担任机器人端到端模型评测工程师，关注 VLA、具身智能与 Agent，并在原点学堂和原点夜校持续学习。你也可以继续问他的机器人评测经历、工程实践或研究方向。', sources: []}, 'profile');
+      if (/^(你好|您好|哈喽|嗨|在吗|早上好|中午好|下午好|晚上好|hello|hi|hey)[！!。\s~～]*$/i.test(text)) return remember({text: '你好，我是 Xiaoyi，负责检索和解释这个网站整理的知识与经历。你可以直接问 VLA、机器人评测、研究方向、项目经历，也可以描述你正在解决的问题。我目前使用本地资料，不会连接在线大模型；资料未覆盖时会说明并帮助你缩小问题范围。', sources: []}, 'greeting');
       if (sourceIntent(text)) {
         const result = sourceAnswer(text, messages);
         const scope = result.sources[0]?.kind;
@@ -407,7 +417,11 @@
       if (records.length) return remember(explain(text, records), 'technical');
       if (definition) return remember(explain(text, []), 'technical');
       if (/航空|航天|卫星|飞机|飞行/.test(text)) return remember({text: '本地技术资料主要覆盖 VLA、训练评测与 AI Infra，航空航天专业资料尚不充分。科普项目可从目标读者、主题和原型范围展开；专业事实与竞赛案例需另行核验。', sources: []}, 'limited');
-      return remember({text: '请提供具体概念、赛事、刊名，或项目的目标用户与拟解决问题。本地模式基于已整理资料提供检索与初步项目分析，未覆盖的内容将明确说明。', sources: []}, 'limited');
+      const followup = /^(?:为什么|怎么|如何|能不能|可以吗|还有呢|然后呢|继续|具体点|详细点|展开说|举个例子)[？?。！!\s]*$/i.test(text);
+      const prompt = followup && messages?.length > 1
+        ? '我没能从当前对话中判断你想继续哪一部分。请补充一个关键词，或说明你希望我解释、比较、给步骤还是找来源。'
+        : '我暂时没有足够可靠的站内资料回答这个问题。你可以换一种问法，补充主题或背景，或者告诉我你希望得到概念解释、步骤建议、比较分析还是资料来源。';
+      return remember({text: `${prompt}\n\n我目前擅长：VLA 与具身智能、机器人评测与 Agent、本站项目和个人经历、竞赛与期刊目录。超出这些范围时，我会明确说明资料边界，不编造结论。`, sources: []}, 'limited');
     }
     function context(input, messages) {
       const text = String(input || '').trim();
