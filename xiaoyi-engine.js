@@ -388,7 +388,7 @@
       if (/(?:评价|评估|怎么看|怎么样|什么印象).{0,12}(?:赵子状|这个人|本人)|(?:赵子状|这个人|本人).{0,12}(?:评价|评估|怎么样|什么水平)/i.test(text)) return remember(evaluateProfile(), 'profile-evaluation');
       if (/创享艺苑|平台介绍|介绍.*平台/.test(text)) return remember({text: PLATFORM, sources: []}, 'platform');
       if (/opc|一人公司/i.test(text)) return remember({text: 'OPC 是 One Person Company（一人公司）。赵子状以此描述个人创业实践，独立于原点学堂与原点夜校的学习经历。创享艺苑的公开定位为大学生创业者联盟。', sources: []}, 'profile');
-      if (/创始人|赵子状/.test(text)) return remember({text: '赵子状是创享艺苑创始人，计算机专业背景，目前在千寻智能担任机器人端到端评测工程师，关注 VLA、具身智能与 Agent，并在原点学堂和原点夜校持续学习。更多公开经历可查看个人主页。', sources: []}, 'profile');
+      if (/创始人|赵子状/.test(text)) return remember({text: '赵子状是创享艺苑创始人，计算机专业背景，目前在千寻智能担任机器人端到端模型评测工程师，关注 VLA、具身智能与 Agent，并在原点学堂和原点夜校持续学习。你也可以继续问他的机器人评测经历、工程实践或研究方向。', sources: []}, 'profile');
       if (/^(你好|您好|哈喽|嗨|在吗|早上好|中午好|下午好|晚上好|hello|hi|hey)[！!。\s~～]*$/i.test(text)) return remember({text: '你好，我是 Xiaoyi，负责检索和解释这个网站整理的知识与经历。你可以直接问 VLA、机器人评测、研究方向、项目经历，也可以描述你正在解决的问题。我目前使用本地资料，不会连接在线大模型；资料未覆盖时会说明并帮助你缩小问题范围。', sources: []}, 'greeting');
       if (sourceIntent(text)) {
         const result = sourceAnswer(text, messages);
