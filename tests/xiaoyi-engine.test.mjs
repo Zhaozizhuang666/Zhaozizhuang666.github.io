@@ -38,6 +38,30 @@ test('domestic model website request returns all external links without implying
   assert.ok(followup.text.includes('https://yuanbao.tencent.com/'));
 });
 
+test('profile evaluation stays evidence-based and cites public experience records', () => {
+  const result = make().reply('评价一下赵子状');
+  assert.match(result.text, /有限且有依据的评价/);
+  assert.match(result.text, /工程执行、问题记录和持续动手验证/);
+  assert.match(result.text, /还不能判断论文研究深度/);
+  assert.deepEqual(ids(result), ['profile-engineering-workflows', 'profile-catering-evaluation', 'profile-research-overview']);
+  assert.ok(result.sources.every(source => source.website && source.sourceType === 'owner-provided-project-material'));
+});
+
+test('ambiguous author questions clarify the requested work instead of guessing', () => {
+  const result = make().reply('作者是谁');
+  assert.match(result.text, /如果你问的是这张个人主页/);
+  assert.match(result.text, /告诉我标题或主题/);
+  assert.equal(result.sources.length, 0);
+});
+
+test('greetings and unknown questions receive conversational, capability-aware replies', () => {
+  assert.match(make().reply('您好！').text, /你可以直接问 VLA、机器人评测/);
+  const unknown = make().reply('推荐一家附近的咖啡店');
+  assert.match(unknown.text, /暂时没有足够可靠的站内资料/);
+  assert.match(unknown.text, /告诉我你希望得到概念解释、步骤建议/);
+  assert.equal(unknown.sources.length, 0);
+});
+
 test('personal course materials override profile and competition menus with accurate sources', () => {
   for (const [query, id, path, expected] of [
     ['介绍一下赵子状的6G研修经历', 'profile-6g-course-paper', '6g-data-flows-embodied-ai-course-paper.pdf', /研修论文/],
