@@ -183,6 +183,9 @@
   }
   function open(){if(!panel.hidden)return;previousFocus=document.activeElement;positionDock();panel.hidden=false;if(externalLinks)externalLinks.open=false;document.body.classList.add('xiaoyi-is-open');launcher.setAttribute('aria-expanded','true');launcher.classList.add('is-open');dock.classList.add('is-open');dock.inert=true;layout();close.focus();if(!discovered){discovered=true;models(select,status,hint);loadData()}}
   function hide(){panel.hidden=true;document.body.classList.remove('xiaoyi-is-open');launcher.setAttribute('aria-expanded','false');launcher.classList.remove('is-open');dock.classList.remove('is-open','is-pinned');dock.inert=false;dockToggle.setAttribute('aria-expanded','false');layout();const returnFocus=previousFocus?.isConnected&&!dock.contains(previousFocus)?previousFocus:dockToggle;returnFocus.focus({preventScroll:true})}
+  document.addEventListener('pointerdown',event=>{
+    if(!panel.hidden&&!panel.contains(event.target)&&!dock.contains(event.target))hide();
+  });
   window.addEventListener('resize',layout);mobile.addEventListener('change',layout);
   launcher.addEventListener('click',()=>panel.hidden?open():hide());close.addEventListener('click',hide);document.querySelectorAll('[data-open-xiaoyi]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();open()}));panel.addEventListener('keydown',e=>{
     if(e.key==='Escape'){e.preventDefault();hide()}
