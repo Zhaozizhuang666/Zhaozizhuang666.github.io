@@ -32,9 +32,13 @@ test('research portfolio separates the two robotics projects and discloses offic
   const experience = page.slice(page.indexOf('id="experience"'), page.indexOf('id="learning"'));
   const research = page.slice(page.indexOf('id="research"'), page.indexOf('class="records-heading"'));
   assert.match(experience, /World Robot Games · Catering Project/);
-  assert.match(experience, /food tongs, the handoff area, microwave, hot-food cabinet, and water dispenser/i);
+  assert.match(experience, /low light, narrow passages, off-center tray loads, glare, and irregular props/i);
+  assert.match(experience, /sausage-toast grasp failures, gripper oscillation, and position generalization gaps/i);
   assert.match(experience, /Lijian Project · Service Task Evaluation/);
-  assert.match(experience, /coffee preparation, drink delivery, and multimodal tea-service tasks/i);
+  assert.match(experience, /coffee-making navigation, beverage delivery, and multimodal tea-service tasks/i);
+  assert.match(experience, /target offsets and occlusion, slippery surfaces, and densely arranged items/i);
+  assert.match(experience, /Post-Training Models · Focused Validation/);
+  assert.match(experience, /catering food-tong tasks, printer generalization, and snack-rack scenarios/i);
   const games = experience.split('<article>')[1].split('</article>')[0];
   assert.doesNotMatch(games, /coffee preparation/i);
   assert.match(page, /<summary><span class="when-closed">Show more/);
