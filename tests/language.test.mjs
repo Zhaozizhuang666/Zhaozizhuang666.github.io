@@ -177,13 +177,28 @@ test('all pages wire one language control after the early initializer, and allow
 test('full evaluation copy follows the selected language, with only a short Chinese intro on English pages', () => {
   const styles = read('style.css');
   const page = read('index.html');
-  assert.match(styles, /html:not\(\[data-language="zh"\]\)\s+\[lang="zh-CN"\]:not\(\.profile-zh-brief\)\s*\{\s*display:\s*none;\s*\}/);
+  assert.match(styles, /html:not\(\[data-language="zh"\]\)\s+\[lang="zh-CN"\]:not\(\.profile-zh-brief\):not\(\.media-original\)\s*\{\s*display:\s*none;\s*\}/);
   assert.match(styles, /html\[data-language="zh"\]\s*:is\([^}]*\.paired-en[^}]*\)\s*\{\s*display:\s*none;\s*\}/);
   assert.match(styles, /html:not\(\[data-language="zh"\]\)\s*:is\([^}]*\.case-summary\[lang="zh-CN"\][^}]*\)\s*\{\s*display:\s*none;\s*\}/);
   assert.match(page, /class="case-summary" lang="zh-CN"/);
   assert.match(page, /class="learning-summary" lang="zh-CN"/);
   assert.match(page, /class="project-summary" lang="zh-CN"/);
   assert.match(page, /class="bilingual-context profile-zh-brief" lang="zh-CN">专注具身机器人评测与真机验证。/);
+});
+
+test('Media & Stories keeps original sources, titles, and their destinations visible in either language', () => {
+  const page = read('index.html');
+  const media = page.match(/<section id="media"[\s\S]*?<\/section>/)?.[0] || '';
+  const entries = [...media.matchAll(/<article>([\s\S]*?)<\/article>/g)].map(match => match[1]);
+  assert.equal(entries.length, 9);
+  for (const [index, entry] of entries.entries()) {
+    assert.match(entry, /<span class="media-source media-original" lang="zh-CN">[^<]+<\/span>/, `media entry ${index + 1} retains its source`);
+    assert.match(entry, /<h4(?:\s+[^>]*)?>/, `media entry ${index + 1} retains its title`);
+    assert.match(entry, /<(?:a|h4)[^>]*class="media-original"[^>]*lang="zh-CN"/, `media entry ${index + 1} title opts into the English visibility exception`);
+  }
+  assert.equal((media.match(/class="media-original" href="https:\/\//g) || []).length, 8, 'eight original titles retain their direct article links');
+  assert.match(media, /<h4 class="media-original" lang="zh-CN">校园双创团队专访/);
+  assert.match(media, /class="source-search" href="https:\/\/weixin\.sogou\.com\/weixin\?type=2&amp;query=/, 'the remaining entry keeps its existing WeChat search link');
 });
 
 test('long English site prose is covered by editorial translations rather than an external service', () => {
