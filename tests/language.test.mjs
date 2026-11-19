@@ -186,13 +186,13 @@ test('full evaluation copy follows the selected language, with only a short Chin
   assert.match(page, /class="bilingual-context profile-zh-brief" lang="zh-CN">专注具身机器人评测与真机验证。/);
 });
 
-test('Media & Stories keeps original sources, titles, and their destinations visible in either language', () => {
+test('Media & Stories switches source names while keeping original titles and destinations visible', () => {
   const page = read('index.html');
   const media = page.match(/<section id="media"[\s\S]*?<\/section>/)?.[0] || '';
   const entries = [...media.matchAll(/<article>([\s\S]*?)<\/article>/g)].map(match => match[1]);
   assert.equal(entries.length, 9);
   for (const [index, entry] of entries.entries()) {
-    assert.match(entry, /<span class="media-source media-original" lang="zh-CN">[^<]+<\/span>/, `media entry ${index + 1} retains its source`);
+    assert.match(entry, /<span class="media-source"><span class="archive-en">[^<]+<\/span><span class="archive-zh" lang="zh-CN">[^<]+<\/span><\/span>/, `media entry ${index + 1} has English and Chinese source names`);
     assert.match(entry, /<h4(?:\s+[^>]*)?>/, `media entry ${index + 1} retains its title`);
     assert.match(entry, /<(?:a|h4)[^>]*class="media-original"[^>]*lang="zh-CN"/, `media entry ${index + 1} title opts into the English visibility exception`);
   }

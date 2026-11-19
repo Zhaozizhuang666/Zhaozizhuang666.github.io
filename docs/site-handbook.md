@@ -43,7 +43,7 @@ Memory uses the current tab’s `sessionStorage`, not browser-wide `localStorage
 
 Past questions and answers are records rather than verified facts or curated knowledge. You can ask what was discussed before; the recalled user-authored questions remain unverified conversation records. To use an older session as context, select **Continue**. Avoid recording sensitive information.
 
-The current site uses local knowledge mode only and does not send conversations to an online model. Opening an external AI website does not transfer your Xiaoyi conversation or memory.
+The published Xiaoyi currently uses local knowledge mode only. Its Cloudflare Workers AI configuration is prepared separately, but online mode will remain unavailable until the Worker is deployed, `/api/chat` is tested, and the public endpoint is configured. The intended online mode sends recent conversation turns and relevant site references to Cloudflare for inference; the optional Memory stream remains in this browser tab. Do not send sensitive information. Opening an external AI website does not transfer your Xiaoyi conversation or memory.
 
 ## 4. Library
 

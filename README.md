@@ -33,7 +33,7 @@ Outfit is served locally under its SIL Open Font License on both hosts. Site nav
 - Community: Chuangxiang Yiyuan, Youyu social practice, volunteering, and event coordination, with proposed embodied-intelligence and AI Agent/Skill directions.
 - Media: selected public reports and project stories from 2024–2026, linked to their original pages or a stable official-account search entry.
 - Knowledge Library: searchable competition and journal directories, plus a Learning category linking to the local VLA Guide and AI Network Learning copies.
-- Xiaoyi: the website knowledge entry, presented as a collapsible assistant with local retrieval and a bounded local memory stream. The published site currently uses local knowledge mode only.
+- Xiaoyi: a collapsible assistant with local retrieval and tab-session memory. The published UI stays in Knowledge mode until the separate Worker is deployed and passes a live API test.
 - [Site Handbook](guide.html): visitor guidance for navigation, themes, Xiaoyi, the Library, external AI websites, and release maintenance.
 - Contact: GitHub, VLA Guide, email, and WeChat.
 
@@ -51,11 +51,11 @@ The memory view provides **Memory on/off**, **Delete** for a record, and **Clear
 
 Independent browser sessions and ordinary new tabs have separate streams. Browser tab duplication, an opener, or session restoration may copy or restore a tab’s session storage; this is tab-session isolation, not authenticated user isolation. The static site cannot identify different people sharing one open tab. Before handing that tab to another person, use **Clear all**; **New chat** resets context but leaves prior records visible in Memory. Closing a tab normally ends its session, but use Clear all rather than relying on browser session cleanup on a shared device. A future account-based service must enforce user ownership on the server before supporting shared or cross-device memories.
 
-The published Xiaoyi UI exposes only `Knowledge / 知识模式`. It reads the curated files in `data/` through local retrieval and does not send conversations to an online model. The static frontend has no live endpoint configured. The server adapters under `server/` remain as a future extension point; they are not enabled by the checked-in `xiaoyi-config.js` and are not reachable from the current site. Never place API keys in frontend files.
+The published Xiaoyi UI currently uses `Knowledge / 知识模式` only. Its Worker configuration is prepared for Cloudflare Workers AI, but the Worker has not been deployed and `xiaoyi-config.js` contains no endpoint, so online mode is inactive. After deployment and a successful `/api/chat` test, the browser may use the public Worker URL; provider credentials must remain server-side.
 
 The collapsed **AI Websites** section provides direct links to [DeepSeek](https://chat.deepseek.com/), [Tongyi Qianwen](https://www.tongyi.com/), [Kimi](https://www.kimi.com/), [Doubao](https://www.doubao.com/chat/), [Zhipu Qingyan](https://chatglm.cn/), and [Tencent Yuanbao](https://yuanbao.tencent.com/). These are external websites, not API integrations. Opening a link does not transfer the Xiaoyi conversation or memory; each service manages its own account, privacy settings, and availability.
 
-The optional backend adapters and their setup details remain in [`server/README.md`](server/README.md) and the [Workers AI notes](server/CLOUDFLARE-WORKERS-AI.md). They require a separately deployed backend and server-side credentials or bindings. No Worker or online model is publicly enabled by this frontend. A future integration must preserve request limits and memory isolation. Avoid storing sensitive information in conversation records.
+The backend configuration and setup details are in [`server/README.md`](server/README.md) and the [Workers AI notes](server/CLOUDFLARE-WORKERS-AI.md). Workers AI uses a server binding and does not require a provider key in the frontend. Deploy the Worker and verify `/api/chat` before enabling a public endpoint. Avoid sending sensitive information to an online model.
 
 ## Verification before publishing
 

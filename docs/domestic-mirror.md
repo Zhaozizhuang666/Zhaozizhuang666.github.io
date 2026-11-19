@@ -27,7 +27,7 @@ python3 scripts/verify-public-release.py --artifact dist --url https://zhaozizhu
 
 CloudBase 的验证改为控制台确认的域名并使用 `--identity required`。GitHub Pages 没有构建生成的 `release.json`，所以其分支发布通过完整文件哈希比对验证。两站的运行资源来自同一提交，国内镜像只额外提供构建清单。
 
-主页面使用随站点发布的 Outfit 字体，无需访问 Google Fonts。普通导航和学习资源使用相对地址；小艺的本站参考资料会映射到当前访问域名，外部论文和独立上游项目保持原地址。Xiaoyi 仍为站内本地知识助手，镜像不会启用在线模型或同步访客记忆。不同站点的浏览器存储独立。
+主页面使用随站点发布的 Outfit 字体，无需访问 Google Fonts。普通导航和学习资源使用相对地址；小艺的本站参考资料会映射到当前访问域名，外部论文和独立上游项目保持原地址。Worker 配置预设只允许 GitHub Pages 与 CloudBase 两个精确 Origin；Worker 尚未部署，网站当前仍使用本地知识模式。部署并通过 `/api/chat` 实测后，才会启用在线模型入口。
 
 发布使用固定的官方 CLI `@cloudbase/cli@3.9.1` 和 `scripts/deploy-cloudbase-site.py`。包装器先盘点远端可见文件，下载并验证上一版本的 `release.json` 和首页／小艺文件，再上传当前公开内容。任何未知可见文件都会中止发布，不执行覆盖或删除。上传时保留旧版本清单；当前文件的 HTTPS 哈希全部通过后，只逐项删除旧清单中已撤回的精确路径并确认公开地址返回 404，最后提交新清单并进行完整验证。因此中途上传或清理失败时，旧清单仍可用于重试；失败不能算作同步成功。
 

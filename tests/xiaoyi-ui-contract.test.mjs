@@ -5,6 +5,13 @@ import vm from 'node:vm';
 
 const source = fs.readFileSync(new URL('../xiaoyi.js', import.meta.url), 'utf8');
 const engineSource = fs.readFileSync(new URL('../xiaoyi-engine.js', import.meta.url), 'utf8');
+const publicConfig = fs.readFileSync(new URL('../xiaoyi-config.js', import.meta.url), 'utf8');
+
+test('public Xiaoyi configuration stays local-only until the Worker is verified', () => {
+  const activeConfig = publicConfig.replace(/\/\*[\s\S]*?\*\//g, '').trim();
+  assert.equal(activeConfig, 'window.XIAOYI_CONFIG = window.XIAOYI_CONFIG || {};');
+  assert.doesNotMatch(activeConfig, /api[_-]?key|token|secret/i);
+});
 
 test('local-only model setup clears stale online choices without contacting an endpoint', async () => {
   const options = [], select = {replaceChildren(...items) { options.splice(0, options.length, ...items); }}, status = {}, hint = {};
