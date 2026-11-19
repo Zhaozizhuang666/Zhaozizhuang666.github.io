@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self'; frame-src 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Zizhuang Zhao — Robotics End-to-End Model Evaluation Engineer at Spirit AI. VLA benchmarks, simulation, real-robot evaluation, and Agent-assisted engineering.">
   <meta name="theme-color" content="#ffffff">
@@ -23,6 +25,7 @@
   <link rel="stylesheet" href="xiaoyi.css?v=20261026-copy3">
   <script src="theme.js" defer></script>
   <script src="disclosures.js?v=20261108-hover-intent1" defer></script>
+  <script src="navigation.js" defer></script>
   <script src="entrance.js" defer></script>
   <script src="language-copy.js?v=20261108-hover-intent1" defer></script>
   <script src="language.js" defer></script>
@@ -65,9 +68,9 @@
         <p class="overline">CURRENT ROLE</p><h3>Robotics End-to-End Model Evaluation Engineer</h3>
         <p class="organization"><a class="organization-link" href="https://www.spirit-ai.com/about" target="_blank" rel="noopener noreferrer">Spirit AI</a> <span lang="zh-CN">· 千寻智能</span></p><p class="legal-name" lang="zh-CN">千寻智能（北京）科技股份有限公司</p>
         <p class="company-context">Spirit AI develops embodied foundation models, including the open-source Spirit V1.5 vision-language-action (VLA) model.</p>
-        <p>My evaluation work connects benchmark design, simulation, real-robot testing, and data review. I standardize test conditions and success criteria, document failures, and organize evaluation evidence to support model iteration.</p>
-        <ul class="work-points"><li><strong>Benchmark development.</strong> Define tasks, scenario configurations, initial states, and success criteria to make evaluation runs reproducible and model comparisons consistent.</li><li><strong>Simulation evaluation.</strong> Build simulation scenarios and task environments, with attention to inference interfaces, rollout execution, and closed-loop evaluation.</li><li><strong>Automated evaluation pipelines.</strong> Connect test execution, log and video collection, result organization, and reporting in repeatable evaluation workflows.</li><li><strong>VLA metric design.</strong> Structure task-success, execution-time, and intervention records alongside logs and videos to support failure analysis and review.</li><li><strong>Engineering tools · Bash &amp; Agent Skills.</strong> Develop and refine scripts and SOPs for environment checks, robot startup diagnostics, device-resource troubleshooting, and configuration recovery; explore reusable Agent Skills built from these workflows.</li></ul>
-        <p class="keywords">Evaluation Benchmarks · Closed-Loop Simulation · Automated Pipelines · VLA Metrics · Agent Skills · Bash</p>
+        <p>My work covers end-to-end evaluation design, cross-robot comparison, bimanual real-robot testing, and failure analysis. I turn repeatable test runs into traceable evidence for model and system iteration.</p>
+        <ul class="work-points"><li><strong>ELM evaluation framework.</strong> Build end-to-end evaluation across perception, action, reasoning, learning, task execution, interaction, robustness, efficiency, generalization, and safety, with humanoid-specific test cases and benchmarks.</li><li><strong>Cross-robot consistency.</strong> Lead same-model comparisons across task benchmarks, atomic robot capabilities, and hardware checks. Compare multiple robots to attribute performance differences to the model, software, or hardware and produce actionable reports.</li><li><strong>Bimanual real-robot testing.</strong> Run the workflow from MovaXHelper control startup and torque-sensor calibration through Docker setup, Franka enablement, and RoboArena scripts. Use HMI and automated runs to record results and preserve traceable reports.</li><li><strong>System reliability and edge cases.</strong> Design tests across Agent-VLN-VLA layers for instruction-recognition errors, blocked paths, and grasp failures. Verify safety stops, retry and recovery behavior, and failure feedback for brain-body integration and release readiness.</li><li><strong>Cross-team iteration and data loop.</strong> Work with VLA algorithm and motion-control teams to use metrics to locate bottlenecks, refine the perception-to-action loop, and update reusable regression workflows. Contribute to edge-inference evaluation in the data-training-inference loop, feeding findings back into data collection.</li></ul>
+        <p class="keywords">End-to-End ELM Evaluation · Cross-Robot Benchmarks · Franka · RoboArena · Regression</p>
         <div class="experience-case"><div class="case-heading"><span class="paper-status">SELECTED EVALUATION WORK</span><p>Scenario testing · Integration · Reporting</p></div><details class="case-disclosure"><summary><span>World Robot Games &amp; Lijian · Evaluation Practice</span><span class="disclosure-label"><span class="when-closed">Show more ↓</span><span class="when-open">Show less</span></span></summary><div class="case-details"><article><h4>World Robot Games · Catering Project</h4><p class="paired-en">As a core member of the catering project’s integration and testing team at the Second World Robot Games, I supported testing across food tongs, the handoff area, microwave, hot-food cabinet, and water dispenser tasks, contributing to the team’s award-winning result.</p><p class="case-summary" lang="zh-CN">作为第二届世界机器人运动会餐饮项目联调与测试核心成员，参与食品夹、交付区、微波炉、热食柜、饮水机等任务的测试保障，为团队获奖提供测试支持。</p><div class="project-links case-report-links"><a href="https://mp.weixin.qq.com/s/72bqwqyHdnddDNOmFLpvYg" target="_blank" rel="noopener noreferrer" title="真高手不打低端局：千寻智能用100%自主推理夺冠运动会最难场景赛">ifeng Tech · Autonomous Reasoning in Scenario Events ↗</a><a href="https://mp.weixin.qq.com/s/CKZt89C16-UYofxPEr-T1Q" target="_blank" rel="noopener noreferrer" title="全自主推理夺冠！千寻智能斩获世界人形机器人运动会一金一银">Spirit AI · Autonomous Reasoning Wins Gold and Silver ↗</a></div></article><article><h4>Lijian Project · Service Task Evaluation</h4><p class="paired-en">Separately, I evaluated coffee preparation, drink delivery, and multimodal tea-service tasks for the Lijian project. My work included environment and robot readiness checks, standardized execution, video and result logging, scenario reports, and test-data archiving for issue review.</p><p class="case-summary" lang="zh-CN">在亮剑项目中，参与咖啡制作、饮品递送与多模态茶点任务评测，完成环境与设备检查、标准化执行、视频和结果记录、专项报告及数据归档，支持问题复盘。</p></article></div></details></div>
       </div></article>
       <div class="previous-experience">
@@ -78,7 +81,7 @@
     <section id="learning" class="section section-tinted learning-section" aria-labelledby="learning-heading"><div class="page">
       <div class="section-heading"><div><p class="overline">CONTINUING EDUCATION</p><h2 id="learning-heading">Further Learning</h2></div><span class="section-note">AI Agent · VLA · Embodied Intelligence</span></div>
       <article class="learning-card"><div class="learning-rail" aria-hidden="true"><span class="learning-dot"></span></div><div class="learning-copy"><div class="learning-meta"><span>ORIGIN SCHOOL · ORIGIN NIGHT SCHOOL</span></div><h3>AI Agent &amp; Embodied Intelligence</h3><p class="learning-en paired-en">I study AI Agent methods at Origin School and continue through Origin Night School, focusing on VLA and embodied agents. Separately, I develop personal projects as an OPC (One Person Company).</p><p class="learning-summary" lang="zh-CN">在原点学堂与原点夜校学习 AI Agent，重点关注 VLA 与具身智能；同时以 OPC（一人公司）开展个人项目。</p></div></article>
-      <article class="learning-card"><div class="learning-rail" aria-hidden="true"><span class="learning-dot"></span></div><div class="learning-copy"><div class="learning-meta"><span>ADVANCED TRAINING · BEIJING</span></div><div class="learning-feature"><div class="learning-feature-copy"><h3>6G &amp; Secure Data Flows</h3><p class="learning-en paired-en">Participation in an advanced programme on 6G and secure cross-border data flows. The associated course paper examines data classification, lifecycle governance, and privacy-preserving evaluation for embodied-intelligence systems.</p><p class="learning-summary" lang="zh-CN">参加 6G 与数据要素安全跨境流动高级研修，研修论文关注具身智能数据的分类、治理与隐私评测。</p><p class="project-links"><a href="assets/documents/6g-data-flows-embodied-ai-course-paper.pdf" target="_blank" rel="noopener noreferrer">Course Paper · PDF ↗</a> <a href="https://mp.weixin.qq.com/s/E-2veNzXsiRZpJQ-XQ2a4g" target="_blank" rel="noopener noreferrer">Training Story ↗</a> <a href="assets/research/6g-training-certificate.webp" target="_blank" rel="noopener noreferrer">Completion Certificate ↗</a></p></div><figure class="training-certificate" hidden><a href="assets/research/6g-training-certificate.webp" target="_blank" rel="noopener noreferrer"><img src="assets/research/6g-training-certificate.webp" width="1460" height="1032" loading="lazy" alt="北京市专业技术人才知识更新工程高级研修班结业证书，身份证号码与二维码已遮盖"></a><figcaption><span class="archive-en">Completion certificate · personal ID and QR redacted</span><span class="archive-zh" lang="zh-CN">高级研修班结业证书 · 身份证号与二维码已隐去</span></figcaption></figure></div></div></article>
+      <article class="learning-card"><div class="learning-rail" aria-hidden="true"><span class="learning-dot"></span></div><div class="learning-copy"><div class="learning-meta"><span>ADVANCED TRAINING · BEIJING</span></div><div class="learning-feature"><div class="learning-feature-copy"><h3>6G &amp; Secure Data Flows</h3><p class="learning-en paired-en">Participation in an advanced programme on 6G and secure cross-border data flows. The associated course paper examines data classification, lifecycle governance, and privacy-preserving evaluation for embodied-intelligence systems.</p><p class="learning-summary" lang="zh-CN">参加 6G 与数据要素安全跨境流动高级研修，研修论文关注具身智能数据的分类、治理与隐私评测。</p><p class="project-links"><a href="assets/documents/6g-data-flows-embodied-ai-course-paper.pdf" target="_blank" rel="noopener noreferrer">Course Paper · PDF ↗</a> <a href="https://mp.weixin.qq.com/s/E-2veNzXsiRZpJQ-XQ2a4g" target="_blank" rel="noopener noreferrer">Training Story ↗</a> <a href="assets/research/6g-training-certificate.webp" target="_blank" rel="noopener noreferrer">Completion certificate · personal ID and QR redacted ↗</a></p></div></div></div></article>
     </div></section>
     <section id="projects" class="section section-tinted" aria-labelledby="projects-heading"><div class="page">
       <div class="section-heading"><h2 id="projects-heading">Projects & Explorations</h2><a href="https://github.com/Zhaozizhuang666" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
@@ -164,25 +167,6 @@
   </main>
   <footer class="page"><span>© Zizhuang Zhao <span lang="zh-CN">· 赵子状</span></span><a href="#top">Back to top ↑</a></footer>
   </div>
-  <script>
-    const moreMenu = document.querySelector('.nav-more');
-    moreMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { moreMenu.open = false; }));
-    document.addEventListener('click', event => { if (moreMenu && !moreMenu.contains(event.target)) moreMenu.open = false; });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape' && moreMenu?.open) { moreMenu.open = false; moreMenu.querySelector('summary').focus(); } });
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-    const sections = [...navLinks].map(link => document.querySelector(link.getAttribute('href')));
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(entries => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) navLinks.forEach(link => {
-            if (link.getAttribute('href') === '#' + entry.target.id) link.setAttribute('aria-current', 'location');
-            else link.removeAttribute('aria-current');
-          });
-        }
-      }, {rootMargin: '-10% 0px -60% 0px'});
-      sections.forEach(section => { if (section) observer.observe(section); });
-    }
-  </script>
   <script src="xiaoyi-config.js" defer></script>
   <script src="xiaoyi-engine.js?v=20261104-release2" defer></script>
   <script src="xiaoyi.js?v=20261108-dual-host1" defer></script>

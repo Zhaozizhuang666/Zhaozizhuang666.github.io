@@ -54,13 +54,13 @@
   "files": [
     {
       "path": "resources/ai-network-learning.html",
-      "bytes": 40947,
-      "sha256": "87f1fa1456364a1387e9133cbf93f3a7efe9436612f97cb65ff6236235da935e"
+      "bytes": 41338,
+      "sha256": "0cbbb2bc9cfbadfef6af1aa8f472f4b7702e848d26829cddf15f28d9359488c2"
     },
     {
       "path": "resources/vla-guide/404.html",
-      "bytes": 5141,
-      "sha256": "b45478ccb2e02ed4645689a6c9a9f7eef26fcb0fc85ef97d23e9698448d22dfa"
+      "bytes": 5553,
+      "sha256": "ac278282bc91c0596cc522abd740986ea0512b4191180d1e3d0294aa49b4d809"
     },
     {
       "path": "resources/vla-guide/CONTENT_LICENSE.md",
@@ -79,8 +79,8 @@
     },
     {
       "path": "resources/vla-guide/assets/app.js",
-      "bytes": 9460,
-      "sha256": "06e36b0726bc789dcfcbbcb888fd92bfe29fdb76349d47556aae4ace65235405"
+      "bytes": 9522,
+      "sha256": "d2cf71e20ff0694f56ad4c872707d9222f230f14d83b8911d1936e96a30313de"
     },
     {
       "path": "resources/vla-guide/assets/careers.js",
@@ -99,393 +99,393 @@
     },
     {
       "path": "resources/vla-guide/docs/action-geometry/index.html",
-      "bytes": 16225,
-      "sha256": "29e508f35865c882d8e5ff7434cf120003856bef990cae7ffc83cc56cd023544"
+      "bytes": 16637,
+      "sha256": "6d405ac6611f75037da0a78a3649baba4c6a398407b804d38ec53dbc23b49f98"
     },
     {
       "path": "resources/vla-guide/docs/career-delivery/index.html",
-      "bytes": 15150,
-      "sha256": "d5f7e0ee4e9238522095ecc25a8614693b702d05dbd1b0466c0f6f5083b16bc5"
+      "bytes": 15562,
+      "sha256": "a27fdc4b484c5509e80df0e09c34a87ef4d436fcc295fd72df4fecf15e473116"
     },
     {
       "path": "resources/vla-guide/docs/career-evaluation/index.html",
-      "bytes": 15191,
-      "sha256": "fef1c59012e52cdf33ec7bc83d475fd9b6340fa91322d0fcbd323882e9e33725"
+      "bytes": 15603,
+      "sha256": "288b9d57d09db3e22dce6961a867f3cfd8fbe856961980dc580fbc215823e92f"
     },
     {
       "path": "resources/vla-guide/docs/career-hardware/index.html",
-      "bytes": 15190,
-      "sha256": "f90fa9e7c52488e193bf2d74ac655aaadad26f960fe5d8821c6c6e3a45f5a5e3"
+      "bytes": 15602,
+      "sha256": "e4c2070e53f2c63a3665dd874cc4ed443ba6f91e5fc6adf0834d9900c852f669"
     },
     {
       "path": "resources/vla-guide/docs/career-product/index.html",
-      "bytes": 15089,
-      "sha256": "04823705130913d847f2e22543dd57d976f41377a3afca4fe03987829b7dd9b1"
+      "bytes": 15501,
+      "sha256": "ab4504519f02dc3a6d20c5872d4a04115e1f02bf690ca47716db60e35f645df5"
     },
     {
       "path": "resources/vla-guide/docs/career-software/index.html",
-      "bytes": 15279,
-      "sha256": "302cd5774e0b5bf40106eecd37ef0794b2e7302a3cfa25e3f541f981b2b3e76b"
+      "bytes": 15691,
+      "sha256": "65f17abcbaca63f94b4b2679e4ae13d78237cb275fc4b8ac6cda5c223f55dabb"
     },
     {
       "path": "resources/vla-guide/docs/data-pipeline/index.html",
-      "bytes": 16400,
-      "sha256": "e591590f3c1c45b0fa8b5279a629fa99bd77c351358e79bb67db0cd433f4fcc0"
+      "bytes": 16812,
+      "sha256": "e6041d8f46a5f268c189a9450f01ed38851c9ad2a8fe6a97fe4d7ad86cfbfd2f"
     },
     {
       "path": "resources/vla-guide/docs/degree-paths/index.html",
-      "bytes": 15855,
-      "sha256": "056e385b449440b85bdbb2a73ea5dfc0dabe56c9d01dbc10b72f89d543a30e7a"
+      "bytes": 16267,
+      "sha256": "be029fc9b078376e5a162b3e5324759495f6533142db9d1e9129b0025937e88e"
     },
     {
       "path": "resources/vla-guide/docs/deployment/index.html",
-      "bytes": 16009,
-      "sha256": "afb0f5ff586e237a8596194f2bd6d601069d0b538ab13ff3e33ff34f3bbc8ec5"
+      "bytes": 16421,
+      "sha256": "c458d5e6679ca2eb9cdc26fccfc0719b82c07e545dd5784470ca35c43ce8a7b0"
     },
     {
       "path": "resources/vla-guide/docs/diffusion-lab/index.html",
-      "bytes": 16262,
-      "sha256": "8ecbb8946d4b623a53b19cfdf17a9558e599a3c146aef68adc944652cf3c7590"
+      "bytes": 16674,
+      "sha256": "9d66358b095546ead12197c261b55a87fb67e7e01cce850602f9b20ac2d0651c"
     },
     {
       "path": "resources/vla-guide/docs/employer-sources/index.html",
-      "bytes": 16565,
-      "sha256": "5ae75c9d036a81550c2c5a7cdba6c6c2870000bde7626de9b83bcf9fc42f19da"
+      "bytes": 16977,
+      "sha256": "c3052dbcf9d6ba26c73973c17445030e416be95554bfc885acc3123b071400f6"
     },
     {
       "path": "resources/vla-guide/docs/evaluation/index.html",
-      "bytes": 16237,
-      "sha256": "0ed1436ee3cf943d1e226fc2b3c45268ac500df1c3770ec735b72f417979cc74"
+      "bytes": 16649,
+      "sha256": "3fbcd61fad606eec8a3f1719a85caa57dd9d6118d505fa4019d87d08909ff582"
     },
     {
       "path": "resources/vla-guide/docs/first-research-project/index.html",
-      "bytes": 16597,
-      "sha256": "ed0cf332be1a030ce7c02dde0476e065117ed2081c40cf2122284b55af282452"
+      "bytes": 17009,
+      "sha256": "adeeb61b349d02d9749ffc435230646cc133727fa8f52e0e25642dc7f3fc7034"
     },
     {
       "path": "resources/vla-guide/docs/flow-matching/index.html",
-      "bytes": 16314,
-      "sha256": "b011ab47a0758806ef2c1321bf024709f3281a25304609b81c66a3415c3d4e89"
+      "bytes": 16726,
+      "sha256": "805e0d9257a75600fe9c6e5e5843647b3b3e651abb915c9dc98a8d498162dec3"
     },
     {
       "path": "resources/vla-guide/docs/industry-guide/index.html",
-      "bytes": 15662,
-      "sha256": "85f8e7256cfd8178bc221a420d84acca60406cfa9810797567c8e59d09957ad5"
+      "bytes": 16074,
+      "sha256": "6adb1bf3e8e6ae8ee83a97ebc81c96c13e70b3603ed263c1c3afacf1614195e6"
     },
     {
       "path": "resources/vla-guide/docs/interview-guide/index.html",
-      "bytes": 15568,
-      "sha256": "666d0fed855cb1030b030493f0be5076ab00396b7348ae0766b681d947918b77"
+      "bytes": 15980,
+      "sha256": "eb5328b0f5baa2f8b92310af553eb4962bec51122128a584c78e7e3685051aea"
     },
     {
       "path": "resources/vla-guide/docs/job-matching/index.html",
-      "bytes": 15367,
-      "sha256": "08ef419939dc9617baa6125b641c1147bd44bf4a77bc21bbd8204f6023da5c0f"
+      "bytes": 15779,
+      "sha256": "440013e5b85df24a85036700d36227e51d3e132ec4557e71a2cf1d67f7cb76ca"
     },
     {
       "path": "resources/vla-guide/docs/m1-01/index.html",
-      "bytes": 16416,
-      "sha256": "5a7ecee739b63fea42503ee7b9d9777875b0fcd575d2125e0f1957b9e2fee866"
+      "bytes": 16828,
+      "sha256": "18b81bfedfc9b8f7098f052f9db1b0fa02b599931d9bf5af2e89bf8e1eedf203"
     },
     {
       "path": "resources/vla-guide/docs/m1-02/index.html",
-      "bytes": 16240,
-      "sha256": "c50747d46ed9accd35244323e4eadcc529a8414d1e3d499c3097fa91e63d2f3c"
+      "bytes": 16652,
+      "sha256": "03dada68a62aebebf8c254ef1d668a57bf816c8ad488f169e3f024f3fbb2cef7"
     },
     {
       "path": "resources/vla-guide/docs/m1-03/index.html",
-      "bytes": 16368,
-      "sha256": "94678c3c02e204efd6ef755576e14ac673f454e2b70a1d52a30d59e6351569c6"
+      "bytes": 16780,
+      "sha256": "c25acf475251c31bdc7721ff73c890a441697a12c644fcaab30a70c307f56012"
     },
     {
       "path": "resources/vla-guide/docs/m2-01/index.html",
-      "bytes": 16892,
-      "sha256": "24ca0cc9a02742d08b33dba886a5801b9389cb56d0f1111bb9e176038049850c"
+      "bytes": 17304,
+      "sha256": "3b27a0cd10f6d842e6d3c461715e5554cbb233744ce915b30b4ea826f4621b14"
     },
     {
       "path": "resources/vla-guide/docs/m2-02/index.html",
-      "bytes": 15822,
-      "sha256": "e733e975b53e66fc858d61e8523b894d2cd8abb12d5c7ce55db82e96b1f81776"
+      "bytes": 16234,
+      "sha256": "97deb8e8be73523e9ce232dbef9497e267d644bc651325e9e8935fcc8dc5e9ab"
     },
     {
       "path": "resources/vla-guide/docs/m2-03/index.html",
-      "bytes": 16638,
-      "sha256": "fa45d22561b9a710caf1e7d7dacca35be06742f1046deea41a820a1c5b0b0a3c"
+      "bytes": 17050,
+      "sha256": "15ce721003b2a696682be0bf63966175e3d8dab06283aadb95820d7dde595f17"
     },
     {
       "path": "resources/vla-guide/docs/m3-01/index.html",
-      "bytes": 15963,
-      "sha256": "6f280f8c4e20cc8f7b4d0f432bb41e71a0ac82db11f3f99e48c17f46d51a5610"
+      "bytes": 16375,
+      "sha256": "f875fb9036016cc614f08a63393acaf965214a2ac9abe86a601a08c6c8880c26"
     },
     {
       "path": "resources/vla-guide/docs/m3-02/index.html",
-      "bytes": 16703,
-      "sha256": "79f5dd6a368b92c97374dcb7930f42b0595ee5c04b823a3d45bd5028ba58ee25"
+      "bytes": 17115,
+      "sha256": "e86551470f7c849853a5269890aada8c80d87e3c5efc4c52aa44d5fe31ab3787"
     },
     {
       "path": "resources/vla-guide/docs/m3-03/index.html",
-      "bytes": 16172,
-      "sha256": "d7c7ec50e98461158dc518be79d594f1d3807d2799598e26265497eddf2f8b36"
+      "bytes": 16584,
+      "sha256": "25d675139dde9ae9578c090b57d81fa6f5408dcc94f634a18f817598437fc57b"
     },
     {
       "path": "resources/vla-guide/docs/m4-01/index.html",
-      "bytes": 15604,
-      "sha256": "a4d1c0e10d80717bf3a60ea4ac7d64b86af2bb2d9d31dca262e2e87318dcbc46"
+      "bytes": 16016,
+      "sha256": "7d2bdfce2a0910294e96e16f189bcdcb574008bee949cfe761d463c4dacdb0d2"
     },
     {
       "path": "resources/vla-guide/docs/m4-02/index.html",
-      "bytes": 16780,
-      "sha256": "009464721d421731b79b8686645c3b82372fba04aa4e20615d8c082effb285ea"
+      "bytes": 17192,
+      "sha256": "2b1136c8e9932ba39df245a362aac3a34c317728fea94e84116d465ec7314634"
     },
     {
       "path": "resources/vla-guide/docs/m4-03/index.html",
-      "bytes": 15889,
-      "sha256": "6723ee271a48cb72060e26fd5cff62d024c0a5dc822c25f46487d75fe94dac49"
+      "bytes": 16301,
+      "sha256": "7b21d9889bd322c02696861f229b73f7c92c5591c1f9fb196366564f784e3bb9"
     },
     {
       "path": "resources/vla-guide/docs/m5-01/index.html",
-      "bytes": 16930,
-      "sha256": "70a810bfa87187696e9c892bc4cc9da27ad17d73f2fbeb8648f88ce0e35ccd34"
+      "bytes": 17342,
+      "sha256": "8a255e8b509df60d2afca798bd7cbfe85bfa8ae6af65f122a8a30b7a0c7b4c2f"
     },
     {
       "path": "resources/vla-guide/docs/m5-02/index.html",
-      "bytes": 17033,
-      "sha256": "d5b09f7df457d67706a6b5aac517d46da03317a4452b82c0a735f3aa1b05d128"
+      "bytes": 17445,
+      "sha256": "9bc33ceac66d5ed772acbddb831f19a7f45db3465838ca68b6bb515102b337fd"
     },
     {
       "path": "resources/vla-guide/docs/m5-03/index.html",
-      "bytes": 16915,
-      "sha256": "c7edfbaf54df5eed1211e268cee03b10029b80bd6a6569e0f4c98458604d1c27"
+      "bytes": 17327,
+      "sha256": "0e4e2331e7bb954a4c77e15635c75614a4d051e916299fe754ddf1cbc778b5af"
     },
     {
       "path": "resources/vla-guide/docs/m5-04/index.html",
-      "bytes": 17058,
-      "sha256": "d96b71490b062c0c177caa6d64d86d44f0930c075e15c9a1a7f06542647bcf83"
+      "bytes": 17470,
+      "sha256": "db63073ef4674073b803043be342a6fed10368d18266e7b6150cef9125e80c90"
     },
     {
       "path": "resources/vla-guide/docs/m6-01/index.html",
-      "bytes": 17130,
-      "sha256": "4eb3b7cd219bbc2d0c1cac3db08c2c333e458b6055c76a7b31658724db50a6e7"
+      "bytes": 17542,
+      "sha256": "abf26003947eab8b1645df98e801abd66504ca47d5a3a54181290161706f9bef"
     },
     {
       "path": "resources/vla-guide/docs/m6-02/index.html",
-      "bytes": 15850,
-      "sha256": "3707d9c770c2a945a0a665dcb56176de1fedbce68e19486de8a91bb3287369e4"
+      "bytes": 16262,
+      "sha256": "1460cf47e9a7f531779b7ed68b5588eaebb86057947be08efe5c81016493a11f"
     },
     {
       "path": "resources/vla-guide/docs/m6-03/index.html",
-      "bytes": 19192,
-      "sha256": "f122866ef89e19ba6e41502ba0c8e00d228023627b066b6dc42bcdb04e04012c"
+      "bytes": 19604,
+      "sha256": "9c5aa7e4e50d2793e55e8cc1d8012333da30412d243401509a237de8379809e2"
     },
     {
       "path": "resources/vla-guide/docs/m7-01/index.html",
-      "bytes": 17764,
-      "sha256": "8f8fa6e7ccb6ad1fcffd8de44f4c10cb6acccfb29675cc5872280c6f44c07473"
+      "bytes": 18176,
+      "sha256": "56e3e11d04e9ca81e26f8c9d06711cd931231d95f070e2b48fa0b16371252809"
     },
     {
       "path": "resources/vla-guide/docs/m7-02/index.html",
-      "bytes": 15620,
-      "sha256": "40f0f3189380349bf1efac158bf8df47cf9258a073b1de1d278d6c477d2f8da1"
+      "bytes": 16032,
+      "sha256": "6cc5da7ff35d1724466582a5e35ba3457795fabaa8b69b3161cd75acfe79f628"
     },
     {
       "path": "resources/vla-guide/docs/m7-03/index.html",
-      "bytes": 16222,
-      "sha256": "8d5dacf74dc294134fa1c065384ef8d9e1556040ae8cc7d16aeebab46cd685bd"
+      "bytes": 16634,
+      "sha256": "724ee9553e1798701ed526fdb3fc92a5c093d0f09c8cd29d3aa6e9c8fc731449"
     },
     {
       "path": "resources/vla-guide/docs/m7-04/index.html",
-      "bytes": 20528,
-      "sha256": "dfd3941a1e67d14ab26aa9308f1018cc2eb6c85048a8dad9b4defef8a3e286d9"
+      "bytes": 20940,
+      "sha256": "ec7d6e683a18267581ad7d07cfc76f8fe283c08117e17f77098f39bf18a50499"
     },
     {
       "path": "resources/vla-guide/docs/m8-01/index.html",
-      "bytes": 18082,
-      "sha256": "c04001a57b9e53ea7c22badebd938a79704664a606cb8665dafdd4c7f946fd99"
+      "bytes": 18494,
+      "sha256": "66bb7a0f00b7f0f8a1a6e78bdeb3beca03db8c71ea343efc422a1940b230d430"
     },
     {
       "path": "resources/vla-guide/docs/m8-02/index.html",
-      "bytes": 15623,
-      "sha256": "e543d4713afaa77608c5635dd0fc46ef389023a52e4a957bc8329fb13069e661"
+      "bytes": 16035,
+      "sha256": "78bb5f0c814b3165fe71ff70c8ca399513f1969f5ca99f34ca321a2209dd5238"
     },
     {
       "path": "resources/vla-guide/docs/m8-03/index.html",
-      "bytes": 19011,
-      "sha256": "7895683fc62732dbe8c5bca4c65d9286d62cd59d2d335438baeeef96d25cd90f"
+      "bytes": 19423,
+      "sha256": "503bb49bd829ca770c5ed3d82621f4d82334647434ac8700c9763c7726e9cdc5"
     },
     {
       "path": "resources/vla-guide/docs/m8-04/index.html",
-      "bytes": 27473,
-      "sha256": "6b61c9b8768a993734b829e271c5d54876f09d2ad476fd270b98fa994b21eefd"
+      "bytes": 27885,
+      "sha256": "f9e4b242af24f8d7c9de81dd7bfc3aa000364c5399dd10900ee979118a22f50f"
     },
     {
       "path": "resources/vla-guide/docs/m9-01/index.html",
-      "bytes": 18002,
-      "sha256": "a73ae26e705150fb111c165329ac6e7dc6cc3e0c3192c0616d7c2fe8613a78ad"
+      "bytes": 18414,
+      "sha256": "57c53c17a04166c707986b62281e7d5dcb8a2ed8a072890289758b0c966f6827"
     },
     {
       "path": "resources/vla-guide/docs/m9-02/index.html",
-      "bytes": 16643,
-      "sha256": "49b6553d6218ba826f477bdb2f878654e42c0b2170bf51a111e6d77de6210243"
+      "bytes": 17055,
+      "sha256": "9976c4d9b58ee2f1466d9d3465842ed789084a230ce6eeb2d4e6d589d4ebee89"
     },
     {
       "path": "resources/vla-guide/docs/m9-03/index.html",
-      "bytes": 16048,
-      "sha256": "04101ffe49677a95bd30b54e2c12c68239c8d25c85ca157110b1695c1b920a48"
+      "bytes": 16460,
+      "sha256": "4ef34a2aa1160f12447c551fe2a862a20d50ca742cc9e8ce0d442654cae60215"
     },
     {
       "path": "resources/vla-guide/docs/m9-04/index.html",
-      "bytes": 16369,
-      "sha256": "c228b5799c79dee4ae1171cdade93541f2e5f659a51e46a6815141bfccd82177"
+      "bytes": 16781,
+      "sha256": "0ae1fdfc56ae4b0836083fdb7797212af0a066c6a9a4012299183d8f9329be8f"
     },
     {
       "path": "resources/vla-guide/docs/masters-research/index.html",
-      "bytes": 15606,
-      "sha256": "31ba371ac91431495be791ab73c3e02a3c0f69638da381064d00e683cb021a36"
+      "bytes": 16018,
+      "sha256": "8d2168b441de5e81c0ab5f878978b5173fd78216cb9b06f83284b51949e10e74"
     },
     {
       "path": "resources/vla-guide/docs/masters-year-one/index.html",
-      "bytes": 15666,
-      "sha256": "a3e2a68660459940fd3aa528f28ec34b0b5505b9568deeb2618d16cb16ab5e7d"
+      "bytes": 16078,
+      "sha256": "a897d36f2dcef7ad93f23faa646f778a89f446e04d0d42b6d227ceff08e83d2f"
     },
     {
       "path": "resources/vla-guide/docs/model-selection/index.html",
-      "bytes": 15893,
-      "sha256": "8da64dfea3a054714a932223fd8d304217314e92bdbd316c72d35a6cac8ef72f"
+      "bytes": 16305,
+      "sha256": "4010fd2f926e77969557e293a5b9ba93427a1e21e41c02c7f26991850dfa433f"
     },
     {
       "path": "resources/vla-guide/docs/openvla-lab/index.html",
-      "bytes": 16769,
-      "sha256": "862c7c15f26a083a6e6e41a52a22a8e307163d7c32d0b36f3f7ee5cc91da3612"
+      "bytes": 17181,
+      "sha256": "f4c94fa2e1266b75a487de15f90605ec30afc490abc757b235cb7b21973aa025"
     },
     {
       "path": "resources/vla-guide/docs/portfolio-guide/index.html",
-      "bytes": 15270,
-      "sha256": "051b71a56355a4bf477ea49870875694bacf82d38cac1f6ed160e5ee99be8288"
+      "bytes": 15682,
+      "sha256": "689218fc3fa328ce2811a8aaf3679fedf818c871f7d5c6e62bb64d4db780a891"
     },
     {
       "path": "resources/vla-guide/docs/research-design/index.html",
-      "bytes": 15470,
-      "sha256": "dfff1145d5e96ff443c6a785295f386902f7ce253376bf4aedb69f24eda6189b"
+      "bytes": 15882,
+      "sha256": "6479edc586d11397ef60846eb8ffa0858cc4649087815c8f5fd662931cd41ef4"
     },
     {
       "path": "resources/vla-guide/docs/research-habits/index.html",
-      "bytes": 16220,
-      "sha256": "05a7a81cd274c4c8e37c4c1254db60495d43e6861345a64e98257729c96502de"
+      "bytes": 16632,
+      "sha256": "6c8417e66824dfef0c57655d9709dc8c1a0f905f66232c21da39279629826c7d"
     },
     {
       "path": "resources/vla-guide/docs/source-policy/index.html",
-      "bytes": 16771,
-      "sha256": "6281d453dad4f76514fb95be6322ba8751d0928673973aff68c6ddbda8139db9"
+      "bytes": 17183,
+      "sha256": "bd03d33be25aebe9e20bffe33da7137ed914a0a35323a7b6758df58c30a6441c"
     },
     {
       "path": "resources/vla-guide/docs/start/index.html",
-      "bytes": 16258,
-      "sha256": "25a1865dfd219add542c93db900d10242d14bf517365d19b4606555ca62ab20c"
+      "bytes": 16670,
+      "sha256": "5576ec3da29f526c5389a2cb632b7af11ea9f0b5c6c5a7f469ebeb529ec6efdf"
     },
     {
       "path": "resources/vla-guide/docs/training-loop/index.html",
-      "bytes": 16110,
-      "sha256": "82c8156e8bdc21108bef469ba626130df399d4a72f99b873e7e4ac3898730dcf"
+      "bytes": 16522,
+      "sha256": "f3cf8a369e6464ebdd0e7a655226a0fa2bf9ad4fee6661775cf786767295e387"
     },
     {
       "path": "resources/vla-guide/docs/troubleshooting/index.html",
-      "bytes": 15947,
-      "sha256": "98307e3d1123024584a820c9240ddfbabf495d4321b7c982d60e7e0e2afcc638"
+      "bytes": 16359,
+      "sha256": "2816c5159b81271318f620f7ff340d259214f016e89bae74be4e8c446ed5c7b3"
     },
     {
       "path": "resources/vla-guide/docs/year-four/index.html",
-      "bytes": 16119,
-      "sha256": "d34333f14512aeeec245dfb1fcd350a9e28d2866419fe48564326dd0176df4d1"
+      "bytes": 16531,
+      "sha256": "6dd3c5435b9438bf35ff982a151f355e5aa5baf4d2f41821e02a6624ee2de384"
     },
     {
       "path": "resources/vla-guide/docs/year-one/index.html",
-      "bytes": 17572,
-      "sha256": "cd12812b3408836b49e4a15b3c60d381925d51c94f26a2456e091dee72af1fcc"
+      "bytes": 17984,
+      "sha256": "f4d09e546cd759257d74f0163a2d9cca356aafd673d03300b45839358b5327e9"
     },
     {
       "path": "resources/vla-guide/docs/year-three/index.html",
-      "bytes": 16746,
-      "sha256": "583649c3beac99ee8e6ddedee663633ea1bea558e8b652dacec3775660b01fde"
+      "bytes": 17158,
+      "sha256": "44c46c2624e0d175af62b7e1fa038f62f469192a5bc5fa0e3140d868be5c931b"
     },
     {
       "path": "resources/vla-guide/docs/year-two/index.html",
-      "bytes": 16775,
-      "sha256": "ece9b97507006db602ef18ae1b6cd80aca107b49078ebcac6788fefb583223d9"
+      "bytes": 17187,
+      "sha256": "aece4bf465aec11bd4d7fcc4de2b92c827c94e94b731848d44b3334d59e046d6"
     },
     {
       "path": "resources/vla-guide/handbook/index.html",
-      "bytes": 85319,
-      "sha256": "303d6f5fa81c1e2b9adfc9c0e67b3719785a14a02b848cc0ef704c64d64e712b"
+      "bytes": 85731,
+      "sha256": "c7531dd941849c05072a92f3ac570385e4ac1d979fcf8527e7ac2ddff4f201b2"
     },
     {
       "path": "resources/vla-guide/index.html",
-      "bytes": 14199,
-      "sha256": "4e3b7f225b7ba0a4ab50492e8774b6605652a09b24150ec0f24203a4c00fa355"
+      "bytes": 14611,
+      "sha256": "7e7fc32a0dbd5a507ba046c0aeff6d9903fa080c9d8b205b9935e27ab237cae3"
     },
     {
       "path": "resources/vla-guide/industry/index.html",
-      "bytes": 7474,
-      "sha256": "b851188be75e5fea72f14cff1585f66d9c6f134b1ace33815c72ced769299dcf"
+      "bytes": 7886,
+      "sha256": "884672f98e8a603be6b0807733ed9af985c710d695a50f36c7ebccb4ebbfce0b"
     },
     {
       "path": "resources/vla-guide/interview/index.html",
-      "bytes": 6796,
-      "sha256": "149c4c852f9c44be3f4fd5a64d4ec5b61c555d2ba74760ea3330ada7c13216f8"
+      "bytes": 7208,
+      "sha256": "2f5b3993f9cf2906d2518f392a9cdf75d216331437af343d57c0adabcb24d70b"
     },
     {
       "path": "resources/vla-guide/modules/m1/index.html",
-      "bytes": 12446,
-      "sha256": "f7cad451bb4b986a34e5cfe3857d1f0c8d30eb856462371e54e6d35e8d7cfe31"
+      "bytes": 12858,
+      "sha256": "e96b18910957af438320bf2e812dca8096c129b39f84c14a5664676cc648af9c"
     },
     {
       "path": "resources/vla-guide/modules/m10/index.html",
-      "bytes": 13381,
-      "sha256": "bc35f75ad2c0bf4a8ca19ed11f388178c6482538dd7bbc2045cf6acb33c8d4ad"
+      "bytes": 13793,
+      "sha256": "2f67784236007bdfab51364dd56cae45e5fb6df05c799669d1dbd68bccde4e23"
     },
     {
       "path": "resources/vla-guide/modules/m11/index.html",
-      "bytes": 12034,
-      "sha256": "6952460a84f456944aa06359f7964ac5abcfe7325835d3175fdd8af9b6446908"
+      "bytes": 12446,
+      "sha256": "58ecc95949c039126cb07aa3f425321800474e02ce54bbb70d3b0c38510923d2"
     },
     {
       "path": "resources/vla-guide/modules/m2/index.html",
-      "bytes": 11925,
-      "sha256": "9372bbbc974f5d1a0e57f4473e7212370dab63db0293ceeb906819145e8300f0"
+      "bytes": 12337,
+      "sha256": "c1c7314b3b9d4c1c55068fbd3a683beeffc8425083dbdf1a25123217c177aad7"
     },
     {
       "path": "resources/vla-guide/modules/m3/index.html",
-      "bytes": 11853,
-      "sha256": "64f583dfdcd9a5149de96e29c0b1982830cd2c4db1a2feda5c1390972550c947"
+      "bytes": 12265,
+      "sha256": "5d214c8a8c3dc95385b2d427dfd6ecfbfee9f26b89c4c30609df0f5af76cd7bc"
     },
     {
       "path": "resources/vla-guide/modules/m4/index.html",
-      "bytes": 12591,
-      "sha256": "76c2204dbe551b583c557c8cb3f536e6bf8573d530eda50ba1dc57e60cfb9898"
+      "bytes": 13003,
+      "sha256": "fc5086d5af734d93224581d72bec89aa797e89c71d0a5de51f0998d281edc523"
     },
     {
       "path": "resources/vla-guide/modules/m5/index.html",
-      "bytes": 12641,
-      "sha256": "ce81870a5628961bc4b0b18f234e0823b6a732cd08f1d82c17c983ec02c18e60"
+      "bytes": 13053,
+      "sha256": "5b062a58372438e3d7b69b1d5bfe442a74cf3aa8eac2dde741553418a9e82706"
     },
     {
       "path": "resources/vla-guide/modules/m6/index.html",
-      "bytes": 11830,
-      "sha256": "79c41ecb95902e0ed435ed6dc8a8a354b957bf9c74d573ea76b3b9547ab8908c"
+      "bytes": 12242,
+      "sha256": "55c445c1da344681deb462fa48cbb5fe4a352aebbf936408b5fca65e9fb739c8"
     },
     {
       "path": "resources/vla-guide/modules/m7/index.html",
-      "bytes": 13053,
-      "sha256": "a3007089acda310fa3b27312344d505ec034ae5c27ffd18dbd522b6af5bfdde6"
+      "bytes": 13465,
+      "sha256": "c759673010a56b8cab455240bf02c68f1a1516354db4c12610bb13f28bcde766"
     },
     {
       "path": "resources/vla-guide/modules/m8/index.html",
-      "bytes": 12329,
-      "sha256": "2ccac0d8098985141477204fd04c5c15fe295d33ef0649c6bf7dbd37b97c7025"
+      "bytes": 12741,
+      "sha256": "85435f1be1bd98afc70139a646077d2180490b7f2c445ea01b6660a6b1934d41"
     },
     {
       "path": "resources/vla-guide/modules/m9/index.html",
-      "bytes": 14808,
-      "sha256": "518b11c9faa1725fdce589ff90ed3906cc77ee9f91290526855266e0b9fc1e32"
+      "bytes": 15220,
+      "sha256": "2e32a2fb641f6db79e9d7c9e90911013a0441cc389e66f3062d8de0149be3e4f"
     },
     {
       "path": "resources/vla-guide/questions.json",

@@ -9,6 +9,8 @@ import os
 from pathlib import Path
 import re
 
+from site_security import secure_html
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "resources"
@@ -94,7 +96,7 @@ def integrate_vla(content, target):
     if target == VLA / "docs/m8-03/index.html":
         content = content.replace('<p><a href="../../assets/resource-audit.json">查看本次链接检查记录（JSON）</a>：HTTP 成功不代表视频播放成功，时间、网络和页面渲染都有影响。</p>',
             '<p><a href="../../../manifest.json">查看本站资源副本清单（JSON）</a>：清单记录复制范围、文件哈希与限制，不代表第三方链接或视频已通过可达性验证。</p>')
-    return content
+    return secure_html(content, vla_config=True)
 
 
 VLA_CSS = """
@@ -142,7 +144,7 @@ def integrate_network(content):
     # Keep the source URL scheme intact; link availability/content is not implied.
     content = content.replace('<div class="wrap">', '<p class="resource-caption">资源导航整理，第三方课程、论文与代码的版权归原权利人。'
         '课程、数值和外链以原始资料为准；本站未对全部外链进行可达性或技术结论认证。</p>\n<div class="wrap">', 1)
-    return content
+    return secure_html(content)
 
 
 def main():
