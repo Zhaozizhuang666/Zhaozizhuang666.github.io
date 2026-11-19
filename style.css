@@ -74,8 +74,8 @@ nav { margin-left: auto; }
 .theme-toggle:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 .language-toggle { flex: 0 0 auto; appearance: none; min-width: 38px; min-height: 27px; height: 27px; padding: 5px 8px; border: 1px solid var(--line); border-radius: 999px; background: var(--soft); color: var(--body); font: 500 10px/1 'Outfit','PingFang SC',sans-serif; letter-spacing: .02em; white-space: nowrap; cursor: pointer; transition: background .2s,color .2s,border-color .2s; }
 .language-toggle:hover { background: var(--line); color: var(--ink); }
-/* English pages hide Chinese copy except for the short profile brief. */
-html:not([data-language="zh"]) [lang="zh-CN"]:not(.profile-zh-brief) { display: none; }
+/* English pages retain original media labels and titles alongside the short profile brief. */
+html:not([data-language="zh"]) [lang="zh-CN"]:not(.profile-zh-brief):not(.media-original) { display: none; }
 /* Long project descriptions follow the selected language. */
 html[data-language="zh"] :is(.bilingual-context,.paired-en,.library-zh,.handbook-zh,.community-intro-en) { display: none; }
 html:not([data-language="zh"]) :is(.community-intro-zh,.case-summary[lang="zh-CN"],.learning-summary[lang="zh-CN"],.project-summary[lang="zh-CN"]) { display: none; }
