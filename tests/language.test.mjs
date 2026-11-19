@@ -174,6 +174,18 @@ test('all pages wire one language control after the early initializer, and allow
   }
 });
 
+test('full evaluation copy follows the selected language, with only a short Chinese intro on English pages', () => {
+  const styles = read('style.css');
+  const page = read('index.html');
+  assert.match(styles, /html:not\(\[data-language="zh"\]\)\s+\[lang="zh-CN"\]:not\(\.profile-zh-brief\)\s*\{\s*display:\s*none;\s*\}/);
+  assert.match(styles, /html\[data-language="zh"\]\s*:is\([^}]*\.paired-en[^}]*\)\s*\{\s*display:\s*none;\s*\}/);
+  assert.match(styles, /html:not\(\[data-language="zh"\]\)\s*:is\([^}]*\.case-summary\[lang="zh-CN"\][^}]*\)\s*\{\s*display:\s*none;\s*\}/);
+  assert.match(page, /class="case-summary" lang="zh-CN"/);
+  assert.match(page, /class="learning-summary" lang="zh-CN"/);
+  assert.match(page, /class="project-summary" lang="zh-CN"/);
+  assert.match(page, /class="bilingual-context profile-zh-brief" lang="zh-CN">专注具身机器人评测与真机验证。/);
+});
+
 test('long English site prose is covered by editorial translations rather than an external service', () => {
   const p = page();
   const entities = text => text.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
