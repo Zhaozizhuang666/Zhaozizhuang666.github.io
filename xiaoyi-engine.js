@@ -221,7 +221,7 @@
       if (domestic) {
         const links = (domestic.externalLinks || []).filter(link => link && /^https?:\/\//.test(link.url || ''));
         const websiteSources = links.map(link => ({...link, website: link.url, urlType: 'external-links', kind: domestic.kind, sourceTitle: domestic.sourceTitle, sourceNote: domestic.sourceNote}));
-        return {text: `国内大模型网站入口（在新标签页打开）：\n\n${websiteSources.map(entry => `[${entry.name}](${entry.website})`).join('\n\n')}\n\n以上为外部网站。Xiaoyi 当前仅使用本地知识模式，未接入上述平台的 API。`, sources: websiteSources};
+        return {text: `国内大模型网站入口（在新标签页打开）：\n\n${websiteSources.map(entry => `[${entry.name}](${entry.website})`).join('\n\n')}\n\n以上为外部网站。打开链接不会转移小艺对话或标签页记忆。小艺当前仅使用本地知识模式，尚未接入这些平台的 API。`, sources: websiteSources};
       }
       if (!sources.length) return {text: '当前主题未检索到可核实的来源。请提供具体概念、赛事或刊名，以便匹配已收录资料。', sources: []};
       return {text: `相关来源：\n\n${sources.map(entry => `[${entry.name}](${entry.website})${entry.urlType === 'search' ? '（检索入口，尚未核验为官网）' : ''}`).join('\n\n')}\n\n${sources.some(entry => entry.sourceType === 'primary-paper') ? '原始论文可用于核查概念与方法；本站未声明复现其研究结果。' : '来源类型与具体位置见下方资料卡片。'}`, sources};

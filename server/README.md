@@ -4,17 +4,16 @@
 
 ## 部署
 
-需要 Cloudflare 账号、Node.js 22+ 和至少一家已开通的模型 API。先在 `wrangler.toml` 中确认 `ALLOWED_ORIGIN` 是网站的精确 Origin（协议 + 域名 + 端口，没有路径或尾斜线）。多个站点可用逗号分隔，禁止 `*`；开发的 HTTP 只接受 localhost、127.0.0.1 或 [::1]。
+需要 Cloudflare 账号和 Node.js 22+。默认使用绑定的 Workers AI，不需要供应商 API key；GLM-5.3、DashScope 等 API provider 是可选项。Workers AI 的实际额度与计费取决于 Cloudflare 账户，不能假定无限免费。部署前确认 `wrangler.toml` 中的 `ALLOWED_ORIGIN` 是两个网站的精确 Origin（协议 + 域名 + 端口，没有路径或尾斜线）。多个站点以逗号分隔，禁止 `*`；开发用 HTTP 只接受 localhost、127.0.0.1 或 [::1]。
 
 在本目录执行以下命令。`npx wrangler@4` 仅在运行命令时下载 CLI；项目本身不需要安装依赖。
 
 ```sh
 npx wrangler@4 login
 npx wrangler@4 deploy
-npx wrangler@4 secret put ZHIPU_API_KEY
 ```
 
-只给实际使用的供应商设置 secret。其他可选命令：
+只有改用需要密钥的可选 provider 时，才设置对应的 Wrangler secret：
 
 ```sh
 npx wrangler@4 secret put DASHSCOPE_API_KEY
@@ -27,7 +26,7 @@ npx wrangler@4 secret put CUSTOM_API_KEY
 
 密钥在交互提示中输入，不能写入代码、Git、`wrangler.toml` 的 `[vars]` 或前端配置。示例中的 `replace-with-...` 不会被当成有效配置。
 
-`MODEL_PROVIDER` 为内置 `deepseek`、`qwen`、`kimi`、`glm`、`tencent`、`ark`，或服务器注册表中配置的自定义 ID；`MODEL_NAME` 只能是服务端允许列表中的别名。本地 `env.example` 默认使用 `glm` / `glm-5.3`，部署时仍须确认 `wrangler.toml` 中的实际配置。默认供应商缺少密钥时自动选第一家已配置的服务。所有供应商都未配置时，`GET /api/models` 返回空列表，聊天明确返回 `503 model_not_configured`；前端应保留本地知识库模式并显示服务未配置。
+`MODEL_PROVIDER` 可选内置 `cloudflare`、`deepseek`、`qwen`、`kimi`、`glm`、`tencent`、`ark`，或服务端登记的自定义 ID；`MODEL_NAME` 必须在服务端允许列表中。生产 `wrangler.toml` 与本地 `env.example` 默认使用 Workers AI 的 `@cf/zai-org/glm-4.7-flash`。缺少其他 API provider 的密钥不会影响 Cloudflare provider；若所有 provider 均不可用，`GET /api/models` 返回空列表，聊天返回 `503 model_not_configured`，前端保留本地知识模式。
 
 ### GLM-5.3 与 Tencent TokenHub
 
@@ -97,7 +96,7 @@ curl "https://your-worker.example.workers.dev/api/chat" \\
 
 客户端不应把供应商地址当作 API 地址，也不应复制供应商 API key；Worker 会从它自己的服务器配置中选择上游并添加 Authorization。
 
-当前网站仅启用本地知识模式。若未来重新部署在线服务，需明确设置 `window.XIAOYI_CONFIG.enableOnline = true`，并把 `window.XIAOYI_CONFIG.endpoint` 指向 Worker 的完整 `/api/chat` URL。模型列表位于同一 Worker 的 `/api/models`。前端只存公开 URL，不存 API key。`GET /api/models` 仅说明已设置了密钥，不能保证账号余额、模型授权、供应商服务可用；真实可用性以调用结果为准。
+网站配置启用在线模式后，`window.XIAOYI_CONFIG.endpoint` 只保存 Worker 的公开 `/api/chat` URL；模型列表从同一 Worker 的 `/api/models` 读取。浏览器不保存供应商密钥。在线模型会收到当前请求中的近期对话和站内检索资料；Worker 不保存对话，但推理服务仍按 Cloudflare 服务条款处理请求。`/api/models` 中出现模型只代表 binding 与白名单可用，真实推理和账户额度以部署后的 `/api/chat` 测试及 Cloudflare 控制台为准。
 
 ## 本地开发与验证
 

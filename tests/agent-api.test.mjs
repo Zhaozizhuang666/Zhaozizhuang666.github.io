@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import {createHandler, validatePayload, parseAllowedOrigins, configuredModels, createMemoryLimiter, parseCustomProviders, parseCloudflareModels, CLOUDFLARE_CHAT_MODELS, LIMITS} from '../server/agent-worker.mjs';
 import {buildSystemPrompt, ROLE_PROMPT} from '../server/system-prompt.mjs';
 import {retrieveKnowledge} from '../server/knowledge.mjs';
@@ -31,6 +32,20 @@ test('Origin configuration must be explicit and exact', () => {
   assert.deepEqual(parseAllowedOrigins('https://example.com/path'), []);
   assert.deepEqual(parseAllowedOrigins('http://public.example'), []);
   assert.deepEqual(parseAllowedOrigins(`${origin}, http://localhost:8000`), [origin, 'http://localhost:8000']);
+});
+
+test('production Worker config allows only the two public site origins and verified Cloudflare models', () => {
+  const config = fs.readFileSync(new URL('../server/wrangler.toml', import.meta.url), 'utf8');
+  const allowed = config.match(/^ALLOWED_ORIGIN = "([^"]+)"$/m)?.[1];
+  assert.deepEqual(parseAllowedOrigins(allowed), [
+    origin,
+    'https://evident-perch-d5gh4ja4h948de79a-1445323010.tcloudbaseapp.com',
+  ]);
+  assert.match(config, /^MODEL_PROVIDER = "cloudflare"$/m);
+  assert.match(config, /^MODEL_NAME = "@cf\/zai-org\/glm-4\.7-flash"$/m);
+  const models = config.match(/^CLOUDFLARE_MODELS = '([^']+)'$/m)?.[1];
+  assert.deepEqual(JSON.parse(models), ['@cf/zai-org/glm-4.7-flash']);
+  assert.doesNotMatch(allowed, /\*/);
 });
 
 test('rejects absent/forged origins without permissive CORS and missing config as 503', async () => {

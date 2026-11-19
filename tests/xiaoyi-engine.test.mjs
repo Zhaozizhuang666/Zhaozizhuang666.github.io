@@ -26,13 +26,14 @@ test('learning entry navigation remains distinct from conceptual VLA explanation
   assert.ok(ids(make().reply('VLA是什么？')).includes('tech-vla-foundation'));
 });
 
-test('domestic model website request returns all external links without implying API access', () => {
+test('external model website links remain distinct from Xiaoyi model access', () => {
   const chat = conversation();
   const result = chat.ask('给我目前国内大模型网站链接');
   assert.equal(result.sources.length, 6);
   assert.deepEqual(result.sources.map(source => source.name), ['DeepSeek', '通义千问', 'Kimi', '豆包', '智谱清言', '腾讯元宝']);
   assert.match(result.text, /外部网站/);
-  assert.match(result.text, /Xiaoyi 当前仅使用本地知识模式/);
+  assert.match(result.text, /打开链接不会转移小艺对话或标签页记忆/);
+  assert.match(result.text, /小艺当前仅使用本地知识模式/);
   const followup = chat.ask('把链接给我');
   assert.equal(followup.sources.length, 6);
   assert.ok(followup.text.includes('https://yuanbao.tencent.com/'));

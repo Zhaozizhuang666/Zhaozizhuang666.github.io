@@ -4,11 +4,11 @@ This adapter uses the official `env.AI.run(model, input)` binding. It does not n
 
 ## Configuration
 
-The checked-in Wrangler files add an `AI` binding and configure three verified text-chat models. They keep the existing GLM API provider as the default; adding the binding does not change the selected default.
+The checked-in production Wrangler file binds `AI` and selects `@cf/zai-org/glm-4.7-flash` as the default text-chat model. This path needs no provider API key in the browser or Worker secrets. Account entitlement and usage limits vary, so check the Cloudflare dashboard rather than assuming unlimited free inference.
 
 ```toml
 [vars]
-MODEL_PROVIDER = "cloudflare" # optional: make the binding the default provider
+MODEL_PROVIDER = "cloudflare"
 MODEL_NAME = "@cf/zai-org/glm-4.7-flash"
 CLOUDFLARE_MODELS = '["@cf/zai-org/glm-4.7-flash","@cf/qwen/qwen3-30b-a3b-fp8","@cf/meta/llama-3.1-8b-instruct-fp8"]'
 

@@ -4,12 +4,12 @@ compatibility_date = "2026-10-25"
 workers_dev = true
 
 [vars]
-ALLOWED_ORIGIN = "https://zhaozizhuang666.github.io"
-MODEL_PROVIDER = "glm"
-MODEL_NAME = "glm-5.3"
+ALLOWED_ORIGIN = "https://zhaozizhuang666.github.io,https://evident-perch-d5gh4ja4h948de79a-1445323010.tcloudbaseapp.com"
+MODEL_PROVIDER = "cloudflare"
+MODEL_NAME = "@cf/zai-org/glm-4.7-flash"
 MAX_TOKENS = "2048"
 REQUEST_TIMEOUT_MS = "30000"
-CLOUDFLARE_MODELS = '["@cf/zai-org/glm-4.7-flash","@cf/qwen/qwen3-30b-a3b-fp8","@cf/meta/llama-3.1-8b-instruct-fp8"]'
+CLOUDFLARE_MODELS = '["@cf/zai-org/glm-4.7-flash"]'
 
 [ai]
 binding = "AI"

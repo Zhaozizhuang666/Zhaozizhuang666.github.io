@@ -6,8 +6,8 @@ workers_dev = true
 
 [vars]
 ALLOWED_ORIGIN = "https://your-name.github.io"
-MODEL_PROVIDER = "glm"
-MODEL_NAME = "glm-5.3"
+MODEL_PROVIDER = "cloudflare"
+MODEL_NAME = "@cf/zai-org/glm-4.7-flash"
 MAX_TOKENS = "2048"
 REQUEST_TIMEOUT_MS = "30000"
 # Only verified text-chat IDs are accepted. An empty/invalid list hides this provider.
