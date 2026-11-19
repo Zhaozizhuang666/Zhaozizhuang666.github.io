@@ -21,11 +21,13 @@ import sys
 import tempfile
 from urllib.parse import unquote, urlsplit
 
+from site_security import CONTENT_SECURITY_POLICY
+
 
 ROOT = Path(__file__).resolve().parents[1]
 FORMAT = "zizhuang-public-site-v1"
 ROOT_FILES = frozenset({
-    "index.html", "knowledge.html", "guide.html", "favicon.ico", "QA.md",
+    "index.html", "knowledge.html", "guide.html", "favicon.ico", "QA.md", "navigation.js",
     "disclosures.js", "entrance.js", "gallery.css", "gallery.js",
     "knowledge.css", "knowledge.js", "language-copy.js", "language-init.js",
     "language.js", "research.js", "scroll-init.js", "style.css",
@@ -159,10 +161,13 @@ class Page(HTMLParser):
         super().__init__()
         self.ids: set[str] = set()
         self.links: list[str] = []
+        self.security_policy: str | None = None
         self.feed(raw.decode("utf-8"))
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attributes = dict(attrs)
+        if tag == "meta" and (attributes.get("http-equiv") or "").lower() == "content-security-policy":
+            self.security_policy = attributes.get("content")
         for key in (("id", "name") if tag == "a" else ("id",)):
             if attributes.get(key):
                 self.ids.add(attributes[key])
@@ -211,6 +216,8 @@ def check_links(files: dict[str, bytes]) -> dict[str, int]:
             anchors += 1
 
     for name, page in pages.items():
+        if page.security_policy != CONTENT_SECURITY_POLICY:
+            raise BuildError(f"Missing or unexpected content security policy in {name}")
         for reference in page.links:
             check(name, reference)
     for name, raw in files.items():

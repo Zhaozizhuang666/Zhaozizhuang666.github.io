@@ -1,6 +1,6 @@
 (() => {
 'use strict';
-const cfg=window.VLA_CONFIG, $=s=>document.querySelector(s), all=s=>[...document.querySelectorAll(s)];
+const cfg=window.VLA_CONFIG=JSON.parse(document.getElementById('vla-config').textContent), $=s=>document.querySelector(s), all=s=>[...document.querySelectorAll(s)];
 const KEY='vla-guide-v2';
 let state={completed:[],checks:{},last:null};
 try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved&&Array.isArray(saved.completed)&&saved.checks&&typeof saved.checks==='object')state=saved;}catch{}
