@@ -1,0 +1,258 @@
+    const modules = [
+      { id: 'M1', title: '数学与深度学习最小必要集', desc: '补齐理解 embedding、loss、attention 和训练/推理差异需要的直觉，不走数学考研路线。', hours: '约 28 h', outcome: '画出“向量表示 → 相似度 → 梯度更新 → attention”的一页概念图；能用自己的话解释过拟合、交叉熵、梯度下降和 embedding。', resources: [
+        ['m1-3b1b','线性代数的本质（Essence of Linear Algebra）','视频课程','3Blue1Brown','英文讲解 / 中文字幕','5 h','免费','入门','P0','建立向量、矩阵、线性变换的可视直觉，为 embedding 和 attention 做准备。','看第 1–5 集；每集写一句“它和文本向量有什么关系”。','https://www.3blue1brown.com/topics/linear-algebra','视频'],
+        ['m1-d2l','动手学深度学习：线性代数与多层感知机','在线书 / 代码','李沐等','中文','10 h','免费','入门','P0','掌握张量、自动微分、损失函数、梯度下降和过拟合的最小闭环。','从预备知识中的线性代数开始，再读多层感知机章节及配套代码；不必通读全书。','https://zh.d2l.ai/chapter_preliminaries/linear-algebra.html','书 / 代码'],
+        ['m1-lihongyi','机器学习 2021 春季课程','视频课程','李宏毅（台湾大学）','中文','8 h','免费','入门','P1','用课程视频补齐监督学习、神经网络和训练过程直觉。','选看神经网络、梯度下降、CNN/Transformer相关章节；跳过与岗位无关的推导。','https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.php','视频'],
+        ['m1-karpathy','Neural Networks: Zero to Hero','视频课程 / 代码','Andrej Karpathy','英文','18 h','免费','进阶','P1','从反向传播到 GPT 小模型，适合想看懂训练代码时深入。','只看 micrograd 和 makemore 前半；把它当选修，不要求复现 GPT。','https://github.com/karpathy/nn-zero-to-hero','视频 / 代码'],
+        ['m1-cs224n','Stanford CS224N: Natural Language Processing with Deep Learning','大学课程','Stanford University','英文','40+ h','免费','硬核','P2','系统补 NLP；覆盖面大，优先级低于直接做 RAG。','需要时查 attention、语言模型和词向量讲义，不按完整学期追课。','https://web.stanford.edu/class/cs224n/','视频 / 讲义']
+      ]},
+      { id: 'M2', title: 'Python 工程化与协作', desc: '把 notebook 试验整理为可复用、可测试、可运行的服务；只学项目需要的工程边界。', hours: '约 32 h', outcome: '仓库包含 README、依赖锁定、配置样例、日志、pytest 测试和一个 FastAPI 接口；他人能按说明本地运行。', resources: [
+        ['m2-git','Pro Git 中文版','电子书 / 文档','Scott Chacon、Ben Straub','中文','5 h','免费','入门','P0','掌握分支、提交、合并和冲突解决，形成可追溯开发记录。','读第 1–3 章和分支章节；每个小功能单独 commit。','https://git-scm.com/book/zh/v2','书 / 文档'],
+        ['m2-packaging','Python Packaging User Guide: Packaging Python Projects','官方文档','Python Packaging Authority','英文','4 h','免费','入门','P0','建立 pyproject.toml、包结构和依赖声明，避免脚本只有作者电脑能运行。','照 tutorial 给主项目创建最小包；无需发布到 PyPI。','https://packaging.python.org/en/latest/tutorials/packaging-projects/','文档'],
+        ['m2-pytest','pytest: Get Started','官方文档','pytest contributors','英文','5 h','免费','入门','P0','给口径转换、解析、拒答和检索模块写可重复的测试。','完成断言、fixture、参数化三个部分；为一个边界条件写测试。','https://docs.pytest.org/en/stable/getting-started.html','文档'],
+        ['m2-fastapi','FastAPI Tutorial','官方文档','FastAPI','英文','8 h','免费','入门','P0','把工具封装成带请求校验和 OpenAPI 文档的 HTTP 接口。','跟做 path/query/body、Pydantic 模型和错误处理；部署先本地。','https://fastapi.tiangolo.com/tutorial/','文档 / 代码'],
+        ['m2-docker','Docker 从入门到实践','中文社区教程','Yeasy','中文','8 h','免费','入门','P1','理解镜像、容器、端口、卷和环境变量，便于交付可复现 demo。','先完成容器化一个 FastAPI 项目；Kubernetes 不在本阶段；留意教程版本并以当前 Docker 行为为准。','https://yeasy.gitbook.io/docker_practice/','文档'],
+        ['m2-python','Python 官方教程','官方文档','Python Software Foundation','中文 / 英文','6 h','免费','入门','P1','针对不熟悉的模块、异常、虚拟环境和类型标注查漏。','查阅而非从头学习；将主项目函数加上清楚的类型和异常。','https://docs.python.org/zh-cn/3/tutorial/','文档']
+      ]},
+      { id: 'M3', title: 'Transformer 与 LLM 原理', desc: '形成能支撑技术选型和面试解释的原理图，不要求复现论文或训练大模型。', hours: '约 24 h', outcome: '能讲清 token、embedding、self-attention、上下文窗口、预训练与推理；能解释 RAG 为什么补充知识但不保证正确。', resources: [
+        ['m3-qwen','Qwen Concepts and Getting Started','官方文档 / 示例','Qwen 团队','中文 / 英文','6 h','免费 / 开源','入门','P0','用可直达的模型官方文档理解模型调用、上下文、生成和工具链基础。','阅读概念与快速开始；对照 M4 的 JSON 输出和工具调用文档做最小实践。','https://qwen.readthedocs.io/en/latest/getting_started/concepts.html','文档 / 代码'],
+        ['m3-hf','Hugging Face NLP Course','在线课程 / 视频 / 代码','Hugging Face','英文','12 h','免费','进阶','P2','作为 Transformers、tokenizer、模型调用和数据集的扩展课程。','重点学习第 1–4、6 章；若课程页面在当前网络打不开，用“打不开？搜标题”备用入口。','https://huggingface.co/learn/nlp-course/chapter1/1','课程 / 视频'],
+        ['m3-illustrated','The Illustrated Transformer','技术长文','Jay Alammar','英文','3 h','免费','入门','P0','通过图示看懂 attention、encoder/decoder 与 Transformer 数据流。','通读一次，自己画一张从 token 到输出概率的流程图。','https://jalammar.github.io/illustrated-transformer/','图文'],
+        ['m3-lihongyi-genai','生成式 AI 导论 2024 春季课程','视频课程','李宏毅（台湾大学）','中文','8 h','免费','入门','P1','用中文建立生成模型、LLM 和生成式 AI 应用的全局认识。','挑 LLM、生成与推理相关章节；随手记录术语，不追数学细节。','https://speech.ee.ntu.edu.tw/~hylee/genai/2024-spring.php','视频 / 讲义'],
+        ['m3-attention','Attention Is All You Need','论文','Vaswani et al.','英文','4 h','免费','硬核','P2','了解 Transformer 的原始问题背景和注意力机制来源。','读摘要、模型图、attention 部分；不用复现或逐式推导。','https://arxiv.org/abs/1706.03762','论文'],
+        ['m3-speech','Speech and Language Processing（第 3 版在线稿）','教材 / 讲义','Daniel Jurafsky、James H. Martin','英文','查阅','免费','进阶','P2','作为 NLP 概念参考书，查 tokenization、语言模型与评估。','按需检索章节；在线稿会更新，引用章节时以页面版本为准。','https://web.stanford.edu/~jurafsky/slp3/','书 / 文档']
+      ]},
+      { id: 'M4', title: 'Prompt 与结构化输出', desc: '从自然语言指令走向稳定的数据契约：字段、schema、校验、重试和人工复核。', hours: '约 16 h', outcome: '对公开年报字段抽取工具提供 JSON Schema、错误处理和 30 条人工核验样本；字段格式错误率可统计。', resources: [
+        ['m4-dlai-prompt','ChatGPT Prompt Engineering for Developers','短课 / 视频','DeepLearning.AI、OpenAI','英文','3 h','免费注册学习','入门','P0','练习任务拆解、示例提示、迭代和输出约束。','看完短课后把同一抽取任务做 prompt 前后对照。','https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/','视频 / 代码'],
+        ['m4-structured','结构化输出（通义千问 / Model Studio）','官方文档','阿里云百炼 Model Studio','中文','2 h','免费文档；API按量计费','入门','P0','掌握 JSON 输出约束与“格式正确”和“内容正确”的区别。','对照 JSON Schema 文档为项目定义字段、必填规则和异常返回。','https://help.aliyun.com/zh/model-studio/qwen-structured-output','文档'],
+        ['m4-jsonschema','Getting Started with JSON Schema','规范文档','JSON Schema','英文','2 h','免费','入门','P0','能表达字段类型、必填、枚举、范围及嵌套结构。','完成一个银行指标/报告字段 schema，并写两个非法样例。','https://json-schema.org/learn/getting-started-step-by-step','文档'],
+        ['m4-aliyun','Prompt Engineering（通义千问 / Model Studio）','官方文档','阿里云百炼 Model Studio','中文','3 h','免费文档；API按量计费','入门','P1','使用可在国内访问的官方模型平台文档，学习指令设计、示例和输出约束。','把文档作为中文参考手册，配合 JSON Schema 为同一抽取任务设计字段约束。','https://help.aliyun.com/zh/model-studio/prompt-engineering','文档'],
+        ['m4-function','Function Calling / 工具调用（通义千问）','官方文档 / 代码','阿里云百炼 Model Studio','中文','3 h','免费文档；API按量计费','进阶','P1','理解模型提出工具调用、应用执行工具和结果回传的边界。','跟读一次调用闭环，记录参数校验、用户权限检查和错误返回。','https://help.aliyun.com/zh/model-studio/qwen-function-calling','文档 / 代码']
+      ]},
+      { id: 'M5', title: 'Embedding、向量库与检索', desc: '将“搜相似文本”拆为表示、相似度、过滤、召回和排序，并用真实样本观察失误。', hours: '约 22 h', outcome: '建立 50 条查询与相关文档的检索验证集，报告 Recall@k、MRR 或 nDCG，并能解释错召回样本。', resources: [
+        ['m5-sbert','Semantic Search','官方教程 / 代码','Sentence Transformers','英文','5 h','免费','入门','P0','实现 query/document embedding、相似度和语义搜索基线。','跟做 semantic search；用中文公开制度段落构造小型检索测试集。','https://www.sbert.net/examples/sentence_transformer/applications/semantic-search/README.html','教程 / 代码'],
+        ['m5-qdrant','Qdrant Tutorials','官方教程','Qdrant','英文','6 h','免费文档；本地开源','入门','P0','实践向量库 collection、payload filter、nearest-neighbor search。','选一个快速入门教程；优先掌握过滤条件与检索结果解释。','https://qdrant.tech/documentation/tutorials/','文档 / 代码'],
+        ['m5-openai','文本向量（通义千问 Embedding）','官方文档','阿里云百炼 Model Studio','中文','3 h','免费文档；API按量计费','入门','P1','熟悉中文 embedding 接口、输入限制及向量用途。','看模型输入和向量输出；把 embedding 服务与向量库解耦。','https://help.aliyun.com/zh/model-studio/text-embedding-synchronous-api','文档'],
+        ['m5-faiss','Faiss Wiki','开源项目文档','Meta AI','英文','5 h','免费 / 开源','进阶','P1','理解向量索引与近似最近邻的基本选项。','看 Getting started 与 index 类型；只在本地基线需要时实践。','https://github.com/facebookresearch/faiss/wiki','文档 / 代码'],
+        ['m5-mteb','MTEB: Massive Text Embedding Benchmark','论文 / 评测项目','Muennighoff et al.','英文','3 h','免费','进阶','P2','理解 embedding 模型在不同任务上的取舍，避免只看榜单总分。','读任务分类和结果；针对中文金融语料仍需自己验证。','https://github.com/embeddings-benchmark/mteb','论文 / 代码']
+      ]},
+      { id: 'M6', title: 'RAG 全链路', desc: '把数据清洗、切分、召回、重排、引用、拒答和评测串成业务可审计流程。', hours: '约 34 h', outcome: '完成制度/监管问答：每个回答有原文依据与页码/段落，越权或证据不足时拒答，并以固定测试集回归。', resources: [
+        ['m6-dlai-rag','Retrieval Augmented Generation (RAG)','短课 / 视频','DeepLearning.AI、Pinecone','英文','4 h','免费注册学习','入门','P0','从向量检索到 RAG 生成建立实操闭环。','跟做课程核心 notebook；把每一步映射到制度问答。','https://www.deeplearning.ai/short-courses/retrieval-augmented-generation-rag/','视频 / 代码'],
+        ['m6-llamaindex','Understanding RAG','官方文档','LlamaIndex','英文','5 h','免费','入门','P0','理解文档加载、节点切分、检索器、query engine 与响应合成。','先做最小 RAG；保留原文定位信息，观察 chunk 长度对召回影响。','https://developers.llamaindex.ai/python/framework/understanding/rag/','文档 / 代码'],
+        ['m6-langchain','Build a RAG application','官方文档','LangChain','英文','5 h','免费','入门','P1','熟悉检索组件和可替换边界，比较不同框架的 RAG 抽象。','按当前 OSS 文档完成教程；官方路由可能变动，跟随跳转后的现行版本。','https://docs.langchain.com/oss/python/langchain/rag','文档 / 代码'],
+        ['m6-ragas','Ragas Documentation','官方文档 / 开源项目','Ragas','英文','5 h','免费 / 开源','进阶','P1','对 RAG 的检索相关性、答案忠实度等指标建立评测概念。','先读 metrics 与 testset；小数据集同时做人工标注校准。','https://docs.ragas.io/en/stable/','文档 / 代码'],
+        ['m6-ragflow','RAGFlow','开源项目 / 演示','InfiniFlow 社区','中文 / 英文','4 h','免费 / 开源','入门','P2','观察文档解析、知识库和引用溯源产品如何组合。','用于产品调研和比较，不把点部署按钮当作工程能力证明。','https://github.com/infiniflow/ragflow','代码 / 演示']
+      ]},
+      { id: 'M7', title: 'Agent 与工作流编排', desc: '优先可控工作流和工具调用；按权限、超时、审计和人工确认设计，不追求全自主 Agent。', hours: '约 20 h', outcome: '实现一个受限工具流程：输入校验 → 查询/计算工具 → 结果校验 → 引用与日志；危险操作需人工确认。', resources: [
+        ['m7-langgraph','LangGraph Overview','官方文档','LangChain','英文','5 h','免费','入门','P0','掌握有状态图、节点、边、检查点和人工介入等工作流概念。','先读 quickstart 与 human-in-the-loop；把流程画成状态图。','https://docs.langchain.com/oss/python/langgraph/overview','文档 / 代码'],
+        ['m7-mcp','Model Context Protocol: Introduction','协议文档','Model Context Protocol','英文','3 h','免费','入门','P1','理解 host/client/server 及 tools/resources/prompts 的连接方式。','先看概念和安全章节；仅做本地只读工具练习。','https://modelcontextprotocol.io/introduction','文档'],
+        ['m7-dlai-agent','AI Agents in LangGraph','短课 / 视频','DeepLearning.AI、LangChain','英文','3 h','免费注册学习（可用性可能变化）','入门','P1','用视频理解 Agent 状态、工具使用和 human-in-the-loop。','看课程并比较 agent loop 与确定性 workflow 的差异。','https://www.deeplearning.ai/courses/ai-agents-in-langgraph','视频 / 代码'],
+        ['m7-qwen','Qwen-Agent','开源项目 / 代码','Qwen 团队','中文 / 英文','4 h','免费 / 开源','进阶','P1','参考国内模型工具调用、RAG 和 MCP 相关实现。','读 README 与一个最小 demo；先理解工具 schema 和执行层。','https://github.com/QwenLM/Qwen-Agent','代码'],
+        ['m7-dify','Dify Documentation','产品文档 / 视频','Dify','中文 / 英文','4 h','免费 / 开源；云服务有付费层','入门','P2','快速了解可视化工作流、知识库和应用配置，便于方案演示。','用来验证流程想法；核心项目仍保留代码、测试与配置说明。','https://docs.dify.ai/','文档 / 演示']
+      ]},
+      { id: 'M8', title: '微调与数据构造', desc: '区分 RAG、prompt 与 fine-tuning 适用问题；微调是加分项，不作为主线阻塞。', hours: '约 18 h', outcome: '用少量合成样本做一次 LoRA/QLoRA 实验或完成可复现的微调方案评估；对比基线并说明不适用场景。', resources: [
+        ['m8-dlai-ft','Finetuning Large Language Models','短课 / 视频','DeepLearning.AI、字节跳动','英文','4 h','免费注册学习（可用性可能变化）','入门','P1','理解监督微调数据、训练过程、评估与常见失效。','课程跟做小样本实验；不将微调用于频繁变化的制度知识。','https://www.deeplearning.ai/courses/finetuning-large-language-models','视频 / 代码'],
+        ['m8-peft','PEFT Documentation','官方文档 / 代码','Hugging Face','英文','5 h','免费 / 开源','进阶','P1','掌握 LoRA adapter 的基本概念、配置与保存加载。','阅读 quicktour 与 LoRA 指南；优先用现成小模型/托管 notebook。','https://huggingface.co/docs/peft/index','文档 / 代码'],
+        ['m8-qlora','QLoRA: Efficient Finetuning of Quantized LLMs','论文','Dettmers et al.','英文','4 h','免费','硬核','P2','了解 4-bit 量化微调的技术思路与实验边界。','读摘要、方法图和显存/质量结果；不要求复现。','https://arxiv.org/abs/2305.14314','论文'],
+        ['m8-trl','TRL Documentation','官方文档 / 代码','Hugging Face','英文','5 h','免费 / 开源','进阶','P2','需要时查 SFTTrainer 和偏好优化工具接口。','仅用于扩展阅读；完整 RLHF 流程不在转型必修范围。','https://huggingface.co/docs/trl/index','文档 / 代码']
+      ]},
+      { id: 'M9', title: '推理部署与成本', desc: '理解服务化、量化、吞吐、延迟和 token 成本；以可复现实测代替追求自建 GPU 集群。', hours: '约 24 h', outcome: '记录一次端到端延迟、并发与单次成本估算；有健康检查、超时、限流和失败降级说明。', resources: [
+        ['m9-fastapi','FastAPI Tutorial（服务化复用）','官方文档','FastAPI','英文','6 h','免费','入门','P0','提供与部署解耦的模型服务接口基础。','和 M2 合并学习；掌握请求校验、异常响应和 OpenAPI。','https://fastapi.tiangolo.com/tutorial/','文档 / 代码'],
+        ['m9-vllm','vLLM Documentation','官方文档 / 开源项目','vLLM','英文','6 h','免费 / 开源；GPU 推理成本另计','进阶','P1','了解高吞吐 LLM serving、批处理和量化能力。','读 quickstart 与性能概念；无 GPU 时用文档/托管 endpoint 验证。','https://docs.vllm.ai/en/latest/','文档 / 代码'],
+        ['m9-bnb','Bitsandbytes Quantization','官方文档','Hugging Face','英文','4 h','免费 / 开源','进阶','P1','理解 8-bit/4-bit 量化如何降低内存及精度代价。','阅读量化配置和硬件要求；计算显存只需数量级估算。','https://huggingface.co/docs/transformers/quantization/bitsandbytes','文档'],
+        ['m9-llama','llama.cpp','开源项目 / 文档','ggerganov 社区','英文','4 h','免费 / 开源','进阶','P2','了解本地 CPU/GPU 推理和 GGUF 模型的部署选择。','浏览 README，评估本地演示可行性；不要求自己优化内核。','https://github.com/ggml-org/llama.cpp','代码 / 文档'],
+        ['m9-cost','模型服务价格说明（百炼 Model Studio）','官方价格页','阿里云','中文','1 h','免费查阅；调用按量计费','入门','P1','建立按输入/输出 token、模型与调用量估算成本的习惯。','用项目实际 token 量估算月成本，并比较缓存、小模型和批量调用。','https://help.aliyun.com/zh/model-studio/model-pricing','文档']
+      ]},
+      { id: 'M10', title: '评测、安全与金融合规', desc: '让回答有证据、风险可测、人工可介入；监管文本按现行版本核对后再用于生产判断。', hours: '约 30 h', outcome: '为项目维护固定测试集、错误分类、拒答/提示注入测试、人工复核记录和版本变更说明；不将 demo 当合规结论。', resources: [
+        ['m10-openai-evals','Evaluating and Debugging Generative AI','短课 / 视频','DeepLearning.AI','英文','4 h','免费注册学习（可用性可能变化）','入门','P0','建立离线评测集、评分标准和持续回归的基本做法。','从 30–50 个真实问题开始；将答案正确、证据支持、拒答分开标记。','https://www.deeplearning.ai/courses/evaluating-debugging-generative-ai','视频 / 代码'],
+        ['m10-owasp','OWASP Top 10 for LLM Applications','安全指南','OWASP GenAI Security Project','英文','4 h','免费','入门','P0','检查 prompt injection、敏感信息泄漏、不安全输出和过度代理权限。','逐项映射到 RAG demo 的威胁与测试用例；优先做只读、最小权限。','https://genai.owasp.org/llm-top-10/','文档'],
+        ['m10-genai-rule','生成式人工智能服务管理暂行办法（国家互联网信息办公室令第 15 号）','监管文件','国家网信办等七部门','中文','3 h','免费','进阶','P0','理解面向境内公众提供生成式 AI 服务的基本合规要求和适用范围。','读正式文本；这是学习材料，不等同于对具体业务的法律意见。','https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm','法规'],
+        ['m10-algo-rule','互联网信息服务算法推荐管理规定（国家互联网信息办公室等四部门令第 9 号）','监管文件','国家网信办等四部门','中文','3 h','免费','进阶','P1','理解算法推荐服务治理、用户权益与备案等制度背景。','核对适用范围；重点关注个性化推荐与生成式服务制度的区别。','https://www.cac.gov.cn/2022-01/04/c_1642894606364259.htm','法规'],
+        ['m10-digital-finance','关于银行业保险业数字化转型的指导意见（银保监发〔2022〕2 号）','监管文件','原中国银保监会','中文','3 h','免费','进阶','P0','把银行数据治理、科技能力和风险管理放回行业数字化转型语境。','读目标要求和风险治理部分；监管文件入口按原银保监会官方站内标题检索，当前直链待核实。','https://www.gov.cn/zhengce/','法规'],
+        ['m10-internet-loan','商业银行互联网贷款管理暂行办法（原中国银保监会令 2020 年第 9 号）','监管文件','原中国银保监会','中文','3 h','免费','进阶','P1','理解互联网贷款业务中风险管理、合作机构与数据使用的监管语境。','学习时以正式发布文本为准；后续修订/现行效力需另行核实。','https://www.gov.cn/zhengce/zhengceku/2020-07/17/content_5527715.htm','法规'],
+        ['m10-fineval','FinEval: A Chinese Financial Domain Evaluation Benchmark','数据集 / 评测','上海财经大学等研究团队','中文','4 h','免费 / 开源数据集','进阶','P1','了解中文金融知识评测任务，拓展自建金融评测集设计。','先读任务和数据许可；选择可用于演示的子集，避免把榜单分数当产品质量。','https://github.com/SUFE-AIFLM-Lab/FinEval','数据集 / 代码'],
+        ['m10-ceval','C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite','论文 / 数据集','C-Eval 项目团队','中文 / 英文','3 h','免费 / 开源数据集','进阶','P2','补充中文通用知识基准的使用视角。','阅读论文的任务设计和数据集说明；只作模型背景对比，不替代银行业务评测。','https://arxiv.org/abs/2305.08322','论文 / 数据集'],
+        ['m10-bcbs239','BCBS 239: Principles for effective risk data aggregation and risk reporting','国际审慎监管原则 / 文档','巴塞尔银行监管委员会（BIS）','英文','4 h','免费','进阶','P1','理解风险数据聚合、治理、准确性、完整性和及时性原则；这是国际参考，不是中国监管文件。','重点读治理与数据架构原则，并把数据血缘、质量、时效和责任映射到自己的银行指标项目。','https://www.bis.org/publications/201301-guidelines-principles-effective-risk-data-aggregation-and-risk-reporting','文档']
+      ]}
+    ];
+
+    const bankTopics = [
+      { id:'foundation', nav:'银行经营与报表', title:'银行经营框架、资产负债与财务报表', intro:'先掌握银行“吸收资金、配置资产、管理风险、提供支付与服务”的基本模式。银行收入不能只看贷款利息，理解资金成本、风险成本、资本占用和运营成本，才能评价一个客群或 AI 场景是否真正创造价值。', sections:[
+        {title:'经营链路与资产负债表', items:[['资金来源（负债）','客户存款、同业负债、发行债券等。存款是银行对客户的负债；活期、定期、通知存款的成本、期限和稳定性不同。'],['资金运用（资产）','贷款、债券投资、存放央行/同业等。贷款带来利息收入，同时承担信用、流动性和资本成本。'],['中间业务与支付','结算、银行卡、托管、代理销售等可能形成手续费及佣金收入；要按产品合同、会计政策和业务事件界定确认口径。'],['利润的风险视角','净利息收入 + 非息收入 − 信用减值损失 − 运营费用等。业务增长还要看风险调整后收益、资本消耗和客户长期价值。']]},
+        {title:'常见经营指标', metrics:[['净息差（NIM）','净利息收入 / 平均生息资产；期间和年化算法需统一。'],['成本收入比','业务及管理费 / 营业收入；分子、分母范围和一次性项目需明确。'],['存贷比','贷款余额 / 存款余额；统计范围与监管/管理报表口径可能不同。'],['不良贷款率','不良贷款余额 / 贷款余额；确认分类标准、时点和并表范围。'],['流动性覆盖率（LCR）','高质量流动性资产与未来 30 天净现金流出等监管定义相关；不是简单的“现金 / 负债”，按现行监管口径计算。'],['净稳定资金比例（NSFR）','可用稳定资金与所需稳定资金的监管比率，观察中长期资金结构。'],['核心一级资本充足率','核心一级资本净额 / 风险加权资产；资本口径和并表范围必须一致。'],['资产负债管理（ALM）','统筹期限错配、利率重定价、流动性和资金成本；分析需区分合同现金流与行为假设。']]},
+        {title:'数据分析要问的口径问题', items:[['余额还是发生额？','贷款余额是某个时点的存量；放款额、还款额是期间流量。把存量累加会重复计数。'],['日均还是期末？','账户余额与生息资产常看日均或月均；月末余额受季节性和冲时点影响。'],['账务还是业务？','业务系统事件可能先于入账；冲正、撤销、补记和跨日批处理都影响“发生时间”。'],['客户还是账户？','同一客户可有多账户、多产品；先明确统计粒度，再做去重和汇总。']]},
+        {title:'练习：定义一项可复核的经营指标', checks:['写清业务问题和使用者','写出指标分子、分母、粒度与时间窗','说明数据源、状态过滤、冲正处理','标记是否期末/日均、是否年化、是否剔除内部账户','给出一个反例并说明为什么不计入']},
+        {quiz:'为什么贷款余额增长不能直接说明利息收入和利润同比例增长？', answer:'因为利率、资金成本、产品期限、客户风险、逾期/不良、减值计提、资本占用和运营成本都会变化；应比较净利息收入及风险调整后收益，并保证余额与收入的统计范围和期间一致。'}
+      ]},
+      { id:'retail', nav:'零售存款与支付', title:'零售客户、存款、银行卡与支付结算', intro:'零售金融围绕个人客户与家庭的账户、储蓄、支付、信用卡和消费信贷。分析时需要识别客户、账户、卡、交易和渠道的实体关系；不能把“笔数”“人数”“账户数”混成一个指标。', sections:[
+        {title:'产品与交易链路', items:[['开户与客户识别','客户申请 → 身份核验/KYC → 客户号建立 → 账户开立 → 风险等级与产品权限。客户主数据常有证件变更、重复客户和合并记录。'],['存款生命周期','开户 → 入金/转账 → 计息 → 到期/续存/提前支取 → 销户。定期存款需关注起息日、到期日、利率版本、自动转存与提前支取规则。'],['银行卡消费','授权请求 → 发卡行/收单行/卡组织处理 → 清算 → 资金入账 → 退货/拒付/冲正。授权时间、清算时间和入账时间并非同一时间。'],['账户支付','付款指令 → 身份/余额/限额校验 → 风险拦截 → 清算路由 → 入账 → 对账。失败、处理中、成功、冲正需按状态机区分。']]},
+        {title:'常用指标与分群', metrics:[['活跃客户','按约定窗口至少发生一个合格行为的去重客户数；要定义有效行为、渠道和排除员工/测试账户规则。'],['存款日均','期间每日合格存款余额的平均；要说明账户范围、冻结/保证金、内部账户和计息状态。'],['交易成功率','成功交易笔数 / 符合统计范围的交易请求笔数；明确分母是否含超时、重复请求和用户取消。'],['客户留存率','期末仍活跃的期初客户 / 期初目标客户； cohort、活跃定义和观察窗口决定结果。'],['客均资产（AUM）','统计时点客户合格资产余额 / 合格客户数；客户、账户、产品的归属规则须固定。']]},
+        {title:'常见数据陷阱', items:[['重复交易','同一请求重试可能生成多条事件；优先用业务流水号/幂等键识别逻辑交易，不能只按金额和时间去重。'],['时间口径','交易日、会计日、渠道请求时间、清算时间和入账时间各自用于不同分析。跨时区、节假日批次也要检查。'],['状态变化','“处理中”之后可成功、失败或冲正；统计成功率时需选最终状态并设观察截止时间。'],['跨渠道客户','手机银行、网点、ATM、第三方支付需统一客户主键和渠道映射，避免渠道间重复计人。']]},
+        {title:'练习：支付成功率看起来下降', checks:['分别按请求时间和最终入账时间计算','按渠道、支付方式、交易金额段拆分','单独检查超时重试、冲正和处理中积压','用交易流水号核验重复事件','确定分母后再比较同比/环比']},
+        {quiz:'某支付渠道的成功笔数没变，但成功率下降，优先检查什么？', answer:'先检查分母和状态口径：请求量是否增加、超时重试是否被重复计入、处理中是否被当作失败、失败码是否映射变化、是否调整了渠道路由。先验证数据事件和定义，再推断用户体验恶化。'}
+      ]},
+      { id:'retail-credit', nav:'个人信贷与信用卡', title:'个人贷款、信用卡与贷后风险生命周期', intro:'零售信贷由申请、授信、支用、还款、逾期、催收和核销等状态组成。风险建模不是只训练一个违约分类器，还要理解样本定义、观察窗、表现窗、策略动作与业务成本。', sections:[
+        {title:'业务闭环', items:[['获客与申请','渠道触达 → 申请 → 身份/反欺诈校验 → 征信与收入负债评估 → 额度/定价/期限决策。拒绝样本缺少真实贷后标签，存在选择偏差。'],['授信与支用','审批额度不等于实际余额；客户可能不支用或分多次支用。额度、提款、合同、借据和还款计划粒度不同。'],['还款与逾期','按合同应还日识别应还款项；D0、M1+ 等阶段依赖逾期天数和产品规则。部分还款、宽限期、展期和重组要单独处理。'],['催收与核销','提醒、人工/委外催收、重组、核销和回收是不同业务事件。核销不等于债务消失；核销后回收会影响损失分析。']]},
+        {title:'建模标签和窗口', items:[['观察窗（look-back）','使用申请/决策时点之前可获得的信息，构造特征；时间穿越会泄漏贷后信息。'],['表现窗（performance window）','决策后固定期限内观察目标，例如是否出现定义好的逾期或违约事件；需与产品期限匹配。'],['坏样本定义','示例：在表现窗内达到特定逾期天数或进入违约状态。具体阈值按产品、制度和模型用途确定，不能跨产品照搬。'],['Vintage / MOB','Vintage 按放款月份/批次观察；MOB 是账龄月数。比较相同账龄曲线，避免新旧批次成熟度不一致。']]},
+        {title:'指标与策略评估', metrics:[['审批通过率','通过申请数 / 有效申请数；需定义申请去重、撤回、资料不全和渠道筛选规则。'],['支用率','发生支用的已批客户/额度占比；按客户数或额度金额计算，解释含义不同。'],['M1+ / 逾期率','达到指定逾期状态的合格余额或客户 / 约定基数；分母可能是期初余额、应还余额或贷款余额，必须写明。'],['Vintage 累计坏账','某发放批次截至 MOB 的累计坏账/损失；需明确分母、核销与回收处理。'],['PD / LGD / EAD','违约概率、违约损失率、违约风险暴露；简化预期损失常用 PD × LGD × EAD 建立直觉，正式计量依模型与会计/监管制度。'],['KS / AUC','区分排序能力指标和经营收益；需看样本时段、坏样本率、稳定性及阈值策略，不能单独证明模型可用。']]},
+        {title:'公平、合规与模型监控', items:[['数据最小化','只使用授权、必要、来源可解释的数据；敏感个人信息、外部数据和自动化决策要按制度审查。'],['拒绝/通过双样本','仅有已放款客户的表现标签，拒绝客户没有可观测结果；建立对照或校正方法要谨慎披露假设。'],['策略与模型分离','模型分数、准入规则、额度策略和人工复核分别留痕，便于定位损失变化来自哪里。'],['监控','关注通过率、分数分布、特征缺失、PSI、不同客群表现、逾期迁徙、模型版本及策略变更。']]},
+        {title:'练习：搭建可审计的样本定义', checks:['确定业务决策时点和客户/借据粒度','列明特征可用截止时点，排查贷后字段泄漏','定义坏样本事件及表现窗口','按放款月份和 MOB 建立 vintage','同时报告区分度、校准、策略收益和风险分层']},
+        {quiz:'为什么只用当前已放款客户训练模型可能高估模型效果？', answer:'历史审批策略筛选了客户，模型只看到“被批准的人”的表现；拒绝人群没有标签，构成选择偏差。再叠加时间穿越、贷后催收干预与标签窗口不一致，离线指标可能无法代表新策略上线后的真实效果。'}
+      ]},
+      { id:'corporate', nav:'对公授信与尽调', title:'对公客户、授信调查与企业财务分析', intro:'对公信贷以企业集团、法人、实际控制人、关联方、担保人和具体授信业务为核心。分析的关键是还原控制关系、资金用途、还款来源和担保链，不能把单一主体的一张财务报表视为全部风险。', sections:[
+        {title:'授信调查到贷后管理', items:[['客户准入与 KYC','识别统一社会信用代码、法定代表人、股东、实际控制人、受益所有人及关联企业；核查名单、行业、区域和授权。'],['授信调查','分析经营模式、上下游、行业周期、现金流、财务报表质量、征信/司法风险、关联交易、资金用途和还款来源。'],['审查审批','授信额度与期限、品种、担保方式、提款条件、财务约束、价格和审批权限共同决定风险；授信额度与实际用信余额不同。'],['放款与支付','合同/借据 → 条件落实 → 受托/自主支付 → 资金流向核验。交易对手、发票/合同、支付凭证及异常回流需按产品制度检查。'],['贷后与预警','资金用途、账户流水、纳税/经营变化、财务指标、担保物价值、司法舆情、集团风险传染和到期安排。预警命中需调查，不直接等同违约。']]},
+        {title:'常用财务分析', metrics:[['资产负债率','总负债 / 总资产；检查表内外负债、合并范围和期末时点。'],['流动比率','流动资产 / 流动负债；行业差异大，需检查应收账款与存货质量。'],['利息保障倍数','息税前利润 / 利息费用（常见口径）；确认资本化利息、租赁和期间范围。'],['经营现金流覆盖','经营活动现金流与本息支出/债务规模的比率；应观察多期、季节性和一次性回款。'],['应收账款周转天数','平均应收账款 / 营业收入 × 期间天数（示意）；平均余额、含税口径和收入范围须一致。'],['客户集中度','前 N 大客户收入/应收占比、前 N 大供应商采购占比；明确客户合并规则、区间和穿透口径。']]},
+        {title:'尽调资料的交叉校验', items:[['主体与时间','企业名称变更、合并报表范围、报告期、审计意见和报表版本必须匹配。'],['财务勾稽','资产=负债+权益；现金流量、利润、应收应付和纳税/流水之间做合理性校验。差异需解释，不能机械判错。'],['外部信息','公告、司法执行、招投标、工商变更、债券募集说明书等需记录来源、发布日期、主体匹配置信度。'],['集团与关联方','识别关联担保、资金占用、循环交易、上下游集中和共同实际控制；汇总集团风险时避免重复加总。']]},
+        {title:'LLM 文档抽取的业务边界', items:[['抽取字段','主体名称/代码、报告期、审计意见、收入、利润、资产负债、现金流、担保、诉讼、募集资金用途等；记录原文位置与单位。'],['一致性校验','结构化提取后检查单位（元/万元/亿元）、正负号、报告期、合并/母公司、同字段跨文件差异。'],['人工复核','重大授信结论、风险分类、额度和定价不能由生成模型独立决定；低置信度字段返回原文供客户经理/审查人员确认。'],['证据留痕','每个字段保存文档版本、页码/段落、原文片段、抽取时间、模型版本和修订人。']]},
+        {title:'练习：企业收入同比上升但风险预警', checks:['检查审计意见、合并范围和收入确认口径','对比经营现金流、应收账款和回款天数','检查客户集中度、关联交易和上下游变化','核对借款、担保、诉讼及债券募集说明书披露','把事实、推断和待核实事项分栏输出']},
+        {quiz:'LLM 从年报抽取出“营业收入 12.5”，为什么不能直接入授信分析表？', answer:'必须核对单位、币种、报告期、合并/母公司口径、指标字段、正负号、文档版本和原文页码；还要和资产负债表、审计报告及历史数据校验。模型输出是候选字段，不是已确认的授信事实。'}
+      ]},
+      { id:'risk', nav:'风险指标与资产质量', title:'信用风险、资产质量与风险调整收益', intro:'信用风险语言需落到可复算的事件、余额和观察时点。监管分类、会计减值、内部风险预警和模型标签不是一套定义；具体业务必须按适用制度核对。', sections:[
+        {title:'风险分类与生命周期', items:[['五级分类','正常、关注、次级、可疑、损失是贷款风险分类常用框架；关注类不等于不良，不良通常包括次级、可疑、损失。适用范围和迁徙规则以现行制度为准。'],['逾期与违约','逾期是未按约定时间偿还；违约定义依合同、监管/会计/模型目的可能不同。不要把“逾期天数”和“不良分类”互换。'],['减值准备','会计预期信用损失计量与监管分类、模型坏样本标签目标不同；需要区分阶段、前瞻信息、迁徙率和最终核销。'],['风险迁徙','观察从正常→关注→不良、逾期桶之间的迁移；固定 cohort、观察窗和分母后才可比较。']]},
+        {title:'重要指标与解释边界', metrics:[['不良贷款率','不良贷款余额 / 贷款余额；时点、表内贷款范围、并表范围必须统一。'],['关注类贷款占比','关注类贷款余额 / 贷款余额；可作为潜在风险信号，不可直接等同未来不良。'],['拨备覆盖率','贷款损失准备 / 不良贷款余额；准备范围和分类口径会影响结果。'],['贷款拨备率','贷款损失准备 / 贷款余额；与拨备覆盖率互有关联但回答的问题不同。'],['迁徙率 / Roll rate','期初某逾期桶余额中，在观察期迁入更差桶的余额占比；处理清偿、重组、核销和新增余额需明示。'],['风险调整收益','收入减资金、预期损失、运营等成本后结合资本占用评估；不同银行内部 RAROC/RORWA 口径不可直接横比。']]},
+        {title:'模型开发、验证和监控的分工', items:[['建模目标','定义决策用途、目标事件、样本单位、标签窗口、预测时点和可采取动作；模型输出必须能接到策略。'],['验证','评估区分度、校准、稳定性、分群表现、数据质量、合理性与边界案例；单个 AUC/KS 不是验证结论。'],['独立审查','明确开发、验证、审批、投产和监控职责；保留模型说明、数据来源、限制、变更和退出记录。'],['生产监控','观察输入数据漂移、评分分布、阈值通过率、坏账/逾期表现、客群公平性及业务策略变化。结果成熟度不足时标记观察期。']]},
+        {title:'分析时的核验清单', checks:['时点数据和期间数据未混用','逾期、分类、不良、违约、核销事件各有定义','分子分母的客户/借据/余额粒度一致','新老批次按相同 MOB 或观察成熟度比较','策略干预、展期、重组、核销与回收均可追踪']},
+        {quiz:'不良率下降一定表示资产质量改善吗？', answer:'不一定。可能来自贷款快速增长稀释分母、核销/转让、分类或统计范围变化，也可能是风险确有下降。应同时看逾期与关注迁徙、Vintage、核销回收、重组展期、分行业/客群变化和口径版本。'}
+      ]},
+      { id:'compliance', nav:'合规、反洗钱与消费者保护', title:'KYC、反洗钱、反欺诈、数据保护与消费者权益', intro:'金融场景的 AI 方案必须识别身份、授权、数据来源、决策影响和人工责任。以下是学习框架，不构成法律意见；应由机构合规、法务、数据安全及模型风险管理部门按具体场景确认。', sections:[
+        {title:'控制链路', items:[['客户身份识别与持续尽调','开户/建立业务关系时识别客户与受益所有人；持续更新身份、风险等级、交易特征和名单筛查结果。'],['反洗钱监测','规则或模型生成风险线索 → 调查分析 → 升级/报告/关闭 → 留痕。命中是待调查线索，不等同客户违法。'],['反欺诈','设备、账户、交易、行为和关系网络信号可用于识别盗用/团伙风险；特征权限、误伤申诉、人工复核与策略阈值都要管理。'],['消费者权益保护','清晰告知、适当性、个人信息保护、公平对待、解释与申诉渠道；自动化决策场景需考虑透明度和人工干预。'],['数据安全','分类分级、最小权限、脱敏、访问审计、保留期限、跨境/第三方处理评估和事件响应按机构制度执行。']]},
+        {title:'金融 AI 应用的控制设计', items:[['用途与数据边界','先写明允许用途、禁止用途、用户群、数据字段、处理目的和保存期限；不得把真实客户数据放入未经授权的公共模型。'],['人机协同','授信、定价、风险分类、可疑交易处置等高影响结论由有权限人员决策；系统提供证据与解释，记录人工修改。'],['可解释与可申诉','提供对业务人员可理解的依据、数据来源和限制；评估自动化决策对客户权利的影响和纠错路径。'],['第三方与模型变更','登记模型/供应商/版本、数据位置、更新机制、服务中断替代方案、退出计划和责任边界。'],['测试与红队','测试提示注入、越权读取、隐私泄漏、错误引用、拒答绕过、偏差和异常输入；发现问题要有分级修复与回归。']]},
+        {title:'资料入口与适用范围提醒', items:[['生成式人工智能服务管理暂行办法','国家网信办等七部门令第 15 号，2023-08-15 起施行；主要针对向境内公众提供生成式 AI 服务，内部业务工具的适用判断需结合实际场景。'],['互联网信息服务算法推荐管理规定','国家网信办等四部门令第 9 号，2022-03-01 起施行；面向算法推荐服务，不能简单替代生成式 AI 或银行内部模型治理要求。'],['互联网贷款管理暂行办法','原中国银保监会令 2020 年第 9 号；互联网贷款业务框架，不是 LLM 专项规定，正式应用应核实现行修订及本机构制度。'],['银行模型风险专门文件','公开文件的适用对象、名称、文号和现行效力须由合规人员确认。本学习平台不将未核实文号列作权威依据。']]},
+        {title:'练习：制作一个模型使用登记卡', checks:['业务目的、负责人和决策影响等级已写明','输入字段、来源授权和保留期限明确','模型/供应商、部署位置和版本可追溯','人工审核、拒答、申诉和故障降级路径明确','测试集、已知限制、监控人和变更审批已记录']},
+        {quiz:'反洗钱监测模型把某企业标成高风险，是否可以直接冻结或拒绝所有交易？', answer:'模型信号本身通常只是风险线索。需根据适用法律法规、机构流程和授权开展调查、复核及必要处置，区分风险评分、名单命中、可疑交易判断和最终业务决定，并留痕和控制误伤。'}
+      ]},
+      { id:'data', nav:'数据仓库与指标治理', title:'银行数据仓库、客户主数据与指标口径治理', intro:'数据治理经验是大模型项目中的核心优势：检索系统和 SQL 助手同样依赖实体、粒度、血缘、权限和“唯一可信定义”。模型不能替代指标所有者对业务口径的确认。', sections:[
+        {title:'常见分层与数据对象', items:[['源系统与 ODS','核心、信贷、卡、支付、CRM、风控、财务等源系统先保留原始业务事件/快照；检查抽取延迟、补数、冲正与源字段变更。'],['明细层与主题层','按客户、账户、合同、借据、交易、日余额等业务粒度建事实数据；维度表处理客户、产品、机构、渠道和日期。'],['汇总层与应用层','围绕零售、对公、风险、财务等主题形成可复用汇总指标；每个结果要能追溯明细与口径版本。'],['主数据与实体匹配','客户号、证件、统一社会信用代码、集团号和账户号用途不同；合并、拆分、证件更新和关联关系需要生效时间。']]},
+        {title:'指标字典的必填项', items:[['业务定义','指标回答什么问题；名称相似不代表定义相同。写清业务负责人和适用场景。'],['计算逻辑','分子、分母、过滤条件、去重键、状态映射、NULL/零值处理、时间窗、粒度及单位。'],['数据血缘','来源系统、表字段、ETL/SQL 版本、刷新时间、延迟、质量规则和下游使用者。'],['版本治理','口径变更原因、生效日期、历史回溯策略、审批人、并行指标和下线计划。']]},
+        {title:'常见冲突案例', items:[['“客户数”','开户客户、有效客户、授信客户、用信客户、月活客户的分母和条件不同。'],['“贷款余额”','借据本金余额、合同额度、表内余额、含应计利息余额或五级分类范围可能不同。'],['“收入”','会计收入、业务流水、实收、含税/不含税、当期/累计需区分；数据晚到会改变历史值。'],['“日期”','业务发生日、入账日、批次日、快照日和自然日/工作日口径不同。'],['跨层汇总','先确认事实表粒度；多对多维表连接会放大金额和客户数，汇总后再 join 需特别验证。']]},
+        {title:'Text-to-SQL 助手的银行级护栏', items:[['Schema grounding','只给模型经过审核的只读表、字段说明、主外键、粒度、枚举、数据日期和指标定义；按用户权限过滤 schema。'],['SQL 安全','解析 AST 或采用允许列表；限制 SELECT、表/列、分区日期、行数、执行时限和扫描量；拒绝多语句、写操作和越权表。'],['口径冲突提示','如果“活跃客户”有多个定义，展示定义、负责人、适用场景并要求选择；不要让模型猜。'],['结果解释','返回 SQL、口径说明、执行时间、数据日期、过滤条件和结果摘要；关键数字可以复算并保留查询审计。']]},
+        {title:'练习：做一张指标字典', checks:['挑选 5 个常用指标并写业务定义','列出字段级 SQL 规则和示例边界数据','标明事实表粒度、主键、时间字段和血缘','设计两组同名异义/一名多义测试问题','让业务同事能够审核、签字并维护版本']},
+        {quiz:'同一张客户日表 join 交易明细后，客户余额总额翻倍，常见原因是什么？', answer:'交易明细对客户是一对多；若在明细 join 后直接 sum 客户日余额，每一笔交易都会复制余额。应先按目标粒度汇总交易，再 join；检查 join key 唯一性、事实表粒度并做行数和总额对账。'}
+      ]},
+      { id:'org', nav:'组织、渠道与运营', title:'银行组织架构、渠道运营与服务流程', intro:'同一业务在总行、分行、支行、子公司、合作机构和外部渠道的责任边界不同。分析渠道表现和客户体验时，要识别组织层级、产品归属、获客来源与实际服务方。', sections:[
+        {title:'业务参与方与责任', items:[['总行','制定产品、风险政策、授信授权、数据标准和统一科技平台；实际职责依机构组织划分。'],['分支机构','承担区域经营、客户关系、营销服务、调查或审批执行等工作；机构调整会改变组织归属。'],['金融科技子公司/供应商','提供技术、运营或模型能力；合同、数据授权、服务水平、审计访问和退出安排需明确。'],['客户经理/运营/风险/合规','一线采集和判断、运营处理、独立风险审查、合规监督职责不同；系统权限按岗位和流程控制。']]},
+        {title:'渠道指标与归因', metrics:[['渠道转化率','某阶段转化人数 / 前一阶段合格人数；说明用户去重、窗口归属和渠道标签优先级。'],['获客成本（CAC）','可归属获客费用 / 新增有效客户；费用边界和自然流量分摊需要固定。'],['单客服务成本','渠道/产品相关运营成本 / 服务客户数；自助与人工服务的成本归集方式需说明。'],['投诉率','符合定义的投诉量 / 合格客户数或业务笔数；监管投诉、内部投诉、咨询建议分类不同。']]},
+        {title:'服务流程与客户体验', items:[['事件链路','发起 → 受理 → 分派 → 处理 → 复核 → 反馈 → 关闭；工单状态变化要保留时间戳与处理人。'],['服务时效','首次响应、解决时长、超时率分别回答不同问题；暂停等待客户/第三方时应定义计时规则。'],['投诉文本','保留原文、脱敏、渠道、产品、问题类型、责任部门、处理结论和监管敏感标签；分类结果须人工抽查。'],['客户旅程','把申请、审核、签约、使用、还款、客服和投诉连接起来；事件关联需有合法授权且控制身份字段暴露。']]},
+        {title:'练习：分析某渠道投诉增加', checks:['区分投诉件数、投诉客户数和业务量分母','按产品、问题、地区、渠道、处理环节拆分','核验分类标签和工单状态是否改变','抽查原始工单并识别批量/重复件','记录责任归属、根因、修复措施和回访结果']},
+        {quiz:'某网点投诉数比上月增加 20%，这能说明服务质量变差吗？', answer:'还要看业务量和客户数变化、投诉分类标准、渠道迁移、重复件处理、系统故障时段、投诉结案质量与区域客群结构。应比较每万客户/笔投诉率及严重度，并抽查文本和全链路过程。'}
+      ]},
+      { id:'ai', nav:'大模型场景与落地', title:'银行大模型应用地图：高价值场景与生产控制', intro:'选场景先评估收益、错误代价、数据可得性、流程可控性和人工复核成本。优先从内部知识检索、材料辅助整理、分析提效和质检开始，避免让生成模型直接作最终授信、定价或合规判断。', sections:[
+        {title:'场景分层', items:[['低决策影响：知识检索与制度问答','员工查询政策/产品流程 → 检索正式制度 → 摘录原文 → 给出处、版本和生效时间 → 证据不足拒答。衡量检索命中、引用准确、拒答和节省时间。'],['中等影响：文档抽取与辅助审核','从公开/授权年报、募集说明书、尽调材料抽取字段 → 单位与期间标准化 → 勾稽检查 → 人工确认。衡量字段准确率、复核耗时和漏检率。'],['中等影响：工单/文本质检','对脱敏工单作多标签建议、敏感内容提示和质检摘要 → 规则兜底 → 人工复核。衡量各标签 precision/recall、误报漏报与群体差异。'],['高影响：授信/反欺诈/客户建议','模型只能在经批准的流程中提供辅助分数/证据；需要独立模型验证、公平性与稳定性监控、审批授权和申诉机制。不可把通用 LLM 当风险模型替代品。']]},
+        {title:'生产能力检查表', items:[['数据','授权合法、字段最小化、脱敏与权限隔离；语料有版本、发布日期、责任人和失效机制。'],['检索/生成','记录 chunk 元数据、召回证据、模型/Prompt 版本；引用和最终答案分开评估。'],['人机流程','定义拒答边界、升级人工条件、人工修改记录、用户申诉和服务故障降级。'],['安全','提示注入隔离、工具只读/白名单、机密信息保护、日志脱敏、速率限制和权限校验。'],['运营','监控延迟、错误率、成本、使用率、投诉、漂移和数据新鲜度；重大变更重新评测。']]},
+        {title:'适合求职作品集的业务证明', items:[['制度 RAG','体现制度版本、适用范围、原文溯源、证据不足拒答和固定评测集。'],['Text-to-SQL 口径校验','体现指标字典、schema 权限、同名异义提醒、只读 SQL 安全和业务审核。'],['尽调材料结构化','体现主体匹配、单位/期间校验、数据来源和逐字段证据留痕。'],['投诉文本质检','体现标签体系、规则兜底、抽样复核、误差成本和审计记录。']]},
+        {title:'练习：场景立项一页纸', checks:['描述现有流程、角色、耗时和痛点基线','估算错误影响与人工复核成本','列出公开/授权数据及不可使用字段','定义可量化 KPI、基线和验收样本','写出拒答、人工接管、审计和退出方案']},
+        {quiz:'为什么“问答正确率”不能作为银行 RAG 系统唯一验收指标？', answer:'答案可能碰巧正确却引用了错误制度、旧版本或无依据内容；还要测召回、引用定位、忠实度、拒答、越权访问、数据新鲜度、不同业务类型表现、延迟成本及人工复核负担。'}
+      ]}
+    ];
+
+    const projects = [
+      { id:'p1', title:'监管制度问答：带条款引用与证据不足拒答', problem:'员工面对跨文件、跨版本的制度问题时，容易漏掉适用范围、生效时间或例外条款；系统必须先找依据，再回答，找不到就明确拒答。', hours:'约 30–40 h', source:'国家网信办公开发布的《生成式人工智能服务管理暂行办法》《互联网信息服务算法推荐管理规定》等公开网页；另可从上市公司年报补充业务文本。只处理公开文本。', links:[['国家网信办法规页','https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm'],['算法推荐规定','https://www.cac.gov.cn/2022-01/04/c_1642894606364259.htm']], flow:'公开法规 HTML/PDF → 清洗并保留标题/条款/发布日期 → BM25 + embedding → rerank → 带出处回答 / 无证据拒答 → 固定集评测', milestones:[['资料清单和标注规范','收集 5–10 份文件，保留来源、发布日期、适用范围和条款编号。',4],['切分、索引和混合检索','完成条款级切分、关键词/向量召回和 metadata filter；抽查 30 个问题的证据。',10],['生成、引用和拒答','输出文件名/条款/原文摘录；阈值不足、超出范围或冲突版本时拒答。',10],['回归评测与说明','建立 50 题 golden set，做引用、拒答、提示注入和版本变更测试。',8]], deliver:'代码仓库、可运行演示、语料目录/许可说明、50 题评测集、错误分析、版本与风险说明。', acceptance:['50 条问题中，证据条款定位准确率目标 ≥90%（人工抽查）；未达标如实报告。','证据不足问题的拒答率按预先标注标准统计；对 10 条无答案/越权诱导样本逐条复核。','每个回答可追溯到源文件、条款和发布时间；版本切换后跑回归集。'], uniqueness:'银行制度要同时判断“谁适用、什么时间生效、有哪些例外、哪个条款优先”，这依赖你对制度执行链和业务口径的判断；算法背景本身无法替代这套适用性标注。', cv:'基于公开监管文件构建制度 RAG 原型，维护 [N] 份带版本/条款元数据的语料，在 [N] 条测试集上测得引用定位 [X%]、证据不足拒答 [X%]，实现来源可审计。'},
+      { id:'p2', title:'Text-to-SQL 取数助手：指标口径冲突提示与只读执行', problem:'业务人员用自然语言问“活跃客户”“贷款余额”“逾期率”时，同名指标可能有多个定义；助手要先确认指标、粒度和日期，再生成安全只读 SQL。', hours:'约 45–60 h', source:'构造一套明确标注为“合成”的客户/账户/贷款/交易/机构数据；指标词典参考公开年报中披露的指标定义。不得接入真实银行库或真实客户数据。', links:[['SQLGlot 文档','https://sqlglot.com/sqlglot.html'],['阿里云百炼结构化输出','https://help.aliyun.com/zh/model-studio/qwen-structured-output']], flow:'合成星型 schema + 指标字典 → 意图/指标消歧 → schema grounding → 生成只读 SQL → AST/白名单校验 → SQLite 执行 → 口径与结果解释', milestones:[['业务词典和合成数据','定义 8–12 张表/字段粒度，生成约 1 万行虚构样例，覆盖空值、重复、冲正和日期边界。',12],['问题集和指标歧义设计','为 3 个核心指标各写唯一口径/冲突口径，标注 gold SQL 与必须追问的问题。',10],['SQL 生成与安全校验','只开放 SELECT 和 allowlist 表/列；拦截多语句、写操作、越权表、无日期分区和超量扫描。',16],['评测、演示和口径手册','跑至少 50 条自然语言问题，分别报告可执行、结果正确、口径正确和安全拦截。',12]], deliver:'可运行的本地演示、合成数据生成脚本、指标字典、gold SQL 测试集、AST 安全策略、查询审计日志和评测报告。', acceptance:['50 条问题中 SQL 可执行率、结果正确率、口径正确率分别统计并提供错例，不合并成一个分数。','危险 SQL、未授权表和无限制查询拦截率 100%（至少 20 条攻击/边界测试）。','同名异义指标必须追问或让用户选择；未消歧时不得静默采用默认口径。'], uniqueness:'核心不是把中文翻译成 SQL，而是知道“客户/账户/借据/交易”不同粒度、期末余额和期间发生额不同、冲正和最终状态如何处理，并把指标责任人和版本纳入工具。', cv:'用合成银行星型数据开发 Text-to-SQL 取数原型，沉淀 [N] 项带版本的指标定义；在 [N] 条问题上分别评测 SQL 执行、结果与口径正确率，危险查询拦截 [X/N]。'},
+      { id:'p3', title:'对公尽调材料结构化：年报字段、勾稽与证据链', problem:'客户经理和审查人员需要从年报、债券募集说明书等长文档提取主体、报告期、财务数据、审计意见、担保和诉讼信息，并核对单位、合并范围与原文依据。', hours:'约 35–50 h', source:'巨潮资讯网上市公司年报及公开债券募集说明书；仅用公开发行人材料，记录公告链接、下载日期和文档版本。', links:[['巨潮资讯网','https://www.cninfo.com.cn/new/index'],['上海证券交易所公告','https://www.sse.com.cn/disclosure/listedinfo/announcement/']], flow:'公开年报/募集说明书 → PDF/OCR/表格解析 → JSON Schema 抽取 → 单位/报告期/主体校验 → 原文证据定位 → 人工复核队列', milestones:[['选样本并定义字段词典','选 5 份不同格式年报/募集说明书；定义主体代码、报告期、单位、合并范围、财务字段及证据要求。',8],['解析与结构化抽取','解析文本和表格，输出字段候选、原文片段、页码、置信度；缺失字段用 null 而非编造。',14],['一致性校验与异常分流','检查单位换算、期间、资产负债勾稽、跨文档差异、主体匹配和审计意见；异常送人工。',12],['复核台和误差报告','人工核对至少 100 个字段样本，区分字段准确、证据准确、单位正确和漏抽。',10]], deliver:'解析/抽取代码、公开文档索引、JSON Schema、100 字段核验表、异常样例、演示页面和复核说明。', acceptance:['至少 100 个人工标注字段样本，按字段报告 precision/recall 或准确率，并保留误差原文。','金额字段单位换算与报告期间校验通过率可复算；所有异常单位或主体匹配低置信度均进入人工复核。','任何字段都能回到来源文件、页码/表格/原文片段；抽取失败时显式标记，不补写数值。'], uniqueness:'对公分析需要识别合并/母公司、报告期、万元/亿元、一次性项目、关联交易和现金流质量；这些是授信尽调的业务判断，不是通用 NER 能自动决定的字段。', cv:'基于公开上市公司年报/募集说明书实现对公尽调字段抽取与勾稽校验，对 [N] 份文件的 [N] 个字段进行人工评测，金额单位校验 [X%]、证据可追溯 [X%]。'},
+      { id:'p4', title:'金融投诉文本多标签分类与质检：规则兜底、人工可审计', problem:'投诉工单需要尽早分流到正确产品、原因和责任环节；模型用于建议标签、识别敏感/升级事项和检查答复完整性，不能自动决定客户权益或结案。', hours:'约 30–45 h', source:'美国消费者金融保护局 CFPB 公开投诉数据库（英文金融消费投诉，可下载）；先抽取信用卡、存款、转账或贷款类子集。中文业务验证需另用机构授权且脱敏的数据。', links:[['CFPB Consumer Complaint Database','https://www.consumerfinance.gov/data-research/consumer-complaints/']], flow:'公开投诉文本 → 去标识/清洗 → 层级标签体系 → 少样本分类 → 规则与敏感词兜底 → 人工复核 → 漂移与误报监控', milestones:[['数据许可和标签定义','阅读公开数据说明；限定 3–5 个产品类别、原因标签、严重度和“需人工升级”标签。',8],['基线与少样本方案','先做规则/传统分类基线，再做 LLM 多标签建议；按时间或主题划分训练/测试，避免重复泄漏。',12],['规则兜底和人工质检','对高风险词、身份泄漏、争议/欺诈/催收类问题强制升级；输出标签证据和不确定原因。',12],['误差分层与质检报告','标注至少 200 条测试样本，报告每类 precision/recall、混淆样本、误报漏报及人工复核成本。',10]], deliver:'可复现数据下载说明、脱敏脚本、层级标签规范、分类服务、规则兜底用例、错误分析和人工复核指南。', acceptance:['至少 200 条测试样本，报告各标签 precision/recall/F1 和宏平均指标，不能只报总体准确率。','预定义升级类样本召回率按目标阈值验收；高风险漏报须逐条分析，不能由总分掩盖。','保留模型版本、标签版本、置信度、规则命中和人工更正；数据集使用范围和英文语料局限在报告中说明。'], uniqueness:'银行投诉标签和责任归因需要理解产品链路、账务/渠道/催收节点、监管投诉与普通咨询的区别；错误分流会延误客户权益处理，所以需从业务责任和误判成本设计标签与人工升级。', cv:'基于 CFPB 公开金融投诉数据搭建多标签质检原型，设计 [N] 类业务标签与规则升级策略，在 [N] 条人工核验样本上报告各类召回/精确率，并留存人工修订审计记录。'}
+    ];
+
+    const phases = [
+      { name:'Phase 0', time:'产后 0–3 个月', hours:'每周约 3–5 小时', goal:'低能耗输入：建立概念地图并锁定应用方向，不写项目代码。', know:'LLM 术语与能力边界；Transformer 直觉；RAG/Agent 区别；银行数据口径与 AI 风险的连接；岗位样例。', deliver:'一页概念地图、术语卡片 30 张、3 个可转成项目的问题。', accept:'能用非技术语言说清 token、embedding、RAG、幻觉、工具调用；能解释为什么不走预训练路线。', links:'M1、M3、M10 的 P0 视频/入门材料。', fallback:'若只完成 60%，保留术语地图和方向判断；Phase 1 先学项目所需的 Python，不补完整数学。' },
+      { name:'Phase 1', time:'第 3–6 个月', hours:'每周 6–8 小时', goal:'建立 Python 工程习惯，完成一个可运行的结构化抽取小工具。', know:'包与依赖；Git；测试；API 输入输出；Prompt；JSON Schema；日志与错误处理。', deliver:'公开年报字段抽取工具、README、样例输入输出、pytest 测试。', accept:'新环境按 README 能启动；30 条样本中字段格式有效率 ≥95%，并明确内容准确率由人工核验。', links:'M2、M4 P0；M3 按需。', fallback:'若只完成 60%，交付命令行版本和 20 条样本；FastAPI/界面可推后，不跳过测试和字段定义。' },
+      { name:'Phase 2', time:'第 6–9 个月', hours:'每周 7–8 小时', goal:'交付主力项目 1：银行制度/监管文件 RAG 问答与引用溯源。', know:'清洗与切分；embedding；top-k；metadata filter；rerank 概念；拒答；引用定位；检索评测。', deliver:'可演示 RAG、公开语料清单、50 条问题集、错误分析和评测报告。', accept:'引用定位准确率目标 ≥90%；证据不足拒答符合预定义预期；Recall@5 与人工抽查结果公开。', links:'M5、M6、M10 P0/P1。', fallback:'若只完成 60%，先保留检索、引用和 30 条测试；暂缓 reranker 与多轮对话，保持端到端可复现。' },
+      { name:'Phase 3', time:'第 9–12 个月', hours:'每周 7–8 小时', goal:'交付主力项目 2：Text-to-SQL 口径校验；补齐评测、安全和基本服务化。', know:'SQL 生成约束；schema grounding；指标字典；只读权限；SQL parser/校验；评测分层；延迟与成本。', deliver:'指标口径字典、自然语言到只读 SQL 工具、冲突提示样本、评测报告、简历初稿。', accept:'50 条问题的 SQL 可执行率和口径正确率分别报告；危险语句 100% 拦截；至少 5 类错误有回归测试。', links:'M2、M4、M7、M9、M10。微调 M8 为选修。', fallback:'若只完成 60%，完成 SQL 草案 + 口径风险解释 + 人工确认；自建模型部署和 LoRA 可全部砍掉。' },
+      { name:'Phase 4', time:'第 12–15 个月', hours:'每周 6–8 小时', goal:'把作品集转成求职证据，完成面试验证与 Plan B 准备。', know:'项目叙事；RAG/Agent 原理问答；金融合规边界；场景拆解；岗位匹配；薪酬与工作方式筛选。', deliver:'两项主项目可演示、简历与项目讲解稿、目标岗位表、面试复盘记录。', accept:'至少 8 次有效投递并记录反馈；能在 10 分钟内讲清项目价值、评测和风险；准备内部转岗/AI 增强分析备选方案。', links:'M10 全部 P0、M1–M9 项目关联资料。', fallback:'若面试转化弱，优先转向银行内部数据智能、AI 增强分析或金融 AI 交付，不继续无差别堆技术。' }
+    ];
+    const weekly = [
+      ['整块：主项目功能实现 / 数据处理 / 检索调优','2 × 2 h'],
+      ['整块：测试、评测与错误分析','1 × 2 h'],
+      ['碎片：课程视频、官方文档和术语卡片','4 × 30 min'],
+      ['整块：整理 README、记录结果、规划下周','1 h']
+    ];
+    const allResources = modules.flatMap(m => m.resources.map(r => ({id:r[0], module:m.id, title:r[1], type:r[2], provider:r[3], language:r[4], hours:r[5], cost:r[6], difficulty:r[7], priority:r[8], purpose:r[9], method:r[10], url:r[11], format:r[12]})));
+    function safeLoad(key, fallback='') { try { return localStorage.getItem(key) ?? fallback; } catch (_) { return fallback; } }
+    function safeLoadJSON(key, fallback=[]) { try { const value=safeLoad(key); return value ? JSON.parse(value) : fallback; } catch (_) { return fallback; } }
+    const state = { module:'M1', priority:'all', view:'resources', bankTopic:'foundation', done:new Set(safeLoadJSON('llmstudy.done')) };
+    const safeSave = (key, value) => { try { localStorage.setItem(key, value); } catch (_) {} };
+    const moduleNav = document.getElementById('moduleNav');
+    const resourceList = document.getElementById('resourceList');
+    function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function renderNav() {
+      moduleNav.innerHTML = modules.map(m => `<button class="nav-btn ${state.module===m.id && state.view==='resources'?'active':''}" data-module="${m.id}"><span class="module-code">${m.id}</span>${esc(m.title)}</button>`).join('');
+      moduleNav.querySelectorAll('[data-module]').forEach(b => b.addEventListener('click', () => { state.module=b.dataset.module; state.view='resources'; showView(); render(); document.getElementById('sidebar').classList.remove('open'); }));
+    }
+    function renderStats() {
+      const p0 = allResources.filter(r => r.priority==='P0');
+      const doneP0 = p0.filter(r => state.done.has(r.id)).length;
+      document.getElementById('completedCount').textContent = `${state.done.size} / ${allResources.length}`;
+      document.getElementById('p0Progress').textContent = `${Math.round(doneP0/p0.length*100)}%`;
+      document.getElementById('moduleProgress').style.width = `${Math.round(modules.find(m=>m.id===state.module).resources.filter(r=>state.done.has(r[0])).length/modules.find(m=>m.id===state.module).resources.length*100)}%`;
+    }
+    function renderResources() {
+      const m = modules.find(x=>x.id===state.module);
+      document.getElementById('moduleBadge').textContent=m.id;
+      const query=document.getElementById('searchInput').value.trim();
+      document.getElementById('moduleBadge').textContent=query?'ALL':m.id;
+      document.getElementById('moduleTitle').textContent=query?'全资料库搜索结果':m.title;
+      document.getElementById('moduleDesc').textContent=query?`搜索“${query}”覆盖 M1–M10；点击结果上的模块标签查看该模块全部资料。`:m.desc;
+      document.getElementById('moduleHours').textContent=query?'全库搜索':`模块估时 ${m.hours}`;
+      document.getElementById('moduleOutcome').innerHTML=`<strong>阶段产出与验收</strong><p>${esc(m.outcome)}</p>`;
+      const q=query.toLowerCase();
+      const source=q?allResources:m.resources.map(r=>allResources.find(x=>x.id===r[0]));
+      const resources=source.filter(r=>(state.priority==='all'||r.priority===state.priority)&&(!q||[r.title,r.provider,r.purpose,r.method,r.type,r.module].join(' ').toLowerCase().includes(q)));
+      if (!resources.length) { resourceList.innerHTML='<div class="empty">没有匹配的资料。试试清除搜索词或切换优先级。</div>'; return; }
+      resourceList.innerHTML=resources.map(r=>`<article class="resource ${state.done.has(r.id)?'is-done':''}"><div class="resource-main"><div><div class="resource-title-row"><h4>${esc(r.title)}</h4><span class="tag ${r.priority.toLowerCase()}">${r.priority}</span><span class="tag">${esc(r.format)}</span>${q?`<button class="tag" type="button" data-open-module="${r.module}" title="切换到此资料所在模块">${r.module} · 打开模块</button>`:''}</div><div class="resource-meta"><span>${esc(r.provider)}</span><span>${esc(r.language)}</span><span>${esc(r.hours)}</span><span>${esc(r.cost)}</span><span>${esc(r.difficulty)}</span></div><p class="resource-purpose">${esc(r.purpose)}</p><p class="resource-method">学习方式：${esc(r.method)}</p></div><div class="resource-actions"><a class="open-link" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">打开资料 <span aria-hidden="true">↗</span></a><a class="search-link" href="https://www.baidu.com/s?wd=${encodeURIComponent(r.title)}" target="_blank" rel="noopener noreferrer">打不开？搜标题</a><label class="done-toggle"><input type="checkbox" data-done="${r.id}" ${state.done.has(r.id)?'checked':''}>已完成</label></div></div></article>`).join('');
+      resourceList.querySelectorAll('[data-done]').forEach(input=>input.addEventListener('change',()=>{input.checked?state.done.add(input.dataset.done):state.done.delete(input.dataset.done);safeSave('llmstudy.done',JSON.stringify([...state.done]));render();}));
+      resourceList.querySelectorAll('[data-open-module]').forEach(button=>button.addEventListener('click',()=>{state.module=button.dataset.openModule;document.getElementById('searchInput').value='';render();}));
+    }
+    function renderRoute() {
+      document.getElementById('phaseTable').innerHTML=phases.map(p=>`<article class="phase-row"><div class="phase-time"><strong>${esc(p.name)}</strong>${esc(p.time)}<br>${esc(p.hours)}</div><div><h3>${esc(p.goal)}</h3><p><b>重点：</b>${esc(p.know)}</p><p><b>验收：</b>${esc(p.accept)}</p><p><b>资料：</b>${esc(p.links)}</p></div><div class="phase-output"><b>交付物</b>${esc(p.deliver)}<br><br><b>60% 降级</b>${esc(p.fallback)}</div></article>`).join('');
+    }
+    function renderWeekly() {
+      document.getElementById('weeklyPlan').innerHTML=weekly.map((w,i)=>`<label class="weekly-row"><input type="checkbox" data-week="${i}"><span>${esc(w[0])}</span><em>${esc(w[1])}</em></label>`).join('');
+      const checks=new Set(safeLoadJSON('llmstudy.week'));
+      document.querySelectorAll('[data-week]').forEach(c=>{c.checked=checks.has(Number(c.dataset.week));c.addEventListener('change',()=>{c.checked?checks.add(Number(c.dataset.week)):checks.delete(Number(c.dataset.week));safeSave('llmstudy.week',JSON.stringify([...checks]));});});
+      const note=document.getElementById('weeklyNote'); note.value=safeLoad('llmstudy.note');
+      note.oninput=()=>safeSave('llmstudy.note',note.value);
+    }
+    function renderBank() {
+      const topic=bankTopics.find(t=>t.id===state.bankTopic)||bankTopics[0];
+      document.getElementById('bankTopicNav').innerHTML=bankTopics.map(t=>`<button class="bank-topic-btn ${t.id===topic.id?'active':''}" data-bank-topic="${t.id}">${esc(t.nav)}</button>`).join('');
+      document.getElementById('bankTopicNav').querySelectorAll('[data-bank-topic]').forEach(b=>b.addEventListener('click',()=>{state.bankTopic=b.dataset.bankTopic;renderBank();}));
+      const saved=new Set(safeLoadJSON('llmstudy.bankChecks'));
+      const sections=topic.sections.map((section,si)=>{
+        let body='';
+        if(section.items) body=`<div class="bank-grid">${section.items.map((item,i)=>`<article class="bank-item"><strong>${esc(item[0])}</strong><p>${esc(item[1])}</p></article>`).join('')}</div>`;
+        if(section.metrics) body=`<div class="metric-list">${section.metrics.map(item=>`<div class="metric"><b>${esc(item[0])}</b><span>${esc(item[1])}</span></div>`).join('')}</div>`;
+        if(section.checks) body=`<div>${section.checks.map((c,i)=>{const key=`${topic.id}:${si}:${i}`;return `<label class="bank-check"><input type="checkbox" data-bank-check="${esc(key)}" ${saved.has(key)?'checked':''}><span>${esc(c)}</span></label>`}).join('')}</div>`;
+        if(section.quiz) body=`<div class="bank-quiz"><p>${esc(section.quiz)}</p><button type="button" data-quiz="${si}" aria-expanded="false">查看思路</button><div class="bank-quiz-answer">${esc(section.answer)}</div></div>`;
+        return `<section class="bank-section"><h3>${esc(section.title)}</h3>${body}</section>`;
+      }).join('');
+      const checksCount=topic.sections.reduce((n,s)=>n+(s.checks?.length||0),0);
+      document.getElementById('bankTopicBody').innerHTML=`<header class="bank-topic-head"><div><h2>${esc(topic.title)}</h2><p>${esc(topic.intro)}</p></div><span class="bank-topic-counter">${bankTopics.length} 个专题 · ${checksCount} 项自检</span></header>${sections}<div class="bank-callout"><b>学习边界：</b>业务公式和流程是常见分析框架，不替代本机构统计制度、产品合同、会计政策或现行监管要求。记录来源和口径版本，是把业务知识转成 AI 生产能力的第一步。</div>`;
+      document.getElementById('bankTopicBody').querySelectorAll('[data-bank-check]').forEach(input=>input.addEventListener('change',()=>{input.checked?saved.add(input.dataset.bankCheck):saved.delete(input.dataset.bankCheck);safeSave('llmstudy.bankChecks',JSON.stringify([...saved]));}));
+      document.getElementById('bankTopicBody').querySelectorAll('[data-quiz]').forEach(button=>button.addEventListener('click',()=>{const card=button.closest('.bank-quiz');const open=card.classList.toggle('open');button.setAttribute('aria-expanded',String(open));button.textContent=open?'收起思路':'查看思路';}));
+    }
+    function renderProjects() {
+      const saved=new Set(safeLoadJSON('llmstudy.projectChecks'));
+      document.getElementById('projectList').innerHTML=projects.map((p,pi)=>`<article class="project-card"><header class="project-head"><span class="project-number">0${pi+1}</span><div><h3>${esc(p.title)}</h3><p>${esc(p.problem)}</p></div><span class="project-hours">${esc(p.hours)}</span></header><div class="project-body"><div class="project-facts"><div class="project-fact"><b>公开数据来源</b><p>${esc(p.source)} ${p.links.map(x=>`<br><a href="${esc(x[1])}" target="_blank" rel="noopener noreferrer">${esc(x[0])} ↗</a>`).join('')}</p></div><div class="project-fact"><b>交付物</b><p>${esc(p.deliver)}</p></div></div><div class="project-flow">${esc(p.flow)}</div><div class="milestone-list">${p.milestones.map((m,mi)=>{const key=`${p.id}:${mi}`;return `<label class="milestone"><input type="checkbox" data-project-check="${esc(key)}" ${saved.has(key)?'checked':''}><span><strong>${esc(m[0])}</strong>${esc(m[1])}</span><em>${m[2]} h</em></label>`}).join('')}</div><div class="project-proof"><b>业务经验差异：</b>${esc(p.uniqueness)}<br><br><b>简历句式：</b>${esc(p.cv)}<br><br><b>验收指标：</b>${p.acceptance.map(a=>`<br>• ${esc(a)}`).join('')}</div></div></article>`).join('');
+      document.getElementById('projectList').querySelectorAll('[data-project-check]').forEach(input=>input.addEventListener('change',()=>{input.checked?saved.add(input.dataset.projectCheck):saved.delete(input.dataset.projectCheck);safeSave('llmstudy.projectChecks',JSON.stringify([...saved]));}));
+    }
+    function renderSide() {
+      document.getElementById('stageList').innerHTML=phases.map((p,i)=>`<div class="stage-item ${i===0?'current':''}"><span class="stage-dot">${i===0?'●':i+1}</span><div><strong>${esc(p.name)} · ${esc(p.time)}</strong><small>${esc(p.goal)}</small></div></div>`).join('');
+    }
+    function showView() {
+      document.getElementById('resourceView').classList.toggle('hide',state.view!=='resources');
+      document.getElementById('routeView').classList.toggle('show',state.view==='route');
+      document.getElementById('weeklyView').classList.toggle('show',state.view==='weekly');
+      document.getElementById('bankView').classList.toggle('show',state.view==='bank');
+      document.getElementById('projectView').classList.toggle('show',state.view==='projects');
+      document.getElementById('crumbTitle').textContent=state.view==='resources'?'学习资料':state.view==='route'?'阶段路线':state.view==='weekly'?'每周执行':state.view==='bank'?'银行业务知识':'项目实战';
+      document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));
+      document.querySelectorAll('.sidebar > [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));
+      document.getElementById('sidebar').classList.remove('open');
+      renderNav();
+    }
+    function render(){renderNav();renderStats();renderResources();}
+    document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{state.view=b.dataset.view;showView();}));
+    document.querySelectorAll('[data-priority]').forEach(b=>b.addEventListener('click',()=>{state.priority=b.dataset.priority;document.querySelectorAll('[data-priority]').forEach(x=>x.classList.toggle('active',x===b));renderResources();}));
+    document.getElementById('searchInput').addEventListener('input',renderResources);
+    document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
+    document.getElementById('resetProgress').addEventListener('click',()=>{if(confirm('清除本浏览器中保存的学习进度、项目验收和笔记？')){try{['llmstudy.done','llmstudy.week','llmstudy.note','llmstudy.bankChecks','llmstudy.projectChecks'].forEach(k=>localStorage.removeItem(k));}catch(_){}state.done.clear();render();renderWeekly();renderBank();renderProjects();}});
+    render();renderRoute();renderWeekly();renderSide();renderBank();renderProjects();showView();

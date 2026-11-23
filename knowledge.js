@@ -6,11 +6,11 @@
   const el = id => document.getElementById(id);
   const search = el('library-search'), filter = el('library-filter'), list = el('library-results');
   const tabs = [...document.querySelectorAll('[data-tab]')];
-  const localResources = new Set(['resources/vla-guide/', 'resources/ai-network-learning.html']);
+  const localResources = new Set(['resources/vla-guide/', 'resources/ai-network-learning.html', 'resources/bank-llm-learning.html']);
   const groups = {
     competitions: {field: 'level', placeholder: 'Search competitions, organizers, or keywords…', options: [['','All levels / 全部级别'],['A','A'],['B1','B1'],['B2','B2']], description: '来自《山西工学院学科竞赛分级》原表。A、B1、B2 为该校目录分类，具体赛制与参赛条件以当届公告为准。'},
     journals: {field: 'batch', placeholder: 'Search a journal title / 输入刊名…', options: [['','All batches / 全部批次'],['第一批','First batch / 第一批'],['第二批','Second batch / 第二批']], description: '整理自所提供的第一批、第二批学术期刊目录。批次根据文件顺序与编号推定；本目录不代表核心期刊、SCI 收录或当前有效出版许可。'},
-    learning: {field: 'libraryGroup', placeholder: 'Search VLA, RDMA, or learning topics…', options: [['','All topics / 全部主题'],['VLA','VLA'],['AI Network','AI Network']], description: '本站静态学习资源副本与导航。可直接阅读 VLA 章节与 AI 算力网络资源；资料用于学习定位，不代表已复现实验或核验全部外链。'}
+    learning: {field: 'libraryGroup', placeholder: 'Search VLA, RDMA, banking LLMs, or learning topics…', options: [['','All topics / 全部主题'],['VLA','VLA'],['AI Network','AI Network'],['Banking LLM','Banking LLM']], description: 'Explore VLA, AI networking, and banking LLM learning resources.'}
   };
   const normalize = text => String(text || '').toLocaleLowerCase().replace(/[\s·・—–（）()]/g, '');
   const node = (tag, className, text) => { const item = document.createElement(tag); if (className) item.className = className; if (text) item.textContent = text; return item; };

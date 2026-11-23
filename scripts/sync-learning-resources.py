@@ -147,11 +147,99 @@ def integrate_network(content):
     return secure_html(content)
 
 
+BANK_ID = "bank-llm-learning"
+BANK_CSS = """
+    .resource-return { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:10px 14px; }
+    .resource-return a { color:var(--ink); font-weight:650; white-space:nowrap; }
+    .resource-return :focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
+    .top-actions { margin-left:auto; }
+    .bank-topic-body, .project-body { overflow-wrap:anywhere; }
+    :root[data-theme=dark] {
+      color-scheme:dark;
+      --paper:#101616; --surface:#192222; --ink:#edf4f2; --muted:#b5c4c1; --line:#354441;
+      --teal:#81d5c7; --teal-soft:#23423e; --gold:#e0be7f; --gold-soft:#3c3120;
+      --coral:#efa894; --coral-soft:#3c2a27; --blue:#a0c6ef; --blue-soft:#273748; --shadow:none;
+    }
+    [data-theme=dark] :is(.sidebar,.topbar,.reset-btn,.mobile-menu,.search,.filter-btn,.resource,.bank-topic-btn,
+      .bank-quiz button,.project-card,.note-box textarea,.view-tab.active) { background:var(--surface); color:var(--ink); }
+    [data-theme=dark] :is(.module-banner,.progress-line,.view-tabs,.tag,.bank-item,.bank-topic-counter,.bank-quiz,
+      .project-head,.project-flow,.weekly-row,.stage-item.current) { background:var(--teal-soft); color:var(--ink); }
+    [data-theme=dark] :is(.nav-btn,.view-tab,.week-pill,.module-code,.nav-label,.resource-meta,.resource-purpose,
+      .module-banner p,.panel-body p,.route-intro p,.route-bottom p,.phase-row p,.phase-time,.phase-output,
+      .side-card p,.stage-item small,.footer,.resource-link,.fallback-link,.save-hint,.weekly-row em,
+      .bank-topic-head p,.bank-item p,.bank-check,.bank-quiz p,.bank-quiz-answer,.metric span,
+      .project-head p,.project-hours,.project-fact p,.milestone span,.milestone em) { color:var(--muted); }
+    [data-theme=dark] :is(.nav-btn:hover,.nav-btn.active,.filter-btn.active,.bank-topic-btn.active,.resource.is-done) {
+      background:var(--teal-soft); color:var(--teal);
+    }
+    [data-theme=dark] :is(.tag.p0,.metric code,.project-fact a,.bank-item strong) { color:var(--teal); }
+    [data-theme=dark] :is(.tag.p1,.watchout,.bank-callout) { background:var(--gold-soft); color:var(--gold); }
+    [data-theme=dark] :is(.head-note,.project-proof,.project-proof b) { color:var(--coral); }
+    [data-theme=dark] :is(.brand-mark,.module-badge,.project-number) { color:var(--paper); }
+    [data-theme=dark] :is(.panel-head,.module-banner,.bank-item,.bank-quiz,.bank-quiz-answer,.project-head,
+      .phase-output,.stage-item,.weekly-row,.project-fact,.milestone) { border-color:var(--line); }
+    @media(max-width:560px) {
+      .resource-return { padding:8px 11px; }
+      .topbar .crumb { overflow-wrap:anywhere; }
+      .filter-btn { padding-inline:4px; }
+    }
+"""
+
+
+def import_bank(source, manifest):
+    if source.is_relative_to(PUBLIC):
+        raise ValueError("Banking workbench source and destination must be separate")
+    raw = source.read_bytes()
+    content = raw.decode("utf-8")
+    script = re.search(r"<script>\s*\n(.*?)\n\s*</script>", content, re.S)
+    if not script or len(re.findall(r"<script\b", content, re.I)) != 1 or content.count("</style>") != 1:
+        raise ValueError("Unexpected banking workbench markup")
+    page = PUBLIC / f"{BANK_ID}.html"
+    js = PUBLIC / f"{BANK_ID}.js"
+    scripts = shared_page_scripts(page)
+    content = content[:script.start()] + content[script.end():]
+    content = content.replace("<style>", scripts["theme-init.js"] + "\n  " + scripts["scroll-init.js"] + "\n  <style>", 1)
+    content = content.replace("</style>", BANK_CSS + "  </style>", 1)
+    content = content.replace("</head>", "  " + scripts["theme.js"] + "\n  " + scripts["disclosures.js"]
+        + f'\n  <script src="{js.name}" defer></script>\n</head>', 1)
+    content = content.replace('<div class="app">', '<nav class="resource-return" aria-label="本站导航">'
+        '<a href="../knowledge.html#learning">← 返回知识库</a>'
+        '<button class="reset-btn" id="theme-toggle" type="button" aria-label="Theme: Auto">Auto</button>'
+        '</nav>\n  <noscript><p>此工作台需要启用 JavaScript 才能浏览课程、项目和学习路线。</p></noscript>\n'
+        '  <div class="app">', 1)
+    content = content.replace('保存在本机浏览器。公开监管文件', '保存在当前浏览器，请勿在笔记中填写客户信息或行内敏感数据。公开监管文件', 1)
+    page.write_text(secure_html(re.sub(r"[ \t]+$", "", content, flags=re.M)), encoding="utf-8")
+    js.write_text(script[1] + "\n", encoding="utf-8")
+    paths = {p.relative_to(ROOT).as_posix() for p in (page, js)}
+    manifest["files"] = [item for item in manifest["files"] if item["path"] not in paths]
+    for path in sorted(paths):
+        published = (ROOT / path).read_bytes()
+        manifest["files"].append({"path": path, "bytes": len(published), "sha256": digest(published)})
+    manifest["files"].sort(key=lambda item: item["path"])
+    manifest["entries"] = [entry for entry in manifest["entries"] if entry["id"] != BANK_ID]
+    manifest["entries"].append({
+        "id": BANK_ID, "title": "银行数据 × 大模型应用｜自学工作台", "href": page.relative_to(ROOT).as_posix(),
+        "description": "银行业务知识、金融大模型的 15 个月学习路线、课程与项目实践。",
+        "source": source.name, "sourceSha256": digest(raw),
+        "rights": "User-provided learning workbench; linked materials retain their original rights.",
+    })
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--network-source", type=Path, required=True)
-    parser.add_argument("--vla-source", type=Path, required=True, help="Repository root containing site/ and licenses")
+    parser.add_argument("--network-source", type=Path)
+    parser.add_argument("--vla-source", type=Path, help="Repository root containing site/ and licenses")
+    parser.add_argument("--bank-source", type=Path, help="Single-file banking and LLM learning workbench")
     args = parser.parse_args()
+    if bool(args.network_source) != bool(args.vla_source) or not (args.network_source or args.bank_source):
+        parser.error("Provide --bank-source or the pair --network-source and --vla-source (or all three)")
+    manifest_path = PUBLIC / "manifest.json"
+    existing = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"entries": [], "files": []}
+    bank_source = args.bank_source.resolve(strict=True) if args.bank_source else None
+    if not args.network_source:
+        import_bank(bank_source, existing)
+        manifest_path.write_text(json.dumps(existing, ensure_ascii=False, indent=2) + "\n")
+        return
     network_source = args.network_source.resolve(strict=True)
     vla_source = args.vla_source.resolve(strict=True)
     if PUBLIC.is_relative_to(vla_source) or VLA == vla_source:
@@ -221,8 +309,15 @@ def main():
         "files": [{"path": p.relative_to(ROOT).as_posix(), "bytes": p.stat().st_size, "sha256": digest(p.read_bytes())}
                   for p in sorted(copied)]
     }
-    (PUBLIC / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
-    print(json.dumps({"copiedFiles": len(copied), "vlaPages": len(list(VLA.rglob('*.html'))),
+    if bank_source:
+        import_bank(bank_source, manifest)
+    else:
+        manifest["entries"].extend(entry for entry in existing["entries"] if entry["id"] == BANK_ID)
+        manifest["files"].extend(item for item in existing["files"]
+                                 if item["path"] in {f"resources/{BANK_ID}.html", f"resources/{BANK_ID}.js"})
+        manifest["files"].sort(key=lambda item: item["path"])
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
+    print(json.dumps({"copiedFiles": len(manifest["files"]), "vlaPages": len(list(VLA.rglob('*.html'))),
                       "sourceFilesUnchanged": True, "manifest": "resources/manifest.json"}, ensure_ascii=False))
 
 

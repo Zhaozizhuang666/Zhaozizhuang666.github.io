@@ -21,6 +21,7 @@ test('learning entry navigation remains distinct from conceptual VLA explanation
     ['VLA Guide 入口在哪？', 'learning-vla-guide'],
     ['Where can I open VLA Guide?', 'learning-vla-guide'],
     ['AI算力中心网络学习资源在哪里？', 'learning-ai-network'],
+    ['金融大模型学习工作台里的 RAG 项目在哪？', 'learning-bank-llm'],
     ['学习资源怎么使用？', 'site-guide-learning-resources'],
   ]) assert.ok(ids(make().reply(query)).includes(id), query);
   assert.ok(ids(make().reply('VLA是什么？')).includes('tech-vla-foundation'));

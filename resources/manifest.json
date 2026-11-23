@@ -25,6 +25,15 @@
       "chapters": 63,
       "roles": 24,
       "interviewQuestions": 80
+    },
+    {
+      "id": "bank-llm-learning",
+      "title": "银行数据 × 大模型应用｜自学工作台",
+      "href": "resources/bank-llm-learning.html",
+      "description": "银行业务知识、金融大模型的 15 个月学习路线、课程与项目实践。",
+      "source": "bank-llm-learning-platform-2026-11-22.html",
+      "sourceSha256": "b338515b16cdc2d3458d3ddd5ae0ab05ba14ec8405acb59d4b69cdbac5a7270a",
+      "rights": "User-provided learning workbench; linked materials retain their original rights."
     }
   ],
   "integration": [
@@ -56,6 +65,16 @@
       "path": "resources/ai-network-learning.html",
       "bytes": 41338,
       "sha256": "0cbbb2bc9cfbadfef6af1aa8f472f4b7702e848d26829cddf15f28d9359488c2"
+    },
+    {
+      "path": "resources/bank-llm-learning.html",
+      "bytes": 34655,
+      "sha256": "068e67508e67b1e1131e6472b34764f96c8b3fb69164909b598ba64402408ac4"
+    },
+    {
+      "path": "resources/bank-llm-learning.js",
+      "bytes": 83567,
+      "sha256": "c4f8312fa2b9ccbed5812bffc3a09ef6ff47d6aac7b033bfb982ce83a4a4c89a"
     },
     {
       "path": "resources/vla-guide/404.html",

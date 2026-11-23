@@ -750,7 +750,7 @@
         "配置说明"
       ],
       "summary": "网站按工作、项目、学习、报道与资料库组织内容，Xiaoyi 提供侧边知识问答。",
-      "details": "首页顶部导航可跳转至各内容模块。知识库提供竞赛目录、期刊目录与 Learning 学习资源，其中 Learning 包含本站 VLA Guide 和 AI Network Learning。顶部主题按钮用于切换 Auto、Light 与 Dark；Xiaoyi 标签默认位于右侧，支持展开对话及拖动至左侧。",
+      "details": "首页顶部导航可跳转至各内容模块。知识库提供竞赛目录、期刊目录与 Learning 学习资源，其中 Learning 包含 VLA Guide、AI Network Learning 和金融大模型学习工作台。顶部主题按钮用于切换 Auto、Light 与 Dark；Xiaoyi 标签默认位于右侧，支持展开对话及拖动至左侧。",
       "website": "https://zhaozizhuang666.github.io/guide.html#usage",
       "urlType": "source",
       "sourceLocation": "个人网站配置与使用说明 #usage",
@@ -1290,6 +1290,44 @@
       ]
     },
     {
+      "id": "learning-bank-llm",
+      "name": "Banking Data × LLM Applications",
+      "aliases": [
+        "银行数据 × 大模型应用",
+        "金融大模型学习",
+        "银行大模型学习",
+        "金融数据与大模型",
+        "银行数据分析转大模型",
+        "银行业务知识地图",
+        "银行业务项目实战",
+        "Banking LLM",
+        "financial LLM learning"
+      ],
+      "summary": "面向银行数据分析背景的金融大模型学习工作台。提供 15 个月路线、10 个学习模块、银行业务知识和 4 个项目练习。",
+      "librarySummary": "A 15-month learning plan for banking data and LLM applications, with 10 modules, banking concepts, and four practical projects. The workbench is in Chinese.",
+      "details": "课程涵盖 Python 工程、Transformer、提示词和结构化输出、向量检索与 RAG、Agent、微调、部署及评测合规。四个练习分别是监管制度问答、只读 Text-to-SQL、对公尽调材料结构化和金融投诉分类质检。可搜索课程、按优先级筛选，进度和周记保存在当前浏览器。项目练习使用公开或明确标注的合成资料；业务口径和监管要求以现行官方要求及机构制度为准。",
+      "website": "https://zhaozizhuang666.github.io/resources/bank-llm-learning.html",
+      "urlType": "source",
+      "sourceLocation": "银行数据 × 大模型应用｜自学工作台（2026-11-22）",
+      "sourceType": "user-provided-learning-workbench",
+      "libraryCategory": "learning",
+      "libraryGroup": "Banking LLM",
+      "libraryHref": "resources/bank-llm-learning.html",
+      "libraryNote": "Chinese workbench · Browser-local progress",
+      "topics": [
+        "银行数据",
+        "金融大模型",
+        "银行业务",
+        "RAG",
+        "Agent",
+        "Text-to-SQL",
+        "金融合规",
+        "对公尽调",
+        "金融投诉",
+        "学习路线"
+      ]
+    },
+    {
       "id": "site-guide-learning-resources",
       "name": "Learning Resources · Reading & Progress Guide",
       "aliases": [
@@ -1303,8 +1341,8 @@
         "VLA进度怎么保存",
         "资料副本和小艺的关系"
       ],
-      "summary": "Library → Learning 提供 VLA 与 AI Network 本站副本；Xiaoyi 提供资源入口及简要索引。",
-      "details": "Learning 支持按关键词和主题筛选。VLA Guide 提供章节全文搜索、学习进度、岗位探索与面试练习收藏；进度和收藏仅保存在当前浏览器，可通过导出功能备份。AI Network Learning 为按主题组织的外部资源导航，不包含进度功能。手动选择 Light 或 Dark 后，主站与本站资源页面保持相同偏好；外部网站使用各自的主题设置。resources/manifest.json 记录本站副本范围、文件大小和哈希。Xiaoyi 仅检索已整理条目与入口，未声明全文处理全部资料，访客记忆也不写入公共知识。重要结论仍应核对原始论文、官方实现与实测证据。",
+      "summary": "Library → Learning 提供 VLA、AI 算力网络和金融大模型的学习资源；Xiaoyi 提供资源入口及简要索引。",
+      "details": "Learning 支持按关键词和主题筛选。VLA Guide 提供全文搜索、进度、岗位探索和面试练习，进度与收藏可以导出。AI Network Learning 按主题组织外部资源。金融大模型学习工作台提供课程筛选、银行业务专题、项目练习和学习路线，进度与周记保存在当前浏览器。手动主题随站内导航保留。resources/manifest.json 记录本站副本范围、文件大小和哈希。Xiaoyi 检索的是整理后的摘要与来源入口；技术或监管结论请核对原始资料。",
       "website": "https://zhaozizhuang666.github.io/knowledge.html#learning",
       "urlType": "source",
       "sourceLocation": "Knowledge Library · Learning · 本站资源使用说明",
@@ -1631,5 +1669,5 @@
     }
   ],
   "learningSourceTitle": "Personal-site learning resources / 本站学习资源",
-  "learningSourceNote": "VLA Guide 与 AI 算力网络合集为用户提供资料的公开静态副本，保留来源与权利说明。VLA 代码 MIT、教程 CC BY 4.0；网络合集未声明明确许可证，不套用 VLA 的许可。第三方材料保留原权利；本站清单验证复制范围、文件哈希与站内链接，不认证全部外链、技术结论或实验结果。"
+  "learningSourceNote": "VLA Guide、AI 算力网络合集与金融大模型工作台为公开学习资源副本。VLA 代码采用 MIT、原创教程采用 CC BY 4.0；网络合集和金融大模型工作台保留各自来源，第三方材料保留原权利。本站清单记录复制范围和文件哈希。"
 }

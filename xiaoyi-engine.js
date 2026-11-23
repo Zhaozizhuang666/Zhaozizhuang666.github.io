@@ -125,6 +125,8 @@
         .filter(item => item.score).sort((a, b) => b.score - a.score);
       if (portfolio.length) return portfolio.slice(0, 4).map(item => item.entry);
       // Resource navigation is distinct from an explanation of the VLA concept.
+      const bankingWorkbench = byId('learning-bank-llm');
+      if (bankingWorkbench?.aliases.some(alias => portfolioQuery.includes(norm(alias)))) return [bankingWorkbench];
       if (/学习资源.*(?:怎么|如何|使用)|(?:怎么|如何).*学习资源|learning resources.*(?:use|help)/i.test(text)) return unique(['site-guide-learning-resources'].map(byId));
       if (/(?:vla[\s-]*guide|本地VLA知识库)/i.test(text) && /入口|在哪|哪里|链接|浏览|打开|\b(?:where|link|open|find|access)\b/i.test(text)) return unique(['learning-vla-guide'].map(byId));
       if (/算力.*网络.*(?:合集|资源|入口|学习)|(?:rdma|roce).*(?:学习资源|学习合集)|AI Network Learning/i.test(text)) return unique(['learning-ai-network'].map(byId));
@@ -399,7 +401,8 @@
       const request = directoryRequest(text, messages);
       if (request) return remember(directory(text, request), request.kind);
       const definition = /是什么|什么是|是啥|如何理解|解释|定义|区别|对比|比较|关系|不同|vs\b|那.{1,25}呢[？?]?$/i.test(text);
-      const projectIntent = /想做|想搞|准备做|做一个|项目|创意|点子|方向|原型|方案|参赛|怎么落地/.test(text) && !definition;
+      // Practice projects inside a learning resource are navigation, not a request for new project ideas.
+      const projectIntent = /想做|想搞|准备做|做一个|项目|创意|点子|方向|原型|方案|参赛|怎么落地/.test(text) && !definition && !technical(text).some(entry => entry.libraryCategory === 'learning');
       const projectFollowup = memory.idea.domain && memory.scope === 'ideas' && /第[一二三123]|[一二三123](号|方案|方向)|继续|接下来|下一步|怎么开始|怎么验证|怎么测试|会.{0,8}(python|编程|代码)|大[一二三四]|没.{0,3}硬件|预算|团队/i.test(text) && !definition && !technical(text).length;
       if (projectIntent || projectFollowup) return remember(project(text), 'ideas');
       let records = technical(text);
