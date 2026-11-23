@@ -1,4 +1,13 @@
     const modules = [
+      { id: 'M0', title: '零基础起步：先把工具和语感跑通', desc: '写给完全没写过代码的人：先让电脑、Python、Git 和对话模型跑起来，再谈模型原理。本模块只要求能跑通、能读懂，不要求理解数学。', hours: '约 45 h', outcome: '本机能运行自己写的 Python 脚本并用 Git 提交；能说清特征、标签、训练、过拟合四个词；能用提示词让模型稳定输出一段结构化结果，并说出它可能错在哪。', resources: [
+        ['m0-py-official','Python 官方教程（简体中文）','在线教程','Python 软件基金会','中文','12 h','免费','入门','P0','从变量、列表、字典到函数和模块，建立能读懂示例代码的基础。','按第 3–6 章顺序读，每节都在本机敲一遍；标准库细节先跳过。','https://docs.python.org/zh-cn/3/tutorial/','文档'],
+        ['m0-liaoxuefeng','Python 教程','在线教程','廖雪峰','中文','15 h','免费','入门','P0','中文语境下最省力的入门路径，覆盖环境搭建、语法、函数和文件读写。','先完成「Python 基础」到「函数」；装饰器、元类等高级语法可跳过。','https://liaoxuefeng.com/books/python/introduction/index.html','文档'],
+        ['m0-runoob','Python3 教程','速查手册','菜鸟教程','中文','4 h','免费','查阅','P1','忘记语法时快速查阅，不作为系统学习主线。','当字典用：需要某个语法时直接搜对应页，不要通读。','https://www.runoob.com/python3/python3-tutorial.html','文档'],
+        ['m0-git','Pro Git（中文版）','在线书','Scott Chacon、Ben Straub','中文','6 h','免费','入门','P0','学会保存和回滚自己的学习代码，为后面的项目和协作打底。','读第 1–3 章，并在本机建一个仓库练习提交、分支和回退。','https://git-scm.com/book/zh/v2','书'],
+        ['m0-ml-crash','Machine Learning Crash Course','视频课程 / 练习','Google','英文（可开自动字幕）','15 h','免费','入门','P0','在不碰数学推导的前提下建立特征、标签、训练、过拟合的最小概念。','做完每节交互练习；TensorFlow 编程部分可以不做。','https://developers.google.com/machine-learning/crash-course','视频 / 练习'],
+        ['m0-d2l-intro','动手学深度学习：引言','在线书','李沐等','中文','2 h','免费','入门','P1','先看清深度学习能解决什么、不能解决什么，再进入 M1。','只读引言一章，建立全局图景；公式看不懂可先跳过。','https://zh.d2l.ai/chapter_introduction/index.html','书'],
+        ['m0-prompt-zh','提示工程指南（中文）','在线指南','DAIR.AI','中文','5 h','免费','入门','P0','还不会写代码的阶段就能产出可用结果，并建立对模型能力边界的直觉。','按「基本概念」到「提示技术」顺序读，每个技巧都在对话里试一遍。','https://www.promptingguide.ai/zh','文档']
+      ]},
       { id: 'M1', title: '数学与深度学习最小必要集', desc: '补齐理解 embedding、loss、attention 和训练/推理差异需要的直觉，不走数学考研路线。', hours: '约 28 h', outcome: '画出“向量表示 → 相似度 → 梯度更新 → attention”的一页概念图；能用自己的话解释过拟合、交叉熵、梯度下降和 embedding。', resources: [
         ['m1-3b1b','线性代数的本质（Essence of Linear Algebra）','视频课程','3Blue1Brown','英文讲解 / 中文字幕','5 h','免费','入门','P0','建立向量、矩阵、线性变换的可视直觉，为 embedding 和 attention 做准备。','看第 1–5 集；每集写一句“它和文本向量有什么关系”。','https://www.3blue1brown.com/topics/linear-algebra','视频'],
         ['m1-d2l','动手学深度学习：线性代数与多层感知机','在线书 / 代码','李沐等','中文','10 h','免费','入门','P0','掌握张量、自动微分、损失函数、梯度下降和过拟合的最小闭环。','从预备知识中的线性代数开始，再读多层感知机章节及配套代码；不必通读全书。','https://zh.d2l.ai/chapter_preliminaries/linear-algebra.html','书 / 代码'],
@@ -73,7 +82,44 @@
         ['m10-fineval','FinEval: A Chinese Financial Domain Evaluation Benchmark','数据集 / 评测','上海财经大学等研究团队','中文','4 h','免费 / 开源数据集','进阶','P1','了解中文金融知识评测任务，拓展自建金融评测集设计。','先读任务和数据许可；选择可用于演示的子集，避免把榜单分数当产品质量。','https://github.com/SUFE-AIFLM-Lab/FinEval','数据集 / 代码'],
         ['m10-ceval','C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite','论文 / 数据集','C-Eval 项目团队','中文 / 英文','3 h','免费 / 开源数据集','进阶','P2','补充中文通用知识基准的使用视角。','阅读论文的任务设计和数据集说明；只作模型背景对比，不替代银行业务评测。','https://arxiv.org/abs/2305.08322','论文 / 数据集'],
         ['m10-bcbs239','BCBS 239: Principles for effective risk data aggregation and risk reporting','国际审慎监管原则 / 文档','巴塞尔银行监管委员会（BIS）','英文','4 h','免费','进阶','P1','理解风险数据聚合、治理、准确性、完整性和及时性原则；这是国际参考，不是中国监管文件。','重点读治理与数据架构原则，并把数据血缘、质量、时效和责任映射到自己的银行指标项目。','https://www.bis.org/publications/201301-guidelines-principles-effective-risk-data-aggregation-and-risk-reporting','文档']
-      ]}
+      ]},
+      { id: 'M11', title: '评测体系与质量工程', desc: '从「跑通」走向「可信」：把一次性抽查变成能回归、能归因、能对外解释的评测体系。这是 1→10 阶段最被低估、也最能区分水平的能力。', hours: '约 40 h', outcome: '为自己的项目建立分层评测：单点断言、固定题集回归、线上采样复核；能用数据说明一次改动是提升还是退化，并给出置信判断。', resources: [
+        ['m11-evals-hamel','Your AI Product Needs Evals','技术文章','Hamel Husain','英文','4 h','免费','进阶','P0','理解为什么评测先于模型选型，以及如何从错误样本倒推评测项。','按文中流程为自己的 RAG 建一版错误分类表；先做 20 条人工标注再谈自动化。','https://hamel.dev/blog/posts/evals/','文章'],
+        ['m11-applied-llms','What We Learned From a Year of Building with LLMs','技术文章','Applied LLMs 团队','英文','6 h','免费','进阶','P0','一线团队总结的评测、提示、架构与组织经验，覆盖大量真实踩坑。','分三次读完战术、运营、战略三部分，摘出能用在自己项目上的 10 条。','https://applied-llms.org/','文章'],
+        ['m11-ragas','Ragas：RAG 评测框架','开源框架 / 文档','Ragas 维护者','英文','8 h','免费','进阶','P0','用可复现指标衡量检索与生成质量，替代凭感觉判断。','在自己的题集上跑 faithfulness 和 context recall；记录指标与人工判断不一致的样本。','https://docs.ragas.io/','文档 / 代码'],
+        ['m11-rgb','Benchmarking Large Language Models in Retrieval-Augmented Generation','论文','Chen 等','英文','4 h','免费','硬核','P1','了解噪声、负样本、信息整合和反事实四类 RAG 失效模式及其量化方式。','先读实验设计与结论；把四类失效改写成自己项目的测试用例。','https://arxiv.org/abs/2309.01431','论文'],
+        ['m11-helm','HELM：整体性语言模型评测','评测平台','Stanford CRFM','英文','4 h','免费','进阶','P1','学习多维度评测的组织方式：准确性之外还有校准、鲁棒性、公平性和效率。','看方法论与指标定义，借用其维度划分设计自己的评测报告结构。','https://crfm.stanford.edu/helm/','文档'],
+        ['m11-evidently','LLM 质量与监控指南','在线指南','Evidently AI','英文','6 h','免费','进阶','P1','把评测延伸到上线后的漂移监控与持续采样复核。','重点读评测设计与监控指标两章；结合自己项目设计一张线上采样表。','https://www.evidentlyai.com/llm-guide','文档'],
+        ['m11-openai-evals','OpenAI Evals','开源框架','OpenAI','英文','5 h','免费','进阶','P2','参考可复用的评测用例组织方式与注册机制。','读 README 和若干内置 eval 的实现；按同样结构整理自己的题集。','https://github.com/openai/evals','代码']
+      ]},
+      { id: 'M12', title: '生产化：LLMOps、可观测性与成本', desc: '把能演示的原型变成能长期运行的系统：版本管理、链路追踪、容量与成本、故障预案。这是从个人作品走向团队资产的关键一步。', hours: '约 48 h', outcome: '服务具备结构化日志与链路追踪、提示与模型版本可回溯、成本与延迟可按场景核算；能写出一份包含降级与回滚方案的上线清单。', resources: [
+        ['m12-aie-book','AI Engineering 资源集','开源资源 / 笔记','Chip Huyen','英文','10 h','免费','进阶','P0','系统梳理 AI 工程的全貌：评测、检索、微调、推理优化与架构权衡。','按仓库给出的章节索引选读与自己项目相关的部分，不必通读。','https://github.com/chiphuyen/aie-book','文档 / 代码'],
+        ['m12-llm-prod','Building LLM Applications for Production','技术文章','Chip Huyen','英文','4 h','免费','进阶','P0','理解原型到生产之间的真实差距：延迟、成本、可控性与评测。','读完列出自己项目在这四项上的当前状态与差距。','https://huyenchip.com/2023/04/11/llm-engineering.html','文章'],
+        ['m12-otel-genai','OpenTelemetry 生成式 AI 语义约定','标准 / 文档','OpenTelemetry','英文','5 h','免费','进阶','P0','用标准化字段记录模型调用，让日志可跨工具分析而非散落在打印语句里。','按约定给自己的调用链补上模型、token、延迟和错误字段。','https://opentelemetry.io/docs/specs/semconv/gen-ai/','文档'],
+        ['m12-mlops','MLOps 原则与实践','在线指南','ml-ops.org','英文','8 h','免费','进阶','P0','补齐数据版本、实验追踪、持续交付与监控的工程框架。','重点读原则与成熟度模型两节，对照自己项目做一次自评。','https://ml-ops.org/','文档'],
+        ['m12-vllm','vLLM 推理服务','开源项目 / 文档','vLLM 团队','英文','8 h','免费','进阶','P1','理解批处理、KV 缓存与吞吐优化，在自建部署时算清资源账。','跑通本地单模型服务；记录不同并发下的延迟与吞吐曲线。','https://docs.vllm.ai/en/latest/','文档 / 代码'],
+        ['m12-sre','Google SRE 系列图书','在线书','Google','英文','8 h','免费','进阶','P1','把 SLO、错误预算、发布与事故复盘的做法迁移到 AI 服务。','读 SLO、监控与事故响应相关章节；为自己的服务写一份 SLO 草案。','https://sre.google/books/','书'],
+        ['m12-ray','Ray：分布式计算框架','开源项目','Anyscale 等','英文','6 h','免费','硬核','P2','当数据量或并发超出单机时的横向扩展路径。','先看核心概念与 Ray Serve 快速上手；没有规模需求时可缓做。','https://github.com/ray-project/ray','文档 / 代码']
+      ]},
+      { id: 'M13', title: '金融 AI 治理与模型风险管理', desc: '在金融机构里，能否上线往往取决于治理而不是模型分数。本模块对标银行模型风险管理的成熟框架，学会用审计、监管和业务都能接受的语言证明系统可控。', hours: '约 42 h', outcome: '能为一个 LLM 应用写出模型风险评估：用途与边界、数据来源与授权、验证方法、监控指标、人工复核点和退出机制；能说清国内主要监管要求对设计的具体约束。', resources: [
+        ['m13-sr117','SR 11-7：模型风险管理监管指引','监管文件','美国联邦储备委员会','英文','6 h','免费','进阶','P0','银行业模型风险管理的经典框架：模型开发、独立验证与治理三道防线。','精读模型验证与治理两部分，把要求逐条映射到自己的 LLM 项目。','https://www.federalreserve.gov/boarddocs/srletters/2011/sr1107.htm','文档'],
+        ['m13-nist-rmf','AI 风险管理框架（AI RMF）','标准 / 框架','美国国家标准与技术研究院','英文','6 h','免费','进阶','P0','用治理、映射、度量、管理四项功能组织 AI 风险工作。','读框架正文后，为自己的项目逐项填写四项功能下的具体措施。','https://www.nist.gov/itl/ai-risk-management-framework','文档'],
+        ['m13-nist-playbook','AI RMF Playbook','实践手册','美国国家标准与技术研究院','英文','6 h','免费','进阶','P1','把框架落成可执行的检查项和建议动作。','按「度量」一节挑出适用于 RAG 与 Agent 的条目，整理成自检表。','https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook','文档'],
+        ['m13-bcbs239','BCBS 239：有效风险数据加总与报告原则','监管文件','巴塞尔银行监管委员会','英文','5 h','免费','进阶','P0','银行数据治理的基准要求：准确、完整、及时、可适配。对数据分析背景最能形成差异化。','对照 14 条原则，说明自己的指标口径与 RAG 数据管道各满足哪几条。','https://www.bis.org/publ/bcbs239.htm','文档'],
+        ['m13-cac-genai','生成式人工智能服务管理暂行办法','法规','国家网信办等','中文','3 h','免费','入门','P0','国内生成式 AI 服务的基本合规要求，影响训练数据、标注、内容安全和用户权益设计。','逐条标出与金融场景相关的义务，并写出对应的系统设计措施。','https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm','文档'],
+        ['m13-data-security','网络数据安全管理条例','法规','国务院','中文','4 h','免费','进阶','P0','明确数据处理、个人信息保护与跨境流动的要求，直接约束金融数据能否用于模型。','重点读个人信息保护与重要数据两章，列出项目中所有数据流的合规判断。','https://www.gov.cn/zhengce/content/202409/content_6977766.htm','文档'],
+        ['m13-nfra','国家金融监督管理总局','监管机构官网','国家金融监督管理总局','中文','4 h','免费','查阅','P1','跟踪银行业科技与数据相关的最新监管规定和征求意见稿。','每月浏览一次政策法规栏目，记录与数据治理、信息科技风险相关的新文件。','https://www.nfra.gov.cn/cn/view/pages/index/index.html','文档'],
+        ['m13-mrm-ibm','什么是模型风险管理','概述文章','IBM','英文','2 h','免费','入门','P2','用一篇短文快速建立模型风险管理的整体概念，适合在读 SR 11-7 之前先看。','读完后用一段话说明模型风险的来源，再进入监管原文。','https://www.ibm.com/think/topics/model-risk-management','文章']
+      ]},
+      { id: 'M14', title: '架构决策、影响力与技术领导', desc: '从「我能做」走向「我能带着团队做对」：在约束下做架构取舍、写出别人能执行的方案、让业务与合规愿意采纳。行业专家的标志是判断力和影响半径，而不是会用多少工具。', hours: '约 36 h', outcome: '为一个跨部门 AI 场景写出完整方案：问题定义、备选架构与取舍记录、风险与验证计划、分阶段路线和成功指标；能在 15 分钟内向业务负责人讲清并回答质疑。', resources: [
+        ['m14-agents','Building Effective Agents','技术文章','Anthropic','英文','3 h','免费','进阶','P0','学会判断何时用固定工作流、何时才需要自主 Agent，避免为复杂而复杂。','把文中的几种模式与自己项目逐一对照，写出为什么选或不选。','https://www.anthropic.com/engineering/building-effective-agents','文章'],
+        ['m14-adr','架构决策记录（ADR）','方法 / 模板','ADR 社区','英文','3 h','免费','进阶','P0','用简短、可追溯的文档记下每个关键取舍的背景与理由，便于审计与交接。','为自己项目的 3 个关键选择（检索方式、模型、部署）各写一份 ADR。','https://adr.github.io/','文档'],
+        ['m14-tech-writing','Technical Writing 课程','在线课程','Google','英文','8 h','免费','入门','P0','技术影响力的基础是写清楚：短句、明确主语、先结论后细节。','完成 One 和 Two 两门课的练习，并用学到的规则重写一份项目 README。','https://developers.google.com/tech-writing','视频 / 练习'],
+        ['m14-rag-paper','Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks','论文','Lewis 等','英文','5 h','免费','硬核','P1','回到 RAG 的原始论文，理解设计动机，在架构讨论中能讲清来龙去脉。','精读方法与实验部分，写一页说明它与自己实现的差异和原因。','https://arxiv.org/abs/2005.11401','论文'],
+        ['m14-autogen','AutoGen 多智能体框架','开源框架 / 文档','Microsoft','英文','6 h','免费','进阶','P2','了解多智能体协作的设计方式，用于评估复杂流程是否值得拆分角色。','跑通一个双角色示例，记录其可控性与成本，再判断是否适合金融场景。','https://microsoft.github.io/autogen/stable/','文档 / 代码'],
+        ['m14-langchain','LangChain 文档','开源框架 / 文档','LangChain','英文','6 h','免费','进阶','P2','熟悉主流编排框架的抽象，在选型时能对比自研与框架的成本。','读概览与核心概念；评估引入框架对可观测性和调试的影响。','https://docs.langchain.com/oss/python/langchain/overview','文档 / 代码'],
+        ['m14-structured','Introducing Structured Outputs','技术文章','OpenAI','英文','2 h','免费','进阶','P1','理解结构化输出如何从约束层面保证格式，而非依赖提示词碰运气。','对照自己 M4 的实现，评估改用模式约束后能减少哪些校验代码。','https://openai.com/index/introducing-structured-outputs-in-the-api/','文章']
+      ]},
     ];
 
     const bankTopics = [
@@ -157,7 +203,9 @@
       { name:'Phase 1', time:'第 3–6 个月', hours:'每周 6–8 小时', goal:'建立 Python 工程习惯，完成一个可运行的结构化抽取小工具。', know:'包与依赖；Git；测试；API 输入输出；Prompt；JSON Schema；日志与错误处理。', deliver:'公开年报字段抽取工具、README、样例输入输出、pytest 测试。', accept:'新环境按 README 能启动；30 条样本中字段格式有效率 ≥95%，并明确内容准确率由人工核验。', links:'M2、M4 P0；M3 按需。', fallback:'若只完成 60%，交付命令行版本和 20 条样本；FastAPI/界面可推后，不跳过测试和字段定义。' },
       { name:'Phase 2', time:'第 6–9 个月', hours:'每周 7–8 小时', goal:'交付主力项目 1：银行制度/监管文件 RAG 问答与引用溯源。', know:'清洗与切分；embedding；top-k；metadata filter；rerank 概念；拒答；引用定位；检索评测。', deliver:'可演示 RAG、公开语料清单、50 条问题集、错误分析和评测报告。', accept:'引用定位准确率目标 ≥90%；证据不足拒答符合预定义预期；Recall@5 与人工抽查结果公开。', links:'M5、M6、M10 P0/P1。', fallback:'若只完成 60%，先保留检索、引用和 30 条测试；暂缓 reranker 与多轮对话，保持端到端可复现。' },
       { name:'Phase 3', time:'第 9–12 个月', hours:'每周 7–8 小时', goal:'交付主力项目 2：Text-to-SQL 口径校验；补齐评测、安全和基本服务化。', know:'SQL 生成约束；schema grounding；指标字典；只读权限；SQL parser/校验；评测分层；延迟与成本。', deliver:'指标口径字典、自然语言到只读 SQL 工具、冲突提示样本、评测报告、简历初稿。', accept:'50 条问题的 SQL 可执行率和口径正确率分别报告；危险语句 100% 拦截；至少 5 类错误有回归测试。', links:'M2、M4、M7、M9、M10。微调 M8 为选修。', fallback:'若只完成 60%，完成 SQL 草案 + 口径风险解释 + 人工确认；自建模型部署和 LoRA 可全部砍掉。' },
-      { name:'Phase 4', time:'第 12–15 个月', hours:'每周 6–8 小时', goal:'把作品集转成求职证据，完成面试验证与 Plan B 准备。', know:'项目叙事；RAG/Agent 原理问答；金融合规边界；场景拆解；岗位匹配；薪酬与工作方式筛选。', deliver:'两项主项目可演示、简历与项目讲解稿、目标岗位表、面试复盘记录。', accept:'至少 8 次有效投递并记录反馈；能在 10 分钟内讲清项目价值、评测和风险；准备内部转岗/AI 增强分析备选方案。', links:'M10 全部 P0、M1–M9 项目关联资料。', fallback:'若面试转化弱，优先转向银行内部数据智能、AI 增强分析或金融 AI 交付，不继续无差别堆技术。' }
+      { name:'Phase 4', time:'第 12–15 个月', hours:'每周 6–8 小时', goal:'把作品集转成求职证据，完成面试验证与 Plan B 准备。', know:'项目叙事；RAG/Agent 原理问答；金融合规边界；场景拆解；岗位匹配；薪酬与工作方式筛选。', deliver:'两项主项目可演示、简历与项目讲解稿、目标岗位表、面试复盘记录。', accept:'至少 8 次有效投递并记录反馈；能在 10 分钟内讲清项目价值、评测和风险；准备内部转岗/AI 增强分析备选方案。', links:'M10 全部 P0、M1–M9 项目关联资料。', fallback:'若面试转化弱，优先转向银行内部数据智能、AI 增强分析或金融 AI 交付，不继续无差别堆技术。' },
+      { name:'Phase 5', time:'第 15–24 个月', hours:'每周 6–8 小时', goal:'在岗位上从「能交付」走到「可信交付」：把评测、监控和成本核算补成体系。', know:'分层评测与回归题集；错误归因；链路追踪与结构化日志；SLO 与错误预算；token 与算力成本核算；提示与模型版本管理。', deliver:'一套可回归的评测工程（题集 + 指标 + 报告模板）、带追踪的服务、一份含降级与回滚的上线清单、按场景的成本台账。', accept:'任一改动都能用评测数据说明提升或退化；线上问题能在半天内定位到检索、生成还是数据环节；能说出单次请求的成本构成。', links:'M11 全部 P0、M12 P0/P1。', fallback:'若只完成 60%，优先保住固定题集回归与结构化日志两项，监控和成本核算可延后。' },
+      { name:'Phase 6', time:'第 24–42 个月', hours:'每周 5–7 小时', goal:'从执行者转为能定方案、过治理、带人做的角色：用机构能接受的语言证明系统可控。', know:'模型风险管理三道防线；AI RMF 的治理/映射/度量/管理；BCBS 239 数据治理原则；国内生成式 AI 与数据安全合规要求；架构决策记录；跨部门沟通与方案写作。', deliver:'一份完整模型风险评估与验证报告、3 份关键架构决策记录（ADR）、一个跨部门落地方案（含路线与成功指标）、一次面向业务负责人的方案讲解。', accept:'方案能通过风险、合规与审计视角的质询并留下可追溯记录；能带 1–2 人完成一个场景从立项到上线；对外输出至少 3 篇有据可查的技术或方法文章。', links:'M13 全部 P0、M14 P0/P1。', fallback:'若暂无跨部门机会，先用公开资料完成一份完整的模型风险评估与 ADR 练习，作为能力证据。' }
     ];
     const weekly = [
       ['整块：主项目功能实现 / 数据处理 / 检索调优','2 × 2 h'],
@@ -168,7 +216,7 @@
     const allResources = modules.flatMap(m => m.resources.map(r => ({id:r[0], module:m.id, title:r[1], type:r[2], provider:r[3], language:r[4], hours:r[5], cost:r[6], difficulty:r[7], priority:r[8], purpose:r[9], method:r[10], url:r[11], format:r[12]})));
     function safeLoad(key, fallback='') { try { return localStorage.getItem(key) ?? fallback; } catch (_) { return fallback; } }
     function safeLoadJSON(key, fallback=[]) { try { const value=safeLoad(key); return value ? JSON.parse(value) : fallback; } catch (_) { return fallback; } }
-    const state = { module:'M1', priority:'all', view:'resources', bankTopic:'foundation', done:new Set(safeLoadJSON('llmstudy.done')) };
+    const state = { module:'M0', priority:'all', view:'resources', bankTopic:'foundation', done:new Set(safeLoadJSON('llmstudy.done')) };
     const safeSave = (key, value) => { try { localStorage.setItem(key, value); } catch (_) {} };
     const moduleNav = document.getElementById('moduleNav');
     const resourceList = document.getElementById('resourceList');
@@ -190,7 +238,7 @@
       const query=document.getElementById('searchInput').value.trim();
       document.getElementById('moduleBadge').textContent=query?'ALL':m.id;
       document.getElementById('moduleTitle').textContent=query?'全资料库搜索结果':m.title;
-      document.getElementById('moduleDesc').textContent=query?`搜索“${query}”覆盖 M1–M10；点击结果上的模块标签查看该模块全部资料。`:m.desc;
+      document.getElementById('moduleDesc').textContent=query?`搜索“${query}”覆盖 M0–M14；点击结果上的模块标签查看该模块全部资料。`:m.desc;
       document.getElementById('moduleHours').textContent=query?'全库搜索':`模块估时 ${m.hours}`;
       document.getElementById('moduleOutcome').innerHTML=`<strong>阶段产出与验收</strong><p>${esc(m.outcome)}</p>`;
       const q=query.toLowerCase();

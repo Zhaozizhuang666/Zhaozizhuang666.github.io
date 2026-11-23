@@ -76,5 +76,8 @@
   search.addEventListener('input',()=>{page=1;render()}); filter.addEventListener('change',()=>{page=1;render()});
   el('previous-page').addEventListener('click',()=>{page--;render();el('library-heading').scrollIntoView({behavior:'smooth',block:'start'})});
   el('next-page').addEventListener('click',()=>{page++;render();el('library-heading').scrollIntoView({behavior:'smooth',block:'start'})});
-  const requested = location.hash.slice(1), initial = Object.hasOwn(groups, requested) ? requested : 'competitions'; selectTab(initial);
+  const fromHash = () => { const name = location.hash.slice(1); return Object.hasOwn(groups, name) ? name : null; };
+  // The hero index links to #competitions / #journals / #learning, so a hash change opens that collection.
+  window.addEventListener('hashchange', () => { const name = fromHash(); if (name && name !== active) selectTab(name); });
+  selectTab(fromHash() || 'competitions');
 })();

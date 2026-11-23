@@ -30,9 +30,9 @@
       "id": "bank-llm-learning",
       "title": "银行数据 × 大模型应用｜自学工作台",
       "href": "resources/bank-llm-learning.html",
-      "description": "银行业务知识、金融大模型的 15 个月学习路线、课程与项目实践。",
-      "source": "bank-llm-learning-platform-2026-11-22.html",
-      "sourceSha256": "b338515b16cdc2d3458d3ddd5ae0ab05ba14ec8405acb59d4b69cdbac5a7270a",
+      "description": "银行业务知识、金融大模型的分阶段学习路线、课程与项目实践，覆盖零基础入门到在岗进阶。",
+      "source": "bank-llm-learning-platform-2026-11-24.html",
+      "sourceSha256": "881fa46e9e72fbc748d0d36fe0737e886ba069938a57261774bc388c4938fa9a",
       "rights": "User-provided learning workbench; linked materials retain their original rights."
     }
   ],
@@ -68,13 +68,13 @@
     },
     {
       "path": "resources/bank-llm-learning.html",
-      "bytes": 34655,
-      "sha256": "068e67508e67b1e1131e6472b34764f96c8b3fb69164909b598ba64402408ac4"
+      "bytes": 34541,
+      "sha256": "17fa6dc570e4839b59f63d7fca19066921512a5d29c26089b23065fef0587563"
     },
     {
       "path": "resources/bank-llm-learning.js",
-      "bytes": 83567,
-      "sha256": "c4f8312fa2b9ccbed5812bffc3a09ef6ff47d6aac7b033bfb982ce83a4a4c89a"
+      "bytes": 101197,
+      "sha256": "b6c07e857be83717dcd5d22699ebdcc7ef25f5e1d850f5c87665f86f5b6fb896"
     },
     {
       "path": "resources/vla-guide/404.html",

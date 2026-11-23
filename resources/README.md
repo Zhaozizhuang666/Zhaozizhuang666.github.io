@@ -4,7 +4,7 @@ Public static copies for the personal website:
 
 - [AI Network Learning](ai-network-learning.html): AI 算力中心网络学习导航，覆盖 GPU 互联、RDMA / RoCE、集合通信与容量规划。
 - [VLA Guide](vla-guide/): VLA 与具身智能学习知识库，包含基础、模型实践、评测部署、学习路线、岗位探索与原创面试练习。
-- [银行数据 × 大模型应用](bank-llm-learning.html): 银行业务专题、10 个学习模块、4 个项目练习与 15 个月学习路线。
+- [银行数据 × 大模型应用](bank-llm-learning.html): 银行业务专题、15 个学习模块（M0–M14）、4 个项目练习与 7 个阶段路线，覆盖零基础入门到在岗进阶。
 
 The snapshot contains 81 HTML pages: an AI networking index, a banking LLM workbench and 79 VLA pages. VLA includes 11 modules, 63 chapters, 24 role profiles and 80 interview practice questions. [manifest.json](manifest.json) lists the distributed files with byte sizes and SHA-256 hashes.
 

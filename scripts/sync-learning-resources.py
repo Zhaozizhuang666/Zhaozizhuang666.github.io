@@ -149,35 +149,22 @@ def integrate_network(content):
 
 BANK_ID = "bank-llm-learning"
 BANK_CSS = """
-    .resource-return { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:10px 14px; }
+    .resource-return { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:10px 14px;
+      background:var(--glass); border-bottom:1px solid var(--line); }
     .resource-return a { color:var(--ink); font-weight:650; white-space:nowrap; }
-    .resource-return :focus-visible { outline:2px solid var(--teal); outline-offset:3px; }
+    .resource-return a:hover { color:var(--accent); }
+    .resource-return :focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
     .top-actions { margin-left:auto; }
     .bank-topic-body, .project-body { overflow-wrap:anywhere; }
+    /* Dark values follow the main site's dark palette; every colour in the page reads these variables. */
     :root[data-theme=dark] {
       color-scheme:dark;
-      --paper:#101616; --surface:#192222; --ink:#edf4f2; --muted:#b5c4c1; --line:#354441;
-      --teal:#81d5c7; --teal-soft:#23423e; --gold:#e0be7f; --gold-soft:#3c3120;
-      --coral:#efa894; --coral-soft:#3c2a27; --blue:#a0c6ef; --blue-soft:#273748; --shadow:none;
+      --paper:#0d131b; --surface:#151d28; --soft:#17202c; --soft-2:#1d2836;
+      --ink:#e7edf6; --body:#bdc6d3; --muted:#9aa6b6; --line:#354154;
+      --accent:#85b6ff; --accent-ink:#a9cbff; --accent-soft:#1b2a3c; --accent-line:#4d6380; --on-accent:#0d131b;
+      --gold:#e6c17f; --gold-soft:#33291a; --coral:#f0a493; --coral-soft:#3a2522;
+      --glass:rgba(13,19,27,.94); --shadow:0 10px 30px rgba(0,0,0,.24);
     }
-    [data-theme=dark] :is(.sidebar,.topbar,.reset-btn,.mobile-menu,.search,.filter-btn,.resource,.bank-topic-btn,
-      .bank-quiz button,.project-card,.note-box textarea,.view-tab.active) { background:var(--surface); color:var(--ink); }
-    [data-theme=dark] :is(.module-banner,.progress-line,.view-tabs,.tag,.bank-item,.bank-topic-counter,.bank-quiz,
-      .project-head,.project-flow,.weekly-row,.stage-item.current) { background:var(--teal-soft); color:var(--ink); }
-    [data-theme=dark] :is(.nav-btn,.view-tab,.week-pill,.module-code,.nav-label,.resource-meta,.resource-purpose,
-      .module-banner p,.panel-body p,.route-intro p,.route-bottom p,.phase-row p,.phase-time,.phase-output,
-      .side-card p,.stage-item small,.footer,.resource-link,.fallback-link,.save-hint,.weekly-row em,
-      .bank-topic-head p,.bank-item p,.bank-check,.bank-quiz p,.bank-quiz-answer,.metric span,
-      .project-head p,.project-hours,.project-fact p,.milestone span,.milestone em) { color:var(--muted); }
-    [data-theme=dark] :is(.nav-btn:hover,.nav-btn.active,.filter-btn.active,.bank-topic-btn.active,.resource.is-done) {
-      background:var(--teal-soft); color:var(--teal);
-    }
-    [data-theme=dark] :is(.tag.p0,.metric code,.project-fact a,.bank-item strong) { color:var(--teal); }
-    [data-theme=dark] :is(.tag.p1,.watchout,.bank-callout) { background:var(--gold-soft); color:var(--gold); }
-    [data-theme=dark] :is(.head-note,.project-proof,.project-proof b) { color:var(--coral); }
-    [data-theme=dark] :is(.brand-mark,.module-badge,.project-number) { color:var(--paper); }
-    [data-theme=dark] :is(.panel-head,.module-banner,.bank-item,.bank-quiz,.bank-quiz-answer,.project-head,
-      .phase-output,.stage-item,.weekly-row,.project-fact,.milestone) { border-color:var(--line); }
     @media(max-width:560px) {
       .resource-return { padding:8px 11px; }
       .topbar .crumb { overflow-wrap:anywhere; }
@@ -219,7 +206,7 @@ def import_bank(source, manifest):
     manifest["entries"] = [entry for entry in manifest["entries"] if entry["id"] != BANK_ID]
     manifest["entries"].append({
         "id": BANK_ID, "title": "银行数据 × 大模型应用｜自学工作台", "href": page.relative_to(ROOT).as_posix(),
-        "description": "银行业务知识、金融大模型的 15 个月学习路线、课程与项目实践。",
+        "description": "银行业务知识、金融大模型的分阶段学习路线、课程与项目实践，覆盖零基础入门到在岗进阶。",
         "source": source.name, "sourceSha256": digest(raw),
         "rights": "User-provided learning workbench; linked materials retain their original rights.",
     })

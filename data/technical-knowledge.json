@@ -1301,11 +1301,15 @@
         "银行业务知识地图",
         "银行业务项目实战",
         "Banking LLM",
-        "financial LLM learning"
+        "financial LLM learning",
+        "金融大模型入门",
+        "零基础学金融大模型",
+        "金融AI进阶",
+        "模型风险管理学习"
       ],
-      "summary": "面向银行数据分析背景的金融大模型学习工作台。提供 15 个月路线、10 个学习模块、银行业务知识和 4 个项目练习。",
-      "librarySummary": "A 15-month learning plan for banking data and LLM applications, with 10 modules, banking concepts, and four practical projects. The workbench is in Chinese.",
-      "details": "课程涵盖 Python 工程、Transformer、提示词和结构化输出、向量检索与 RAG、Agent、微调、部署及评测合规。四个练习分别是监管制度问答、只读 Text-to-SQL、对公尽调材料结构化和金融投诉分类质检。可搜索课程、按优先级筛选，进度和周记保存在当前浏览器。项目练习使用公开或明确标注的合成资料；业务口径和监管要求以现行官方要求及机构制度为准。",
+      "summary": "面向银行数据分析背景的金融大模型学习工作台，覆盖零基础入门到在岗进阶。提供 15 个学习模块（M0–M14）、7 个阶段路线、银行业务知识和 4 个项目练习。",
+      "librarySummary": "A banking data and LLM learning path from complete beginner to senior practitioner, with 15 modules (M0–M14), seven phases, banking concepts, and four practical projects. The workbench is in Chinese.",
+      "details": "M0 面向完全零基础，从 Python、Git 和提示词起步；M1–M10 是求职主线，涵盖 Python 工程、Transformer、提示词和结构化输出、向量检索与 RAG、Agent、微调、部署及评测合规；M11–M14 是在岗进阶，涵盖评测体系与质量工程、LLMOps 与可观测性、金融 AI 治理与模型风险管理、架构决策与技术领导。Phase 0–4 对应入门与求职（约 15 个月），Phase 5–6 对应入行后的成长，周期按实际机会顺延。四个练习分别是监管制度问答、只读 Text-to-SQL、对公尽调材料结构化和金融投诉分类质检。可搜索课程、按优先级筛选，进度和周记保存在当前浏览器。项目练习使用公开或明确标注的合成资料；业务口径和监管要求以现行官方要求及机构制度为准。",
       "website": "https://zhaozizhuang666.github.io/resources/bank-llm-learning.html",
       "urlType": "source",
       "sourceLocation": "银行数据 × 大模型应用｜自学工作台（2026-11-22）",
@@ -1324,7 +1328,12 @@
         "金融合规",
         "对公尽调",
         "金融投诉",
-        "学习路线"
+        "学习路线",
+        "零基础入门",
+        "评测体系",
+        "LLMOps",
+        "模型风险管理",
+        "技术领导"
       ]
     },
     {
