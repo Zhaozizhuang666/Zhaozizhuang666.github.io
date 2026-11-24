@@ -213,10 +213,38 @@
       ['碎片：课程视频、官方文档和术语卡片','4 × 30 min'],
       ['整块：整理 README、记录结果、规划下周','1 h']
     ];
+    // Knowledge map: stages left to right, prerequisites drawn as edges.
+    const graphStages = [
+      { id:'s0', name:'零基础起步', phase:'Phase 0', time:'产后 0–3 个月', modules:['M0'] },
+      { id:'s1', name:'理论与工程地基', phase:'Phase 0–1', time:'第 0–6 个月', modules:['M1','M2','M3'] },
+      { id:'s2', name:'大模型应用核心', phase:'Phase 1–2', time:'第 3–9 个月', modules:['M4','M5','M6'] },
+      { id:'s3', name:'扩展与交付', phase:'Phase 3', time:'第 9–12 个月', modules:['M7','M8','M9'] },
+      { id:'s4', name:'合规与求职', phase:'Phase 4', time:'第 12–15 个月', modules:['M10'] },
+      { id:'s5', name:'在岗进阶 1→10', phase:'Phase 5–6', time:'第 15 个月以后', modules:['M11','M12','M13','M14'] }
+    ];
+    const graphStageOf = {};
+    const graphEdges = [
+      ['M0','M1'],['M0','M2'],
+      ['M1','M3'],['M2','M6'],['M2','M9'],
+      ['M3','M4'],['M3','M5'],
+      ['M4','M6'],['M5','M6'],
+      ['M6','M7'],['M6','M8'],['M6','M11'],
+      ['M7','M9'],['M9','M10'],['M8','M10'],
+      ['M10','M13'],['M11','M12'],['M12','M14'],['M13','M14']
+    ];
+    graphStages.forEach((stage, index) => stage.modules.forEach(id => { graphStageOf[id] = index; }));
+    // Same-stage dependencies are stated on the card instead, so the drawing stays left-to-right.
+    const graphDrawn = graphEdges.filter(([a, b]) => graphStageOf[a] < graphStageOf[b]);
+    const graphTracks = [
+      { title:'银行业务知识', view:'bank', desc:'与技术模块并行推进。业务口径决定项目能否做对，是数据分析背景最容易形成差异化的部分。',
+        chips:bankTopics.map(t=>({label:t.nav, id:t.id})) },
+      { title:'项目实战', view:'projects', desc:'每个项目对应一段技术链路：从检索问答到只读取数、材料结构化和文本质检。',
+        chips:projects.map((p,i)=>({label:'0'+(i+1)+' '+p.title.split('：')[0], id:p.id})) }
+    ];
     const allResources = modules.flatMap(m => m.resources.map(r => ({id:r[0], module:m.id, title:r[1], type:r[2], provider:r[3], language:r[4], hours:r[5], cost:r[6], difficulty:r[7], priority:r[8], purpose:r[9], method:r[10], url:r[11], format:r[12]})));
     function safeLoad(key, fallback='') { try { return localStorage.getItem(key) ?? fallback; } catch (_) { return fallback; } }
     function safeLoadJSON(key, fallback=[]) { try { const value=safeLoad(key); return value ? JSON.parse(value) : fallback; } catch (_) { return fallback; } }
-    const state = { module:'M0', priority:'all', view:'resources', bankTopic:'foundation', done:new Set(safeLoadJSON('llmstudy.done')) };
+    const state = { module:'M0', priority:'all', view:'graph', bankTopic:'foundation', done:new Set(safeLoadJSON('llmstudy.done')) };
     const safeSave = (key, value) => { try { localStorage.setItem(key, value); } catch (_) {} };
     const moduleNav = document.getElementById('moduleNav');
     const resourceList = document.getElementById('resourceList');
@@ -224,6 +252,103 @@
     function renderNav() {
       moduleNav.innerHTML = modules.map(m => `<button class="nav-btn ${state.module===m.id && state.view==='resources'?'active':''}" data-module="${m.id}"><span class="module-code">${m.id}</span>${esc(m.title)}</button>`).join('');
       moduleNav.querySelectorAll('[data-module]').forEach(b => b.addEventListener('click', () => { state.module=b.dataset.module; state.view='resources'; showView(); render(); document.getElementById('sidebar').classList.remove('open'); }));
+    }
+    function moduleProgress(id) {
+      const m = modules.find(x => x.id === id);
+      if (!m) return {done:0, total:0, percent:0};
+      const done = m.resources.filter(r => state.done.has(r[0])).length;
+      return {done, total:m.resources.length, percent: Math.round(done / m.resources.length * 100)};
+    }
+    function renderGraph() {
+      const stages = document.getElementById('graphStages');
+      if (!stages) return;
+      const related = id => {
+        const back = graphEdges.filter(e => e[1] === id).map(e => e[0]);
+        const fwd = graphEdges.filter(e => e[0] === id).map(e => e[1]);
+        return {back, fwd, all: new Set([id, ...back, ...fwd])};
+      };
+      stages.innerHTML = graphStages.map(stage => {
+        const nodes = stage.modules.map(id => {
+          const m = modules.find(x => x.id === id);
+          if (!m) return '';
+          const p = moduleProgress(id);
+          const prereq = graphEdges.filter(e => e[1] === id).map(e => e[0]);
+          return `<button class="graph-node ${state.module===id?'current':''}" type="button" data-graph-node="${id}"
+            aria-label="${esc(id + ' ' + m.title)}，已完成 ${p.done} / ${p.total} 份资料">
+            <span class="graph-node-code">${id}<span>${p.done}/${p.total}</span></span>
+            <strong>${esc(m.title)}</strong>
+            <span class="graph-bar"><i style="width:${p.percent}%"></i></span>
+            ${prereq.length?`<span class="graph-prereq">前置：${prereq.join('、')}</span>`:''}
+          </button>`;
+        }).join('');
+        return `<div class="graph-stage" data-stage="${stage.id}">
+          <div class="graph-stage-head"><strong>${esc(stage.name)}</strong>
+            <small><em>${esc(stage.phase)}</em> · ${esc(stage.time)}</small></div>
+          ${nodes}</div>`;
+      }).join('');
+
+      const legend = document.getElementById('graphLegend');
+      if (legend) {
+        const total = allResources.length, done = state.done.size;
+        legend.innerHTML = `<span class="key"><span class="dot done"></span>已完成资料 <b>${done} / ${total}</b></span>
+          <span class="key"><span class="dot todo"></span>进度条为该模块已勾选比例</span>
+          <span class="key">连线方向：前置模块 → 后续模块（同列前置写在卡片上）</span>`;
+      }
+
+      const tracksBox = document.getElementById('graphTracks');
+      if (tracksBox) {
+        tracksBox.innerHTML = graphTracks.map(t => `<div class="graph-track"><h3>${esc(t.title)}</h3>
+          <p>${esc(t.desc)}</p><div class="graph-chips">${t.chips.map(c =>
+            `<button class="graph-chip" type="button" data-graph-jump="${t.view}" data-graph-target="${esc(c.id)}">${esc(c.label)}</button>`
+          ).join('')}</div></div>`).join('');
+        tracksBox.querySelectorAll('[data-graph-jump]').forEach(b => b.addEventListener('click', () => {
+          const view = b.dataset.graphJump;
+          if (view === 'bank') state.bankTopic = b.dataset.graphTarget;
+          state.view = view; showView();
+          if (view === 'bank') renderBank();
+        }));
+      }
+
+      stages.querySelectorAll('[data-graph-node]').forEach(node => {
+        const id = node.dataset.graphNode;
+        node.addEventListener('click', () => {
+          if (state.module === id) { state.module = id; state.view = 'resources'; showView(); render(); return; }
+          state.module = id; renderGraph(); drawEdges(id);
+        });
+        const lift = () => { highlight(id); };
+        const drop = () => { highlight(null); };
+        node.addEventListener('mouseenter', lift);
+        node.addEventListener('mouseleave', drop);
+        node.addEventListener('focus', lift);
+        node.addEventListener('blur', drop);
+      });
+      function highlight(id) {
+        const keep = id ? related(id).all : null;
+        stages.querySelectorAll('[data-graph-node]').forEach(n =>
+          n.classList.toggle('dim', Boolean(keep) && !keep.has(n.dataset.graphNode)));
+        drawEdges(id);
+      }
+      drawEdges(state.module);
+    }
+    function drawEdges(litFor) {
+      const svg = document.getElementById('graphEdges');
+      const stages = document.getElementById('graphStages');
+      if (!svg || !stages || !stages.offsetParent) return;
+      const box = stages.getBoundingClientRect();
+      svg.setAttribute('viewBox', `0 0 ${Math.round(box.width)} ${Math.round(box.height)}`);
+      const at = id => {
+        const el = stages.querySelector(`[data-graph-node="${id}"]`);
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        return {left:r.left - box.left, right:r.right - box.left, mid:r.top - box.top + r.height / 2};
+      };
+      svg.innerHTML = graphDrawn.map(([from, to]) => {
+        const a = at(from), b = at(to);
+        if (!a || !b) return '';
+        const gap = Math.max(12, (b.left - a.right) / 2);
+        const lit = litFor && (from === litFor || to === litFor);
+        return `<path class="${lit?'lit':''}" d="M${a.right} ${a.mid} C${a.right+gap} ${a.mid} ${b.left-gap} ${b.mid} ${b.left} ${b.mid}"/>`;
+      }).join('');
     }
     function renderStats() {
       const p0 = allResources.filter(r => r.priority==='P0');
@@ -286,21 +411,25 @@
       document.getElementById('stageList').innerHTML=phases.map((p,i)=>`<div class="stage-item ${i===0?'current':''}"><span class="stage-dot">${i===0?'●':i+1}</span><div><strong>${esc(p.name)} · ${esc(p.time)}</strong><small>${esc(p.goal)}</small></div></div>`).join('');
     }
     function showView() {
+      document.getElementById('graphView').classList.toggle('show',state.view==='graph');
       document.getElementById('resourceView').classList.toggle('hide',state.view!=='resources');
       document.getElementById('routeView').classList.toggle('show',state.view==='route');
       document.getElementById('weeklyView').classList.toggle('show',state.view==='weekly');
       document.getElementById('bankView').classList.toggle('show',state.view==='bank');
       document.getElementById('projectView').classList.toggle('show',state.view==='projects');
-      document.getElementById('crumbTitle').textContent=state.view==='resources'?'学习资料':state.view==='route'?'阶段路线':state.view==='weekly'?'每周执行':state.view==='bank'?'银行业务知识':'项目实战';
+      document.getElementById('crumbTitle').textContent=state.view==='graph'?'知识图谱':state.view==='resources'?'学习资料':state.view==='route'?'阶段路线':state.view==='weekly'?'每周执行':state.view==='bank'?'银行业务知识':'项目实战';
       document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));
       document.querySelectorAll('.sidebar > [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===state.view));
       document.getElementById('sidebar').classList.remove('open');
       renderNav();
+      if (state.view==='graph') renderGraph();
     }
-    function render(){renderNav();renderStats();renderResources();}
+    function render(){renderNav();renderStats();renderResources();if(state.view==='graph')renderGraph();}
     document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{state.view=b.dataset.view;showView();}));
     document.querySelectorAll('[data-priority]').forEach(b=>b.addEventListener('click',()=>{state.priority=b.dataset.priority;document.querySelectorAll('[data-priority]').forEach(x=>x.classList.toggle('active',x===b));renderResources();}));
     document.getElementById('searchInput').addEventListener('input',renderResources);
+    let graphResize;
+    window.addEventListener('resize',()=>{clearTimeout(graphResize);graphResize=setTimeout(()=>{if(state.view==='graph')drawEdges(state.module);},120);});
     document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
     document.getElementById('resetProgress').addEventListener('click',()=>{if(confirm('清除本浏览器中保存的学习进度、项目验收和笔记？')){try{['llmstudy.done','llmstudy.week','llmstudy.note','llmstudy.bankChecks','llmstudy.projectChecks'].forEach(k=>localStorage.removeItem(k));}catch(_){}state.done.clear();render();renderWeekly();renderBank();renderProjects();}});
     render();renderRoute();renderWeekly();renderSide();renderBank();renderProjects();showView();

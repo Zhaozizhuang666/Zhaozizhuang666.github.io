@@ -275,6 +275,59 @@
       .filter-btn { flex: 1; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    .graph-view { display: none; }
+    .graph-view.show { display: block; }
+    .graph-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-bottom: 14px;
+      color: var(--muted); font-size: 11px; }
+    .graph-legend b { color: var(--body); font-weight: 650; }
+    .graph-legend .key { display: inline-flex; align-items: center; gap: 5px; }
+    .graph-legend .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+    .graph-legend .dot.done { background: var(--accent); }
+    .graph-legend .dot.todo { background: var(--line); }
+    .graph-canvas { position: relative; overflow-x: auto; padding-bottom: 4px; }
+    .graph-edges { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+    .graph-edges path { fill: none; stroke: var(--accent-line); stroke-width: 1.5; }
+    .graph-edges path.lit { stroke: var(--accent); stroke-width: 2.4; }
+    .graph-inner { position: relative; min-width: 800px; }
+    .graph-stages { position: relative; display: grid; grid-auto-flow: column;
+      grid-auto-columns: minmax(0, 1fr); gap: 10px; }
+    .graph-stage { min-width: 0; display: grid; gap: 9px; align-content: start; }
+    .graph-stage-head { padding-bottom: 7px; border-bottom: 1px solid var(--line); }
+    .graph-stage-head strong { display: block; font-size: 13px; line-height: 1.3; overflow-wrap: anywhere; }
+    .graph-stage-head small { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .graph-stage-head em { font-style: normal; color: var(--accent); font-size: 10px; font-weight: 650; }
+    .graph-node { position: relative; z-index: 1; width: 100%; text-align: left; font: inherit; cursor: pointer;
+      padding: 9px 9px; border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--surface); color: var(--ink); transition: border-color .15s, box-shadow .15s; }
+    .graph-node:hover, .graph-node:focus-visible { border-color: var(--accent); box-shadow: var(--shadow); }
+    .graph-node:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .graph-node.current { border-color: var(--accent); background: var(--accent-soft); }
+    .graph-node.dim { opacity: .34; }
+    .graph-node-code { display: flex; align-items: center; justify-content: space-between; gap: 6px;
+      color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: .04em; }
+    .graph-node-code span { color: var(--muted); font-weight: 400; letter-spacing: 0;
+      font-variant-numeric: tabular-nums; }
+    .graph-node strong { display: block; margin: 3px 0 7px; font-size: 12px; font-weight: 500; line-height: 1.45; overflow-wrap: anywhere; }
+    .graph-bar { height: 3px; border-radius: 2px; background: var(--line); overflow: hidden; }
+    .graph-bar i { display: block; height: 100%; background: var(--accent); }
+    .graph-note { margin: 13px 0 0; color: var(--muted); font-size: 11px; line-height: 1.75; }
+    .graph-tracks { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--line); }
+    .graph-track h3 { margin: 0 0 4px; font-size: 12px; }
+    .graph-track p { margin: 0 0 9px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .graph-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .graph-chip { font: inherit; font-size: 11px; cursor: pointer; padding: 5px 10px; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--soft); color: var(--body); }
+    .graph-chip:hover { border-color: var(--accent); color: var(--accent); }
+    .graph-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .graph-prereq { display: block; margin: 5px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
+    @media (max-width: 760px) {
+      .graph-canvas { overflow-x: visible; }
+      .graph-edges { display: none; }
+      .graph-inner { min-width: 0; }
+      .graph-stages { grid-auto-flow: row; grid-auto-columns: auto; gap: 18px; }
+    }
+
 
     .resource-return { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:10px 14px;
       background:var(--glass); border-bottom:1px solid var(--line); }
@@ -309,7 +362,8 @@
     <aside class="sidebar" id="sidebar" aria-label="学习导航">
       <div class="brand"><span class="brand-mark">AI</span><div><strong>金融大模型学习</strong><small>自学工作台 · 零基础到专家</small></div></div>
       <div class="nav-label">工作台</div>
-      <button class="nav-btn active" data-view="resources"><span class="nav-icon">▤</span>学习资料</button>
+      <button class="nav-btn active" data-view="graph"><span class="nav-icon">◎</span>知识图谱</button>
+      <button class="nav-btn" data-view="resources"><span class="nav-icon">▤</span>学习资料</button>
       <button class="nav-btn" data-view="bank"><span class="nav-icon">▦</span>银行业务知识</button>
       <button class="nav-btn" data-view="projects"><span class="nav-icon">⌘</span>项目实战</button>
       <button class="nav-btn" data-view="route"><span class="nav-icon">⌁</span>阶段路线</button>
@@ -321,7 +375,7 @@
     <main class="main">
       <header class="topbar">
         <button class="mobile-menu" id="menuToggle" aria-label="打开导航">☰</button>
-        <div class="crumb">学习工作台 <span aria-hidden="true">/</span> <strong id="crumbTitle">学习资料</strong></div>
+        <div class="crumb">学习工作台 <span aria-hidden="true">/</span> <strong id="crumbTitle">知识图谱</strong></div>
         <div class="top-actions"><span class="week-pill">目标节奏　8 小时 / 周</span><button class="reset-btn" id="resetProgress" title="清除本浏览器保存的学习进度和笔记">↺ 重置进度</button></div>
       </header>
       <div class="content">
@@ -337,6 +391,15 @@
         </section>
         <section class="layout">
           <div>
+            <section class="panel graph-view" id="graphView" aria-labelledby="graphTitle">
+              <div class="route-intro"><div class="eyebrow">KNOWLEDGE MAP · M0—M14</div><h2 id="graphTitle">知识图谱：先看全貌，再挑模块</h2><p>从左到右是学习顺序：零基础起步 → 理论与工程地基 → 大模型应用 → 求职交付 → 在岗进阶。连线表示前置关系；点击或悬停一个模块，会高亮它依赖的模块和后续模块，再点一次进入该模块的资料。</p></div>
+              <div class="panel-body">
+                <div class="graph-legend" id="graphLegend"></div>
+                <div class="graph-canvas" id="graphCanvas"><div class="graph-inner" id="graphInner"><svg class="graph-edges" id="graphEdges" aria-hidden="true"></svg><div class="graph-stages" id="graphStages"></div></div></div>
+                <p class="graph-note">图中进度条读取「学习资料」里勾选的完成情况。阶段时间与「阶段路线」一致；Phase 5–6 按实际工作机会顺延，不是保证周期。</p>
+                <div class="graph-tracks" id="graphTracks"></div>
+              </div>
+            </section>
             <section class="panel resource-view" id="resourceView">
               <div class="panel-head"><div><h2 id="sectionTitle">学习资料库</h2><p id="sectionSubtitle">完全零基础从 M0 开始；M1–M10 是求职主线；M11–M14 是在岗进阶，入门阶段可以先不看。先学 P0 主线；P1 用于加深，P2 可按兴趣查阅。</p></div><div class="view-tabs" role="tablist"><button class="view-tab active" data-view="resources">资料库</button><button class="view-tab" data-view="route">路线图</button></div></div>
               <div class="panel-body">

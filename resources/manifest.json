@@ -32,7 +32,7 @@
       "href": "resources/bank-llm-learning.html",
       "description": "银行业务知识、金融大模型的分阶段学习路线、课程与项目实践，覆盖零基础入门到在岗进阶。",
       "source": "bank-llm-learning-platform-2026-11-24.html",
-      "sourceSha256": "881fa46e9e72fbc748d0d36fe0737e886ba069938a57261774bc388c4938fa9a",
+      "sourceSha256": "65d2929a95af7cecc448a377a992f5b5d77aed8068d70f817ec64726893faf25",
       "rights": "User-provided learning workbench; linked materials retain their original rights."
     }
   ],
@@ -68,13 +68,13 @@
     },
     {
       "path": "resources/bank-llm-learning.html",
-      "bytes": 34541,
-      "sha256": "17fa6dc570e4839b59f63d7fca19066921512a5d29c26089b23065fef0587563"
+      "bytes": 39940,
+      "sha256": "62da8d15c3aad1e57a97adb067f978241e463c056961ef23a032fbeaf37127bd"
     },
     {
       "path": "resources/bank-llm-learning.js",
-      "bytes": 101197,
-      "sha256": "b6c07e857be83717dcd5d22699ebdcc7ef25f5e1d850f5c87665f86f5b6fb896"
+      "bytes": 108650,
+      "sha256": "1bbe9d03fb6c213cbf0e49d48f8a23797708cded25368edff0f223814e65f107"
     },
     {
       "path": "resources/vla-guide/404.html",
