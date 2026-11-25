@@ -66,6 +66,7 @@ test('resource synchronization preserves strict script policy and inert VLA conf
   const policy = fs.readFileSync(path.join(root, 'scripts/site_security.py'), 'utf8');
   assert.match(sync, /secure_html\(content, vla_config=True\)/);
   assert.match(sync, /return secure_html\(content\)/);
+  assert.match(sync, /linux-operations-notes\.html/);
   assert.match(policy, /script-src 'self'/);
   assert.match(policy, /type="application\/json" id="vla-config"/);
 });

@@ -12,6 +12,14 @@
       "rights": "User-provided resource index; linked materials retain their original rights."
     },
     {
+      "id": "linux-operations-notes",
+      "title": "Linux Systems Learning",
+      "href": "resources/linux-operations-notes.html",
+      "description": "A modern Linux study route with upstream documentation and a transformed index of a historical PDF.",
+      "source": "Linux学习笔记（强悍总结值得一看）.pdf",
+      "rights": "The source PDF is not hosted; its author and redistribution license are unverified. Linked manuals retain their original rights."
+    },
+    {
       "id": "vla-guide",
       "title": "VLA Guide",
       "href": "resources/vla-guide/",
@@ -75,6 +83,11 @@
       "path": "resources/bank-llm-learning.js",
       "bytes": 108650,
       "sha256": "1bbe9d03fb6c213cbf0e49d48f8a23797708cded25368edff0f223814e65f107"
+    },
+    {
+      "path": "resources/linux-operations-notes.html",
+      "bytes": 16099,
+      "sha256": "86e17bdf12f4ee8edd5805d7fc750c03369222fad7e59b99161fb243f3522d8d"
     },
     {
       "path": "resources/vla-guide/404.html",

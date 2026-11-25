@@ -2,11 +2,12 @@
 
 Public static copies for the personal website:
 
+- [Linux Systems Learning](linux-operations-notes.html): a modern study route linked to upstream documentation, plus a clearly labeled index of a user-provided 2012 Linux PDF. The original PDF is not hosted.
 - [AI Network Learning](ai-network-learning.html): AI 算力中心网络学习导航，覆盖 GPU 互联、RDMA / RoCE、集合通信与容量规划。
 - [VLA Guide](vla-guide/): VLA 与具身智能学习知识库，包含基础、模型实践、评测部署、学习路线、岗位探索与原创面试练习。
 - [银行数据 × 大模型应用](bank-llm-learning.html): 知识图谱、银行业务专题、15 个学习模块（M0–M14）、4 个项目练习与 7 个阶段路线，覆盖零基础入门到在岗进阶。
 
-The snapshot contains 81 HTML pages: an AI networking index, a banking LLM workbench and 79 VLA pages. VLA includes 11 modules, 63 chapters, 24 role profiles and 80 interview practice questions. [manifest.json](manifest.json) lists the distributed files with byte sizes and SHA-256 hashes.
+The snapshot contains 82 HTML pages: Linux and AI networking indexes, a banking LLM workbench and 79 VLA pages. VLA includes 11 modules, 63 chapters, 24 role profiles and 80 interview practice questions. [manifest.json](manifest.json) lists 93 distributed files with byte sizes and SHA-256 hashes.
 
 ## Integration
 
@@ -22,7 +23,7 @@ Source directories are read-only inputs. The publishing script copies the deploy
 
 VLA code is MIT; original tutorial content is CC BY 4.0, attributed to 创享艺苑（VLA Guide）. See the exact upstream [code license](vla-guide/LICENSE), [content license](vla-guide/CONTENT_LICENSE.md) and [third-party notices](vla-guide/THIRD_PARTY_NOTICES.md). The original project is [VLA Guide on GitHub](https://github.com/Zhaozizhuang666/vla-guide). The published pages retain attribution and state the integration changes.
 
-The user-provided AI networking index and banking workbench have no explicit license declarations. Linked courses, papers, videos and repositories retain their original rights. Third-party availability and technical claims have not been exhaustively verified. These resources are static snapshots.
+The user-provided AI networking index and banking workbench have no explicit license declarations. The Linux page is original study guidance with official links and a transformed historical index; the source PDF author's identity and redistribution license have not been verified, so the PDF is not republished. Linked manuals and projects retain their original rights. Third-party availability and technical claims have not been exhaustively verified. These resources are static snapshots.
 
 ## Refresh and verify
 

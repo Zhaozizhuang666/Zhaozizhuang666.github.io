@@ -6,11 +6,11 @@
   const el = id => document.getElementById(id);
   const search = el('library-search'), filter = el('library-filter'), list = el('library-results');
   const tabs = [...document.querySelectorAll('[data-tab]')];
-  const localResources = new Set(['resources/vla-guide/', 'resources/ai-network-learning.html', 'resources/bank-llm-learning.html']);
+  const localResources = new Set(['resources/vla-guide/', 'resources/ai-network-learning.html', 'resources/bank-llm-learning.html', 'resources/linux-operations-notes.html']);
   const groups = {
     competitions: {field: 'level', placeholder: 'Search competitions, organizers, or keywords…', options: [['','All levels / 全部级别'],['A','A'],['B1','B1'],['B2','B2']], description: '来自《山西工学院学科竞赛分级》原表。A、B1、B2 为该校目录分类，具体赛制与参赛条件以当届公告为准。'},
     journals: {field: 'batch', placeholder: 'Search a journal title / 输入刊名…', options: [['','All batches / 全部批次'],['第一批','First batch / 第一批'],['第二批','Second batch / 第二批']], description: '整理自所提供的第一批、第二批学术期刊目录。批次根据文件顺序与编号推定；本目录不代表核心期刊、SCI 收录或当前有效出版许可。'},
-    learning: {field: 'libraryGroup', placeholder: 'Search VLA, RDMA, banking LLMs, or learning topics…', options: [['','All topics / 全部主题'],['VLA','VLA'],['AI Network','AI Network'],['Banking LLM','Banking LLM']], description: 'Explore VLA, AI networking, and banking LLM learning resources.'}
+    learning: {field: 'libraryGroup', placeholder: 'Search Linux, VLA, RDMA, banking LLMs, or learning topics…', options: [['','All topics / 全部主题'],['Linux','Linux'],['VLA','VLA'],['AI Network','AI Network'],['Banking LLM','Banking LLM']], description: '本站收录 Linux 系统管理、VLA、AI 算力网络和金融大模型学习资料。Linux 页面将旧版笔记与当前官方文档分开标注。'}
   };
   const normalize = text => String(text || '').toLocaleLowerCase().replace(/[\s·・—–（）()]/g, '');
   const node = (tag, className, text) => { const item = document.createElement(tag); if (className) item.className = className; if (text) item.textContent = text; return item; };
@@ -60,7 +60,7 @@
     el('previous-page').disabled = el('next-page').disabled = true;
     try {
       if (!cache[name]) {
-        const response=await fetch(`data/${name === 'learning' ? 'technical-knowledge' : name}.json`); if(!response.ok) throw new Error('Fetch failed');
+        const response=await fetch(`data/${name === 'learning' ? 'technical-knowledge' : name}.json?v=20261126-linux`); if(!response.ok) throw new Error('Fetch failed');
         const data=await response.json();
         cache[name] = name === 'learning' ? {sourceTitle: data.learningSourceTitle, sourceNote: data.learningSourceNote, entries: data.entries.filter(entry => entry.libraryCategory === 'learning' && localResources.has(entry.libraryHref))} : data;
       }

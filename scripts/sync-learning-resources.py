@@ -267,6 +267,10 @@ def main():
     network_target = PUBLIC / "ai-network-learning.html"
     network_target.write_text(integrate_network(network_source.read_text()))
     copied.append(network_target)
+    linux_target = PUBLIC / "linux-operations-notes.html"
+    if not linux_target.is_file():
+        raise ValueError("The maintained Linux learning guide is missing")
+    copied.append(linux_target)
     if before != source_snapshot(vla_source, network_source):
         raise RuntimeError("Source files changed while copying")
     manifest = {
@@ -276,6 +280,11 @@ def main():
              "description": "AI 算力中心网络学习导航，覆盖 GPU 互联、RDMA / RoCE、集合通信与容量规划。",
              "source": network_source.name, "sourceSha256": before[str(network_source)],
              "rights": "User-provided resource index; linked materials retain their original rights."},
+            {"id": "linux-operations-notes", "title": "Linux Systems Learning",
+             "href": "resources/linux-operations-notes.html",
+             "description": "A modern Linux study route with upstream documentation and a transformed index of a historical PDF.",
+             "source": "Linux学习笔记（强悍总结值得一看）.pdf",
+             "rights": "The source PDF is not hosted; its author and redistribution license are unverified. Linked manuals retain their original rights."},
             {"id": "vla-guide", "title": "VLA Guide", "href": "resources/vla-guide/",
              "description": "VLA 与具身智能学习知识库：基础、模型实践、评测部署、学习路径、岗位与面试。",
              "source": "vla-guide/site", "upstream": "https://github.com/Zhaozizhuang666/vla-guide",

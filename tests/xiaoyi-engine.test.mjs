@@ -21,6 +21,8 @@ test('learning entry navigation remains distinct from conceptual VLA explanation
     ['VLA Guide 入口在哪？', 'learning-vla-guide'],
     ['Where can I open VLA Guide?', 'learning-vla-guide'],
     ['AI算力中心网络学习资源在哪里？', 'learning-ai-network'],
+    ['Linux 系统学习路线在哪里？', 'learning-linux-operations-notes'],
+    ['Linux systemd 和 cgroups v2 怎么学？', 'learning-linux-operations-notes'],
     ['金融大模型学习工作台里的 RAG 项目在哪？', 'learning-bank-llm'],
     ['学习资源怎么使用？', 'site-guide-learning-resources'],
   ]) assert.ok(ids(make().reply(query)).includes(id), query);
@@ -132,10 +134,11 @@ test('personal study aliases leave general model definitions and unrelated direc
 
 test('classic browser factory has no DOM dependency and loads all three actual schemas once', async () => {
   const paths = [];
-  const engine = sandbox.window.XiaoyiEngine.create({fetch: async path => { paths.push(path); return {ok: true, json: async () => data[path.slice(5, -5)]}; }});
+  const engine = sandbox.window.XiaoyiEngine.create({fetch: async path => { paths.push(path); const name = path.split('?')[0].slice(5, -5); return {ok: true, json: async () => data[name]}; }});
   assert.deepEqual(Object.keys(engine).sort(), ['context', 'loadData', 'reply', 'reset']);
   await Promise.all([engine.loadData(), engine.loadData()]);
   assert.equal(paths.length, 3);
+  assert.ok(paths.every(path => path.endsWith('?v=20261126-linux')));
   technicalSources(engine.reply('VLM 是什么？'));
   await engine.loadData();
   assert.equal(paths.length, 3);

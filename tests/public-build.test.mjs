@@ -58,7 +58,7 @@ test('public artifact keeps the complete local site, contacts and exact manifest
   assert.equal(release.format, 'zizhuang-public-site-v1');
   assert.match(release.commit, /^[0-9a-f]{40}$/);
   assert.equal(release.sourceDirty, false);
-  assert.equal(report.htmlPages, 84);
+  assert.equal(report.htmlPages, 85);
   assert.ok(report.localLinks > 8000);
   assert.ok(report.localAnchors > 750);
   assert.equal(report.files, release.files.length + 1);
@@ -70,6 +70,7 @@ test('public artifact keeps the complete local site, contacts and exact manifest
   assert.ok(names.includes('QA.md'));
   assert.ok(names.includes('resources/bank-llm-learning.html'));
   assert.ok(names.includes('resources/bank-llm-learning.js'));
+  assert.ok(names.includes('resources/linux-operations-notes.html'));
   assert.ok(names.includes('resources/vla-guide/LICENSE'));
   assert.ok(names.includes('resources/vla-guide/CONTENT_LICENSE.md'));
   assert.deepEqual(names.filter(name => name.endsWith('.pdf')), [

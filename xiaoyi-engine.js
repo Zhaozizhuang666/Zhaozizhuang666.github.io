@@ -91,7 +91,7 @@
         if (data[kind]?.entries) return;
         if (!fetcher) return;
         try {
-          const response = await fetcher(`data/${kind}.json`);
+          const response = await fetcher(`data/${kind}.json?v=20261126-linux`);
           if (!response.ok) throw new Error('Unavailable');
           const parsed = await response.json();
           if (Array.isArray(parsed.entries)) data[kind] = parsed;
