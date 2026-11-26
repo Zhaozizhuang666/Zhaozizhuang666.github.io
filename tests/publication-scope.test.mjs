@@ -27,6 +27,18 @@ test('publication files and synchronization allowlist contain only the retained 
   assert.match(read('.gitignore'), /^\*\.pptx$/m);
 });
 
+test('Linux learning page includes practical command examples and high-impact operation warnings', () => {
+  const page = read('resources/linux-operations-notes.html');
+  for (const topic of ['cmd-basics', 'cmd-files', 'cmd-users', 'cmd-process', 'cmd-packages', 'cmd-storage', 'cmd-network', 'cmd-monitor', 'cmd-schedule', 'cmd-security', 'cmd-troubleshoot']) {
+    assert.match(page, new RegExp(`id="${topic}"`), topic);
+  }
+  for (const command of ['find . -type f', 'chmod 640', 'systemctl status', 'apt update', 'dnf install', 'lsblk -o', 'ss -lntup', 'vmstat 1 5', 'rsync -av --dry-run', 'podman ps -a']) {
+    assert.ok(page.includes(command), command);
+  }
+  assert.match(page, /mkfs/);
+  assert.match(page, /防火墙前，确认不会切断 SSH/);
+});
+
 test('research portfolio separates the two robotics projects and discloses official demo media', () => {
   const page = read('index.html');
   const experience = page.slice(page.indexOf('id="experience"'), page.indexOf('id="learning"'));

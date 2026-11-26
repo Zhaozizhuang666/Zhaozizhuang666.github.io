@@ -13,9 +13,9 @@
     },
     {
       "id": "linux-operations-notes",
-      "title": "Linux Systems Learning",
+      "title": "Linux Command Handbook",
       "href": "resources/linux-operations-notes.html",
-      "description": "A modern Linux study route with upstream documentation and a transformed index of a historical PDF.",
+      "description": "A detailed Linux command reference with examples, output explanations, distro notes and a transformed index of a historical PDF.",
       "source": "Linux学习笔记（强悍总结值得一看）.pdf",
       "rights": "The source PDF is not hosted; its author and redistribution license are unverified. Linked manuals retain their original rights."
     },
@@ -86,8 +86,8 @@
     },
     {
       "path": "resources/linux-operations-notes.html",
-      "bytes": 16099,
-      "sha256": "86e17bdf12f4ee8edd5805d7fc750c03369222fad7e59b99161fb243f3522d8d"
+      "bytes": 41885,
+      "sha256": "762939b0616e88d1576248394f89841f2a8d724b3b47c6c70439a0c7e66cd1aa"
     },
     {
       "path": "resources/vla-guide/404.html",
