@@ -6,10 +6,10 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f6f9">
-  <meta name="description" content="Linux 学习资料与详细命令手册，覆盖 Shell、文件、权限、服务、存储、网络、安全、性能、任务和容器。">
+  <meta name="description" content="Linux 指令速查表，常用系统、网络、SSH、Docker、Git 命令分类整理。">
   <script src="../theme-init.js?v=20261105-reset2"></script>
   <script src="../scroll-init.js?v=20261105-reset2"></script>
-  <title>Linux 学习资料与命令手册</title>
+  <title>Linux 指令速查表</title>
   <style>
     :root{color-scheme:light;--paper:#f4f6f9;--surface:#fff;--soft:#f7f9fc;--soft-2:#eef2f7;--ink:#202124;--body:#50545b;--muted:#616b79;--line:#e0e4ea;--accent:#0866ee;--accent-ink:#0a53c0;--accent-soft:#e8f0fe;--accent-line:#b6cdf6;--gold:#8a5a12;--gold-soft:#fdf3e2;--coral:#b4442f;--coral-soft:#fdecea;--page:1080px}
     :root[data-theme=dark]{color-scheme:dark;--paper:#0d131b;--surface:#151d28;--soft:#17202c;--soft-2:#1d2836;--ink:#e7edf6;--body:#bdc6d3;--muted:#9aa6b6;--line:#354154;--accent:#85b6ff;--accent-ink:#a9cbff;--accent-soft:#1b2a3c;--accent-line:#4d6380;--gold:#e6c17f;--gold-soft:#33291a;--coral:#f0a493;--coral-soft:#3a2522}
@@ -58,6 +58,12 @@
     .command-note p{margin:0}.command-note p+p{margin-top:5px}
     .command-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
     .command-columns>div{min-width:0}
+    .reference-fold{margin-top:18px;border-block:1px solid var(--line)}
+    .reference-fold>summary{display:block;width:auto;padding:13px 0;color:var(--accent-ink);font-size:13px;font-weight:550}
+    .quick-table td:first-child{width:18%;white-space:nowrap;color:var(--ink)}
+    .quick-table td:last-child{color:var(--body)}
+    .quick-note{margin:12px 0;padding:10px 13px;border-left:3px solid var(--gold);background:var(--gold-soft);color:var(--body);font-size:12px}
+    .quick-note p{margin:0}.quick-note p+p{margin-top:5px}
     .resource-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:36px}
     .resource-item{min-width:0;padding:12px 0;border-top:1px solid var(--line)}
     .resource-item h3{margin:0 0 3px;font-size:13px}
@@ -76,9 +82,117 @@
 </head>
 <body>
   <nav class="resource-nav page" aria-label="Personal website"><a href="../index.html">← Personal site</a><a href="../knowledge.html#learning">Library · Learning</a><button id="theme-toggle" type="button" aria-label="Theme: Auto">Auto</button></nav>
-  <header><div class="hero page"><p class="eyebrow">LINUX SYSTEMS</p><h1>Linux 学习资料与命令手册</h1><p class="lead">按主题查找常用命令、参数、输出含义和操作注意点，覆盖 Shell、系统管理、存储、网络、安全、性能、容器与内核。</p></div></header>
+  <header><div class="hero page"><p class="eyebrow">LINUX SYSTEMS</p><h1>Linux 指令速查表</h1><p class="lead">Shell · 系统管理 · 网络 · SSH · Docker · Git</p></div></header>
   <main class="page">
+    <section id="quick-reference">
+      <h2>常用命令速查</h2>
+      <div class="table-wrap"><table class="quick-table"><thead><tr><th>分类</th><th>常用命令</th></tr></thead><tbody>
+        <tr><td>CPU / 内存占用</td><td><code>ps -eo pid,pcpu,pmem,etime,cmd --sort=-pcpu | head</code> 按 CPU 排序 · 将 <code>-pcpu</code> 换为 <code>-pmem</code> 查内存大户</td></tr>
+        <tr><td>端口占用</td><td><code>sudo ss -lntup 'sport = :8080'</code> 查监听 8080 的进程 · <code>lsof -nP -iTCP:8080 -sTCP:LISTEN</code> 备用</td></tr>
+        <tr><td>磁盘空间</td><td><code>df -hT</code> 查文件系统 · <code>sudo du -xhd1 /var 2&gt;/dev/null | sort -h</code> 按目录找占用（GNU/Linux）</td></tr>
+        <tr><td>服务故障</td><td><code>systemctl status SERVICE --no-pager</code> · <code>journalctl -u SERVICE -n 50 --no-pager</code> 看近期日志</td></tr>
+        <tr><td>目录与文件</td><td><code>pwd</code> 当前路径 · <code>ls -lah</code> 列目录 · <code>cd DIR</code> 切换 · <code>mkdir -p DIR</code> 建目录 · <code>cp -av SRC DST</code> 复制 · <code>mv -i SRC DST</code> 移动 · <code>find PATH -name 'PATTERN'</code> 查找</td></tr>
+        <tr><td>查看与搜索</td><td><code>less FILE</code> 分页 · <code>head -n 20 FILE</code> 看开头 · <code>tail -f LOG</code> 跟日志 · <code>grep -n 'TEXT' FILE</code> 搜文本 · <code>wc -l FILE</code> 计行数</td></tr>
+        <tr><td>用户与权限</td><td><code>id</code> 看身份 · <code>sudo -l</code> 看授权 · <code>chmod 640 FILE</code> 改权限 · <code>chown USER:GROUP FILE</code> 改属主</td></tr>
+        <tr><td>进程与服务</td><td><code>ps auxf</code> 看进程 · <code>top</code> 实时监控 · <code>pgrep -a NAME</code> 查 PID · <code>systemctl status SERVICE</code> 查服务 · <code>journalctl -u SERVICE -n 100</code> 查日志</td></tr>
+        <tr><td>存储与网络</td><td><code>lsblk -f</code> 看块设备 · <code>ip -br addr</code> 看地址 · <code>ip route</code> 看路由 · <code>getent ahosts HOST</code> 查 DNS · <code>nc -vz HOST PORT</code> 测 TCP 连通</td></tr>
+        <tr><td>软件包</td><td>Debian/Ubuntu：<code>sudo apt update</code>、<code>sudo apt install PKG</code> · Fedora/RHEL：<code>sudo dnf install PKG</code></td></tr>
+        <tr><td>归档与容器</td><td><code>tar -czf A.tar.gz DIR</code> 打包 · <code>tar -tzf A.tar.gz</code> 列表 · <code>tar -xzf A.tar.gz -C DIR</code> 解压 · <code>docker ps -a</code> 看容器 · <code>docker stop NAME</code> 停止</td></tr>
+        <tr><td>远程登录</td><td><code>ssh USER@HOST</code> 登录 · <code>ssh-copy-id -i ~/.ssh/id_ed25519.pub USER@HOST</code> 安装公钥</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="efficiency-reference">
+      <h2>提高效率</h2>
+      <div class="table-wrap"><table class="quick-table"><thead><tr><th>场景</th><th>命令 / 操作</th></tr></thead><tbody>
+        <tr><td>快速列表</td><td><code>ll</code> 常见为 <code>ls -l</code> 别名；先用 <code>type ll</code> 确认，未定义时用 <code>ls -lah</code>。</td></tr>
+        <tr><td>搜历史</td><td><code>Ctrl-R</code> 反向搜索 Shell 历史 · <code>history | grep -i sudo</code> 筛选当前 Shell 记录；历史不是审计日志，可能含敏感参数。</td></tr>
+        <tr><td>批量查找</td><td><code>rg -n 'TEXT' DIR</code>（需安装 ripgrep）· <code>find DIR -type f -print0 | xargs -0 grep -n 'TEXT'</code> 安全传递含空格文件名。</td></tr>
+        <tr><td>持续观察</td><td><code>watch -n 2 'df -hT'</code> 每 2 秒刷新 · <code>journalctl -u SERVICE --since '1 hour ago'</code> 限定日志时间。</td></tr>
+        <tr><td>远程保活</td><td><code>ssh -t HOST 'tmux new -As work'</code> 创建或接回远程会话；按 <code>Ctrl-b</code> 再按 <code>d</code> 脱离。</td></tr>
+        <tr><td>网络分段耗时</td><td><code>curl -sS -o /dev/null -w '%{time_namelookup} %{time_connect} %{time_starttransfer} %{time_total}\n' URL</code> 依次看 DNS、连接、首字节和总耗时。</td></tr>
+        <tr><td>同步预览</td><td><code>rsync -av --dry-run SRC/ HOST:DST/</code> 先预览方向与文件清单，确认后再去掉 <code>--dry-run</code>。</td></tr>
+        <tr><td>逐步结束进程</td><td><code>pgrep -a -x NAME</code> 核对目标 → <code>pkill -TERM -x NAME</code> 请求退出；仅在仍未退出时考虑 <code>pkill -KILL -x NAME</code>。</td></tr>
+        <tr><td>Docker 进入容器</td><td><code>docker start NAME</code> 启动已有容器 → <code>docker exec -it NAME sh</code> 进入；镜像有 Bash 时可用 <code>bash</code>。</td></tr>
+        <tr><td>键盘布局</td><td>X11 查询用 <code>setxkbmap -query</code>；<code>xhost +local:docker</code> 是放宽显示访问控制，不是键盘映射。</td></tr>
+      </tbody></table></div>
+      <div class="quick-note"><p><strong>先检查再改动：</strong><code>ls</code> 是列目录，递归查找用 <code>find</code>；<code>pkill -9</code> 即 SIGKILL，无法清理进程状态；<code>ssh-copy-id</code> 需要远端用户和 IP/主机名/SSH 别名。</p><p><code>xhost +local:docker</code> 会放宽本机 X Server 访问，容器可能接触桌面窗口；图形容器优先使用单容器 Xauthority 授权，避免宽泛授权。</p></div>
+    </section>
+
+    <details class="reference-fold">
+      <summary>展开远程开发命令、完整路线与详细说明</summary>
     <aside class="notice"><p><strong>历史知识点：</strong>CentOS 5、SysV、GRUB/LILO、RPM/YUM、ifconfig/netstat、at/cron、/proc。</p><p><strong>现代知识点：</strong>systemd/journald、iproute2、nftables、cgroup v2、namespaces、SELinux/AppArmor、容器与 eBPF。</p></aside>
+    <section id="remote-dev">
+      <h2>Mac → SSH → Linux / Docker 远程开发</h2>
+      <div class="table-wrap"><table class="command-table"><thead><tr><th>场景</th><th>命令速查</th></tr></thead><tbody>
+        <tr><td>生成密钥</td><td><code>ssh-keygen -t ed25519 -a 100 -C 'mac-dev'</code>；私钥留在 Mac，设置 passphrase，公钥以 <code>.pub</code> 结尾。</td></tr>
+        <tr><td>安装公钥</td><td><code>ssh-copy-id -i ~/.ssh/id_ed25519.pub USER@HOST</code>；HOST 是 IP、DNS 名或 SSH config 别名。首次需要现有的服务器登录方式。</td></tr>
+        <tr><td>验证免密</td><td><code>ssh -o BatchMode=yes USER@HOST</code>；失败时用 <code>ssh -vv USER@HOST</code> 检查认证路径。</td></tr>
+        <tr><td>检查生效配置</td><td><code>ssh -G dev | grep -E '^(hostname|user|port|identityfile) '</code> 查看主机、用户、端口和密钥；<code>ssh -v dev</code> 看连接诊断。</td></tr>
+        <tr><td>配置别名</td><td><code>~/.ssh/config</code> 中配置 Host、HostName、User、IdentityFile、Port、ServerAliveInterval；跳板机用 <code>ProxyJump</code>。</td></tr>
+        <tr><td>上传 / 下载</td><td><code>scp -P 2222 FILE USER@HOST:/DIR/</code> · <code>scp -P 2222 USER@HOST:/PATH ./</code>；目录加 <code>-r</code>。SCP 端口是大写 <code>-P</code>，SSH 自身用小写 <code>-p</code>。</td></tr>
+        <tr><td>增量同步</td><td><code>rsync -avzP -e 'ssh -p 2222' SRC/ USER@HOST:DST/</code>；尾部斜杠影响目录层级，先用 <code>--dry-run</code> 检查方向和文件清单。</td></tr>
+        <tr><td>长任务会话</td><td><code>ssh -t dev 'tmux new -As train'</code>；按 <code>Ctrl-b</code>、<code>d</code> 脱离，之后重新运行命令接回。没有 tmux 时可用 <code>nohup CMD &gt;run.log 2&gt;&amp;1 &amp;</code>，用 <code>tail -f run.log</code> 看日志。</td></tr>
+        <tr><td>本地端口转发</td><td><code>ssh -N -L 8080:127.0.0.1:80 USER@HOST</code>；本地访问 8080 转到服务器侧 80 端口。</td></tr>
+        <tr><td>反向转发</td><td><code>ssh -N -R 9000:127.0.0.1:9000 USER@HOST</code>；仅在服务器策略允许时让远端访问本机服务。</td></tr>
+        <tr><td>容器文件复制</td><td><code>docker cp ./FILE CONTAINER:/DIR/</code>；从容器取出用 <code>docker cp CONTAINER:/PATH ./</code>。</td></tr>
+      </tbody></table></div>
+      <pre><code># ~/.ssh/config 示例
+Host dev
+  HostName 10.0.0.21
+  User ubuntu
+  IdentityFile ~/.ssh/id_ed25519
+  ServerAliveInterval 30
+  ServerAliveCountMax 3
+
+# 之后可用别名连接
+ssh dev</code></pre>
+      <div class="command-note danger"><p>首次连接要通过可信渠道核对服务器 host key 指纹；不要为了消除告警关闭校验。默认不要开启 <code>ForwardAgent</code>，否则远端可在会话期间请求使用本地 agent 中的密钥。</p></div>
+    </section>
+
+    <section id="remote-docker">
+      <h2>Docker / Compose</h2>
+      <div class="table-wrap"><table class="command-table"><thead><tr><th>目的</th><th>命令</th></tr></thead><tbody>
+        <tr><td>查看容器</td><td><code>docker ps</code> 运行中 · <code>docker ps -a</code> 包含已停止 · <code>docker images</code> 查看镜像。</td></tr>
+        <tr><td>启动已有容器</td><td><code>docker start NAME</code>；这是启动现有容器，不会新建。新建要用 <code>docker run</code> 或 Compose。</td></tr>
+        <tr><td>进入运行容器</td><td><code>docker exec -it NAME bash</code>；精简镜像常没有 Bash，改用 <code>sh</code>。容器必须处于运行中。</td></tr>
+        <tr><td>看容器日志</td><td><code>docker logs -f --tail 100 NAME</code>；<code>Ctrl-C</code> 只退出跟踪，不停止容器。</td></tr>
+        <tr><td>停止容器</td><td><code>docker stop --time 30 NAME</code>；先给进程 30 秒正常退出，再强制结束。</td></tr>
+        <tr><td>进程与资源</td><td><code>docker top NAME</code> · <code>docker stats --no-stream</code> · <code>docker inspect NAME</code>。</td></tr>
+        <tr><td>Compose 启动</td><td><code>docker compose up -d --build</code>；查看状态用 <code>docker compose ps</code>，日志用 <code>docker compose logs -f --tail 100</code>。</td></tr>
+        <tr><td>Compose 执行</td><td><code>docker compose exec SERVICE sh</code>；一次性运行用 <code>docker compose run --rm SERVICE CMD</code>。</td></tr>
+        <tr><td>端口映射</td><td><code>docker port NAME</code> 查看宿主机映射 · <code>docker inspect -f '{{json .NetworkSettings.Ports}}' NAME</code> 查看端口配置。</td></tr>
+        <tr><td>Compose 停止</td><td><code>docker compose stop</code> 暂停服务 · <code>docker compose down</code> 删除容器和网络。</td></tr>
+        <tr><td>GPU / 共享内存</td><td><code>docker run --gpus all --shm-size=8g IMAGE</code>；宿主需要匹配的 NVIDIA Container Toolkit。</td></tr>
+      </tbody></table></div>
+      <div class="command-note danger"><p>Docker daemon 或 <code>docker</code> 组权限通常等同宿主机 root。<code>docker rm -f</code> 删除容器，<code>docker compose down -v</code> 和 <code>docker volume prune</code> 可能删除持久数据。</p></div>
+    </section>
+
+    <section id="remote-git">
+      <h2>Git 远程开发</h2>
+      <div class="table-wrap"><table class="command-table"><thead><tr><th>目的</th><th>命令</th></tr></thead><tbody>
+        <tr><td>克隆仓库</td><td><code>git clone URL</code>；浅克隆用 <code>git clone --depth 1 --branch BRANCH URL</code>。</td></tr>
+        <tr><td>查看状态</td><td><code>git status -sb</code> · <code>git diff</code> · <code>git diff --cached</code>。</td></tr>
+        <tr><td>逐块暂存</td><td><code>git add -p</code>；审查每块改动，减少把调试文件一起提交。</td></tr>
+        <tr><td>历史与定位</td><td><code>git log --oneline --graph -20</code> · <code>git blame -L 10,20 FILE</code> · <code>git reflog</code> 查本地引用移动记录。</td></tr>
+        <tr><td>临时保存</td><td><code>git stash push -u -m 'wip'</code> 保存未跟踪文件 · <code>git stash pop</code> 恢复。</td></tr>
+        <tr><td>同步并推送</td><td><code>git pull --rebase</code> 更新 · <code>git push -u origin BRANCH</code> 首次推分支。</td></tr>
+        <tr><td>撤销提交</td><td>已推送提交优先用 <code>git revert COMMIT</code>；重写历史前先确认协作者和远端状态。</td></tr>
+      </tbody></table></div>
+      <div class="command-note danger"><p><code>git reset --hard</code>、<code>git clean -fd</code> 会丢弃改动/文件；先用 <code>git status</code>、<code>git diff</code> 或 <code>git clean -nd</code> 预览。</p></div>
+    </section>
+
+    <section id="remote-macos">
+      <h2>Mac 与 Linux 命令差异</h2>
+      <div class="table-wrap"><table class="command-table"><thead><tr><th>用途</th><th>Linux</th><th>macOS</th></tr></thead><tbody>
+        <tr><td>原地替换</td><td><code>sed -i 's/old/new/g' FILE</code></td><td><code>sed -i '' 's/old/new/g' FILE</code></td></tr>
+        <tr><td>文件属性</td><td><code>stat -c '%a %s' FILE</code></td><td><code>stat -f '%Lp %z' FILE</code></td></tr>
+        <tr><td>监听端口</td><td><code>ss -lntup</code></td><td><code>lsof -iTCP -sTCP:LISTEN -P -n</code></td></tr>
+        <tr><td>CPU 核数</td><td><code>nproc</code></td><td><code>sysctl -n hw.ncpu</code></td></tr>
+        <tr><td>目录大小</td><td><code>du -h --max-depth=1 DIR</code></td><td><code>du -h -d 1 DIR</code></td></tr>
+        <tr><td>日期</td><td><code>date -d 'yesterday' +%F</code></td><td><code>date -v-1d +%F</code></td></tr>
+      </tbody></table></div>
+    </section>
 
     <section id="roadmap">
       <h2>推荐学习路线</h2>
@@ -99,7 +213,7 @@
       <h2>Linux 命令手册</h2>
       <p>示例默认以普通用户执行。尖括号中的内容要替换成自己的值；带有 <code>sudo</code> 的命令会以管理员权限运行。先执行检查命令，再执行会修改系统状态的命令。</p>
       <nav class="command-nav" aria-label="命令主题">
-        <a href="#cmd-basics">环境与 Shell</a><a href="#cmd-files">文件与文本</a><a href="#cmd-users">用户与权限</a><a href="#cmd-process">进程、服务与日志</a><a href="#cmd-packages">软件包</a><a href="#cmd-storage">存储</a><a href="#cmd-network">网络</a><a href="#cmd-monitor">监控</a><a href="#cmd-schedule">归档与任务</a><a href="#cmd-security">安全与容器</a><a href="#cmd-troubleshoot">排障</a>
+        <a href="#cmd-basics">环境与 Shell</a><a href="#cmd-files">文件与文本</a><a href="#cmd-users">用户与权限</a><a href="#cmd-process">进程、服务与日志</a><a href="#cmd-packages">软件包</a><a href="#cmd-storage">存储</a><a href="#cmd-network">网络</a><a href="#cmd-monitor">监控</a><a href="#cmd-schedule">归档与任务</a><a href="#cmd-security">SSH 与安全</a><a href="#cmd-docker">Docker</a><a href="#cmd-x11">X11 与键盘</a><a href="#cmd-troubleshoot">排障</a>
       </nav>
 
       <section id="cmd-basics" class="command-section">
@@ -112,8 +226,10 @@
           <tr><td><code>man find</code><br><code>find --help</code></td><td>前者打开手册页，后者显示命令帮助。手册中按 <code>/关键词</code> 搜索，按 <code>q</code> 退出。</td></tr>
           <tr><td><code>type -a python</code><br><code>command -v python3</code></td><td>查看命令是别名、函数、内建命令还是可执行文件，并定位当前会运行的路径。</td></tr>
           <tr><td><code>printf '%s\n' "$HOME"</code></td><td>显示变量值。双引号保留变量展开并保护空格；单引号保留字面内容。</td></tr>
-          <tr><td><code>grep -n 'error' app.log</code></td><td>管道用 <code>|</code> 把前一个命令的标准输出交给后一个命令；用 <code>&gt;</code> 覆盖文件、<code>&gt;&gt;</code> 追加。</td></tr>
+          <tr><td><code>grep -n 'error' app.log</code></td><td>在文件中搜索文本并显示匹配行号；<code>-i</code> 忽略大小写，<code>-F</code> 按普通字符串匹配。</td></tr>
+          <tr><td><code>cmd1 | cmd2</code><br><code>cmd &gt;out 2&gt;&amp;1</code></td><td>管道把标准输出交给下一条命令；重定向保存标准输出和错误输出。<code>&gt;</code> 覆盖、<code>&gt;&gt;</code> 追加。</td></tr>
           <tr><td><code>command_a &amp;&amp; command_b</code></td><td>只有前一条成功（退出码为 0）才运行后一条；<code>;</code> 不检查成功与否。用 <code>echo $?</code> 查看上一条命令退出码。</td></tr>
+          <tr><td><code>history | grep -i sudo</code></td><td>筛选当前 Shell 保存的历史命令。它不是审计日志；不同用户、终端和 Shell 的历史文件各自独立，输入过的敏感参数也可能被保存。</td></tr>
         </tbody></table></div>
         <pre><code>#!/usr/bin/env bash
 set -euo pipefail
@@ -134,6 +250,7 @@ echo "exit=$?"</code></pre>
         <div class="table-wrap"><table class="command-table"><thead><tr><th>命令</th><th>作用与示例</th></tr></thead><tbody>
           <tr><td><code>pwd</code></td><td>显示当前工作目录。相对路径以这里为起点；<code>~</code> 表示当前用户主目录。</td></tr>
           <tr><td><code>ls -lah</code><br><code>ls -lt</code></td><td>长格式显示隐藏文件、人类可读大小；第二条按修改时间排序。注意目录的权限字符不等于文件内部权限。</td></tr>
+          <tr><td><code>ll</code></td><td>常见 Shell 别名，通常展开为 <code>ls -l</code> 或 <code>ls -alF</code>；不保证系统一定定义。先用 <code>type ll</code> 检查。<code>ls</code> 只列出目录内容，不负责递归查找。</td></tr>
           <tr><td><code>mkdir -p ~/work/demo</code></td><td>递归创建目录；父目录已存在时不报错。</td></tr>
           <tr><td><code>cp -a src/ backup/</code><br><code>mv -i old new</code></td><td><code>cp -a</code> 尽量保留权限、时间和符号链接；<code>mv -i</code> 覆盖前询问。</td></tr>
           <tr><td><code>file report.bin</code><br><code>stat report.bin</code></td><td>识别文件类型；显示大小、权限、所有者、inode 和时间戳等元信息。</td></tr>
@@ -144,6 +261,11 @@ echo "exit=$?"</code></pre>
           <tr><td><code>wc -l access.log</code></td><td>统计行数；<code>wc -w</code> 统计词数，<code>wc -c</code> 统计字节。</td></tr>
           <tr><td><code>sort names.txt | uniq -c | sort -nr</code></td><td>排序后统计重复行，再按计数从高到低排序。<code>uniq</code> 只合并相邻重复行，所以前面通常需要 <code>sort</code>。</td></tr>
           <tr><td><code>cut -d: -f1 /etc/passwd</code></td><td>按冒号分隔字段并取第一列。处理复杂 CSV 时不要把 <code>cut</code> 当作完整 CSV 解析器。</td></tr>
+          <tr><td><code>awk '{print $1, $3}' FILE</code></td><td>按空白分隔字段并挑选列；指定分隔符可用 <code>awk -F: '{print $1}' /etc/passwd</code>。</td></tr>
+          <tr><td><code>sed -n '10,20p' FILE</code></td><td>只显示指定行范围；原地替换前先预览，GNU/Linux 与 macOS 的 <code>sed -i</code> 参数不同。</td></tr>
+          <tr><td><code>jq -r '.items[].name' FILE.json</code></td><td>解析 JSON 并逐项输出字段；<code>-r</code> 输出原始字符串，需安装 jq。</td></tr>
+          <tr><td><code>command | tee -a run.log</code></td><td>同时显示并追加保存输出；若要捕获标准错误，可使用 <code>command 2&gt;&amp;1 | tee -a run.log</code>。</td></tr>
+          <tr><td><code>find DIR -type f -print0 | xargs -0 CMD</code></td><td>以 NUL 分隔文件名，安全处理空格和换行；批量执行删除前先移除末尾的修改命令，仅检查输出。</td></tr>
         </tbody></table></div>
         <pre><code>find ./logs -type f -name '*.log' -mtime -7 -print
 grep -RIn --include='*.conf' 'timeout' ./config
@@ -178,7 +300,14 @@ sudo -l</code></pre>
         <div class="table-wrap"><table class="command-table"><thead><tr><th>命令</th><th>作用与示例</th></tr></thead><tbody>
           <tr><td><code>ps -eo pid,ppid,user,stat,%cpu,%mem,cmd --sort=-%cpu | head</code></td><td>按 CPU 使用率查看进程；PID 是进程号，PPID 是父进程，STAT 表示状态。</td></tr>
           <tr><td><code>pgrep -a sshd</code><br><code>pstree -ap</code></td><td>按名称查 PID 并显示命令行；查看进程父子关系。进程名称和服务名称可能不同。</td></tr>
+          <tr><td><code>pgrep -a -x worker</code></td><td>精确匹配进程名并先显示 PID 与命令行。终止前确认匹配到的目标。</td></tr>
           <tr><td><code>kill -TERM 1234</code></td><td>请求进程正常退出并允许清理。确认 PID 属于目标进程；<code>KILL</code> 不可捕获，应是最后手段。</td></tr>
+          <tr><td><code>pkill -TERM -x worker</code></td><td>按精确进程名发送可处理的 TERM 信号；先用 <code>pgrep -a -x worker</code> 检查匹配范围。</td></tr>
+          <tr><td><code>pkill -KILL -x worker</code><br><code>pkill -9 -x worker</code></td><td><code>-9</code> 等同 SIGKILL：立即强制结束，进程不能清理临时文件或保存状态。仅在 TERM 无效且确认目标后使用；避免宽泛的 <code>-f</code> 匹配。</td></tr>
+          <tr><td><code>top</code></td><td>交互式进程监控；按 <code>P</code> 按 CPU 排序、<code>M</code> 按内存排序、<code>1</code> 切换逐核视图、<code>q</code> 退出。它是实时快照，不能单独证明故障根因。</td></tr>
+          <tr><td><code>lsof -p PID</code><br><code>sudo lsof +L1</code></td><td>查看进程打开的文件；第二条查已删除但仍被进程打开的文件，常用于解释“文件删了但磁盘空间没释放”。</td></tr>
+          <tr><td><code>sudo fuser -v 8080/tcp</code></td><td>查看哪些进程正在使用指定 TCP 端口或挂载点；核对 PID 后再决定是否停止进程。</td></tr>
+          <tr><td><code>sudo strace -f -p PID</code></td><td>短时观察进程系统调用，帮助定位卡在文件、锁或网络 I/O 的位置；可能看到敏感数据，避免无过滤长期跟踪。</td></tr>
           <tr><td><code>jobs -l</code><br><code>bg %1</code><br><code>fg %1</code></td><td>查看、后台继续或切回当前 Shell 作业。终端关闭后后台进程不一定继续运行。</td></tr>
           <tr><td><code>systemctl status ssh</code></td><td>查看服务状态和最近日志行。服务单元名因发行版而异，例如 Debian 常用 <code>ssh</code>、RHEL 常用 <code>sshd</code>。</td></tr>
           <tr><td><code>systemctl is-enabled ssh</code></td><td>检查是否配置为开机启动；“enabled”不代表当前正在运行。</td></tr>
@@ -227,6 +356,8 @@ rpm -qf /usr/sbin/nginx</code></pre><p>查看仓库和包元信息后再安装�
           <tr><td><code>sudo mount /dev/sdb1 /mnt/test</code></td><td>将指定分区挂载到目录。确认设备、文件系统和挂载选项；卸载用 <code>sudo umount /mnt/test</code>。</td></tr>
           <tr><td><code>sudo pvs</code><br><code>sudo vgs</code><br><code>sudo lvs</code></td><td>只读查看 LVM 物理卷、卷组和逻辑卷布局。</td></tr>
           <tr><td><code>sudo mdadm --detail /dev/md0</code></td><td>查看 Linux 软件 RAID 阵列状态；设备名按实际阵列替换。</td></tr>
+          <tr><td><code>sudo smartctl -a /dev/sdX</code></td><td>通过 smartmontools 查看设备健康信息；NVMe 与云盘支持字段不同，SMART 不能代替备份。</td></tr>
+          <tr><td><code>pvs</code> · <code>vgs</code> · <code>lvs</code></td><td>扩容前只读检查 LVM 层级；分区、逻辑卷和文件系统扩展顺序依赖实际布局与文件系统类型，不能直接套用同一条写命令。</td></tr>
         </tbody></table></div>
         <div class="command-note danger"><p><strong>高风险写操作：</strong><code>mkfs</code>、<code>parted</code>、<code>fdisk</code> 写入、<code>dd</code>、破坏性 <code>fsck</code>、LVM/RAID 初始化会改变或覆盖数据。先用 <code>lsblk -f</code>、<code>blkid</code>、<code>findmnt</code> 核对设备，并在可丢弃虚拟机练习。</p></div>
       </section>
@@ -234,9 +365,9 @@ rpm -qf /usr/sbin/nginx</code></pre><p>查看仓库和包元信息后再安装�
       <section id="cmd-network" class="command-section">
         <h3>7. 网络与 DNS 诊断</h3>
         <div class="table-wrap"><table class="command-table"><thead><tr><th>命令</th><th>作用与诊断顺序</th></tr></thead><tbody>
-          <tr><td><code>ip -br link</code><br><code>ip -br addr</code></td><td>简洁查看网卡链路状态和 IP 地址；DOWN 表示接口链路未启用或未连接。</td></tr>
+          <tr><td><code>ip -br link</code><br><code>ip -br addr</code></td><td>简洁查看网卡管理状态和 IP；看到 DOWN 后结合 <code>ip -d link</code>、驱动状态和 carrier 信息判断是接口关闭还是链路未连接。</td></tr>
           <tr><td><code>ip route</code><br><code>ip route get 1.1.1.1</code></td><td>查看路由表，并查询目标地址将走哪个网卡、网关和源 IP。</td></tr>
-          <tr><td><code>ss -lntup</code></td><td>查看 TCP/UDP 监听端口及进程；<code>-l</code> 监听、<code>-n</code> 数字、<code>-t</code> TCP、<code>-u</code> UDP、<code>-p</code> 进程。</td></tr>
+          <tr><td><code>ss -lntup</code></td><td>查看 TCP/UDP 监听端口及进程；<code>-l</code> 监听、<code>-n</code> 数字、<code>-t</code> TCP、<code>-u</code> UDP、<code>-p</code> 进程。无权限时进程信息可能不完整。</td></tr>
           <tr><td><code>getent ahosts example.com</code></td><td>通过系统名称服务解析域名；结果为空时检查 DNS 配置、网络和本机解析缓存。</td></tr>
           <tr><td><code>resolvectl status</code></td><td>在使用 systemd-resolved 的系统上查看 DNS 服务器和每链路设置；其他系统可能没有此命令。</td></tr>
           <tr><td><code>curl -I --max-time 10 https://example.com</code></td><td>只请求 HTTP 响应头并设置超时。观察 DNS、连接、TLS 和 HTTP 状态码。</td></tr>
@@ -264,6 +395,7 @@ ss -lntup</code></pre>
           <tr><td><code>sar -n DEV 1 3</code></td><td>查看网卡流量等历史/实时统计；数据采集服务可能需单独启用。</td></tr>
           <tr><td><code>dmesg -T | tail -100</code></td><td>读取内核环形缓冲区近期消息；系统也可能通过 journal 保存内核日志。</td></tr>
           <tr><td><code>cat /proc/pressure/{cpu,memory,io}</code></td><td>在支持 PSI 的内核上查看资源压力；数值表示任务因资源争用而停顿的时间比例。</td></tr>
+          <tr><td><code>journalctl -k -b | grep -iE 'oom|out of memory|killed process'</code></td><td>搜索本次启动的内核日志，排查 OOM killer 记录；容器或 systemd 服务还需结合其 cgroup 内存限制与服务日志判断。</td></tr>
         </tbody></table></div>
         <p>先记录时间范围、负载和基线，再比较 CPU、内存、I/O、网络与日志。一次采样或单个百分比不能单独证明根因；高延迟、队列和应用症状需要相互印证。</p>
       </section>
@@ -272,8 +404,11 @@ ss -lntup</code></pre>
         <h3>9. 压缩、同步与计划任务</h3>
         <div class="table-wrap"><table class="command-table"><thead><tr><th>命令</th><th>作用与示例</th></tr></thead><tbody>
           <tr><td><code>tar -tf archive.tar.gz</code></td><td>只列出归档内容；解压前用它检查文件路径。</td></tr>
+          <tr><td><code>.tar.gz</code></td><td>这是文件名后缀，不是命令。它通常表示先用 tar 打包、再用 gzip 压缩。</td></tr>
           <tr><td><code>tar -czf backup.tar.gz ./project</code></td><td>创建 gzip 压缩归档；<code>-c</code> 创建、<code>-z</code> gzip、<code>-f</code> 指定文件。</td></tr>
-          <tr><td><code>tar -xzf backup.tar.gz -C /tmp/restore</code></td><td>解压到指定目录。先确认目标目录和归档路径，避免覆盖现有文件。</td></tr>
+          <tr><td><code>mkdir -p /tmp/restore</code><br><code>tar -xzf backup.tar.gz -C /tmp/restore</code></td><td>先建目标目录，再解压；<code>-x</code> 解包、<code>-z</code> gzip、<code>-f</code> 指定归档、<code>-C</code> 切换目标目录。</td></tr>
+          <tr><td><code>sha256sum backup.tar.gz</code><br><code>tar -tzf backup.tar.gz</code></td><td>生成校验值并列出归档目录，用于传输后核验完整性和内容；校验和应通过独立可信渠道比对。</td></tr>
+          <tr><td><code>find BACKUP_DIR -type f -name '*.tar.gz' -mtime +30 -print</code></td><td>只列出超过 30 天的归档供保留策略审核；确认清单后再决定是否清理。</td></tr>
           <tr><td><code>rsync -av --dry-run src/ host:/backup/src/</code></td><td>预览同步计划；确认方向、尾部斜杠和删除行为后再移除 <code>--dry-run</code>。</td></tr>
           <tr><td><code>crontab -l</code><br><code>crontab -e</code></td><td>查看或编辑当前用户 cron。格式为“分 时 日 月 星期 命令”；cron 的 PATH 和环境变量通常比交互 Shell 更少。</td></tr>
           <tr><td><code>systemctl list-timers --all</code></td><td>查看 systemd 定时器及下次触发时间；服务系统日志可用 <code>journalctl -u name.timer</code> / <code>name.service</code> 检查。</td></tr>
@@ -289,6 +424,8 @@ rsync -av --dry-run ./data/ user@host:/srv/data/</code></pre>
         <div class="table-wrap"><table class="command-table"><thead><tr><th>命令</th><th>作用与注意点</th></tr></thead><tbody>
           <tr><td><code>ssh -v user@host</code></td><td>以详细模式诊断 SSH 握手和密钥选择；输出可能包含主机名等环境信息，分享前先检查。</td></tr>
           <tr><td><code>ssh-keygen -t ed25519 -C 'workstation'</code></td><td>生成 SSH 密钥对；私钥留在本机并设置口令，不要复制到聊天、仓库或服务器日志。</td></tr>
+          <tr><td><code>ssh-copy-id -i ~/.ssh/id_ed25519.pub user@host</code></td><td>把公钥追加到远端账号的 <code>authorized_keys</code>；首次通常仍需密码登录。<code>host</code> 应是 IP、DNS 名或 SSH 配置别名，不是通用硬件设备 ID。</td></tr>
+          <tr><td><code>ssh -o BatchMode=yes user@host</code></td><td>测试当前密钥能否免交互登录；成功后会连接远端。SSH 服务、账号策略和服务器端公钥配置都必须允许密钥认证。</td></tr>
           <tr><td><code>sudo -l</code><br><code>sudo -v</code></td><td>检查授权规则或刷新 sudo 凭据缓存；不要用 root 运行来源不明的脚本。</td></tr>
           <tr><td><code>getenforce</code><br><code>sestatus</code></td><td>在 SELinux 系统上查看强制状态和策略；不要用关闭 SELinux 作为通用排障方案。</td></tr>
           <tr><td><code>aa-status</code></td><td>在 AppArmor 系统上查看配置文件与进程状态；不同发行版可能只默认启用其中一种 MAC 系统。</td></tr>
@@ -300,8 +437,34 @@ rsync -av --dry-run ./data/ user@host:/srv/data/</code></pre>
         <p>基础安全习惯：及时安装签名可信的更新、最小权限、SSH 密钥保护、备份配置、留存审计与日志，并在虚拟机先验证变更。</p>
       </section>
 
+      <section id="cmd-docker" class="command-section">
+        <h3>11. Docker 容器常用命令</h3>
+        <div class="table-wrap"><table class="command-table"><thead><tr><th>命令</th><th>作用与注意点</th></tr></thead><tbody>
+          <tr><td><code>docker ps</code><br><code>docker ps -a</code></td><td>查看运行中的容器；加 <code>-a</code> 也显示已停止容器。名称和短 ID 可用于后续操作。</td></tr>
+          <tr><td><code>docker start web</code></td><td>启动一个已经创建但当前停止的容器；不会创建新容器。新建容器使用 <code>docker run</code>，执行前先检查镜像来源、挂载、端口和权限。</td></tr>
+          <tr><td><code>docker exec -it web bash</code><br><code>docker exec -it web sh</code></td><td>在运行中的容器里启动交互 Shell。精简镜像常没有 Bash，可尝试 <code>sh</code>；容器必须处于运行状态。</td></tr>
+          <tr><td><code>docker logs --tail 100 -f web</code></td><td>查看最近 100 行日志并持续跟踪；按 <code>Ctrl-C</code> 退出跟踪，不会停止容器。</td></tr>
+          <tr><td><code>docker inspect web</code></td><td>查看容器配置、挂载、网络和环境变量。输出可能含敏感配置，分享前先检查。</td></tr>
+          <tr><td><code>docker stop --time 10 web</code></td><td>先发送正常停止信号并等待 10 秒，超时后再强制结束。需要数据持久化时先确认卷和应用写入状态。</td></tr>
+          <tr><td><code>docker compose ps</code><br><code>docker compose logs -f</code></td><td>查看 Compose 项目容器状态和服务日志；在项目配置文件所在目录运行。</td></tr>
+        </tbody></table></div>
+        <div class="command-note danger"><p>Docker daemon 的管理权限通常等同主机 root 权限；不要随意把用户加入 <code>docker</code> 组或将 Docker socket 暴露给容器。<code>docker rm</code> 会删除容器，删卷可能删除持久数据。</p></div>
+      </section>
+
+      <section id="cmd-x11" class="command-section">
+        <h3>12. X11 访问与键盘布局</h3>
+        <div class="table-wrap"><table class="command-table"><thead><tr><th>命令</th><th>作用与边界</th></tr></thead><tbody>
+          <tr><td><code>xhost</code><br><code>xhost -</code></td><td>查看 X Server 访问控制列表或启用访问控制。它控制哪些客户端能连接图形显示，不负责键盘映射。</td></tr>
+          <tr><td><code>xhost +local:docker</code></td><td>给匹配的本地客户端放宽 X11 显示访问，可能让容器内客户端观察或操控桌面窗口；不建议作为通用 Docker 启动步骤，也不是键盘布局命令。</td></tr>
+          <tr><td><code>setxkbmap -query</code></td><td>查询当前 X11/Xwayland 键盘布局；Wayland 桌面通常应从桌面键盘设置管理。</td></tr>
+          <tr><td><code>setxkbmap -layout us</code></td><td>在 X11 会话临时切到 US 布局；桌面环境可能覆盖该设置，重登后也可能恢复。</td></tr>
+          <tr><td><code>localectl status</code></td><td>查看系统区域和键盘配置。使用 systemd 的系统可按发行版文档配置持久布局。</td></tr>
+        </tbody></table></div>
+        <div class="command-note danger"><p>容器图形程序优先使用单个可信容器的 Xauthority cookie 和最小只读挂载；不要用 <code>xhost +</code> 开放给所有客户端。X11、Xwayland 和 rootless Docker 的身份映射各不相同，需按实际桌面验证。</p></div>
+      </section>
+
       <section id="cmd-troubleshoot" class="command-section">
-        <h3>11. 命令排障顺序</h3>
+        <h3>13. 命令排障顺序</h3>
         <div class="command-note"><p>遇到故障先收集证据，不急着重启或删除文件。记录发生时间、完整错误、最近变更、系统版本和受影响范围。</p></div>
         <pre><code># 1. 确认系统与时间
 cat /etc/os-release
@@ -381,6 +544,7 @@ ss -lntup</code></pre>
         <tr><td>149</td><td>gzip、bzip2、tar 与 cpio</td><td>151</td><td>性能优化与常见问题</td></tr>
       </tbody></table></div>
     </section>
+    </details>
 
     <footer>知识点索引 · 原笔记页码见历史章节目录</footer>
   </main>

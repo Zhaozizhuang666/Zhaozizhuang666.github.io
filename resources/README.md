@@ -2,7 +2,7 @@
 
 Public static copies for the personal website:
 
-- [Linux Command Handbook](linux-operations-notes.html): a detailed command reference with examples, output explanations, distro notes, safety guidance, official sources, and a page index for the historical PDF. The original PDF is not hosted.
+- [Linux 指令速查表](linux-operations-notes.html): 常用命令置顶，分类覆盖 Shell、系统管理、SSH、文件传输、Docker、Git 与排障；详细命令和学习路线折叠收录。原 PDF 不托管。
 - [AI Network Learning](ai-network-learning.html): AI 算力中心网络学习导航，覆盖 GPU 互联、RDMA / RoCE、集合通信与容量规划。
 - [VLA Guide](vla-guide/): VLA 与具身智能学习知识库，包含基础、模型实践、评测部署、学习路线、岗位探索与原创面试练习。
 - [银行数据 × 大模型应用](bank-llm-learning.html): 知识图谱、银行业务专题、15 个学习模块（M0–M14）、4 个项目练习与 7 个阶段路线，覆盖零基础入门到在岗进阶。

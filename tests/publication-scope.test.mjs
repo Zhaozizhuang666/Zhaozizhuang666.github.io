@@ -29,14 +29,27 @@ test('publication files and synchronization allowlist contain only the retained 
 
 test('Linux learning page includes practical command examples and high-impact operation warnings', () => {
   const page = read('resources/linux-operations-notes.html');
+  const common = page.indexOf('id="quick-reference"');
+  const efficiency = page.indexOf('id="efficiency-reference"');
+  const details = page.indexOf('<details class="reference-fold">');
+  assert.ok(common >= 0 && common < efficiency && efficiency < details, 'common commands, efficiency tips, then folded details');
+  const detailsTag = page.slice(details).match(/^<details[^>]*>/)[0];
+  assert.doesNotMatch(detailsTag, /\bopen\b/, 'details are collapsed on first load');
+  assert.match(page, /<h1>Linux 指令速查表<\/h1>/);
   for (const topic of ['cmd-basics', 'cmd-files', 'cmd-users', 'cmd-process', 'cmd-packages', 'cmd-storage', 'cmd-network', 'cmd-monitor', 'cmd-schedule', 'cmd-security', 'cmd-troubleshoot']) {
     assert.match(page, new RegExp(`id="${topic}"`), topic);
   }
-  for (const command of ['find . -type f', 'chmod 640', 'systemctl status', 'apt update', 'dnf install', 'lsblk -o', 'ss -lntup', 'vmstat 1 5', 'rsync -av --dry-run', 'podman ps -a']) {
+  for (const command of ['find . -type f', 'chmod 640', 'systemctl status', 'apt update', 'dnf install', 'lsblk -o', 'ss -lntup', 'vmstat 1 5', 'rsync -av --dry-run', 'podman ps -a', 'tmux new -As work', 'docker compose exec SERVICE sh', 'ssh-copy-id', 'awk \'{print $1, $3}\'', 'journalctl -k -b']) {
     assert.ok(page.includes(command), command);
   }
   assert.match(page, /mkfs/);
   assert.match(page, /防火墙前，确认不会切断 SSH/);
+  const ids = [...page.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(new Set(ids).size, ids.length, 'page IDs are unique');
+  const linux = JSON.parse(read('data/technical-knowledge.json')).entries.find(entry => entry.id === 'learning-linux-operations-notes');
+  for (const alias of ['SSH免密登录', 'tmux远程任务', 'Docker Compose命令', 'Git远程开发', 'tar.gz压缩解压']) {
+    assert.ok(linux.aliases.includes(alias), alias);
+  }
 });
 
 test('research portfolio separates the two robotics projects and discloses official demo media', () => {

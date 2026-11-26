@@ -13,9 +13,9 @@
     },
     {
       "id": "linux-operations-notes",
-      "title": "Linux Command Handbook",
+      "title": "Linux 指令速查表",
       "href": "resources/linux-operations-notes.html",
-      "description": "A detailed Linux command reference with examples, output explanations, distro notes and a transformed index of a historical PDF.",
+      "description": "常用命令置顶，分类覆盖 Linux 系统管理、SSH 远程开发、文件传输、Docker、Git 与排障；详细说明折叠收录。",
       "source": "Linux学习笔记（强悍总结值得一看）.pdf",
       "rights": "The source PDF is not hosted; its author and redistribution license are unverified. Linked manuals retain their original rights."
     },
@@ -86,8 +86,8 @@
     },
     {
       "path": "resources/linux-operations-notes.html",
-      "bytes": 41885,
-      "sha256": "762939b0616e88d1576248394f89841f2a8d724b3b47c6c70439a0c7e66cd1aa"
+      "bytes": 64488,
+      "sha256": "a5d22e8a6ff4a34379f63efe4484253bc56158cb474f524e69599fc5577e935a"
     },
     {
       "path": "resources/vla-guide/404.html",
